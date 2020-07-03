@@ -3,11 +3,16 @@
 \usepackage{siunitx}
 \sisetup{
     math-micro=\ensuremath{\mu},
-    text-micro=\ensuremath{\mu}
+    text-micro=\ensuremath{\mu},
+    range-units=single,
 }
+\usepackage{amsmath}
 
+\newcommand{\nuebar}{\ensuremath{\bar{\nu}_e}}
+\newcommand{\thetaot}{\ensuremath{\theta_{13}}}
 \newcommand{\tc}{\ensuremath{T_c}}
 \newcommand{\fold}[1]{\ensuremath{#1}-fold}
+\newcommand{\mev}{\mega\electronvolt}
 
 \begin{document}
 
@@ -58,7 +63,7 @@ with reconstructed energy above \SI{1.5}{\mega\electronvolt}
 is identified as an ``AD event''
 and is a potential coincidence candidate.
 Because of the nonzero length of the readout window,
-AD events occuring closer together than \SI{1}{\micro\second}
+AD events occurring closer together than \SI{1}{\micro\second}
 are not necessarily separate physical events.
 Consequently, during the coincidence grouping process,
 the coincidence search window begins \SI{1}{\micro\second}
@@ -137,14 +142,13 @@ the length scale of the AD, approximately \SI{3000}{\milli\meter},
 and the time delay has a flat probability distribution
 on the time scale used for the coincidence window ($\tc = \SI{1.5}{\milli\second}$).
 
-The correlations for IBD events go further:
-neutrons which capture sooner also tend to capture closer to the prompt event.
-In other words, the distance and time distributions are correlated
+For IBDs, the distance and time distributions are correlated
 on an event-by-event basis.
+% TODO briefly describe the dependence / correlation
 A downside to this fact is that selecting events first using a distance cut
 and then using a time cut, or vice versa,
 would lead to partially correlated uncertainties on the cut efficiencies
-that would be difficult to characterize.
+that are difficult to characterize.
 However, this correlation can be exploited to create a single cut
 combining the distance and time that is straightforward to work with.
 
@@ -177,6 +181,240 @@ is the half-range of the near-hall efficiencies: \num{0.0016} (absolute),
 or approximately \SI{0.23}{\percent} (relative).
 
 \section{Energy cuts}
+
+\subsection{Prompt energy}
+The prompt energy lower bound of \SI{1.5}{\mev}
+is chosen to exclude a substantial fraction
+of the low-energy uncorrelated events from radioactive decays.
+In particular, X and Y decays have peaks around A and B \si{\mev}.
+% TODO which isotopes?
+
+The nominal efficiency of the prompt energy cut is estimated using Monte Carlo.
+%TODO figure
+However, because of the energy dependence of the \nuebar{} oscillations,
+a different fraction of \nuebar{} will pass this cut
+depending on the baseline between the reactor and the AD.
+For example, at shorter baselines, low-energy \nuebar{}
+are more likely to oscillate to other flavors, so that at the near halls,
+there are fewer IBD events missed by the prompt energy cut,
+thus raising the efficiency of the cut.
+At the oscillation maximum, though, medium-energy \nuebar{},
+around \SIrange{2}{3}{\mev}, are most likely to oscillate.
+So a smaller fraction of IBDs will pass the cut,
+and the efficiency will be lower.
+
+Corrections for each AD--reactor pair should be computed
+and weighted to arrive at each AD's final prompt energy efficiency.
+Since the corrections to the efficiency depend on
+the amplitude of \nuebar{} oscillations, they rely on knowledge of \thetaot.
+(For example, there would be no corrections at all if \thetaot{} were $0$.)
+To compute accurate corrections and, more importantly, an accurate value
+for \thetaot{}, an iterative process is used.
+Initially, no baseline-dependent correction is used and
+a value for \thetaot{} is obtained.
+That initial \thetaot{} is then used to compute baseline-dependent corrections,
+and the updated efficiencies are used to compute an updated value for \thetaot{}.
+This process is repeated until the \thetaot{} result converges.
+
+The AD-uncorrelated uncertainty for the prompt energy lower bound
+is dominated by differences in the energy scale between ADs.
+Based on the analysis of the delayed energy spectrum in each AD
+reported in Section \ref{subsec:delayed}, the energy scale
+varies by less than \SI{0.5}{\percent} between ADs.
+By applying a \SI{+-0.5}{\percent} variation to
+the event energy in the Monte Carlo dataset,
+the impact of the energy scale differences can be propagated
+to the prompt energy efficiency.
+The impact, and therefore the relative uncertainty on
+the prompt energy efficiency, is observed to be \SI{0.1}{\percent}.
+
+There is also a \SI{12}{\mega\electronvolt} upper bound for the prompt energy.
+The reactor \nuebar{} spectrum falls steeply above \SI{8}{\mev},
+so this cut has essentially \SI{100}{\percent} efficiency.
+
+\subsection{Delayed energy}
+\label{subsec:delayed}
+
+Neutron capture on hydrogen releases a (monoenergetic)
+\SI{2.22}{\mev} $\gamma$,
+which means the cut values can be tuned to a narrow energy region
+around that value.
+However, while the prompt IBD positron essentially never escapes
+from the liquid scintillator sensitive volume,
+$\gamma$'s do regularly escape (a few percent of the time),
+depositing less than their full energy in the liquid scintillator.
+Both the tuning of the energy cut values
+and the fraction of escaping $\gamma$'s are sensitive to
+small variations in the geometry of the AD, energy reconstruction,
+and scattering properties of $\gamma$'s in
+both liquid scintillator and in acrylic.
+
+The delayed energy cut bounds are identified based on
+functional fits to each AD's delayed energy spectrum.
+Specifically, the spectrum is generated by first applying
+the prompt energy cut and D-T cut,
+then statistically subtracting the accidental background (Section \ref{subsec:acc}).
+Although the resulting spectrum still has some background,
+the only remaining background processes also involve
+neutron capture on hydrogen, and contribute to the same spectral shape
+as the signal IBD process.
+
+Each spectrum is fit with the calorimeter function, which models
+a calorimetric response to a monoenergetic process with ``true''
+energy $\mu$.
+The modeled detector has an intrinsic and energy resolution $\sigma$
+which applies a Gaussian smearing to the deposited energy.
+($\sigma$ itself is independent of energy.)
+While many events in this model deposit all of their energy into
+the calorimeter, some events partially leak out.
+The fraction of events that deposit their full energy in the detector
+is referred to as the peak fraction $\alpha$.
+The energy leakage is modeled as an exponential distribution
+with characteristic energy scale $\lambda$.
+The fit function itself is derived by starting with
+the unsmeared model:
+
+\begin{equation*}
+    f_{unsmeared}(E) =
+    \begin{cases}
+        \alpha\delta(E-\mu) + (1-\alpha)\lambda e^{\lambda E}
+        & 0 < E \leq \mu \\
+        0 & E > \mu
+    \end{cases}
+\end{equation*}
+
+This function is then convolved with a Gaussian
+of width $\sigma$.
+
+\begin{align*}
+    f_{cal}    &= f_{unsmeared} \otimes \text{Gaussian} \\
+    f_{cal}(E) &= \int_0^\mu dE' f_{unsmeared}(E') \cdot \text{Gaussian}(E'-E; \mu) \\
+               &= \frac{1}{\sigma\sqrt{2\pi}}
+               \left[
+                   \alpha\int_0^\mu dE' e^{-\frac{(E'-E)^2}{2\sigma^2}} \delta(E'-\mu)
+                   + (1-\alpha)\int_0^\mu dE' e^{-\frac{(E'-E)^2}{2\sigma^2}}
+                   \lambda e^{\lambda E'}
+               \right] \\
+               &= \alpha\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(E-\mu)^2}{2\sigma^2}}
+               + (1-\alpha)
+               \frac{\lambda e^{\sigma^2\lambda^2+2\lambda E}}{e^{\lambda\mu}-1}
+               \left[
+                   \text{erf}
+                   \left(
+                       \frac{\mu-E-\sigma^2\lambda}{\sigma\sqrt{2}}
+                   \right)
+                   + \text{erf}
+                   \left(
+                       \frac{E + \sigma^2\lambda}{\sigma\sqrt{2}}
+                   \right)
+               \right]
+\end{align*}
+The entire result is normalized to unity
+but can be scaled by an overall normalization $N$.
+
+The eight delayed energy spectra with their fits are shown in Figure X. %TODO
+Comparing the fitted parameters across ADs can be used
+to measure the identicalness of the ADs.
+Their values and relative differences are plotted in Figure X %TODO
+and listed in Table Y. %TODO
+In particular, Figure X(a) shows the relative difference %TODO
+in the fitted peak $\mu$ across the ADs,
+which is a measure of the energy scale variation.
+The relative variation of \SI{+-0.5}{\percent}
+is used to compute the AD-uncorrelated uncertainty
+on the prompt energy cut efficiency.
+
+The bounds for the delayed energy cut are computed
+based on the fitted peak value and energy resolution
+from the calorimter model. The energy criterion is
+
+\begin{equation}
+    \mu - 3\sigma < E < \mu + 3\sigma.
+\end{equation}
+
+This form was decided on even though the calorimeter function
+is not symmetric, and even though in reality
+the detector resolution changes with energy
+(and therefore is not precisely modeled in the fit).
+The values used for the energy bounds are listed in Table Y %TODO
+and plotted in Figure X. %TODO
+
+The absolute efficiency of the delayed energy cut
+is measured using Monte Carlo.
+The same fitting procedure with the calorimeter function
+and the same $\mu \pm 3\sigma$ bounds are used to
+estimate the fraction of neutron capture on hydrogen events
+that pass the delayed energy cut.
+The relative fraction of GdLS to LS also impacts the efficiency
+because with more GdLS, fewer neutrons will capture on hydrogen.
+This difference between the GdLS and LS regions is taken into account
+when computing the absolute efficiency.
+
+The AD-uncorrelated uncertainty on the efficiency
+includes variations due to all the above effects:
+geometrical variations, energy scale, different material properties,
+Gd fraction, etc.
+The overall variation between ADs is estimated using a general method
+that compares the relative size between the peak and tail regions
+of the delayed energy spectrum, as defined by the delayed energy cut,
+across the ADs.
+Intuitively, if the same fraction of events is in the peak region in each AD,
+then the cut efficiency must have a small variation.
+This intuition is visualized in the cartoon in Figure X. %TODO
+In practice, it is easier to compare the number of events in the peak
+to the number of events in an extended region that includes the tail.
+
+For each AD's delayed energy spectrum, the peak region is defined as
+the region passing the delayed energy cut, $\vert E-\mu \vert < 3\sigma$.
+The extended region is the same for each AD:
+$\SI{1.5}{\mev} < E < \SI{2.8}{\mev}$.
+Using an AD-dependent definition for the peak region but
+the same values for the extended creates
+the desired sensitivity to variations in the energy scale.
+Extending the lower bound down to \SI{1.5}{\mev} adds sensitivity to
+anything that would change the shape of the tail
+or the fraction of $\gamma$'s that (partially) escape from the AD.
+The number of events in the peak region ($N_{peak}$)
+and in the extended region ($N_{extended}$) for each AD
+is given in Table Y. %TODO
+
+If the delayed energy spectra have the same shape,
+and if the calorimeter function is an appropriate fitting function
+for determining the energy cut bounds,
+then for some constant $b$ common to all ADs,
+$N_{peak,\,i} = b N_{extended,\,i}$ for each AD $i$.
+To test this model, an affine linear function is fit
+to the values for each AD:
+
+\begin{equation}
+    N_{peak,\,pred,\,i} = a + b N_{extended,\,i},
+\end{equation}
+
+where $N_{peak,\,pred,\,i}$ is the fit function's prediction
+of the actual event count in the peak ($N_{peak,\,i}$).
+Plots of $N_{peak,\,i}$ vs. $N_{extended,\,i}$ and of the
+relative deviation from the fitted line are shown in Figure X. %TODO
+The fit value of $a$ should be $0$ if the simple model of
+a linear scaling is correct.
+Indeed, the fit value is $a = -321 \pm 387$
+which is consistent with $0$.
+The fit value for $b$ is $b = 0.9527 \pm 0.0015$,
+which can be interpreted as a loose upper bound
+on the delayed energy cut efficiency.
+The final value for the AD-uncorrelated uncertainty
+of the delayed energy efficiency is taken to be
+the half-range of the relative deviations
+of the near-hall ADs from the fitted line: \SI{0.11}{\percent}.
+The far-hall ADs have much higher statistical uncertainty
+(relative uncertainty $\approx\SI{0.5}{\percent}$),
+and therefore larger fluctuations.
+Validation that the far-hall ADs are not
+substantially different from the near-hall ADs is obtained by
+summing the counts for all 4 far-hall ADs to get
+a combined relative deviation for the far hall of \SI{0.018}{\percent},
+well within the uncertainty derived from the near halls.
+
+
 
 
 \chapter{Background}
