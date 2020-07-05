@@ -5,8 +5,9 @@ The formulas used for computing the rate of uncorrelated events
 and the rate of accidental coincidences
 are based on the statistical interpretation
 of the coincidence grouping algorithm.
-As mentioned in \cref{sec:coincidence}, coincidence groups are formed
-by repeating the following steps:
+As mentioned in \cref{sec:coincidence}
+and illustrated by \cref{fig:timeline_examples},
+coincidence groups are formed by repeating the following steps:
 
 \begin{enumerate}
     \item Find the next AD event.
@@ -78,7 +79,8 @@ coincidence window.
 This probability can be calculated by considering
 a set of mutually exclusive situations
 and summing the individual probability for each situation.
-Three situations contribute the majority of the probability;
+Three situations contribute the majority of the probability
+and are illustrated in \cref{fig:ap_scenarios};
 the next-most-likely situation is briefly examined in \cref{ap:singlesprecision}
 to demonstrate its negligible likelihood.
 The three situations are:
@@ -163,6 +165,23 @@ The three situations are:
         \end{align*}
 
 \end{enumerate}
+
+\begin{figure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics{ap_acc_derivation/timeline_a}
+        \caption{Scenario (a)}
+    \end{subfigure} \\
+    \begin{subfigure}{\textwidth}
+        \includegraphics{ap_acc_derivation/timeline_b}
+        \caption{Scenario (b)}
+    \end{subfigure} \\
+    \begin{subfigure}{\textwidth}
+        \includegraphics{ap_acc_derivation/timeline_c}
+        \caption{Scenario (c)}
+    \end{subfigure}
+    \caption{The three scenarios used to compute $P_{\text{start}}$}
+    \label{fig:ap_scenarios}
+\end{figure}
 The final formula used for the probability of starting a coincidence window
 $P_{\text{start}}$ is the sum of these three terms.
 
@@ -214,6 +233,20 @@ all within a time interval shorter than $2\tc$,
 it is not surprising that $P_b\ll P_c (< P_a)$
 at both the near and far sites.
 
+\begin{figure}
+    \includegraphics{ap_acc_derivation/timeline_bad}
+    \caption{
+        This physical situation is included in $P_b$,
+        but it does not lead to our chosen AD event
+        starting a coincidence window.
+        $P_{\text{start, better}}$ excludes situations like this,
+        but it does not make much of a difference
+        in the final result for anything measurable
+        (cf. \cref{tab:pstartcomponents}).
+    }
+    \label{fig:ap_timeline_bad}
+\end{figure}
+
 While $P_a$ and $P_c$ are exact mathematical representations
 of the corresponding physical scenarios,
 $P_b$ is just an approximation stemming from the fact that
@@ -225,7 +258,7 @@ and E0 lies outside it.
 Missing from this description is that E2 itself must not lie
 within a previous event's coincidence window.
 (If it did, then E1 would start its own coincidence window
-that contains E0.)
+that contains E0, as in \cref{fig:ap_timeline_bad}.)
 This could happen for 2 reasons: either (1) there are no events
 within \tc{} before E2, (2) there is an event E3 within \tc{}
 of E2, and also another event E4 before E3 such that
