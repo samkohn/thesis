@@ -75,10 +75,6 @@ the actual time interval covered by any given coincidence window is
 $\tc - \SI{1}{\micro\second}$.
 This analysis uses a coincidence search window of $\tc = \SI{1.5}{\milli\second}$.
 
-\Cref{fig:timeline_examples} shows how these steps handle
-a variety of event groupings and timings
-present in the Daya Bay data stream.
-
 The total number of AD events in the group
 is the multiplicity of the group.
 A coincidence group with multiplicity $n$ is also referred to
@@ -89,14 +85,14 @@ that includes three other AD events,
 resulting in a coincidence group of multiplicity 4, or a \fold{4} coincidence.
 
 If a muon event occurs within a coincidence window,
-then that window is vetoed.
+then that coincidence window is vetoed.
 In other words, every muon has an implicit veto window
 that forbids prompt events within \tc{} of the muon.
 This is demonstrated by Window 2 of \cref{fig:timeline_examples}.
 Note that if the prompt event occurs earlier than \tc{} before a muon,
 then subsequent events within the coincidence window
 are allowed to occur inside of the implicit muon veto window.
-Thus the implicit veto window only vetoes prompt events.
+Only prompt events are vetoed by the implicit veto window.
 
 The veto window after a muon also impacts the way that
 coincidence windows are formed.
@@ -117,11 +113,41 @@ which ends before the prompt event in question.
 Window 4 of \cref{fig:timeline_examples} demonstrates this property:
 there are no other AD events within Window 4,
 but there is a previous AD event within \tc{} of the start of Window 4.
+Given the event rates at Daya Bay, this only happens in $\sim10^{-4}$
+of single events.
+This probability is derived in \cref{ap:singlesformula} as $P_b$.
+
+\begin{figure}
+    \begin{subfigure}{0.49\textwidth}
+        %TODO produce plots with **all** double coincidences
+        \includegraphics[width=\textwidth]{ch_event_selection/double_coincs_EH1_AD1}
+        \caption{All \fold{2} coincidences from EH1-AD1}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{ch_event_selection/test}
+        \caption{All \fold{2} coincidences from EH3-AD1} %TODO
+    \end{subfigure}
+    \caption{}
+    \label{fig:double_coinc_eh1ad1}
+\end{figure}
 
 Once the coincidence groups have been constructed,
 the set of \fold{2} coincidences can be identified as
 the preliminary set of IBD candidates,
 albeit with background still present.
+\Cref{fig:double_coinc_eh1ad1} shows the prompt and delayed energy
+of all \fold{2} coincidences identified in EH1-AD1 and EH3-AD1
+as representatives of the near and far sites.
+These plots clearly show the nGd events
+at delayed energy values near \SI{8}{\mev}.
+The nH events are visible as the narrow band at
+delayed energies near \SI{2.2}{\mev}
+and prompt energies of \SIrange{4}{7}{\mev}.
+At prompt energies less than \SI{3.5}{\mev} or greater than \SI{7}{\mev}
+these signal events are overwhelmed by the accidental background,
+which is characterized in these plots by the 4-point square at both prompt and
+delayed energies of \SIlist{1.5;3.25}{\mev}.
+
 The \fold{1} coincidences can be identified as a subset
 of the uncorrelated events, mostly radioactive decays,
 that are also present in the data stream.
@@ -129,12 +155,13 @@ However, not all uncorrelated events end up in \fold{1} coincidences.
 Sometimes an uncorrelated event will occur in close proximity to
 a true IBD prompt-delayed pair, creating a \fold{3} coincidence.
 These high-multiplicity coincidence groups are vetoed
-with a small loss of efficiency (\cref{subsec:acc}).
+with a small loss of efficiency.
 More concerning is when two uncorrelated events
 randomly occur in close proximity to each other,
 creating a \fold{2} coincidence group that passes the high-multiplicity veto.
 These so-called ``accidental'' coincidences
-constitute the largest background within the set of \fold{2} coincidences.
+constitute the largest background within the set of \fold{2} coincidences
+(\cref{subsec:acc}).
 The distance, time and energy cuts described below
 are all motivated in large part by the need to reduce the accidental background.
 
@@ -158,19 +185,37 @@ the length scale of the AD, approximately \SI{3000}{\milli\meter},
 and the time delay has a flat probability distribution
 on the time scale used for the coincidence window ($\tc = \SI{1.5}{\milli\second}$).
 
-For IBDs, the distance and time distributions are correlated
-on an event-by-event basis.
-% TODO briefly describe the dependence / correlation
-A downside to this fact is that selecting events first using a distance cut
-and then using a time cut, or vice versa,
-would lead to partially correlated uncertainties on the cut efficiencies
-that are difficult to characterize.
-However, this correlation can be exploited to create a single cut
-combining the distance and time that is straightforward to work with.
+\begin{figure} %TODO generate full plot
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{ch_event_selection/after_DT_cut_EH1_AD1}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth} %TODO make EH3-AD1
+        \includegraphics[width=\textwidth]{ch_event_selection/after_DT_cut_EH1_AD1}
+        \caption{}
+    \end{subfigure}
+    \caption{Coincidence distance vs. coincidence time
+    for events in EH1-AD1 and EH3-AD1.}
+    \label{fig:dr_vs_dt}
+\end{figure}
 
-The exact combination of parameters for the cut was chosen based on observations
-of the coincidence distance vs. coincidence time distributions.
-This cut is known as the D-T cut and has the form
+\Cref{fig:dr_vs_dt} shows the distribution of
+coincidence distance and coincidence time
+for the subset of \fold{2} coincidences with
+relatively small coincidence distances and times
+of less than \SI{1000}{\milli\meter} and \SI{600}{\micro\second},
+respectively.
+Correlated events are grouped at the lowest
+coincidence times and distances,
+although there is a visible tail in both dimensions.
+The rest of the events distributed with relatively uniform density
+across the plot are accidental background from uncorrelated events.
+This plot was used to determine the distance and time cut
+by drawing a line from \SI{800}{\milli\meter} at $0$ time
+to \SI{480}{\micro\second} at $0$ distance.
+This line rather effectively separates the higher-density region
+of correlated events from the uniform density region of accidental background.
+This cut is known as the D-T cut and the line has the equation
 
 \begin{equation}
     \Delta r + v_0 \Delta t < \SI{800}{\milli\meter},
