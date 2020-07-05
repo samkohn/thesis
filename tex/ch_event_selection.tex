@@ -57,15 +57,54 @@ until the data file is exhausted:
     \item Skip to the next AD event that is not part of the coincidence group.
 \end{enumerate}
 
-The total number of AD events in the group
-is the multiplicity of the group.
+\begin{figure}
+    \includegraphics{ch_event_selection/timeline_examples}
+    \caption{
+        An example timeline showing how coincidence groups are created,
+        and how they interact with muons and muon veto windows.
+        This illustration does not show the \SI{1}{\micro\second} gap
+        at the start of each coincidence window.
+        Windows 1, 3, and 4 are valid coincidence groups,
+        while Window 2 is vetoed by the muon event.
+    }
+    \label{fig:timeline_examples}
+\end{figure}
+
 Because of the initial \SI{1}{\micro\second} gap,
 the actual time interval covered by any given coincidence window is
 $\tc - \SI{1}{\micro\second}$.
 This analysis uses a coincidence search window of $\tc = \SI{1.5}{\milli\second}$.
 
+\Cref{fig:timeline_examples} shows how these steps handle
+a variety of event groupings and timings
+present in the Daya Bay data stream.
+
+The total number of AD events in the group
+is the multiplicity of the group.
 A coincidence group with multiplicity $n$ is also referred to
 as an \fold{n} coincidence.
+In Window 1 of \cref{fig:timeline_examples},
+the first AD event starts a new coincidence window
+that includes three other AD events,
+resulting in a coincidence group of multiplicity 4, or a \fold{4} coincidence.
+
+If a muon event occurs within a coincidence window,
+then that window is vetoed.
+In other words, every muon has an implicit veto window
+that forbids prompt events within \tc{} of the muon.
+This is demonstrated by Window 2 of \cref{fig:timeline_examples}.
+Note that if the prompt event occurs earlier than \tc{} before a muon,
+then subsequent events within the coincidence window
+are allowed to occur inside of the implicit muon veto window.
+Thus the implicit veto window only vetoes prompt events.
+
+The veto window after a muon also impacts the way that
+coincidence windows are formed.
+Window 3 of \cref{fig:timeline_examples} shows a coincidence window
+whose prompt event is preceded by other recent AD events.
+However, those AD events fall within the previous muon veto window,
+so they are ignored for the purposes of forming coincidence groups.
+
 If a prompt event has no subsequent AD events within \tc, it is
 still a valid group, and is referred to as a \fold{1} coincidence.
 Note that \fold{1} coincidences are somewhat but not strictly isolated
@@ -75,6 +114,9 @@ within \tc{} \textit{after} the prompt event,
 but there may be a \textit{preceding} AD event within \tc{}
 if that event is part of a coincidence window
 which ends before the prompt event in question.
+Window 4 of \cref{fig:timeline_examples} demonstrates this property:
+there are no other AD events within Window 4,
+but there is a previous AD event within \tc{} of the start of Window 4.
 
 Once the coincidence groups have been constructed,
 the set of \fold{2} coincidences can be identified as
