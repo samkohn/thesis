@@ -117,25 +117,38 @@ Given the event rates at Daya Bay, this only happens in $\sim10^{-4}$
 of single events.
 This probability is derived in \cref{ap:singlesformula} as $P_b$.
 
-\begin{figure}
-    \begin{subfigure}{0.49\textwidth}
-        %TODO produce plots with **all** double coincidences
-        \includegraphics[width=\textwidth]{ch_event_selection/double_coincs_EH1_AD1}
-        \caption{All \fold{2} coincidences from EH1-AD1}
-    \end{subfigure}
-    \begin{subfigure}{0.49\textwidth}
-        \includegraphics[width=\textwidth]{ch_event_selection/test}
-        \caption{All \fold{2} coincidences from EH3-AD1} %TODO
-    \end{subfigure}
-    \caption{}
-    \label{fig:double_coinc_eh1ad1}
-\end{figure}
+\newcommand{\adheight}{0.23\textheight}
+\newcommand{\adspacing}{1cm}
+\newcommand{\adinclude}[1]{
+    \includegraphics[height=\adheight, trim={0 0 0 1cm}, clip]{#1}
+}
+\newcommand{\adgrid}[3]{
+    \begin{figure}
+        \centering
+        \adinclude{#3_EH1_AD1}
+        \hspace{\adspacing}
+        \adinclude{#3_EH1_AD2}\\
+        \adinclude{#3_EH2_AD1}
+        \hspace{\adspacing}
+        \adinclude{#3_EH2_AD2}\\
+        \adinclude{#3_EH3_AD1}
+        \hspace{\adspacing}
+        \adinclude{#3_EH3_AD2}\\
+        \adinclude{#3_EH3_AD3}
+        \hspace{\adspacing}
+        \adinclude{#3_EH3_AD4}
+        \caption{#1}
+        \label{#2}
+    \end{figure}
+}
+
+\adgrid{All double coincidences found using $\tc=\SI{1.5}{\milli\second}$}{fig:double_coinc_raw}{ch_event_selection/double_coincs}
 
 Once the coincidence groups have been constructed,
 the set of \fold{2} coincidences can be identified as
 the preliminary set of IBD candidates,
 albeit with background still present.
-\Cref{fig:double_coinc_eh1ad1} shows the prompt and delayed energy
+\Cref{fig:double_coinc_raw} shows the prompt and delayed energy
 of all \fold{2} coincidences identified in EH1-AD1 and EH3-AD1
 as representatives of the near and far sites.
 These plots clearly show the nGd events
@@ -185,19 +198,8 @@ the length scale of the AD, approximately \SI{3000}{\milli\meter},
 and the time delay has a flat probability distribution
 on the time scale used for the coincidence window ($\tc = \SI{1.5}{\milli\second}$).
 
-\begin{figure} %TODO generate full plot
-    \begin{subfigure}{0.49\textwidth}
-        \includegraphics[width=\textwidth]{ch_event_selection/after_DT_cut_EH1_AD1}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}{0.49\textwidth} %TODO make EH3-AD1
-        \includegraphics[width=\textwidth]{ch_event_selection/after_DT_cut_EH1_AD1}
-        \caption{}
-    \end{subfigure}
-    \caption{Coincidence distance vs. coincidence time
-    for events in EH1-AD1 and EH3-AD1.}
-    \label{fig:dr_vs_dt}
-\end{figure}
+\adgrid{Distribution of coincidence distance and coincidence
+time}{fig:dr_vs_dt}{ch_event_selection/dr_vs_dt}
 
 \Cref{fig:dr_vs_dt} shows the distribution of
 coincidence distance and coincidence time
@@ -215,20 +217,61 @@ by drawing a line from \SI{800}{\milli\meter} at $0$ time
 to \SI{480}{\micro\second} at $0$ distance.
 This line rather effectively separates the higher-density region
 of correlated events from the uniform density region of accidental background.
-This cut is known as the D-T cut and the line has the equation
+This cut is known as the DT cut and the line determining the cut has the equation
 
 \begin{equation}
-    \Delta r + v_0 \Delta t < \SI{800}{\milli\meter},
+    \text{DT} = \Delta r + v_0 \Delta t < \SI{800}{\milli\meter},
 \end{equation}
 where $v_0 = \frac{\SI{1000}{\milli\meter}}{\SI{600}{\micro\second}}$.
-Applying this cut rejects the vast majority of accidental events
+Note that the quantity DT is not D times T,
+nor should it be confused the differential $dt$.
+\Cref{fig:after_DT_cut} shows the individual AD spectra
+after applying the DT cut.
+As expected, the accidental background present
+in the low-prompt-energy and low-delayed-energy corner is much reduced.
+The neutron capture on hydrogen events now stand out much better
+against the accidental background.
+
+\adgrid{Prompt-delayed energy spectra after applying
+the DT cut}{fig:after_DT_cut}{ch_event_selection/post_DT_cut}
+
+Applying the DT cut rejects the vast majority of accidental events
 at a loss of approximately \SI{30}{\percent} of real IBDs.
 The efficiency is measured after subtracting the accidental background
-by comparing the number of events that pass the energy cuts and the D-T cut
-with the number of events that pass the energy cuts
-and a significantly relaxed D-T cut of \SI{3000}{\milli\meter}.
-This latter quantity is assumed to be the total number of IBDs
-since negligibly few IBDs have a D-T value anywhere close to \SI{3000}{\milli\meter}.
+by comparing the number of \fold{2} coincidences that pass the energy cuts and the DT cut
+with the number of \fold{2} coincidences that pass the energy cuts
+and a significantly relaxed DT cut of \SI{3000}{\milli\meter}:
+
+\begin{equation}
+    \varepsilon_{\text{DT}} = \frac{N(\text{DT} < \SI{800}{\milli\meter})}{
+    N(\text{DT} < \SI{3000}{\milli\meter})}
+\end{equation}
+As the histogram in \cref{fig:ed_DT_sub} shows,
+negligibly few IBDs have a DT value anywhere close to \SI{3000}{\milli\meter},
+so $\varepsilon_{\text{DT}}$ closely approximates the true efficiency.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.49\textwidth, trim={0 0 0 1cm}, clip]{%
+        ch_event_selection/ed_DT_sub_EH1_AD1%
+    }
+    \includegraphics[width=0.49\textwidth, trim={0 0 0 1cm}, clip]{%
+        ch_event_selection/ed_DT_sub_EH2_AD1%
+    } \\
+    \includegraphics[width=0.49\textwidth, trim={0 0 0 1cm}, clip]{%
+        ch_event_selection/ed_DT_sub_EH3_AD1%
+    }
+    \caption{
+        The accidentals-subtracted distribution of
+        delayed energy and DT value, used to compute $\varepsilon_{\text{DT}}$.
+        The green (solid) box shows the events included in the DT cut.
+        The black (dashed) box shows the events excluded by the DT cut.
+        The large fluctuations at high DT are due to the statistics
+        of subtracting two almost-equal large numbers as part of the
+        background subtraction procedure.
+    }
+    \label{fig:ed_DT_sub}
+\end{figure}
 
 The AD-uncorrelated uncertainty for the efficiency
 is determined from the data by examining the variation
@@ -236,7 +279,7 @@ in measured efficiency between the 4 near-hall ADs.
 The far-hall ADs are excluded because
 their statistical uncertainties are much larger than the
 near-hall AD variation.
-The AD-uncorrelated uncertainty of the D-T cut efficiency
+The AD-uncorrelated uncertainty of the DT cut efficiency
 is the half-range of the near-hall efficiencies: \num{0.0016} (absolute),
 or approximately \SI{0.23}{\percent} (relative).
 
@@ -246,10 +289,27 @@ or approximately \SI{0.23}{\percent} (relative).
 The prompt energy lower bound of \SI{1.5}{\mev}
 is chosen to exclude a substantial fraction
 of the low-energy uncorrelated events from radioactive decays.
-In particular, X and Y decays have peaks around A and B \si{\mev}.
-% TODO which isotopes?
+In particular, the electron capture process
+${}^{40}\text{K} \to {}^{40}\text{Ar} + \nu_e + \gamma$
+releases a $\gamma$ ray with energy \SI{1.46}{\mev}.
+The high-energy tail of this interaction is visible in the prompt-delayed spectra
+(\cref{fig:double_coinc_raw}) as an elevated bin content
+along both the horizontal and vertical axes from \SIrange{1.5}{3}{\mev}.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth, trim={0, 1.5cm, 0, 0}, clip]{%
+        ch_event_selection/prompt_energy_mc%
+    }
+    \caption{The spectrum of reconstructed energy for IBD prompt events
+        in the Monte Carlo study used to compute the prompt energy efficiency
+    and AD-uncorrelated uncertainty}
+    \label{fig:prompt_eff_mc}
+\end{figure}
 The nominal efficiency of the prompt energy cut is estimated using Monte Carlo.
+The spectrum of ``true'' IBD prompt event reconstructed energy
+is shown in \cref{fig:prompt_eff_mc},
+with a vertical line marking the prompt energy cut value of \SI{1.5}{\mev}.
 %TODO figure
 However, because of the energy dependence of the \nuebar{} oscillations,
 a different fraction of \nuebar{} will pass this cut
@@ -275,6 +335,7 @@ a value for \thetaot{} is obtained.
 That initial \thetaot{} is then used to compute baseline-dependent corrections,
 and the updated efficiencies are used to compute an updated value for \thetaot{}.
 This process is repeated until the \thetaot{} result converges.
+%TODO figure
 
 The AD-uncorrelated uncertainty for the prompt energy lower bound
 is dominated by differences in the energy scale between ADs.
@@ -282,7 +343,7 @@ Based on the analysis of the delayed energy spectrum in each AD
 reported in \cref{subsec:delayed}, the energy scale
 varies by less than \SI{0.5}{\percent} between ADs.
 By applying a \SI{+-0.5}{\percent} variation to
-the event energy in the Monte Carlo dataset,
+the event energy in the Monte Carlo dataset as visualized in \cref{fig:prompt_eff_mc},
 the impact of the energy scale differences can be propagated
 to the prompt energy efficiency.
 The impact, and therefore the relative uncertainty on
@@ -290,7 +351,7 @@ the prompt energy efficiency, is observed to be \SI{0.1}{\percent}.
 
 There is also a \SI{12}{\mega\electronvolt} upper bound for the prompt energy.
 The reactor \nuebar{} spectrum falls steeply above \SI{8}{\mev},
-so this cut has essentially \SI{100}{\percent} efficiency.
+so this cut is determined to have \SI{100}{\percent} efficiency.
 
 \subsection{Delayed energy}
 \label{subsec:delayed}
@@ -312,7 +373,7 @@ both liquid scintillator and in acrylic.
 The delayed energy cut bounds are identified based on
 functional fits to each AD's delayed energy spectrum.
 Specifically, the spectrum is generated by first applying
-the prompt energy cut and D-T cut,
+the prompt energy cut and DT cut,
 then statistically subtracting the accidental background (\cref{subsec:acc}).
 Although the resulting spectrum still has some background,
 the only remaining background processes also involve
