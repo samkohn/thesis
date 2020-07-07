@@ -238,6 +238,7 @@ the DT cut}{fig:after_DT_cut}{ch_event_selection/post_DT_cut}
 Applying the DT cut rejects the vast majority of accidental events
 at a loss of approximately \SI{30}{\percent} of real IBDs.
 The efficiency is measured after subtracting the accidental background
+(\cref{subsec:acc})
 by comparing the number of \fold{2} coincidences that pass the energy cuts and the DT cut
 with the number of \fold{2} coincidences that pass the energy cuts
 and a significantly relaxed DT cut of \SI{3000}{\milli\meter}:
@@ -246,9 +247,10 @@ and a significantly relaxed DT cut of \SI{3000}{\milli\meter}:
     \varepsilon_{\text{DT}} = \frac{N(\text{DT} < \SI{800}{\milli\meter})}{
     N(\text{DT} < \SI{3000}{\milli\meter})}
 \end{equation}
-As the histogram in \cref{fig:ed_DT_sub} shows,
+As the histograms in \cref{fig:ed_DT_sub} show,
 negligibly few IBDs have a DT value anywhere close to \SI{3000}{\milli\meter},
 so $\varepsilon_{\text{DT}}$ closely approximates the true efficiency.
+The DT cut efficiency for each AD is shown in \cref{fig:DT_eff}.
 
 \begin{figure}
     \centering
@@ -271,6 +273,13 @@ so $\varepsilon_{\text{DT}}$ closely approximates the true efficiency.
         background subtraction procedure.
     }
     \label{fig:ed_DT_sub}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[height=0.4\textheight]{plot_diagnostics/distance_time_cut_efficiency}
+    \caption{The DT cut efficiency for each AD. Error bars are statistical.}
+    \label{fig:DT_eff}
 \end{figure}
 
 The AD-uncorrelated uncertainty for the efficiency
@@ -308,8 +317,10 @@ along both the horizontal and vertical axes from \SIrange{1.5}{3}{\mev}.
 \end{figure}
 The nominal efficiency of the prompt energy cut is estimated using Monte Carlo.
 The spectrum of ``true'' IBD prompt event reconstructed energy
-is shown in \cref{fig:prompt_eff_mc},
-with a vertical line marking the prompt energy cut value of \SI{1.5}{\mev}.
+is shown in \cref{fig:prompt_eff_mc}.
+Only events with energy above \SI{1.5}{\mev} on this histogram
+are included in the IBD event selection.
+
 %TODO figure
 However, because of the energy dependence of the \nuebar{} oscillations,
 a different fraction of \nuebar{} will pass this cut
@@ -357,7 +368,7 @@ so this cut is determined to have \SI{100}{\percent} efficiency.
 \label{subsec:delayed}
 
 Neutron capture on hydrogen releases a (monoenergetic)
-\SI{2.22}{\mev} $\gamma$,
+\SI{2.22}{\mev} $\gamma$-ray,
 which means the cut values can be tuned to a narrow energy region
 around that value.
 However, while the prompt IBD positron essentially never escapes
@@ -391,7 +402,7 @@ the calorimeter, some events partially leak out.
 The fraction of events that deposit their full energy in the detector
 is referred to as the peak fraction $\alpha$.
 The energy leakage is modeled as an exponential distribution
-with characteristic energy scale $\lambda$.
+with characteristic energy scale (or ``tail slope'') $\lambda$.
 The fit function itself is derived by starting with
 the unsmeared model:
 
@@ -432,12 +443,90 @@ of width $\sigma$.
 The entire result is normalized to unity
 but can be scaled by an overall normalization $N$.
 
-The eight delayed energy spectra with their fits are shown in Figure X. %TODO
+\adgrid{Delayed energy fits using the calorimeter function}{fig:delayed_fits}{%
+    ch_event_selection/delayed_fit%
+}
+
+\begin{figure}
+    \centering
+    \includegraphics[height=0.33\textheight]{plot_diagnostics/delayed_energy_peak.pdf}
+    \vspace{0.5cm}\hspace{0.5cm}
+    \includegraphics[height=0.33\textheight]{plot_diagnostics/delayed_energy_width.pdf}\\
+    \includegraphics[height=0.33\textheight]{plot_diagnostics/delayed_energy_expo_scale.pdf}
+    \hspace{0.5cm}
+    \includegraphics[height=0.33\textheight]{plot_diagnostics/delayed_energy_peak_frac.pdf}\\
+    \caption{
+        Fit parameters for each AD.
+        Error bars represent fit errors.
+        The smaller plots show the relative deviation of each AD's value
+        from the average value of the 4 near-hall ADs.
+    }
+
+    \label{fig:delayed_fit_parameters}
+\end{figure}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{lllll}
+        \hline
+        & Peak energy [\si{\mev}]
+        & Width [\si{\mev}]
+        & Tail slope [\si{\per\mev}]
+        & Peak fraction \\
+        \hline
+        EH1-AD1 & \num{2.2531} & \num{0.1365} & \num{1.6893} & \num{0.8683}\\
+        EH1-AD2 & \num{2.2551} & \num{0.1380} & \num{1.6247} & \num{0.8666}\\
+        EH2-AD1 & \num{2.2591} & \num{0.1351} & \num{1.7212} & \num{0.8663}\\
+        EH2-AD2 & \num{2.2602} & \num{0.1348} & \num{1.7319} & \num{0.8902}\\
+        \hline
+        EH3-AD1 & \num{2.2607} & \num{0.1360} & \num{1.5812} & \num{0.8667}\\
+        EH3-AD2 & \num{2.2622} & \num{0.1349} & \num{2.1516} & \num{0.8616}\\
+        EH3-AD3 & \num{2.2563} & \num{0.1366} & \num{1.3432} & \num{0.8507}\\
+        EH3-AD4 & \num{2.2682} & \num{0.1362} & \num{2.5653} & \num{0.8617}\\
+        \hline
+    \end{tabular}
+    \caption{Delayed energy fit parameters}
+    \label{tab:delayed_fit_params}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{lll}
+        \hline
+        & Lower bound [\si{\mev}]
+        & Upper bound [\si{\mev}] \\
+        \hline
+        EH1-AD1 & \num{1.8435} & \num{2.6628}\\
+        EH1-AD2 & \num{1.8412} & \num{2.6690}\\
+        EH2-AD1 & \num{1.8537} & \num{2.6645}\\
+        EH2-AD2 & \num{1.8558} & \num{2.6646}\\
+        \hline
+        EH3-AD1 & \num{1.8527} & \num{2.6686}\\
+        EH3-AD2 & \num{1.8575} & \num{2.6669}\\
+        EH3-AD3 & \num{1.8467} & \num{2.6660}\\
+        EH3-AD4 & \num{1.8597} & \num{2.6768}\\
+        \hline
+    \end{tabular}
+    \caption{Delayed energy cut bounds derived as $\mu \pm 3\sigma$}
+    \label{tab:delayed_bounds}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[height=0.40\textheight]{plot_diagnostics/delayed_energy_bounds.pdf}
+    \caption{
+        Delayed energy cut bounds computed as $\mu\pm 3\sigma$
+        from the fitted histograms
+    }
+    \label{fig:delayed_bounds}
+\end{figure}
+
+The eight delayed energy spectra with their fits are shown in \cref{fig:delayed_fits}.
 Comparing the fitted parameters across ADs can be used
 to measure the identicalness of the ADs.
-Their values and relative differences are plotted in Figure X %TODO
-and listed in Table Y. %TODO
-In particular, Figure X(a) shows the relative difference %TODO
+Their values and relative differences are plotted in \cref{fig:delayed_fit_parameters}
+and listed in \cref{tab:delayed_fit_params}.
+In particular, the top-left plot shows the relative difference
 in the fitted peak $\mu$ across the ADs,
 which is a measure of the energy scale variation.
 The relative variation of \SI{+-0.5}{\percent}
@@ -455,8 +544,8 @@ This form was decided on even though the calorimeter function
 is not symmetric, and even though in reality
 the detector resolution changes with energy
 (and therefore is not precisely modeled in the fit).
-The values used for the energy bounds are listed in Table Y %TODO
-and plotted in Figure X. %TODO
+The values used for the energy bounds are listed in \cref{tab:delayed_bounds}
+and plotted in \cref{fig:delayed_bounds}.
 
 The absolute efficiency of the delayed energy cut
 is measured using Monte Carlo.
@@ -469,6 +558,17 @@ because with more GdLS, fewer neutrons will capture on hydrogen.
 This difference between the GdLS and LS regions is taken into account
 when computing the absolute efficiency.
 
+\begin{figure}
+    \centering
+    \includegraphics[height=0.4\textheight]{ch_event_selection/delayed_eff_uncertainty_cartoon}
+    \caption{
+        Intuition for how differences in the relative size
+        of the nominal (peak) versus extended ranges
+        are a proxy for differences in cut efficiency.
+    }
+    \label{fig:delayed_eff_unc_cartoon}
+\end{figure}
+
 The AD-uncorrelated uncertainty on the efficiency
 includes variations due to all the above effects:
 geometrical variations, energy scale, different material properties,
@@ -479,9 +579,15 @@ of the delayed energy spectrum, as defined by the delayed energy cut,
 across the ADs.
 Intuitively, if the same fraction of events is in the peak region in each AD,
 then the cut efficiency must have a small variation.
-This intuition is visualized in the cartoon in Figure X. %TODO
+This intuition is visualized in the cartoon in \cref{fig:delayed_eff_unc_cartoon}.
+The ``expected'' curve has a high efficiency
+and few events in the tail.
+Since the ``different tail'' curve has more events in the tail region,
+it can be concluded that this curve has a lower efficiency.
+
 In practice, it is easier to compare the number of events in the peak
-to the number of events in an extended region that includes the tail.
+to the total number of events in an extended region that includes the tail,
+rather than to just the new events in the tail.
 
 For each AD's delayed energy spectrum, the peak region is defined as
 the region passing the delayed energy cut, $\vert E-\mu \vert < 3\sigma$.
@@ -493,9 +599,23 @@ the desired sensitivity to variations in the energy scale.
 Extending the lower bound down to \SI{1.5}{\mev} adds sensitivity to
 anything that would change the shape of the tail
 or the fraction of $\gamma$'s that (partially) escape from the AD.
-The number of events in the peak region ($N_{peak}$)
-and in the extended region ($N_{extended}$) for each AD
-is given in Table Y. %TODO
+
+\begin{figure}
+    \centering
+    \includegraphics[height=0.4\textheight]{ch_event_selection/delayed_uncertainty_fit}\\
+    \includegraphics[height=0.4\textheight]{plot_diagnostics/delayed_energy_uncertainty_method1}
+    \caption{
+        (Top) Data points and (affine) linear fit
+        to the number of events in the nominal (peak)
+        and extended ranges of delayed energy.
+        Statistical error bars are too small to be visible on this plot. \\
+        (Bottom) Relative deviations from each hall to the fit model.
+        The half-range of deviations for near-hall ADs
+        is the delayed energy efficiency AD-uncorrelated uncertainty.
+    }
+    \label{fig:delayed_eff_unc_fit}
+\end{figure}
+
 
 If the delayed energy spectra have the same shape,
 and if the calorimeter function is an appropriate fitting function
@@ -511,7 +631,7 @@ to the values for each AD:
 where $N_{peak,\,pred,\,i}$ is the fit function's prediction
 of the actual event count in the peak ($N_{peak,\,i}$).
 Plots of $N_{peak,\,i}$ vs. $N_{extended,\,i}$ and of the
-relative deviation from the fitted line are shown in Figure X. %TODO
+relative deviation from the fitted line are shown in \cref{fig:delayed_eff_unc_fit}.
 The fit value of $a$ should be $0$ if the simple model of
 a linear scaling is correct.
 Indeed, the fit value is $a = -321 \pm 387$
