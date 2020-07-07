@@ -104,7 +104,7 @@ The three situations are:
         This is significantly more complicated to calculate.
         Let $t_1$ refer to the time difference between E1 and E0.
         The time between uncorrelated events follows an exponential distribution,
-        so the probability of E1 occuring between $t_1$ and $t_1+dt_1$ is
+        so the probability of E1 occurring between $t_1$ and $t_1+dt_1$ is
         $dt_1\,R_se^{-R_st_1}$.
         Examining the possibilities for this earlier coincidence window,
         which contains E1 but not E0,
@@ -117,7 +117,7 @@ The three situations are:
         between \tc{} and $\tc + t_1$ before E0.
         If more than one event occurs within that time interval,
         the requirements for the coincidence window would still be satisfied.
-        The probability of at least one event (E2, E3, \ldots) occuring
+        The probability of at least one event (E2, E3, \ldots) occurring
         between \tc{} and $\tc + t_1$ before E0,
         and thus creating the desired coincidence window, is
 
@@ -187,7 +187,7 @@ $P_{\text{start}}$ is the sum of these three terms.
 
 Combining this probability with the other factors gives the following formula
 for the probability of an \fold{n} coincidence assuming only
-uncorrelated AD events and uncorrlated muons,
+uncorrelated AD events and uncorrelated muons,
 neglecting the possibility of correlated pairs or muon-correlated events:
 
 \begin{align} \label{eq:rnfold}
@@ -275,11 +275,11 @@ In other words, $P_{\text{start}}$ should really be computed as
     \begin{split}
         P_{\text{start, better}} &= P_a + P_c + P_b(P_a +
             P_c + P_b(P_a+P_c+P_b(\cdots))) \\
-                                 &= P_a + P_c + P_bP_{\text{start}},
+                                 &= P_a + P_c + P_bP_{\text{start, better}},
     \end{split}
 \end{align*}
 where the second line is obtained by observing that the value
-of the infinitely-nested terms in parenteses is simply $P_{\text{start, better}}$.
+of the infinitely-nested terms in parentheses is simply $P_{\text{start, better}}$.
 Solving for $P_{\text{start, better}}$ we obtain the slightly better approximation
 
 \begin{equation}
@@ -297,7 +297,7 @@ that E0 would still be able to start a new coincidence window.
 This is possible if the hypothetical E3 is very close before E2,
 so that E3's coincidence window still contains E1.
 The probability of E3 and E2 being ``close enough together''
-is strictly less than the probability of E3 occuring anywhere
+is strictly less than the probability of E3 occurring anywhere
 within \tc{} of E2, which is $\text{Poisson}(1\vert R_s\tc) = 0.028$.
 So this correction would be less than a \SI{3}{\percent} correction
 to the already negligible $10^{-5}$ correction on $P_{\text{start}}$.
