@@ -18,3 +18,28 @@
 \newcommand{\tc}{\ensuremath{T_c}}
 \newcommand{\fold}[1]{\ensuremath{#1}-fold}
 \newcommand{\mev}{\mega\electronvolt}
+
+\newcommand{\adheight}{0.23\textheight}
+\newcommand{\adspacing}{1cm}
+\newcommand{\adinclude}[1]{
+    \includegraphics[height=\adheight, trim={0 0 0 1cm}, clip]{#1}
+}
+\newcommand{\adgrid}[3]{
+    \begin{figure}
+        \centering
+        \adinclude{#3_EH1_AD1}
+        \hspace{\adspacing}
+        \adinclude{#3_EH1_AD2}\\
+        \adinclude{#3_EH2_AD1}
+        \hspace{\adspacing}
+        \adinclude{#3_EH2_AD2}\\
+        \adinclude{#3_EH3_AD1}
+        \hspace{\adspacing}
+        \adinclude{#3_EH3_AD2}\\
+        \adinclude{#3_EH3_AD3}
+        \hspace{\adspacing}
+        \adinclude{#3_EH3_AD4}
+        \caption{#1}
+        \label{#2}
+    \end{figure}
+}

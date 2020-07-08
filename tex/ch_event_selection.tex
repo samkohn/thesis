@@ -117,30 +117,6 @@ Given the event rates at Daya Bay, this only happens in $\sim10^{-4}$
 of single events.
 This probability is derived in \cref{ap:singlesformula} as $P_b$.
 
-\newcommand{\adheight}{0.23\textheight}
-\newcommand{\adspacing}{1cm}
-\newcommand{\adinclude}[1]{
-    \includegraphics[height=\adheight, trim={0 0 0 1cm}, clip]{#1}
-}
-\newcommand{\adgrid}[3]{
-    \begin{figure}
-        \centering
-        \adinclude{#3_EH1_AD1}
-        \hspace{\adspacing}
-        \adinclude{#3_EH1_AD2}\\
-        \adinclude{#3_EH2_AD1}
-        \hspace{\adspacing}
-        \adinclude{#3_EH2_AD2}\\
-        \adinclude{#3_EH3_AD1}
-        \hspace{\adspacing}
-        \adinclude{#3_EH3_AD2}\\
-        \adinclude{#3_EH3_AD3}
-        \hspace{\adspacing}
-        \adinclude{#3_EH3_AD4}
-        \caption{#1}
-        \label{#2}
-    \end{figure}
-}
 
 \adgrid{All double coincidences found using $\tc=\SI{1.5}{\milli\second}$}{fig:double_coinc_raw}{ch_event_selection/double_coincs}
 
