@@ -147,6 +147,8 @@ thus vetoing the original event.
 \subsection{PMT light emission / flashers}
 \label{subsec:flashers}
 
+\todo{Flashers section}
+
 \subsection{Accidental coincidences}
 \label{subsec:acc}
 
@@ -254,7 +256,7 @@ were filled and then studied for a few months
 as part of detector commissioning, during which time
 most of the radiocontaminants decayed.
 
-Once $R_s$ is obtained, the rate of accidental coincidences $R_\fold{2}$
+Once $R_s$ is obtained, the rate of accidental coincidences $R_{\text{\fold{2}}}$
 (before applying the rest of the event selection)
 can be computed for each run
 by simply adjusting the Poisson probability in \cref{eq:rsingles}
@@ -309,9 +311,6 @@ A symmetrical isolation cut of $\tc=\SI{1.5}{\milli\second}$ is used
 to ensure isolation before and after each candidate event.
 The spectrum of these (now truly) single events is shown in \cref{fig:singlespectra},
 obtained by summing the individual spectra from each data run.
-%Prominent right at \SI{1.5}{\mev} is the tail of the
-%reconstructed energy distribution for $\gamma$-rays associated with
-%the decay of ${}^{40}\text{K}$ by electron capture.
 
 \adgrid{Spectra of isolated single events in each AD.}{fig:singlespectra}{%
     ch_background/singles%
@@ -327,10 +326,11 @@ which is then used to actually perform the background subtraction
 on the IBD candidates data set.
 The synthetic accidental coincidence samples are formed for each run
 by pairing up isolated events.
+\todo{Update based on $\varepsilon_{\text{DT,\,acc}}$ uncertainty requirements}
 In particular, each isolated event is assigned an index in time order,
 from $0$ to $N_{\text{isolated}}$.
 Then each event $i$ from the first half is paired up with
-the corresponding event $i + \nicefrac{N_{\text{isolated}}}{2}$.
+the corresponding event from the second half, $i + \nicefrac{N_{\text{isolated}}}{2}$.
 The coincidence distance is taken to be the actual distance
 between the reconstructed positions of the two events.
 Each event pair generates two synthetic accidental events:
@@ -345,30 +345,83 @@ the fraction of accidental \fold{2} coincidences which pass the distance-time (D
 can be computed.
 And a prompt-delayed energy spectrum can be computed that only includes
 synthetic accidental events which pass the DT cut. %TODO plots
+\missingfigure{Accidentals sample plots for each AD}
 
-Finally, an accidentals spectrum can be computed and subtracted
+The resulting prompt-delayed energy spectrum of synthetic accidental events
+can then be subtracted
 from the prompt-delayed spectrum measured from real data.
 For each run, the expected number of accidental events that pass the DT cut is
 
-\begin{equation*}
+\begin{equation}
     N_{\text{acc}} = R_{\text{\fold{2}}} \times t_{\text{muon-corrected}}
         \times \varepsilon_{\text{DT,\,acc}}
-\end{equation*}
+    \label{eq:nacc}
+\end{equation}
 The synthetic accidentals prompt-delayed spectrum, represented as a histogram,
 is simply normalized so that the total number of entries is $N_{\text{acc}}$.
 Then the histogram can be subtracted bin-by-bin from the corresponding histogram
 representing the actual IBD candidates data sample.
-The subtracted histograms are shown in Figure X. %TODO plots
+The subtracted histograms are shown in \cref{fig:acc_sub_spectra}.
 These distributions, projected onto the delayed energy axis,
 are used in \cref{subsec:delayed} to determine the delayed energy cut bounds.
+
+\adgrid[0.22\textheight]{
+    Prompt-delayed spectra after subtracting the accidental background.
+    The projections of these plots onto the delayed energy axis
+    are used to determine the delayed energy cut bounds
+    and are shown in \cref{fig:delayed_fits}.
+}{fig:acc_sub_spectra}{ch_background/sub_energy}
 
 The scale factor for the accidentals spectrum histogram,
 $\nicefrac{N_{\text{acc}}}{N_{\text{acc,\,synthetic}}}$,
 can be used to create histograms for other accidentals-subtracted quantities,
-such as coincidence distance, DT, and 2D histograms of
+such as coincidence distance and DT, as well as 2D histograms of
 those quantities' distributions with respect to prompt and delayed energy.
 The accidentals-subtracted histogram of DT versus delayed energy
 is used to compute the efficiency of the DT cut for IBDs in \cref{sec:DT_cut}.
+
+The uncertainty assigned for the accidentals subtraction
+is derived from two sources: $N_{\text{acc}}$ (\cref{eq:nacc}),
+and $N_{\text{acc,\,synthetic}}$.
+The first of these is ultimately derived from
+two measured statistical uncertainties:
+on $R_{\text{\fold{1}}}, \varepsilon_{\text{DT,\,acc}}$;
+the second is itself a measured statistical uncertainty.
+For a typical run that lasts \SI{24}{\hour},
+the statistical error on $R_{\text{\fold{1}}}$ is \SI{0.08}{\percent}.
+By computing the derivative $\frac{\partial R_s}{\partial R_{\text{\fold{1}}}}$
+to be $1.1$ for typical parameters in all 3 experimental halls,
+a typical error for $R_s$ of \SI{0.088}{\percent} is obtained.
+Referencing the first line of \cref{eq:racc},
+the error on $R_{\text{\fold{2}}}$ is simply the relative errors
+of $R_s$ and $R_{\text{\fold{1}}}$ added in quadrature,
+or, for the typical values cited above, \SI{0.12}{\percent}.
+This value can be combined with the error on $\varepsilon_{\text{DT,\,acc}}$
+to obtain the uncertainty on the number of predicted accidental coincidences
+contaminating each run's data, $N_{\text{acc}}$.
+
+The uncertainty on $\varepsilon_{\text{DT,\,acc}}$ \todo{$\varepsilon_{\text{DT,\,acc}}$}
+
+The events represented in the accidentals-subtracted histograms
+are, if the above procedure works properly, all correlated pairs
+of a prompt event followed by neutron capture.
+And if the delayed energy cuts from \cref{subsec:delayed} are applied,
+then the remaining events represent correlated events
+where the neutron capture was on hydrogen.
+\Cref{fig:ncorr} shows the number of correlated events for each run
+with the appropriate error bars as described above.
+The total number of correlated events in each AD
+along with the uncertainty, is listed in Table Y.
+\todo{Table of total $N_{\text{corr}}$ for each AD}
+
+\begin{figure}
+    \missingfigure{Number of correlated events (accidentals-subtracted) over time
+        for near and far halls.
+    }
+    \caption{}
+    \label{fig:ncorr}
+\end{figure}
+
 
 \section{Correlated background}
 
