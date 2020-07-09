@@ -27,25 +27,25 @@
 
 \newcommand{\adheight}{0.23\textheight}
 \newcommand{\adspacing}{1cm}
-\newcommand{\adinclude}[1]{
-    \includegraphics[height=\adheight, trim={0 0 0 1cm}, clip]{#1}
+\newcommand{\adinclude}[2]{
+    \includegraphics[height=#1, trim={0 0 0 1cm}, clip]{#2}
 }
-\newcommand{\adgrid}[3]{
+\newcommand{\adgrid}[4][\adheight]{
     \begin{figure}
         \centering
-        \adinclude{#3_EH1_AD1}
+        \adinclude{#1}{#4_EH1_AD1}
         \hspace{\adspacing}
-        \adinclude{#3_EH1_AD2}\\
-        \adinclude{#3_EH2_AD1}
+        \adinclude{#1}{#4_EH1_AD2}\\
+        \adinclude{#1}{#4_EH2_AD1}
         \hspace{\adspacing}
-        \adinclude{#3_EH2_AD2}\\
-        \adinclude{#3_EH3_AD1}
+        \adinclude{#1}{#4_EH2_AD2}\\
+        \adinclude{#1}{#4_EH3_AD1}
         \hspace{\adspacing}
-        \adinclude{#3_EH3_AD2}\\
-        \adinclude{#3_EH3_AD3}
+        \adinclude{#1}{#4_EH3_AD2}\\
+        \adinclude{#1}{#4_EH3_AD3}
         \hspace{\adspacing}
-        \adinclude{#3_EH3_AD4}
-        \caption{#1}
-        \label{#2}
+        \adinclude{#1}{#4_EH3_AD4}
+        \caption{#2}
+        \label{#3}
     \end{figure}
 }
