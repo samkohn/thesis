@@ -384,15 +384,17 @@ The uncertainty assigned for the accidentals subtraction
 is derived from two sources: $N_{\text{acc}}$ (\cref{eq:nacc}),
 and $N_{\text{acc,\,synthetic}}$.
 The first of these is ultimately derived from
-two measured statistical uncertainties:
-on $R_{\text{\fold{1}}}, \varepsilon_{\text{DT,\,acc}}$;
+two measured statistical uncertainties,
+on $R_{\text{\fold{1}}}$ and $\varepsilon_{\text{DT,\,acc}}$;
 the second is itself a measured statistical uncertainty.
 For a typical run that lasts \SI{24}{\hour},
 the statistical error on $R_{\text{\fold{1}}}$ is \SI{0.08}{\percent}.
 By computing the derivative $\frac{\partial R_s}{\partial R_{\text{\fold{1}}}}$
 to be $1.1$ for typical parameters in all 3 experimental halls,
 a typical error for $R_s$ of \SI{0.088}{\percent} is obtained.
-Referencing the first line of \cref{eq:racc},
+Referencing the first line\todo[inline]{Errors on $R_s$ and $R_{\text{\fold{1}}}$
+    are correlated
+} of \cref{eq:racc},
 the error on $R_{\text{\fold{2}}}$ is simply the relative errors
 of $R_s$ and $R_{\text{\fold{1}}}$ added in quadrature,
 or, for the typical values cited above, \SI{0.12}{\percent}.
