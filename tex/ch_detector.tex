@@ -4,7 +4,7 @@
 The Daya Bay Reactor Antineutrino Experiment was designed
 to be sensitive to $\thetaot \sim 0.01$
 by performing a relative measurement of the rate of \nuebar{}
-using a modular detector system arranged at near and far sites.
+using a modular detector system arranged at near and far sites \cite{dybproposal2006}.
 The experiment is located in southeast China,
 approximately \SI{55}{\km} northeast of Hong Kong,
 on the campus of the Daya Bay and Ling Ao Nuclear Power Plants.
@@ -13,7 +13,7 @@ until December 2020.
 
 The Daya Bay site is ideal for an oscillation experiment.
 Its six reactor cores together form one of the most intense \nuebar{}
-sources on Earth.
+sources on Earth \cite{dybproposal2006}.
 The power plant campus is also located at the base of a mountain ridge,
 providing an ideal location for antineutrino detectors that need to be
 protected from cosmic-ray muons without having to dig deep mines.
@@ -24,7 +24,7 @@ The tunnel layout allows for easy access to the experiment via electric golf car
 Six pressurized-water nuclear reactor cores are used
 as the \nuebar{} source for Daya Bay.
 Each reactor has an output of \SI{2.9}{\giga\watt_{th}}
-and combined they produce approximately \num{3.5e21}\,\nuebar/s.
+and combined they produce approximately \num{3.5e21}\,\nuebar/s \cite{ngd2016}.
 The reactors are arranged in three pairs: Daya Bay, Ling Ao, and Ling Ao II.
 The location of the cores determined the layout of the Daya Bay experiment.
 
@@ -75,7 +75,7 @@ The experiment was shut down while the remaining two ADs were installed
 in EH2 and EH3.
 The 8-AD period began in October 2012.
 At the end of 2017, EH1-AD1 was chosen to be repurposed as a test stand
-for liquid scintillator studies for the JUNO experiment,
+for liquid scintillator studies for the JUNO experiment \cite{junoproposal2016},
 and was decommissioned from Daya Bay.
 The 7-AD period began in January 2017 and will continue through the end of
 the Daya Bay experiment in December 2020.
@@ -88,7 +88,7 @@ to provide additional sensitivity to incoming muons.
 \Cref{fig:eh3_wp_photo} shows a photograph of EH3 during installation of the ADs,
 when the RPC had not yet been moved into position to cover the water pool.
 Also visible mounted to the near and far walls are two muon telescopes
-which were used for muon studies during detector commissioning.
+which were used for muon studies during detector commissioning \cite{muonsystem2015}.
 
 \begin{figure}
     \centering
@@ -178,7 +178,8 @@ This happens with a characteristic time of $\sim \SI{30}{\micro\second}$
 in GdLS and $\sim \SI{150}{\micro\second}$ in LS.
 The shorter time in the GdLS is by design,
 due to the large capture cross section of a thermalized neutron
-on a Gadolinium nucleus.
+on a Gd nucleus compared to H (\SI{49}{\kilo\barn} vs. \SI{0.332}{\barn})
+\cite{gdls2014}.
 If the neutron captures on Gadolinium, the excited nucleus
 will emit $\gamma$-rays in one of two decay chains,
 both of which have a combined energy of approximately \SI{8}{\mev}.
@@ -216,8 +217,9 @@ This risk is somewhat mitigated by the lower energy of the nH $\gamma$'s
 
 The muon detection system for Daya Bay consists of
 the water pool and the RPC system covering the water pool.
-As data from the RPC is not used in the \thetaot{} analysis,
-its description will be left to []\todo{RPC citation}.
+As data from the RPC is not used in the \thetaot{} analysis.
+Its description, along with more details of the entire muon system,
+can be found in \cite{muonsystem2015}.
 All three water pools are \SI{10}{\m} deep.
 The near-hall water pools are \SI{10}{\m} wide and \SI{16}{\m} long,
 while the far-hall water pool is \SI{16}{\m} in both dimensions.
@@ -237,7 +239,7 @@ and the remaining \num{341} were \SI{8}{\inch} models 9350KA
 and D642KB from EMI
 donated by the MACRO experiment.
 The IWS has been demonstrated to tag \SI{100}{\percent} of muons
-that reach the ADs.\todo{Muon system paper}
+that reach the ADs.
 
 \begin{figure}
     \centering
@@ -259,7 +261,7 @@ providing better than \num{0.1}-photoelectron (PE) resolution.
 A \SI{50}{\percent} attenuated copy of the signal is passed to a copy
 of the same ADC to allow for higher dynamic range in processing high-energy
 events.
-Refer to \todo{nGd long paper FEE reference} for the details
+Refer to \cite[Sec.~II]{ngd2016} for the details
 of the front-end electronics system.
 The threshold to activate a single PMT channel's front-end electronics
 is approximately \SI{0.25}{\pe}.
@@ -273,7 +275,7 @@ criteria used for the \thetaot{} analysis and described in \cref{ch:event_select
 Each channel's TDC is stopped when it receives a trigger signal
 from the master trigger board.
 For every channel with a TDC reading of \SI{<1.2}{\us},
-the time difference, peak ADC value and the pedestal ADC value
+the TDC reading, peak ADC value and the pedestal ADC value
 (the ADC output given no PMT signal)
 are recorded into the offline storage system.
 The absolute timestamp of the event is determined by a GPS-based clock
@@ -297,11 +299,11 @@ The resulting data files comprise the raw data from Daya Bay.
         \multicolumn{4}{c}{Ignored triggers for \thetaot{} analysis} \\
                        \hline
         RPC & NHIT & \num{3} & Number of layers over threshold in a single module \\
-        AD & RANDOM & 0 & Random triggers issued at \SI{10}{\Hz} \\
+        AD & RANDOM & - & Random triggers issued at \SI{10}{\Hz} \\
         All & XTRIG & - & Criteria at one detector can trigger another \\
         \hline
     \end{tabular}
-    \caption{Trigger criteria}
+    \caption{Trigger criteria from \cite{ngd2016}}
     \label{tab:trigger}
 \end{table}
 
@@ -317,7 +319,8 @@ was the first nonzero measurement of that quantity.
 This measurement used \SI{55}{\day} of \nuebar{} data
 and, as mentioned previously, only six ADs were operational at the time.
 Since then, Daya Bay has published updated results using IBDs detected by
-either neutron capture on Gadolinium (nGd) or neutron capture on Hydrogen (nH),
+either neutron capture on Gadolinium (nGd)
+(\cite{ngd2012,ngd2013,ngd2014,ngd2015,ngd2016,ngd2018}) or neutron capture on Hydrogen (nH),
 as shown in \cref{fig:theta13_vs_t}.
 
 \begin{figure}
