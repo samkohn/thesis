@@ -7,3 +7,8 @@ tex/*.pdf
 *.synctex.gz
 *.out
 *.tdo
+*.bbl
+*.bcf
+*.blg
+*.xml
+*.bib~*
