@@ -193,7 +193,7 @@ neglecting the possibility of correlated pairs or muon-correlated events:
 \begin{align} \label{eq:rnfold}
     \begin{split}
         R_{\text{\fold{n}}}
-          &= R_s P_{\text{start}} \text{Poisson}(0\vert R_s\tc) \\
+          &= R_s P_{\text{start}} \text{Poisson}(n\vert R_s\tc) \\
           &= R_s \frac{(R_s\tc)^n}{n!} e^{-R_s\tc}
           \left(
               e^{-(R_s + R_\mu)\tc} +
@@ -211,6 +211,77 @@ neglecting the possibility of correlated pairs or muon-correlated events:
               1 - e^{-(R_s + R_\mu)\tc}
           \right)
       \right)
+    \end{split}
+\end{align}
+
+\section{Multiplicity cut efficiency}
+\label{ap:mult_eff}
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{ap_acc_derivation/timeline_mult_eff}
+    \caption{
+        A timeline showing no coincidence windows overlapping
+        the given time interval of length $T$.
+    }
+    \label{fig:nooverlap}
+\end{figure}
+
+A related question to the rate of \fold{n} accidental coincidences
+is the probability that no coincidence windows created by uncorrelated events
+overlap a given time interval $T$, as shown in \cref{fig:nooverlap}.
+This value is useful when the given time interval is
+the coincidence window for an IBD event.
+In that case, the probability is the probability that no uncorrelated events
+will ``ruin'' the IBD by creating a \fold{3} event or dividing the actual IBD
+into two separate coincidence groups.
+The probability can be broken down into two factors:
+the probability that no previous coincidence window
+extends into the time interval,
+and the probability that no other uncorrelated events
+occur within time $T$.
+
+Luckily, the derivation of the \fold{n} rate contains all of the logic
+necessary for this computation.
+The first factor, the probability of no previous coincidence window,
+is simply $P_{\text{start}}$, the probability that an event
+occuring at a given time (say, the start of time window $T$)
+will not fall within an existing coincidence window.
+The second factor is simply the Poisson probability
+of \num{0} events within a time interval $T$
+and an averate rate $R_s$,
+namely $\text{Poisson}(0\vert R_s T)$.
+So the general formula for no coincidence windows encroaching
+on a time window of length $T$ is simply:
+
+\begin{equation}
+    P_{\text{no windows within }T} = P_{\text{start}} e^{-R_s T}
+\end{equation}
+
+When the window in question is an IBD coincidence window,
+$T = \tc$ and the probability can be interpreted as the multiplicity cut efficiency,
+the fraction of true IBD events that are identified as \fold{2} coincidences
+with no contamination from uncorrelated events:
+
+\begin{align}
+    \label{eq:mult_eff_ap}
+    \begin{split}
+        \varepsilon_m &= e^{-R_s \tc}
+        \left(
+            e^{-(R_s + R_\mu)\tc} +
+            \frac{R_s}{R_s+R_\mu} e^{-R_\mu\tc}
+            \left(
+                1 - e^{-(R_s + R_\mu)\tc}
+            \right)
+        \right. \\
+              &\ \ \left. - \frac{R_s}{2R_s + R_\mu} e^{-R_\mu\tc}
+                  \left(
+                      1 - e^{-(2R_s + R_\mu)\tc}
+                  \right) +
+                  \frac{R_\mu}{R_s + R_\mu}
+                  \left(
+                      1 - e^{-(R_s + R_\mu)\tc}
+                  \right)
+              \right)
     \end{split}
 \end{align}
 

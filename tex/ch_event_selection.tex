@@ -16,6 +16,8 @@ I will briefly describe these backgrounds inline
 but leave detailed descriptions and studies
 to the appropriate sections in \cref{ch:background}.
 
+\todo{Summarize chapter & explain more about the background}
+
 \section{Initial data preparation}
 
 Before physics events are identified,
@@ -39,12 +41,12 @@ is identified as an ``AD event''
 and is a potential coincidence candidate.
 Because of the nonzero length of the readout window,
 AD events occurring closer together than \SI{1}{\micro\second}
-are not necessarily separate physical events.
+are not necessarily separate physical events (see \cref{sec:daq}).
 Consequently, during the coincidence grouping process,
 the coincidence search window begins \SI{1}{\micro\second}
 after the initial AD event.
 Coincidence groups are constructed by repeating the following steps
-until the data file is exhausted:
+(described in \cite{thucoinc2015}) until the data file is exhausted:
 
 \begin{enumerate}
     \item Find the next AD event.
@@ -142,10 +144,36 @@ The \fold{1} coincidences can be identified as a subset
 of the uncorrelated events, mostly radioactive decays,
 that are also present in the data stream.
 However, not all uncorrelated events end up in \fold{1} coincidences.
-Sometimes an uncorrelated event will occur in close proximity to
+Sometimes an uncorrelated event will occur in close time proximity to
 a true IBD prompt-delayed pair, creating a \fold{3} coincidence.
 These high-multiplicity coincidence groups are vetoed
 with a small loss of efficiency.
+The efficiency of this cut is derived in \cref{ap:singlesformula} as
+\cref{eq:mult_eff_ap}:
+
+\begin{align}
+    \label{eq:mult_eff}
+    \begin{split}
+        \varepsilon_m &= e^{-R_s \tc}
+        \left(
+            e^{-(R_s + R_\mu)\tc} +
+            \frac{R_s}{R_s+R_\mu} e^{-R_\mu\tc}
+            \left(
+                1 - e^{-(R_s + R_\mu)\tc}
+            \right)
+        \right. \\
+              &\ \ \left. - \frac{R_s}{2R_s + R_\mu} e^{-R_\mu\tc}
+                  \left(
+                      1 - e^{-(2R_s + R_\mu)\tc}
+                  \right) +
+                  \frac{R_\mu}{R_s + R_\mu}
+                  \left(
+                      1 - e^{-(R_s + R_\mu)\tc}
+                  \right)
+              \right)
+    \end{split}
+\end{align}
+
 More concerning is when two uncorrelated events
 randomly occur in close proximity to each other,
 creating a \fold{2} coincidence group that passes the high-multiplicity veto.
@@ -371,8 +399,8 @@ as the signal IBD process.
 
 Each spectrum is fit with the calorimeter function, which models
 a calorimetric response to a monoenergetic process with ``true''
-energy $\mu$.
-The modeled detector has an intrinsic and energy resolution $\sigma$
+energy $\mu$ \cite{calorimeter2016}.
+The modeled detector has an intrinsic energy resolution $\sigma$
 which applies a Gaussian smearing to the deposited energy.
 ($\sigma$ itself is independent of energy.)
 While many events in this model deposit all of their energy into
@@ -591,7 +619,10 @@ or the fraction of $\gamma$'s that (partially) escape from the AD.
         (Top) Data points and (affine) linear fit
         to the number of events in the nominal (peak)
         and extended ranges of delayed energy.
-        Statistical error bars are too small to be visible on this plot. \\
+        Statistical error bars are too small to be visible on this plot.
+        The points are labeled using a shorthand AD indexing scheme:
+        ADs 1 and 2 are EH1-AD1 and EH1-AD2. ADs 3 and 8 are EH2-AD1 and EH2-AD2.
+        And ADs 4 through 7 are EH3-AD1 through EH3-AD4, respectively.\\
         (Bottom) Relative deviations from each hall to the fit model.
         The half-range of deviations for near-hall ADs
         is the delayed energy efficiency AD-uncorrelated uncertainty.
@@ -635,4 +666,13 @@ summing the counts for all 4 far-hall ADs to get
 a combined relative deviation for the far hall of \SI{0.018}{\percent},
 well within the uncertainty derived from the near halls.
 
-
+This method for determining the variation in efficiency across ADs
+does not account for every possible inefficiency.
+For example, if the fraction of $\gamma$'s which totally or nearly totally
+escape from the scintillating region is different in one AD,
+but the distribution of $\gamma$'s which \textit{partially} escape is unchanged,
+then this method would still suggest a high similarity between ADs.
+An assumption of this analysis, therefore, is that any AD-to-AD variation
+(in geometry, electronics, scintillator composition, etc.)
+that affects the fraction of totally-escaping $\gamma$'s
+would also change the fraction of partially-escaping $\gamma$'s.
