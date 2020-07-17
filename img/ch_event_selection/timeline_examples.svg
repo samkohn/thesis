@@ -27,8 +27,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2"
-     inkscape:cx="262.56973"
-     inkscape:cy="164.48777"
+     inkscape:cx="243.81973"
+     inkscape:cy="124.48777"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -82,8 +82,8 @@
     <path
        style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.21712375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
        d="M 553.85742 79.027344 L 553.85742 87.285156 L 26.427734 87.285156 L 26.427734 91.570312 L 553.85742 91.570312 L 553.85742 99.830078 L 571.87305 89.427734 L 553.85742 79.027344 z "
-       transform="matrix(0.26458333,0,0,0.26458333,0,246.19998)"
-       id="rect815" />
+       id="rect815"
+       transform="matrix(0.26458333,0,0,0.26458333,0,246.19998)" />
     <use
        x="0"
        y="0"
@@ -353,5 +353,16 @@
        width="0.94494045"
        id="rect1174"
        style="opacity:1;fill:#ff5555;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.68335342;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:3.52777767px;line-height:1.10000002;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0.26458332px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="142.34583"
+       y="266.57291"
+       id="text1484"><tspan
+         sodipodi:role="line"
+         id="tspan1482"
+         x="142.34583"
+         y="266.57291"
+         style="font-style:italic;stroke-width:0.26458332">time</tspan></text>
   </g>
 </svg>

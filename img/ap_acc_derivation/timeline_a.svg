@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4142136"
-     inkscape:cx="155.44301"
-     inkscape:cy="115.0097"
+     inkscape:cx="393.30788"
+     inkscape:cy="107.03503"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -171,5 +171,16 @@
          style="font-style:italic;stroke-width:0.26458332">T<tspan
    style="font-style:italic;font-size:2.2930553px;baseline-shift:sub;stroke-width:0.26458332"
    id="tspan983-8">c</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:3.52777767px;line-height:1.10000002;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0.26458332px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="141.15974"
+       y="284.0209"
+       id="text1484"><tspan
+         sodipodi:role="line"
+         id="tspan1482"
+         x="141.15974"
+         y="284.0209"
+         style="font-style:italic;stroke-width:0.26458332">time</tspan></text>
   </g>
 </svg>
