@@ -1,47 +1,104 @@
 \chapter{Event selection}
 \label{ch:event_selection}
-The event selection extracts pairs of signals
-in the data stream that have properties expected of
-IBD interactions: a prompt positron annihilation
-followed by a delayed neutron capture on hydrogen.
-At each step in the selection, it is critical that
-differences in cut efficiency between the ADs are both
+
+Data-taking at Daya Bay is broken into data runs
+lasting approximately 1 day;
+the precise start and end times are arbitrary
+and are determined by the individual collaborator
+who is on shift duty at the start of each day.
+A run consists of data from only 1 experimental hall.
+Within each run, data files are saved containing 10 minutes' worth of data.
+Approximately twice per year, the Daya Bay collaboration
+processes the new data through the calibration and reconstruction algorithms.
+This process is known as data production, and the resulting data sets
+are known as production datasets.
+Whenever the calibration or reconstruction algorithms change,
+the next production processes all of the historical data,
+so that within a production dataset, all of the data was processed
+with exactly the same software.
+Since 2018, the calibration and reconstruction algorithms have been
+frozen so that new productions only need to process new data.
+New algorithms are being developed that may be used
+in a final data production after data taking ends in December 2020.
+The production data set used in this analysis is known as P17B,
+that is, the second production in 2017.
+
+The event selection procedure applies a sequence of cuts to the data stream
+that steadily increase the purity of nH-IBDs in the remaining data.
+At each step of the event selection, it is critical that
+differences in cut efficiency between the ADs are
 minimized and quantified so that any observed near-far difference
-can be justifiably attributed to oscillations.
-
-Certain backgrounds, namely muons, PMT flashers, and accidental coincidences,
-are frequent enough that their characterization, veto, and/or subtraction
-are handled as part of the event selection process.
-I will briefly describe these backgrounds inline
-but leave detailed descriptions and studies
-to the appropriate sections in \cref{ch:background}.
-
-\todo{Sum-marize chapter \& explain more about the background}
+can be justifiably attributed to \nuebar{} oscillations.
+In \cref{sec:dataprep}, the preliminary cleaning of the data
+will be described, including removing muon events
+and removing events due to flashing PMTs.
+In \cref{sec:coincidence}, the coincidence selection procedure
+is introduced as a way to group events based on
+the time separation to nearby events,
+and the double-coincidence dataset is identified.
+\Cref{sec:DT_cut} describes the signal enhancement due to
+requiring a small displacement in distance and time between
+the prompt and delayed sub-events that form each coincidence.
+Lastly, \cref{sec:energy_cuts} will describe the energy cuts
+which remove background events
+as well as IBD events due to neutron capture on Gd.
+Events which pass all of the cuts are known as IBD candidates.
+The remaining backgrounds---accidentals, muon-correlated isotopes,
+fast neutrons, and AmC neutrons---
+are considered irreducible and are statistically subtracted
+from the final energy spectra and rates (\cref{ch:background}).
 
 \section{Initial data preparation}
+\label{sec:dataprep}
 
 Before physics events are identified,
-the data is cleaned in two ways.
-First, cosmogenic muon events are identified
+the data is cleaned in three ways.
+First, events whose trigger types are not used for the \thetaot{} analysis
+are discarded (see \cref{tab:trigger}).
+This includes random triggers, RPC triggers, and cross triggers.
+Second, cosmogenic muon events are identified
 and a time window after each muon is vetoed
 to allow for any spallation products or activated nuclei to decay
-without contaminating the IBD signal (\cref{sec:muonveto}).
-Second, occurrences of PMT light emission, known as ``flashers,''
-are also vetoed and removed from the data stream (\cref{subsec:flashers}).
+without contaminating the IBD signal.
+\begin{itemize}
+    \item An IWS event with \num{>12} hit PMTs or an OWS event with \num{>15} hit PMTs
+        is considered a water shield muon.
+        All events in the subsequent \SI{400}{\us} are vetoed.
+    \item An AD event with $E > \SI{20}{\MeV}$ is considered an AD muon.
+        All events in the subsequent \SI{800}{\us} are vetoed.
+    \item An AD event with $E > \SI{2500}{\MeV}$ is considered a showering muon.
+        These muons have created particle showers within the AD,
+        and therefore have a higher probability of creating the activated nuclei
+        \isotope[9]{Li}, \isotope[8]{He}, or \isotope[12]{B}.
+        They occur infrequently enough that
+        all events in the subsequent \SI{1}{\s} can be vetoed
+        without a substantial decrease in livetime efficiency.
+\end{itemize}
+The full details of the muon veto are presented in \cref{sec:muonveto}.
+
+Lastly, occurrences of PMT light emission, known as ``flashers,''
+are also vetoed and removed from the data stream.
+These events are caused by sparking in the dynode of the PMT
+and have a geometrical signature in the pattern of hit PMTs.
+Specifically, the PMT that flashed registers a very large charge,
+and the PMTs on the opposite wall of the AD also register
+a significant number of photoelectrons
+due to the directional emission of light from the flasher PMT.
+The details of the flasher cut are described in \cref{subsec:flashers}.
 
 \section{Coincidence selection}
 \label{sec:coincidence}
 
 The first step in the event selection is
-to group together signals that are close together in time
-into ``coincidence groups.''
-Each \SI{1}{\micro\second} triggered readout window
-with reconstructed energy above \SI{1.5}{\mega\electronvolt}
+to search for coincidence groups,
+or sequences of events occuring within a given coincidence time \tc.
+Each event with reconstructed energy above \SI{1.5}{\mega\electronvolt}
 is identified as an ``AD event''
 and is a potential coincidence candidate.
-Because of the nonzero length of the readout window,
+Because of the nonzero length of the DAQ readout window,
 AD events occurring closer together than \SI{1}{\micro\second}
-are not necessarily separate physical events (see \cref{sec:daq}).
+are not necessarily distinct physical events (see \cref{sec:daq}).
+\todo{How frequently are 2 ``events'' so close?}
 Consequently, during the coincidence grouping process,
 the coincidence search window begins \SI{1}{\micro\second}
 after the initial AD event.
@@ -89,16 +146,15 @@ resulting in a coincidence group of multiplicity 4, or a \fold{4} coincidence.
 
 If a muon event occurs within a coincidence window,
 then that coincidence window is vetoed.
-In other words, every muon has an implicit veto window
-that forbids prompt events within \tc{} of the muon.
+Therefore every muon has an implicit veto window
+that excludes prompt events within \tc{} of the muon.
 This is demonstrated by Window 2 of \cref{fig:timeline_examples}.
 Note that if the prompt event occurs earlier than \tc{} before a muon,
 then subsequent events within the coincidence window
 are allowed to occur inside of the implicit muon veto window.
 Only prompt events are vetoed by the implicit veto window.
 
-The veto window after a muon also impacts the way that
-coincidence windows are formed.
+The veto window after a muon also impacts the coincidence selection process.
 Window 3 of \cref{fig:timeline_examples} shows a coincidence window
 whose prompt event is preceded by other recent AD events.
 However, those AD events fall within the previous muon veto window,
@@ -124,9 +180,13 @@ This probability is derived in \cref{ap:singlesformula} as $P_b$.
 \adgrid{All double coincidences found using $\tc=\SI{1.5}{\milli\second}$}{fig:double_coinc_raw}{ch_event_selection/double_coincs}
 
 Once the coincidence groups have been constructed,
-the set of \fold{2} coincidences can be identified as
-the preliminary set of IBD candidates,
-albeit with background still present.
+the set of \fold{2} coincidences can be identified
+as containing IBD candidates,
+with background still present.
+With a coincidence time of $\tc=\SI{1.5}{\ms}$
+and a neutron capture time of $\sim\SI{200}{\us}$ in LS,
+negligibly few IBD events are lost
+due to a neutron not being captured within \tc.
 \Cref{fig:double_coinc_raw} shows the prompt and delayed energy
 of all \fold{2} coincidences identified in EH1-AD1 and EH3-AD1
 as representatives of the near and far sites.
@@ -186,17 +246,7 @@ are all motivated in large part by the need to reduce the accidental background.
 \section{Distance and time cuts}
 \label{sec:DT_cut}
 
-The distance and time distributions between prompt and delayed AD events
-are different depending on the physical process producing those AD event pairs.
-For example, the neutron produced during an IBD interaction
-scatters within the liquid scintillator until being captured
-by a hydrogen nucleus,
-traveling a characteristic distance over a characteristic time.
-On the other hand, two uncorrelated events have, by definition,
-no particular connection between their physical locations
-or their timings.
-
-In practice, the characteristic distance for a neutron capture on hydrogen
+The characteristic distance for a neutron capture on hydrogen
 is approximately \SI{200}{\milli\meter},
 and the characteristic time delay is \SI{200}{\micro\second}.
 For accidental coincidences, the characteristic distance is
@@ -213,12 +263,12 @@ for the subset of \fold{2} coincidences with
 relatively small coincidence distances and times
 of less than \SI{1000}{\milli\meter} and \SI{600}{\micro\second},
 respectively.
-Correlated events are grouped at the lowest
-coincidence times and distances,
-although there is a visible tail in both dimensions.
+The cluster at the lowest coincidence times and distances
+consists of IBD events.
 The rest of the events distributed with relatively uniform density
 across the plot are accidental background from uncorrelated events.
 This plot was used to determine the distance and time cut
+in an ad hoc manner
 by drawing a line from \SI{800}{\milli\meter} at $0$ time
 to \SI{480}{\micro\second} at $0$ distance.
 This line rather effectively separates the higher-density region
@@ -299,6 +349,7 @@ is the half-range of the near-hall efficiencies: \num{0.0016} (absolute),
 or approximately \SI{0.23}{\percent} (relative).
 
 \section{Energy cuts}
+\label{sec:energy_cuts}
 
 \subsection{Prompt energy}
 The prompt energy lower bound of \SI{1.5}{\mev}
