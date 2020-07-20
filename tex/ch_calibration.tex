@@ -1,0 +1,75 @@
+\chapter{Calibration}
+\label{ch:calibration}
+
+The digital readouts from the TDC and ADCs representing PMT signals
+are converted into time and charge through the calibration process.
+
+\begin{figure}
+    \missingfigure{Test figure}
+    \caption{Test image}
+    \label{fig:test}
+\end{figure}
+
+\section{Calibration system}
+\label{sec:calib_system}
+
+The calibration system for the Daya Bay ADs
+allows for automated deployment of a variety of calibration sources.
+Each AD is outfitted with three automated calibration units (ACUs)
+which can position a calibration source at arbitrary locations
+along the vertical axis extending underneath the each ACU.
+ACU-A deploys sources along the central axis of the AD at $r=0$,
+ACU-B probes the edge of the GdLS region just inside the IAV at $r=\SI{1350}{\mm}$,
+and ACU-C can access the LS region between the IAV and OAV,
+near the periphery of the AD at $r=\SI{1772.5}{\mm}$.
+The layout of the ACUs is shown in \cref{fig:ad_cutaway},
+and the construction and function of the ACUs
+is described in detail in \cite{calib2014}.
+Sources are deployed weekly during special calibration runs.
+
+Each ACU contains three radioactive sources and one LED
+which can be deployed into the AD during detector calibration,
+as listed in \cref{tab:calibsources}.
+The \isotope[60]{Co} and \isotope[241]{Am}-\isotope[13]{C} sources
+are housed in the same fixture and so are always deployed together.
+The ACUs can deploy any of the sources to a given vertical position
+with a precision of \SI{5}{\mm},
+the same precision as the positions of the PMTs.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{llll}
+        \hline
+        Source & Energy & Radiation & Rate \\
+        \hline
+        \isotope[60]{Co} & \SIlist{1.173;1.323}{\MeV} & $\gamma$-rays & \SI{100}{\Hz} \\
+        \isotope[241]{Am}-\isotope[13]{C} & \SIrange{3}{6}{\MeV} & neutron &
+            \SI{0.7}{\Hz} \\
+        \isotope[68]{Ge} & $2\times\SI{0.511}{\MeV}$ & positrons & \SI{10}{\Hz} \\
+        LED & $\lambda < \SI{435}{\nm}$ & UV photons & tbd \\
+        \hline
+    \end{tabular}
+    \caption{The 4 calibration sources used in each ACU (\cite{calib2014,amc2015})
+    \todo[inline]{LED pulse rate}}
+    \label{tab:calibsources}
+\end{table}
+
+\section{Gain calibration}
+\label{sec:gain}
+
+\section{Time calibration}
+\label{sec:time_calib}
+
+\section{Channel quality}
+\label{sec:channel_quality}
+
+\section{Misc}
+
+The LED has a maximum wavelength of \SI{435}{\nm}
+and is used to calibrate the PMT gain and timing.
+The amplitude of the LED can be varied to measure the PMT response
+for different light levels.
+The LED pulse width is $\sim\SI{10}{\ns}$ to allow for
+precise measurements of differing response times among the PMTs.
+The specifics of the time and gain calibration are described below.
+
