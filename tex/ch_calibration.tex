@@ -2,16 +2,13 @@
 \label{ch:calibration}
 
 The digital readouts from the TDC and ADCs representing PMT signals
-are converted into time and charge through the calibration process.
-
-\begin{figure}
-    \missingfigure{Test figure}
-    \caption{Test image}
-    \label{fig:test}
-\end{figure}
-
-\section{Calibration system}
-\label{sec:calib_system}
+must be converted into physically-relevant quantities.
+The TDC values represent hit times of PMTs,
+and the ADCs represent the charge collected by the PMTs,
+which ultimately must be traced back to the energy deposited
+in the liquid scintillator of the ADs.
+The conversion factors for these quantities are determined
+through the calibration process.
 
 The calibration system for the Daya Bay ADs
 allows for automated deployment of a variety of calibration sources.
@@ -42,7 +39,7 @@ the same precision as the positions of the PMTs.
         \hline
         Source & Energy & Radiation & Rate \\
         \hline
-        \isotope[60]{Co} & \SIlist{1.173;1.323}{\MeV} & $\gamma$-rays & \SI{100}{\Hz} \\
+        \isotope[60]{Co} & \SIlist{1.173;1.333}{\MeV} & $\gamma$-rays & \SI{100}{\Hz} \\
         \isotope[241]{Am}-\isotope[13]{C} & \SIrange{3}{6}{\MeV} & neutron &
             \SI{0.7}{\Hz} \\
         \isotope[68]{Ge} & $2\times\SI{0.511}{\MeV}$ & positrons & \SI{10}{\Hz} \\
@@ -57,19 +54,152 @@ the same precision as the positions of the PMTs.
 \section{Gain calibration}
 \label{sec:gain}
 
+The gain of a PMT channel is the degree of amplification
+of the photon signal,
+measured in ADC counts per photoelectron (\si{\adc\per\pe}),
+and depends on the individual PMT, the input voltage,
+and environmental factors such as the temperature
+and the ambient magnetic field.
+Although the PMTs are shielded from ambient fields,
+and the temperature within each AD is relatively (but not entirely) stable,
+the gain for individual PMTs does drift over time.
+To properly account for these changes,
+the PMT gain is measured continuously during data-taking
+through a process called ``rolling gain.''
+
+Rolling gain is possible because of PMT dark noise,
+which consists almost exclusively of single photoelectron (SPE) signals.
+The readout window buffer for each trigger actually extends $\sim\SI{320}{\ns}$
+before the trigger criterion is met,
+so that every triggered readout contains a few hundred \si{\ns}
+of data where there were no physics events in the AD, known as the noise window.
+Dark noise recorded during the noise window is the most reliable source
+of SPE signals.
+For each PMT, the ADC values of signals obtained during the noise window
+are accumulated and fit to obtain the mean ADC counts per SPE,
+which is then interpreted as the gain for that PMT channel.
+The model for the fit is at its core a convolution of
+a Poisson distribution counting the number of PEs
+with a Gaussian distribution modeling the resolution of
+the amplification and digitization process \cite{ngd2016}:
+
+\begin{equation}
+    S_i(Q) = \sum_{n=1}^2 \frac{\mu^n e^{-\mu}}{n!}
+    \frac{1}{\sigma_{SPE}\sqrt{2n\pi}}
+    \exp
+    \left(
+        -\frac{(Q-n\overline{Q}^{SPE})^2}{2n\sigma^2_{SPE}}
+    \right),
+\end{equation}
+where $i$ is the PMT index,
+$\mu$ is the mean number of dark noise PEs per noise window for PMT $i$,
+$\overline{Q}^{SPE}$ is the mean \si{\adc\per\pe} (i.e.\ the gain),
+and $\sigma_{SPE}$ is the resolution of the PMT-ADC system.
+$n$ is the actual number of PEs measured in a given noise window.
+The sum nominally runs from $0$ to $\infty$ but
+excludes $n=0$ because in that case there is no readout signal,
+and is truncated at $n=2$ because there are negligibly few dark noise events
+with more than \SI{1}{\pe}.
+For each PMT $i$, the values $\mu,\overline{Q}^{SPE}\text{, and }\sigma_{SPE}$ are fit
+to the dark noise distribution.
+The actual fit must account for the ADC pedestal (baseline),
+which is simply the value of the ADC output when there is no signal on the PMT.
+In order for the fit to be meaningful, dark noise hits must be accumulated
+for approximately six hours.
+The rolling gain is therefore sensitive to almost any conceivable
+environmental change that could substantially change the gain of any PMT.
+The average gain for the PMTs in each AD (measured in \si{\adc\per\pe})
+over time is shown in \cref{fig:gain}.
+The gain is independently cross-checked during the weekly calibration runs
+using the low-intensity LED to generate SPE samples.
+
+\begin{figure}
+    \missingfigure{Gains plot}
+    \caption{PMT gains over time, as measured by the rolling gain.}
+    \label{fig:gain}
+\end{figure}
+
+\section{Light yield calibration}
+\label{sec:light_yield_calib}
+
+The light yield characterizes the average
+number of photoelectrons (PEs) observed by PMTs
+per energy deposited in the liquid scintillator
+by a physics event.
+It is measured both by deploying the \isotope[60]{Co} calibration source
+during weekly calibrations
+and using a rolling method based on muon-induced spallation neutron
+captures on Gd (nGd), which accumulates sufficient statistics
+approximately once per day \todo{Spn calibration statistics}.
+
+Spallation neutrons are produced by muon interactions in the rock,
+water, and steel surrounding the ADs.
+When these neutrons penetrate into the GdLS,
+they will capture on a Gd nucleus, leading to the emission of $\gamma$-rays
+with energy totalling either \SI{7.95}{\MeV} or \SI{8.54}{\MeV},
+depending on the specific isotope of Gd.
+Spallation neutrons are identified by searching for events
+with energy between \SIlist{6;12}{\MeV} shortly after muon signals.
+A background dataset is obtained with an offset time window
+and subtracted from the energy distribution of the spallation neutron dataset.
+The peaks from the two different isotopes overlap,
+so the distribution is then fit with a double Crystal Ball function \cite{cbfunction}.
+The location of the lower peak is then defined to represent \SI{7.95}{\MeV}.
+\Cref{fig:lightyield} shows the light yield over time,
+as measured by the spallation neutron captures.
+
+\begin{figure}
+    \missingfigure{Light yield plot}
+    \caption{Light yield over time, as measured by the spallation neutron method.}
+    \label{fig:lightyield}
+\end{figure}
+
 \section{Time calibration}
 \label{sec:time_calib}
+
+The times returned by the TDC for each AD must be corrected
+to account for differences in cable length as well as
+manufacturing differences that could affect the PMT and TDC response times.
+Calibration corrections are determined using the LED source.
+Each pulse of the LED leads to a calibration trigger so that all PMTs are read out.
+The TDC value from each PMT is then converted to time using the
+time step value of \SI{1.5625}{\ns} and adjusted
+to account for the expected time of flight
+of a photon produced in the center of the AD (where the LED is located)
+to the given PMT.
+After this adjustment, all PMTs should agree on the time of the LED pulse.
+The time calibration correction is then computed
+as the difference between an individual PMT's hit time
+(adjusted for time of flight)
+and the known pulse time of the LED.
 
 \section{Channel quality}
 \label{sec:channel_quality}
 
-\section{Misc}
+Occasionally one or more components of the PMT high voltage power supply
+or data readout will malfunction or degrade,
+leading to a substantial change in measured PMT gain.
+Anomalous gain readings are flagged during weekly data quality checks,
+and any problematic PMTs are disabled.
+Usually at most one PMT at a time is affected in any AD.
+The most common problem is a degraded high voltage supply,
+and is fixed by replacing the high voltage module.
+When any of the PMTs is disabled, the calorimetric response of the ADs
+is slightly altered.
+In particular, the number of photoelectrons collected
+will decrease by $\nicefrac{n}{192}$ (on average),
+relative to a configuration with \num{192} functioning PMTs,
+with $n$ representing the number of disabled PMTs.
+A correction is applied to the light yield to compensate for this average behavior.
+\todo{Inves-tigate active channel correction}
 
-The LED has a maximum wavelength of \SI{435}{\nm}
-and is used to calibrate the PMT gain and timing.
-The amplitude of the LED can be varied to measure the PMT response
-for different light levels.
-The LED pulse width is $\sim\SI{10}{\ns}$ to allow for
-precise measurements of differing response times among the PMTs.
-The specifics of the time and gain calibration are described below.
+%\section{Misc}
+
+%The LED has a maximum wavelength of \SI{435}{\nm}
+%and is used to calibrate the PMT gain and timing.
+%The amplitude of the LED can be varied to measure the PMT response
+%for different light levels.
+%The LED pulse width is $\sim\SI{10}{\ns}$ to allow for
+%precise measurements of differing response times among the PMTs.
+%The specifics of the time and gain calibration are described below.
 
