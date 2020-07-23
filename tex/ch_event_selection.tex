@@ -5,43 +5,44 @@ Data-taking at Daya Bay is broken into data runs
 lasting approximately 1 day;
 the precise start and end times are arbitrary
 and are determined by the individual collaborator
-who is on shift duty at the start of each day.
-A run consists of data from only 1 experimental hall.
+on shift duty each day.
+Each experimental hall (EH) saves data into independent runs.
 Within each run, data files are saved containing 10 minutes' worth of data.
-Approximately twice per year, the Daya Bay collaboration
-processes the new data through the calibration and reconstruction algorithms.
-This process is known as data production, and the resulting data sets
+Approximately twice per year, new data is processed
+using the calibration and reconstruction algorithms from
+\cref{ch:calibration,ch:reconstruction}.
+This process is known as production, and the resulting data sets
 are known as production datasets.
-Whenever the calibration or reconstruction algorithms change,
-the next production processes all of the historical data,
+If the calibration or reconstruction algorithms are altered in any way,
+the next production will re-process all of the historical data,
 so that within a production dataset, all of the data was processed
 with exactly the same software.
-Since 2018, the calibration and reconstruction algorithms have been
+Since 2018, the calibration and reconstruction algorithms used in production have been
 frozen so that new productions only need to process new data.
 New algorithms are being developed that may be used
 in a final data production after data taking ends in December 2020.
-The production data set used in this analysis is known as P17B,
+The production dataset used in this analysis is known as P17B,
 that is, the second production in 2017.
 
-The event selection procedure applies a sequence of cuts to the data stream
-that steadily increase the purity of nH-IBDs in the remaining data.
+The event selection procedure applies a series of cuts to the data stream
+to steadily increase the purity of nH-IBDs in the remaining data.
 At each step of the event selection, it is critical that
 differences in cut efficiency between the ADs are
 minimized and quantified so that any observed near-far difference
-can be justifiably attributed to \nuebar{} oscillations.
+can be attributed to \nuebar{} oscillations.
 In \cref{sec:dataprep}, the preliminary cleaning of the data
 will be described, including removing muon events
 and removing events due to flashing PMTs.
 In \cref{sec:coincidence}, the coincidence selection procedure
 is introduced as a way to group events based on
-the time separation to nearby events,
+the time separation of nearby events,
 and the double-coincidence dataset is identified.
-\Cref{sec:DT_cut} describes the signal enhancement due to
+\Cref{sec:DT_cut} describes the signal enhancement from
 requiring a small displacement in distance and time between
 the prompt and delayed sub-events that form each coincidence.
-Lastly, \cref{sec:energy_cuts} will describe the energy cuts
+Lastly, \cref{sec:energy_cuts} details the energy cuts
 which remove background events
-as well as IBD events due to neutron capture on Gd.
+and nGd-IBD events, where the neutron captured on Gd in the GdLS volume.
 Events which pass all of the cuts are known as IBD candidates.
 The remaining backgrounds---accidentals, muon-correlated isotopes,
 fast neutrons, and AmC neutrons---
@@ -52,8 +53,8 @@ from the final energy spectra and rates (\cref{ch:background}).
 \label{sec:dataprep}
 
 Before physics events are identified,
-the data is cleaned in three ways.
-First, events whose trigger types are not used for the \thetaot{} analysis
+major backgrounds that can be cleanly rejected are identified and removed.
+First, events with trigger types not used for the \thetaot{} analysis
 are discarded (see \cref{tab:trigger}).
 This includes random triggers, RPC triggers, and cross triggers.
 Second, cosmogenic muon events are identified
@@ -76,22 +77,32 @@ without contaminating the IBD signal.
 \end{itemize}
 The full details of the muon veto are presented in \cref{sec:muonveto}.
 
-Lastly, occurrences of PMT light emission, known as ``flashers,''
+Next, occurrences of PMT light emission, known as ``flashers,''
 are also vetoed and removed from the data stream.
 These events are caused by sparking in the dynode of the PMT
 and have a geometrical signature in the pattern of hit PMTs.
-Specifically, the PMT that flashed registers a very large charge,
-and the PMTs on the opposite wall of the AD also register
-a significant number of photoelectrons
+The flasher PMT itself observes a high amount of charge,
+as do the PMTs on the opposite wall of the AD,
 due to the directional emission of light from the flasher PMT.
+A cut based on the charge pattern is used to reject flashers
+with a negligible inefficiency for true IBDs.
 The details of the flasher cut are described in \cref{subsec:flashers}.
+
+Lastly, the vast majority of naturally-occuring radioactivity is rejected
+using an initial energy cut of \SI{1.5}{\MeV}.
+Since the oscillation minumum for Daya Bay occurs at $\sim\SI{3}{\MeV}$,
+this cut preserves the information needed for oscillation measurements.
+Even with low-energy events vetoed, a substantial number of
+uncorrelated radioactive decays are present in the final dataset
+and, when two such decays accidentally occur within a short time window,
+creat the accidental background, which will be discussed in \cref{subsec:acc}.
+
 
 \section{Coincidence selection}
 \label{sec:coincidence}
 
-The first step in the event selection is
-to search for coincidence groups,
-or sequences of events occuring within a given coincidence time \tc.
+Events are grouped based on the number of other events
+occuring within a given coincidence time \tc.
 Each event with reconstructed energy above \SI{1.5}{\mega\electronvolt}
 is identified as an ``AD event''
 and is a potential coincidence candidate.
