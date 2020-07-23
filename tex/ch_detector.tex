@@ -137,6 +137,17 @@ The PMTs are arranged in 8 rings of 24 PMTs on the outer edge of the mineral oil
 Light collection and detector uniformity is increased by the presence of
 specular reflectors located on the top and bottom faces of the OAV,
 as indicated in \cref{fig:ad_cutaway}.
+PMTs consist of a sensitive photocathode, from which an incident photon
+can eject an electron by the photoelectric effect.
+The photoelectron (PE) is accelerated in an electric field to the first dynode,
+a charged metal plate, where it causes multiple electrons to be ejected.
+A series of subsequent dynodes leads to an avalanche effect of electrons,
+which are collected at the anode and read out as a voltage signal.
+When discussing the strength of a PMT signal,
+it is customary to use the term ``charge'' (measured in photoelectrons)
+rather than ``light,''
+though the charge collected by a PMT anode
+is of course a proxy for the number of incident photons.
 
 \begin{figure}
     \centering
@@ -256,7 +267,8 @@ that reach the ADs.
 Each Daya Bay AD PMT has a single high-voltage (HV) coaxial cable
 that supplies power to the PMT and returns the PMT signal to the
 front-end electronics.
-These electronics immediately start a TDC with \SI{1.6}{\ns} resolution,
+Upon receipt of an above-threshold PMT signal, these electronics immediately
+issue a start signal to a TDC with \SI{1.6}{\ns} resolution,
 and also measure the charge using a \SI{40}{\MHz} \num{12}-bit ADC
 providing better than \num{0.1}-photoelectron (PE) resolution.
 A \SI{50}{\percent} attenuated copy of the signal is passed to a copy
