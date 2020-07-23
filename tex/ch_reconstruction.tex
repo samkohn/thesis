@@ -1,0 +1,73 @@
+\chapter{Reconstruction}
+\label{ch:reconstruction}
+
+Each event within an AD is assigned a reconstructed position and energy
+that take into account the pattern of PMT hits, the total light emitted,
+scintillator and mineral oil optical characteristics,
+spatial nonuniformity, and scintillator and electronics nonlinearity.
+The reconstructed positions are used to compute the distance-time cut
+to select IBD events as described in \cref{sec:DT_cut},
+and are also used as inputs to the energy reconstruction
+to help correct for nonuniformities in the ADs' light collection
+as a function of position.
+The reconstructed energy is a critical input to the \thetaot{} analysis
+due to the heavy reliance on energy cuts to select IBDs and reject background.
+The relative performance of ADs in reconstructing energy
+is particularly important, since inconsistencies in energy reconstruction
+could lead to unaccounted-for differences in efficiency,
+which would bias the measurement of \thetaot.
+The position reconstruction procedure will be detailed in \cref{sec:reco_position}.
+Energy reconstruction, including the energy scale, determination of event energy,
+and the nonuniformity and nonlinearity corrections,
+will be described in \cref{sec:reco_energy}.
+
+\section{Position}
+\label{sec:reco_position}
+
+Daya Bay uses two independent position reconstruction algorithms,
+both of which rely on the pattern of charge measurements across all PMTs in an AD.
+The reconstruction used in this \thetaot{} analysis is known as ``AdSimpleNL;''
+the name was inherited from a predecessor algorithm which was rather simple,
+and, as will be described in \cref{sec:reco_energy}, the ``NL'' refers to the
+scintillator nonlinearity correction to the energy,
+which is applied as the last step of the reconstruction.
+The other reconstruction is called ``AdScaled.''
+Briefly, a center-of-charge position is computed,
+averaging over each PMT position weighted by the charge on the PMT,
+and a parametrized correction derived from simulation
+is applied to determine the reconstructed position.
+
+AdSimpleNL is (again, counterintuitively), a more complex algorithm.
+Each event's PMT charge pattern is compared to a library of \num{9600} templates
+generated using a Monte Carlo simulation.
+Each template represents one position on an $(r, \phi, z)$ grid
+with \num{20} $r$ positions, \num{24} $\phi$ positions,
+and \num{20} $z$ positions.
+A $\chi^2$ is constructed to quantify the agreement between the measured charge pattern
+and each of the templates:
+
+\begin{equation}
+    \chi^2(\textbf{r}_{\text{rec}}) = \sum_{i=1}^{192} -2\ln\frac{
+        \text{Poisson}(N_i^{\text{obs}} \vert N_i^{\text{template}}(\textbf{r}_{\text{rec}}))
+    }
+    {
+        \text{Poisson}(N_i^{\text{obs}} \vert N_i^{\text{obs}})
+    },
+\end{equation}
+where $i$ indexes over PMTs, $j$ indexes over the \num{9600} charge templates,
+$N_i^{\text{obs}}$ is the number of photoelectrons observed in PMT $i$,
+$N_{ij}^{\text{template}}$ is the prediction of tempate $j$ for PMT $i$,
+and $\text{Poisson}(n\vert\mu)$ is the Poisson probability
+to observe $n$ counts given an expected value of $\mu$.
+The $\chi^2$ function is extended to all values of $\textbf{r}_{\text{rec}}$
+within an AD using interpolation between the lattice points used in the simulation.
+The value of $\textbf{r}_{\text{rec}}$ which minimizes $\chi^2$
+is used as the reconstructed position.
+
+\section{Energy}
+\label{sec:reco_energy}
+
+The reconstructed energy for an event is built up from the previously-described
+calibration values and the observed signals in each PMT,
+and then corrected for AD nonuniformity and nonlinearity.
+
