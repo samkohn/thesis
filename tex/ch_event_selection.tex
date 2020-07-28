@@ -1,9 +1,9 @@
-\chapter{Event selection}
+\chapter{Event selection and backgrounds}
 \label{ch:event_selection}
 
 Data-taking at Daya Bay is broken into data runs
-lasting approximately 1 day;
-the precise start and end times are arbitrary
+lasting approximately 1 day.
+The precise start and end times are arbitrary
 and are determined by the individual collaborator
 on shift duty each day.
 Each experimental hall (EH) saves data into independent runs.
@@ -11,7 +11,7 @@ Within each run, data files are saved containing 10 minutes' worth of data.
 Approximately twice per year, new data is processed
 using the calibration and reconstruction algorithms from
 \cref{ch:calibration,ch:reconstruction}.
-This process is known as production, and the resulting data sets
+This data processing procedure is known as production, and the resulting datasets
 are known as production datasets.
 If the calibration or reconstruction algorithms are altered in any way,
 the next production will re-process all of the historical data,
@@ -21,7 +21,7 @@ Since 2018, the calibration and reconstruction algorithms used in production hav
 frozen so that new productions only need to process new data.
 New algorithms are being developed that may be used
 in a final data production after data taking ends in December 2020.
-The production dataset used in this analysis is known as P17B,
+The production dataset used in the \thetaot{} analysis in \cref{ch:analysis} is known as P17B,
 that is, the second production in 2017.
 
 The event selection procedure applies a series of cuts to the data stream
@@ -30,24 +30,28 @@ At each step of the event selection, it is critical that
 differences in cut efficiency between the ADs are
 minimized and quantified so that any observed near-far difference
 can be attributed to \nuebar{} oscillations.
-%In \cref{sec:dataprep}, the preliminary cleaning of the data
-%will be described, including removing muon events
-%and removing events due to flashing PMTs.
+The removal of muons from the data sample, and the additional veto window
+to suppress the rate of muon-correlated backgrounds,
+are introduced in \cref{sec:muonveto}.
+The removal of events caused by PMT light emission
+is described in \cref{sec:flashers}.
 In \cref{sec:coincidence}, the coincidence selection procedure
 is introduced as a way to group events based on
 the time separation of nearby events,
 and the double-coincidence dataset is identified.
-\Cref{sec:DT_cut} describes the signal enhancement from
-requiring a small displacement in distance and time between
-the prompt and delayed sub-events that form each coincidence.
-Lastly, \cref{sec:energy_cuts} details the energy cuts
-which remove background events
-and nGd-IBD events, where the neutron captured on Gd in the GdLS volume.
-Events which pass all of the cuts are known as IBD candidates.
-The remaining backgrounds---accidentals, muon-correlated isotopes,
+\Cref{sec:DT_cut} describes the cuts on coincidence distance and coincidence time
+between the prompt and delayed sub-events that form each coincidence.
+The characterization and statistical subtraction of
+accidental coincidences of uncorrelated events
+are described in \cref{sec:acc}.
+\Cref{sec:energy_cuts} details the energy cuts
+which remove additional background events
+and nGd-IBD events, where the neutron captured on Gd rather than H.
+The remaining backgrounds---muon-correlated unstable isotopes,
 fast neutrons, and AmC neutrons---
 are considered irreducible and are statistically subtracted
-from the final energy spectra and rates % (\cref{ch:background}).
+from the final energy spectra and rates
+in \cref{sec:correlated_bg}.
 
 \section{Muon veto}
 \label{sec:muonveto}
@@ -60,33 +64,36 @@ When a cosmic-ray muon enters the LS or GdLS volume of the AD,
 it creates a scintillation signal (and a smaller Cherenkov radiation signal)
 that is proportional to the distance traveled
 through the AD.
-Given that in LS and GdLS, $\frac{dE}{dx} \approx \SI{2}{\mev\per\cm}$,
-even a muon that only clips the corner of the AD cound easily deposit
-more energy than the most energetic reactor \nuebar{} interaction,
-providing a convenient discriminant for identifying muon interactions.
+Given that in LS and GdLS, $\nicefrac{dE}{dx} \approx \SI{2}{\mev\per\cm}$,
+even a muon that only traverses a small distance across the corner of an AD could easily deposit
+more energy than the most energetic IBD interaction from a reactor \nuebar,
+thus motivating event energy as a convenient discriminant for identifying muon interactions.
 Additional muon tagging is provided by the water pool
-surrounding the ADs in each EH.
+surrounding the ADs in each EH (\cref{sec:wp}).
 These pools are divided by opaque Tyvek sheets into inner and outer regions
 which are monitored by PMTs for Cherenkov radiation from muons.
 
-In addition to themselves creating signals in the ADs,
-muons also create other sources of background:
-A muon which interacts inside the AD can occasionally produce
-the rare unstable isotopes \li, \he, and \boron.
+In addition to themselves creating background signals in the ADs
+from their own energy deposits,
+muons also create other sources of background.
+A muon which enters an AD can produce
+the rare unstable isotopes \li, \he, and \boron{} (\cref{subsec:li9}).
 These isotopes can decay through processes that exactly mimic the IBD signature.
 A muon can instead interact with the rock surrounding the EHs
 and generate energetic ``fast'' neutrons,
 which can penetrate the water shield and stainless steel vessel surrounding the ADs
 (\cref{subsec:fastn}).
-If the fast neutron collides with a nucleus inside the LS or GdLS,
-it could produce a prompt signal, and then capture on H or Gd to produce
+If the fast neutron collides with a nucleus (particularly \isotope[1]{H})
+inside the LS or GdLS,
+the recoil could produce a prompt signal,
+and the subsequent capture on H or Gd would produce
 a delayed signal, again mimicking the IBD double coincidence signature.
 Since these processes are highly correlated with muons,
 an appropriate set of veto windows can greatly reduce their contamination of the data.
 
 The muon veto window procedure consists of four independent criteria
 for classifying muons.
-Most muons cause significant PMT signals in the inner and outer water shields.
+Most muons reaching the ADs cause significant PMT signals in the inner and outer water shields.
 Any event that triggered $>12$ PMTs in the inner water shield
 is an inner water shield muon,
 and any event triggering $>15$ PMTs in the outer wanter shield
@@ -94,9 +101,9 @@ is classified as an outer water shield muon.
 A veto of \SI{400}{\micro\second} is applied to the data following
 both types of water shield muons.
 This veto is long enough to allow most (all but $\sim e^{-2}$)
-fast neutrons that make it into the ADs to be captured by H or Gd
+fast neutrons that penetrate into an AD to be captured by H or Gd
 before the end of the veto window.
-Since the time between water shield muons at the near halls
+Since the characteristic time between water shield muons at the near halls
 was only around \SI{5}{\milli\second},
 extending the veto window much longer would lead to a significant
 loss of data efficiency.
@@ -111,40 +118,53 @@ of \SI{800}{\micro\second}.
 Some muons deposit significantly more energy than
 even the maximum expected for a minimum-ionizing particle in LS
 traversing the entire AD, approximately
-approximately $\SI{6}{\meter}\times\SI{2}{\mev\per\cm}=\SI{1200}{\mev}$.
+$\SI{6}{\meter}\times\SI{2}{\mev\per\cm}=\SI{1200}{\mev}$.
 These events are assumed to be caused by muons which create particle showers,
 explaining the additional energy deposits.
-However, these particle showers also produce a much higher rate of
+These particle showers produce a much higher rate of
 \li, \he, and \boron.
-Because \li{} in particular has a rather long lifetime of \SI{257.2}{\milli\second},
+Because \li{} in particular has a long lifetime of \SI{257.2}{\milli\second},
 the veto window for showering muons is extended to \SI{1}{\second}
 to allow all but $\sim e^{-4}$ of the \li{} to decay before the veto window ends.
+The residual \li, \he, and \boron events in the dataset are characterized
+and subtracted in \cref{subsec:li9}.
 
-The muon veto also interacts with the coincidence selection,
-as was mentioned in \cref{sec:coincidence}.
-If a candidate coincidence window includes a muon event,
-then all of the events in the coincidence window are vetoed.
+The muon veto also affects the coincidence selection
+described in \cref{sec:coincidence}.
+Briefly, if a candidate prompt event is followed
+by both a candidate delayed event and a muon event,
+then the coincidence pair is rejected as being too close to a muon event.
 This avoids an unwanted correlation between muon rate
-and coincidence distance-time (DT) efficiency,
-as would happen if instead of vetoing the window,
-the window were simply truncated and accepted.
+and coincidence distance-time (DT) efficiency (\cref{sec:DT_cut}).
 Because of this implicit pre-muon veto window,
-an isolated water shield muon actually vetoes \SI{1900}{\micro\second}
-of DAQ live time (given $\tc=\SI{1500}{\micro\second}$),
-an AD muon vetoes \SI{2300}{\micro\second},
-and a showering muon vetoes \SI{1.0015}{\second}.
+for a given coincidence time cut \tc,
+an isolated water shield muon actually vetoes $\SI{400}{\micro\second}+\tc$
+of DAQ live time,
+an AD muon vetoes $\SI{800}{\micro\second}+\tc$,
+and a showering muon vetoes $\SI{1}{\second}+\tc$
+(\SI{1900}{\us}, \SI{2300}{\us}, and \SI{1.0015}{\s}, respectively,
+for $\tc=\SI{1500}{\us}$).
 
-When performing the event selection, no events which are vetoed by muons
+When performing the coincidence selection, no events which are vetoed by muons
 are considered.
-In order to form rates, the muon-corrected live time must be computed.
-This live time is simply the total amount of time that
-does not lie within any muon veto windows (including pre-muon veto windows).
-The fraction of DAQ live time that is not vetoed
-is the muon veto efficiency $\varepsilon_\mu$, not to be confused
-with the fraction of muons which are vetoed,
-which is taken to be \SI{100}{\percent}.
+Therefore, the measured rate of IBD events
+must be corrected by an effective efficiency $\varepsilon_\mu$
+accounting for the IBD events which were rejected along with the muon veto.
+$\varepsilon_\mu$ is simply the fraction of DAQ time
+that is not vetoed by any muon veto windows (including the pre-muon veto).
+It is computed for each run as
+\begin{equation}
+    \varepsilon_\mu = \frac{\sum_i \Delta t_i}{t_{\text{DAQ}}},
+\end{equation}
+where $t_{\text{DAQ}}$ is the total time
+between the first and last event in a run,
+$i$ runs over all time intervals \textit{not} vetoed by a muon,
+and $\Delta t_i$ is the length of interval $i$.
+$\varepsilon_\mu$ should not be confused
+with the fraction of muons which are identified by the muon criteria,
+which is \SI{100}{\percent} \cite{muonsystem2015}.
 The muon veto efficiency over time for the near and far halls
-is shown in \cref{fig:veto_eff} for each $\sim\SI{24}{\hour}$ data run.
+is shown in \cref{fig:veto_eff} for each data run.
 
 \begin{figure}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_eff_near_bydate}
@@ -157,31 +177,6 @@ is shown in \cref{fig:veto_eff} for each $\sim\SI{24}{\hour}$ data run.
     \label{fig:veto_eff}
 \end{figure}
 
-When determining the muon rate for the accidental background
-analysis (\cref{sec:acc}), overlapping windows are combined
-into a single veto window.
-Muon veto windows commonly overlap for a few reasons.
-First, a single physical muon can create multiple muon events
-that satisfy up to three of the four muon criteria,
-if that muon creates signals in the inner and outer water shields,
-and also enters an AD and deposits at least \SI{20}{\mev} worth of scintillation light.
-Such a muon would then be an inner water shield, outer water shield, and AD
-(or showering) muon.
-Second, multiple muons can occur in quick succession,
-such that the second muon occurs within the veto window of the first.
-Lastly, muons can occur in not-quite-as-quick succession,
-so that the pre-muon veto of the later muon overlaps with the
-post-muon veto of the earlier one.
-For example, consider two water shield muons occuring within \SI{1900}{\micro\second}.
-Taking into account the implicit pre-muon veto
-and given that $\tc=\SI{1500}{\micro\second}$,
-any event occuring between those two muons will never be
-a part of any coincidence group, not even a \fold{1} group.
-Any event occuring in the first \SI{400}{\micro\second} would be vetoed outright
-by the water shield muon veto.
-And any event occuring in the latter \SI{1500}{\micro\second} would open a new
-coincidence window, but that window would contain the second muon,
-thus vetoing the original event.
 
 %\section{Initial data preparation}
 %\label{sec:dataprep}
@@ -231,6 +226,10 @@ thus vetoing the original event.
 %and, when two such decays accidentally occur within a short time window,
 %creat the accidental background, which will be discussed in \cref{subsec:acc}.
 
+\section{Flasher events}
+\label{sec:flashers}
+
+\todo{Flashers section}
 
 \section{Coincidence selection}
 \label{sec:coincidence}
@@ -248,7 +247,7 @@ Consequently, during the coincidence grouping process,
 the coincidence search window begins \SI{1}{\micro\second}
 after the initial AD event.
 Coincidence groups are constructed by repeating the following steps
-(described in \cite{thucoinc2015}) until the data file is exhausted:
+(illustrated in \cref{fig:timeline_examples}) until the data file is exhausted \cite{thucoinc2015}:
 
 \begin{enumerate}
     \item Find the next AD event.
@@ -325,16 +324,15 @@ This probability is derived in \cref{ap:singlesformula} as $P_b$.
 \adgrid{All double coincidences found using $\tc=\SI{1.5}{\milli\second}$}{fig:double_coinc_raw}{ch_event_selection/double_coincs}
 
 Once the coincidence groups have been constructed,
-the set of \fold{2} coincidences can be identified
-as containing IBD candidates,
-with background still present.
+the set of \fold{2} coincidences
+contains IBD candidates
+with substantial background still present.
 With a coincidence time of $\tc=\SI{1.5}{\ms}$
 and a neutron capture time of $\sim\SI{200}{\us}$ in LS,
-negligibly few IBD events are lost
-due to a neutron not being captured within \tc.
+there is a negligible inefficiency due to neutrons
+which take longer than \tc{} to capture on hydrogen.
 \Cref{fig:double_coinc_raw} shows the prompt and delayed energy
-of all \fold{2} coincidences identified in EH1-AD1 and EH3-AD1
-as representatives of the near and far sites.
+of all \fold{2} coincidences identified each AD.
 These plots clearly show the nGd events
 at delayed energy values near \SI{8}{\mev}.
 The nH events are visible as the narrow band at
@@ -345,7 +343,7 @@ these signal events are overwhelmed by the accidental background,
 which is characterized in these plots by the 4-point square at both prompt and
 delayed energies of \SIlist{1.5;3.25}{\mev}.
 
-The \fold{1} coincidences can be identified as a subset
+The set of \fold{1} coincidences is a subset
 of the uncorrelated events, mostly radioactive decays,
 that are also present in the data stream.
 However, not all uncorrelated events end up in \fold{1} coincidences.
@@ -354,7 +352,7 @@ a true IBD prompt-delayed pair, creating a \fold{3} coincidence.
 These high-multiplicity coincidence groups are vetoed
 with a small loss of efficiency.
 The efficiency of this cut is derived in \cref{ap:singlesformula} as
-\cref{eq:mult_eff_ap}:
+\cref{eq:mult_eff_ap}: \todo{Plots of multiplicity efficiency vs time}
 
 \begin{align}
     \label{eq:mult_eff}
@@ -375,13 +373,15 @@ The efficiency of this cut is derived in \cref{ap:singlesformula} as
                   \left(
                       1 - e^{-(R_s + R_\mu)\tc}
                   \right)
-              \right)
+              \right),
     \end{split}
 \end{align}
-
+where $R_s$ is the rate of uncorrelated events,
+$R_\mu$ is the number of muon veto windows divided by the muon-corrected livetime,
+and \tc{} is the length of the coincidence window, \SI{1499}{\us}.
 More concerning is when two uncorrelated events
 randomly occur in close proximity to each other,
-creating a \fold{2} coincidence group that passes the high-multiplicity veto.
+creating a \fold{2} coincidence group that passes the multiplicity veto.
 These so-called ``accidental'' coincidences
 constitute the largest background within the set of \fold{2} coincidences
 (\cref{sec:acc}).
@@ -393,14 +393,16 @@ are all motivated in large part by the need to reduce the accidental background.
 
 The characteristic distance for a neutron capture on hydrogen
 is approximately \SI{200}{\milli\meter},
-and the characteristic time delay is \SI{200}{\micro\second}.
+and the characteristic time delay is \SI{150}{\us}.
 For accidental coincidences, the characteristic distance is
 the length scale of the AD, approximately \SI{3000}{\milli\meter},
-and the time delay has a flat probability distribution
-on the time scale used for the coincidence window ($\tc = \SI{1.5}{\milli\second}$).
+and the characteristic time based on the \fold{1} event rate
+is $\sim\SI{50000}{\us}$.
+On the time scale of the coincidence window length $\tc=\SI{1500}{\us}$,
+any particular coincidence time is equally probable.
 
 \adgrid{Distribution of coincidence distance and coincidence
-time}{fig:dr_vs_dt}{ch_event_selection/dr_vs_dt}
+time\todo[inline]{Fix y axis tick labels}}{fig:dr_vs_dt}{ch_event_selection/dr_vs_dt}
 
 \Cref{fig:dr_vs_dt} shows the distribution of
 coincidence distance and coincidence time
@@ -411,12 +413,11 @@ respectively.
 The cluster at the lowest coincidence times and distances
 consists of IBD events.
 The rest of the events distributed with relatively uniform density
-across the plot are accidental background from uncorrelated events.
-This plot was used to determine the distance and time cut
-in an ad hoc manner
+across the plot are accidental coincidences from uncorrelated events.
+This plot was used to determine an ad-hoc distance and time cut
 by drawing a line from \SI{800}{\milli\meter} at $0$ time
 to \SI{480}{\micro\second} at $0$ distance.
-This line rather effectively separates the higher-density region
+This line effectively separates the higher-density region
 of correlated events from the uniform density region of accidental background.
 This cut is known as the DT cut and the line determining the cut has the equation
 
@@ -424,12 +425,12 @@ This cut is known as the DT cut and the line determining the cut has the equatio
     \text{DT} = \Delta r + v_0 \Delta t < \SI{800}{\milli\meter},
 \end{equation}
 where $v_0 = \frac{\SI{1000}{\milli\meter}}{\SI{600}{\micro\second}}$.
-Note that the quantity DT is not D times T,
+Note that the quantity DT is not D$\times$T,
 nor should it be confused the differential $dt$.
 \Cref{fig:after_DT_cut} shows the individual AD spectra
 after applying the DT cut.
 As expected, the accidental background present
-in the low-prompt-energy and low-delayed-energy corner is much reduced.
+in the low-prompt-energy and low-delayed-energy corner has been reduced.
 The neutron capture on hydrogen events now stand out much better
 against the accidental background.
 
@@ -446,10 +447,12 @@ and a significantly relaxed DT cut of \SI{3000}{\milli\meter}:
 
 \begin{equation}
     \varepsilon_{\text{DT}} = \frac{N(\text{DT} < \SI{800}{\milli\meter})}{
-    N(\text{DT} < \SI{3000}{\milli\meter})}
+    N(\text{DT} < \SI{3000}{\milli\meter})}.
 \end{equation}
-As the histograms in \cref{fig:ed_DT_sub} show,
-negligibly few IBDs have a DT value anywhere close to \SI{3000}{\milli\meter},
+\Cref{fig:ed_DT_sub} illustrates how the DT cut efficiency is measured
+for each AD using a histogram of delayed energy and DT value
+to determine the number of events which pass the nominal and relaxed DT cuts.
+Negligibly few IBDs have a DT value anywhere close to \SI{3000}{\milli\meter},
 so $\varepsilon_{\text{DT}}$ closely approximates the true efficiency.
 The DT cut efficiency for each AD is shown in \cref{fig:DT_eff}.
 
@@ -506,30 +509,28 @@ because they are uncorrelated, their groupings in time follow Poisson statistics
 In particular, there is a nonzero probability that
 two of these uncorrelated ``single'' events will occur within
 $\tc=\SI{1.5}{\milli\second}$ and thus form a \fold{2} coincidence.
-In fact, for any given ``single'' event, the probability that
-another ``single'' event will occur within \tc{} is
+For any given uncorrelated event, the probability that
+another uncorrelated event will occur within \tc{} is
 
 \begin{equation}
-    \text{Poisson}(0\vert R_s\tc) = R_s\tc e^{-R_s\tc}.
+    \text{Poisson}(1\vert R_s\tc) = R_s\tc e^{-R_s\tc}.
 \end{equation}
 For the above value for $R_s=\SI{19}{\hertz}$, this probability is \SI{2.77}{\percent}.
 Since \fold{2} coincidence groups like this are not formed from any
 deliberate physical proccess but rather by an accidental coincidence,
 they are known as the accidental background.
-And these so-called ``singles'' events are not always alone;
-they appear alongside other events rather frequently.
 Crucially, though almost all \fold{1} coincidence groups
 consist of a single uncorrelated event,
 not all uncorrelated events form \fold{1} coincidences.
-A back-of-the-envelope estimate of the rate of accidentals
-gives an approximate rate of
+These so-called ``singles'' are not always lone events.
+A back-of-the-envelope estimate of the rate of accidental coincidences gives
 $\SI{19}{\hertz}\times\SI{2.77}{\percent}=\SI{0.53}{\hertz}$
 before applying the distance-time (DT) cut (\cref{sec:DT_cut}).
 
 The full accidentals subtraction procedure begins with identifying
 the rate of uncorrelated events in the AD, again better known
 as the ``singles rate,'' for each individual data run.
-The singles rate is measured by first measuring the rate of
+The singles rate is computed by first measuring the rate of
 \fold{1} coincidences in each run
 (with the prompt energy bound of \SIrange{1.5}{12}{\mev}).
 Given that rate, the true underlying rate of uncorrelated events can be
@@ -562,7 +563,7 @@ computed by numerically solving the following formula
 \end{align}
 In this formula, \tc{} represents the actual duration of the coincidence window,
 which technically begins \SI{1}{\micro\second} after the event,
-meaning that a value of $\tc=\SI{1499}{\micro\second}$ should be used.
+meaning that a value of $\tc=\SI{1499}{\micro\second}$ should be used (\cref{sec:daq}).
 This formula is valid under the assumption that all \fold{1}
 coincidences are formed from truly uncorrelated events.
 Since the rate of correlated events like IBDs and other backgrounds
@@ -576,7 +577,36 @@ inside the given coincidence window.
 The muon rate in this equation, $R_\mu$, is computed
 by counting the number of muon veto windows in each run
 after combining overlapping windows, and dividing by the muon-corrected
-livetime.
+livetime $\varepsilon_\mu t_{\text{DAQ}}$.
+Overlapping windows are combined and counted as a single ``muon event''
+because when computing the counting statistics of single and coincident events,
+the relevant quantities are the time until the next veto window begins
+and the time since the last veto window ended,
+neither of which changes if a given veto window
+is composed of multiple muons.
+
+The following scenarios can lead to overlapping muon veto windows.
+First, a single physical muon can create multiple muon events
+that satisfy up to three of the four muon criteria,
+if that muon creates signals in the inner and outer water shields,
+and also enters an AD and deposits at least \SI{20}{\mev} worth of scintillation light.
+Such a muon would then be an inner water shield, outer water shield, and AD
+(or showering) muon.
+Second, multiple muons can occur in quick succession,
+such that the second muon occurs within the veto window of the first.
+Lastly, one muon could occur shortly after the end of a previous veto window,
+so that the pre-muon veto of the later muon overlaps with the
+post-muon veto of the earlier one.
+For example, consider two water shield muons occuring within \SI{1900}{\micro\second}.
+Taking into account the implicit pre-muon veto
+and given that $\tc=\SI{1500}{\micro\second}$,
+any event occuring between those two muons will never be
+a part of any coincidence group, not even a \fold{1} group.
+Any event occuring in the first \SI{400}{\micro\second} would be vetoed outright
+by the water shield muon veto.
+And any event occuring in the latter \SI{1500}{\micro\second} would open a new
+coincidence window, but that window would contain the second muon,
+thus vetoing the original event.
 
 \begin{figure}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/singles_near_bydate}
@@ -631,20 +661,15 @@ to the probability of $1$:
           \right)
     \end{split}
 \end{align}
-
 The rate $R_{\text{\fold{2}}}$ obtained from this formula
 cannot simply be subtracted from the measured \fold{2} rate
 to obtain $R_{\text{IBD}}$.
-Most obviously, not all \fold{2} coincidence groups would be
-mistaken for IBDs since some of them have delayed events that
-do not satisfy the delayed energy cut.
-In fact, \cref{subsec:delayed} makes clear that the delayed energy cut bounds
-can only be determined after the accidental background spectrum
-is subtracted from the measured spectrum of \fold{2} coincidences.
-Thus it is necessary to measure the energy spectrum of
-accidental coincidences.
+Corrections still need to be made to account for
+the coincidence distance and time properties of accidentals
+as well as the energy spectrum
+before the rates can be subtracted.
 
-Like the rate computation, the energy spectrum is determined for each run
+Like the rate computation, the energy spectrum of accidentals is determined for each run
 by focusing on isolated events.
 However, unlike the rate, a stricter isolation cut is used
 to better ensure that only truly uncorrelated events are included in the sample.
@@ -688,8 +713,16 @@ From this synthetic accidental coincidence sample, $\varepsilon_{\text{DT,\,acc}
 the fraction of accidental \fold{2} coincidences which pass the distance-time (DT) cut,
 can be computed.
 And a prompt-delayed energy spectrum can be computed that only includes
-synthetic accidental events which pass the DT cut. %TODO plots
-\missingfigure{Accidentals sample plots for each AD}
+synthetic accidental events which pass the DT cut,
+as shown in \cref{fig:acc_sample}.
+\adgrid[0.22\textheight]{
+    Prompt-delayed spectra of the synthetic accidentals sample
+    after applying the DT cut.
+    Each 2D plot is symmetrical under interchange of prompt and delayed energy
+    by construction, since each synthetic pair is added to the histogram twice.
+    The plots may not appear to be perfectly symmetrical
+    due to artifacts of the plotting software.
+}{fig:acc_sample}{ch_background/acc}
 
 The resulting prompt-delayed energy spectrum of synthetic accidental events
 can then be subtracted
@@ -702,9 +735,9 @@ For each run, the expected number of accidental events that pass the DT cut is
     \label{eq:nacc}
 \end{equation}
 The synthetic accidentals prompt-delayed spectrum, represented as a histogram,
-is simply normalized so that the total number of entries is $N_{\text{acc}}$.
+is scaled so that the integral is $N_{\text{acc}}$.
 Then the histogram can be subtracted bin-by-bin from the corresponding histogram
-representing the actual IBD candidates data sample.
+representing the actual \fold{2} coincidence data sample.
 The subtracted histograms are shown in \cref{fig:acc_sub_spectra}.
 These distributions, projected onto the delayed energy axis,
 are used in \cref{subsec:delayed} to determine the delayed energy cut bounds.
@@ -717,39 +750,49 @@ are used in \cref{subsec:delayed} to determine the delayed energy cut bounds.
 }{fig:acc_sub_spectra}{ch_background/sub_energy}
 
 The scale factor for the accidentals spectrum histogram,
-$\nicefrac{N_{\text{acc}}}{N_{\text{acc,\,synthetic}}}$,
+$\nicefrac{N_{\text{acc}}}{N_{\text{acc,\,synthetic,\,DT}}}$,
 can be used to create histograms for other accidentals-subtracted quantities,
 such as coincidence distance and DT, as well as 2D histograms of
 those quantities' distributions with respect to prompt and delayed energy.
 The accidentals-subtracted histogram of DT versus delayed energy
-is used to compute the efficiency of the DT cut for IBDs in \cref{sec:DT_cut}.
+was used to compute the efficiency of the DT cut for IBDs in \cref{sec:DT_cut}.
 
 The uncertainty assigned for the accidentals subtraction
 is derived from two sources: $N_{\text{acc}}$ (\cref{eq:nacc}),
-and $N_{\text{acc,\,synthetic}}$.
+and $N_{\text{acc,\,synthetic,\,DT}}$.
 The first of these is ultimately derived from
 two measured statistical uncertainties,
 on $R_{\text{\fold{1}}}$ and $\varepsilon_{\text{DT,\,acc}}$;
 the second is itself a measured statistical uncertainty.
-For a typical run that lasts \SI{24}{\hour},
+For a typical run that lasts 24 hours,
 the statistical error on $R_{\text{\fold{1}}}$ is \SI{0.08}{\percent}.
 By computing the derivative $\frac{\partial R_s}{\partial R_{\text{\fold{1}}}}$
 to be $1.1$ for typical parameters in all 3 experimental halls,
 a typical error for $R_s$ of \SI{0.088}{\percent} is obtained.
-Referencing the first line\todo[inline]{Errors on $R_s$ and $R_{\text{\fold{1}}}$
-    are correlated
-} of \cref{eq:racc},
-the error on $R_{\text{\fold{2}}}$ is simply the relative errors
-of $R_s$ and $R_{\text{\fold{1}}}$ added in quadrature,
-or, for the typical values cited above, \SI{0.12}{\percent}.
+$R_s$ and $R_{\text{\fold{1}}}$ are almost \SI{100}{\percent} correlated,
+so, referencing the first line of \cref{eq:racc},
+the error on $R_{\text{\fold{2}}}$ is the sum of the errors
+of $R_s$ and $R_{\text{\fold{1}}}$,
+or, for the typical values cited above, \SI{0.168}{\percent}.
 This value can be combined with the error on $\varepsilon_{\text{DT,\,acc}}$
 to obtain the uncertainty on the number of predicted accidental coincidences
 contaminating each run's data, $N_{\text{acc}}$.
 
-The uncertainty on $\varepsilon_{\text{DT,\,acc}}$ \todo{$\varepsilon_{\text{DT,\,acc}}$}
+The uncertainty on $\varepsilon_{\text{DT,\,acc}}$ is based on
+the statistical uncertainty of the number of synthetic accidental events
+which pass the DT cut given the fixed total number of synthetic accidentals:
+\begin{equation}
+    \frac{\delta\varepsilon_{\text{DT,\,acc}}}{\varepsilon_{\text{DT,\,acc}}}
+    = \frac{\delta N_{\text{acc,\,synthetic,\,DT}}}{
+        N_{\text{acc,\,synthetic,\,DT}}
+    }.
+\end{equation}
+Most Daya Bay runs have $N_{\text{acc,\,synthetic,\,DT}}\sim10^3-10^4$
+so the uncertainty on $\varepsilon_{\text{DT,\,acc}}$ is approximately \SI{1}{\percent}.
+\todo{Upgrade $\varepsilon_{\text{DT,\,acc}}$ to have a better uncertainty}
 
 The events represented in the accidentals-subtracted histograms
-are, if the above procedure works properly, all correlated pairs
+are all correlated pairs
 of a prompt event followed by neutron capture.
 And if the delayed energy cuts from \cref{subsec:delayed} are applied,
 then the remaining events represent correlated events
@@ -758,7 +801,7 @@ where the neutron capture was on hydrogen.
 with the appropriate error bars as described above.
 The total number of correlated events in each AD
 along with the uncertainty, is listed in Table Y.
-\todo{Table of total $N_{\text{corr}}$ for each AD}
+\todo[inline]{Table of total $N_{\text{corr}}$ for each AD}
 
 \begin{figure}
     \missingfigure{Number of correlated events (accidentals-subtracted) over time
@@ -785,22 +828,27 @@ along both the horizontal and vertical axes from \SIrange{1.5}{3}{\mev}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth, trim={0, 1.5cm, 0, 0}, clip]{%
+    \includegraphics[width=0.49\textwidth]{%
         ch_event_selection/prompt_energy_mc%
     }
-    \caption{The spectrum of reconstructed energy for IBD prompt events
-        in the Monte Carlo study used to compute the prompt energy efficiency
-    and AD-uncorrelated uncertainty}
+    \includegraphics[width=0.49\textwidth]{%
+        ch_event_selection/delayed_energy_mc%
+    }
+    \caption{The spectrum of reconstructed energy for simulated IBD prompt (left)
+        and delayed (right) events
+        in the Monte Carlo study used to compute the prompt and delayed
+        energy cut absolute efficiencies.
+        The prompt spectrum is also used to compute the prompt energy cut
+    efficiency AD-uncorrelated uncertainty.}
     \label{fig:prompt_eff_mc}
 \end{figure}
 The nominal efficiency of the prompt energy cut is estimated using Monte Carlo.
-The spectrum of ``true'' IBD prompt event reconstructed energy
+The spectrum of reconstructed energy for the Monte Carlo sample of IBD prompt events
 is shown in \cref{fig:prompt_eff_mc}.
-Only events with energy above \SI{1.5}{\mev} on this histogram
-are included in the IBD event selection.
+The prompt energy cut efficiency is the fraction of events in the histogram
+with energy above \SI{1.5}{\mev}.
 
-%TODO figure
-However, because of the energy dependence of the \nuebar{} oscillations,
+Because of the energy dependence of the \nuebar{} oscillations,
 a different fraction of \nuebar{} will pass this cut
 depending on the baseline between the reactor and the AD.
 For example, at shorter baselines, low-energy \nuebar{}
@@ -816,7 +864,7 @@ Corrections for each AD--reactor pair should be computed
 and weighted to arrive at each AD's final prompt energy efficiency.
 Since the corrections to the efficiency depend on
 the amplitude of \nuebar{} oscillations, they rely on knowledge of \thetaot.
-(For example, there would be no corrections at all if \thetaot{} were $0$.)
+(For example, there would be practically no corrections at all if \thetaot{} were $0$.)
 To compute accurate corrections and, more importantly, an accurate value
 for \thetaot{}, an iterative process is used.
 Initially, no baseline-dependent correction is used and
@@ -824,7 +872,13 @@ a value for \thetaot{} is obtained.
 That initial \thetaot{} is then used to compute baseline-dependent corrections,
 and the updated efficiencies are used to compute an updated value for \thetaot{}.
 This process is repeated until the \thetaot{} result converges.
-%TODO figure
+The correction factors for each AD are shown in \cref{fig:prompt_eff_osc}.
+
+\begin{figure}
+    \missingfigure{Plot showing corrections to prompt energy effiency}
+    \caption{Corrections to the prompt energy efficiency due to \nuebar{} oscillations.}
+    \label{fig:prompt_eff_osc}
+\end{figure}
 
 The AD-uncorrelated uncertainty for the prompt energy lower bound
 is dominated by differences in the energy scale between ADs.
@@ -832,7 +886,7 @@ Based on the analysis of the delayed energy spectrum in each AD
 reported in \cref{subsec:delayed}, the energy scale
 varies by less than \SI{0.5}{\percent} between ADs.
 By applying a \SI{+-0.5}{\percent} variation to
-the event energy in the Monte Carlo dataset as visualized in \cref{fig:prompt_eff_mc},
+the event energy in the Monte Carlo dataset visualized in \cref{fig:prompt_eff_mc},
 the impact of the energy scale differences can be propagated
 to the prompt energy efficiency.
 The impact, and therefore the relative uncertainty on
@@ -845,15 +899,16 @@ so this cut is determined to have \SI{100}{\percent} efficiency.
 \subsection{Delayed energy}
 \label{subsec:delayed}
 
-Neutron capture on hydrogen releases a (monoenergetic)
+Neutron capture on hydrogen (nH) releases a
 \SI{2.22}{\mev} $\gamma$-ray,
-which means the cut values can be tuned to a narrow energy region
+which means the delayed energy cut bounds can be tuned to a narrow energy region
 around that value.
-However, while the prompt IBD positron essentially never escapes
-from the liquid scintillator sensitive volume,
-$\gamma$'s do regularly escape (a few percent of the time),
-depositing less than their full energy in the liquid scintillator.
-Both the tuning of the energy cut values
+However emitted $\gamma$'s occasionally
+deposit less than their full energy in the liquid scintillator,
+as shown in \cref{fig:prompt_eff_mc} by the extended low-energy tail
+below \SI{2.22}{\MeV} and by the peak at \num{0} energy,
+representing events where the $\gamma$-ray escaped entirely.
+Both the tuning of the energy cut
 and the fraction of escaping $\gamma$'s are sensitive to
 small variations in the geometry of the AD, energy reconstruction,
 and scattering properties of $\gamma$'s in
@@ -861,13 +916,14 @@ both liquid scintillator and in acrylic.
 
 The delayed energy cut bounds are identified based on
 functional fits to each AD's delayed energy spectrum.
-Specifically, the spectrum is generated by first applying
+The measured delayed energy spectrum is obtained by first applying
 the prompt energy cut and DT cut,
 then statistically subtracting the accidental background (\cref{sec:acc}).
-Although the resulting spectrum still has some background,
-the only remaining background processes also involve
-neutron capture on hydrogen, and contribute to the same spectral shape
-as the signal IBD process.
+Although the accidentals-subtracted spectrum is still not pure IBDs,
+the only remaining background consists of correlated processes
+where the delayed event is still
+neutron capture on hydrogen, and thus does not distort
+the delayed energy spectrum.
 
 Each spectrum is fit with the calorimeter function, which models
 a calorimetric response to a monoenergetic process with ``true''
@@ -875,29 +931,30 @@ energy $\mu$ \cite{calorimeter2016}.
 The modeled detector has an intrinsic energy resolution $\sigma$
 which applies a Gaussian smearing to the deposited energy.
 ($\sigma$ itself is independent of energy.)
-While many events in this model deposit all of their energy into
-the calorimeter, some events partially leak out.
-The fraction of events that deposit their full energy in the detector
-is referred to as the peak fraction $\alpha$.
+The model accounts for some fraction $\alpha$ (the peak fraction)
+of events being fully contained,
+with the remainder of the events partially or fully escaping from the detector.
 The energy leakage is modeled as an exponential distribution
 with characteristic energy scale (or ``tail slope'') $\lambda$.
 The fit function itself is derived by starting with
 the unsmeared model:
 
-\begin{equation*}
-    f_{unsmeared}(E) =
+\begin{equation}
+    f_{unsmeared}(E;\mu,\lambda,\alpha) =
     \begin{cases}
         \alpha\delta(E-\mu) + (1-\alpha)\lambda e^{\lambda E}
         & 0 < E \leq \mu \\
         0 & E > \mu
     \end{cases}
-\end{equation*}
+\end{equation}
 This function is then convolved with a Gaussian
 of width $\sigma$.
 
-\begin{align*}
+\begin{align}
+    \begin{split}
     f_{cal}    &= f_{unsmeared} \otimes \text{Gaussian} \\
-    f_{cal}(E) &= \int_0^\mu dE' f_{unsmeared}(E') \cdot \text{Gaussian}(E'-E; \mu) \\
+    f_{cal}(E;\mu,\sigma,\lambda,\alpha) &= \int_0^\mu dE'
+    f_{unsmeared}(E';\mu,\lambda,\alpha) \cdot \text{Gaussian}(E'-E; \sigma) \\
                &= \frac{1}{\sigma\sqrt{2\pi}}
                \left[
                    \alpha\int_0^\mu dE' e^{-\frac{(E'-E)^2}{2\sigma^2}} \delta(E'-\mu)
@@ -912,12 +969,15 @@ of width $\sigma$.
                    \left(
                        \frac{\mu-E-\sigma^2\lambda}{\sigma\sqrt{2}}
                    \right)
+                   \right. \\
+               &\ \ \left.
                    + \text{erf}
                    \left(
                        \frac{E + \sigma^2\lambda}{\sigma\sqrt{2}}
                    \right)
                \right]
-\end{align*}
+    \end{split}
+\end{align}
 The entire result is normalized to unity
 but can be scaled by an overall normalization $N$.
 
@@ -1027,18 +1087,18 @@ and plotted in \cref{fig:delayed_bounds}.
 
 The absolute efficiency of the delayed energy cut
 is measured using Monte Carlo.
-The same fitting procedure with the calorimeter function
-and the same $\mu \pm 3\sigma$ bounds are used to
-estimate the fraction of neutron capture on hydrogen events
+The same fitting procedure is used to establish
+delayed energy cut bounds of $\mu \pm 3\sigma$ for the Monte Carlo sample.
+The efficiency is then the fraction of simulated IBD events
 that pass the delayed energy cut.
-The relative fraction of GdLS to LS also impacts the efficiency
+Note that both the numerator and denominator of the fraction includes IBD events
+where the the neutron captures on other nuclei, particularly Gd.
+The relative fraction of GdLS to LS therefore impacts the efficiency
 because with more GdLS, fewer neutrons will capture on hydrogen.
-This difference between the GdLS and LS regions is taken into account
-when computing the absolute efficiency.
 The estimated absolute efficiency for the delayed energy cut
-is \SI{40}{\percent}.
+is \SI{40}{\percent}\todo{Re-compute prompt and delayed absolute efficiencies}.
 About half of the inefficiency is due to captures on Gd in the GdLS region,
-and the other half is due to escaping neutrons or escaping $\gamma$-rays
+and the other half is due to escaping $\gamma$-rays
 from the LS (outer) region of the AD.
 
 \begin{figure}
@@ -1120,7 +1180,7 @@ Plots of $N_{peak,\,i}$ vs. $N_{extended,\,i}$ and of the
 relative deviation from the fitted line are shown in \cref{fig:delayed_eff_unc_fit}.
 The fit value of $a$ should be $0$ if the simple model of
 a linear scaling is correct.
-Indeed, the fit value is $a = -321 \pm 387$
+Indeed, the fit value is $a = -323 \pm 387$
 which is consistent with $0$.
 The fit value for $b$ is $b = 0.9527 \pm 0.0015$,
 which can be interpreted as a loose upper bound
@@ -1149,6 +1209,9 @@ An assumption of this analysis, therefore, is that any AD-to-AD variation
 that affects the fraction of totally-escaping $\gamma$'s
 would also change the fraction of partially-escaping $\gamma$'s.
 
+\section{Irreducible correlated backgrounds}
+\label{sec:correlated_bg}
+
 \subsection{Muon-correlated backgrounds}
 \label{subsec:li9}
 
@@ -1156,3 +1219,4 @@ would also change the fraction of partially-escaping $\gamma$'s.
 \label{subsec:fastn}
 
 \subsection{Am-C calibration source}
+\label{subsec:amc}
