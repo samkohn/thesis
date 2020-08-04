@@ -343,6 +343,16 @@ these signal events are overwhelmed by the accidental background,
 which is characterized in these plots by the 4-point square at both prompt and
 delayed energies of \SIlist{1.5;3.25}{\mev}.
 
+\begin{figure}
+    \includegraphics[width=0.48\textwidth]{plot_diagnostics/mult_eff_near_bydate}
+    \includegraphics[width=0.48\textwidth]{plot_diagnostics/mult_eff_far_bydate}
+    \caption{
+        Multiplicity veto efficiency $\varepsilon_m$ over time for
+        the near halls (top) and far hall (bottom).
+        Each data point represents one data run.
+    }
+    \label{fig:mult_eff}
+\end{figure}
 The set of \fold{1} coincidences is a subset
 of the uncorrelated events, mostly radioactive decays,
 that are also present in the data stream.
@@ -351,8 +361,8 @@ Sometimes an uncorrelated event will occur in close time proximity to
 a true IBD prompt-delayed pair, creating a \fold{3} coincidence.
 These high-multiplicity coincidence groups are vetoed
 with a small loss of efficiency.
-The efficiency of this cut is derived in \cref{ap:singlesformula} as
-\cref{eq:mult_eff_ap}: \todo{Plots of multiplicity efficiency vs time}
+The efficiency of this multiplicity cut is derived in \cref{ap:singlesformula} as
+\cref{eq:mult_eff_ap}:
 
 \begin{align}
     \label{eq:mult_eff}
@@ -379,6 +389,7 @@ The efficiency of this cut is derived in \cref{ap:singlesformula} as
 where $R_s$ is the rate of uncorrelated events,
 $R_\mu$ is the number of muon veto windows divided by the muon-corrected livetime,
 and \tc{} is the length of the coincidence window, \SI{1499}{\us}.
+The multiplicity efficiency over time is shown in \cref{fig:mult_eff}.
 More concerning is when two uncorrelated events
 randomly occur in close proximity to each other,
 creating a \fold{2} coincidence group that passes the multiplicity veto.
