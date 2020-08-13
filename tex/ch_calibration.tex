@@ -1,6 +1,7 @@
 \chapter{Calibration}
 \label{ch:calibration}
 
+
 The digital readouts from the TDC and ADCs representing PMT signals
 must be converted into physically-relevant quantities.
 The TDC values represent hit times of PMTs,
@@ -10,11 +11,24 @@ in the liquid scintillator of the ADs.
 The conversion factors for these quantities are determined
 through the calibration process.
 
+Calibration ensures that the eventual energies, times, and positions
+reported by the ADs are accurate,
+which allows for an unbiased and precise measurement
+of the oscillation parameters.
+The \thetaot{} measurement depends on well-understood detection efficiencies.
+Since the IBD selection involves cuts on both energy and position,
+the AD-to-AD variation in these efficiencies can be minimized
+by an effective calibration.
+The energy calibration is more directly critical to the measurement
+of \dmsquared{}, as evidenced by the appearance of $\nicefrac{\dmsquared}{E}$
+in the oscillation equation. \todo{Reference osc. eq. in intro}
+
 The calibration system for the Daya Bay ADs
 allows for automated deployment of a variety of calibration sources.
 Each AD is outfitted with three automated calibration units (ACUs)
 which can position a calibration source at arbitrary locations
 along the vertical axis extending underneath the each ACU.
+In practice, a fixed set of vertical positions is used.
 ACU-A deploys sources along the central axis of the AD at $r=0$,
 ACU-B probes the edge of the GdLS region just inside the IAV at $r=\SI{1350}{\mm}$,
 and ACU-C can access the LS region between the IAV and OAV,
@@ -22,7 +36,6 @@ near the periphery of the AD at $r=\SI{1772.5}{\mm}$.
 The layout of the ACUs is shown in \cref{fig:ad_cutaway},
 and the construction and function of the ACUs
 is described in detail in \cite{calib2014}.
-Sources are deployed weekly during special calibration runs.
 
 Each ACU contains three radioactive sources and one LED
 which can be deployed into the AD during detector calibration,
@@ -32,6 +45,10 @@ are housed in the same fixture and so are always deployed together.
 The ACUs can deploy any of the sources to a given vertical position
 with a precision of \SI{5}{\mm},
 the same precision as the positions of the PMTs.
+%TODO overview of calibration sources: ACUs, SPN, SPE, alpha & gamma peaks from singles
+
+Sources are deployed weekly during special calibration runs.
+% TODO describe the z positions and patterns etc. used during the weekly calibrations
 
 \begin{table}[ht]
     \centering
@@ -53,6 +70,8 @@ the same precision as the positions of the PMTs.
 
 \section{Gain calibration}
 \label{sec:gain}
+
+%TODO mention the cross-check with LED
 
 The gain of a PMT channel is the degree of amplification
 of the photon signal,
@@ -81,21 +100,23 @@ which is then interpreted as the gain for that PMT channel.
 The model for the fit is at its core a convolution of
 a Poisson distribution counting the number of PEs
 with a Gaussian distribution modeling the resolution of
-the amplification and digitization process \cite{ngd2016}:
+the amplification and digitization process \cite{ngd2016}: %TODO cit E. H. Bellamy et
+% al., Nucl. Instr. Meth. A 339, 468 (1993) (ref. 35 from nGd long paper)
 
 \begin{equation}
-    S_i(Q) = \sum_{n=1}^2 \frac{\mu^n e^{-\mu}}{n!}
-    \frac{1}{\sigma_{SPE}\sqrt{2n\pi}}
+    S_i(Q) = \sum_{n=1}^2 \frac{\mu_i^n e^{-\mu_i}}{n!}
+    \frac{1}{\sigma_{\text{SPE},i}\sqrt{2n\pi}}
     \exp
     \left(
-        -\frac{(Q-n\overline{Q}^{SPE})^2}{2n\sigma^2_{SPE}}
+        -\frac{(Q_i-n\overline{Q}_i^{\text{SPE}})^2}{2n\sigma^2_{\text{SPE},i}}
     \right),
 \end{equation}
 where $i$ is the PMT index,
-$\mu$ is the mean number of dark noise PEs per noise window for PMT $i$,
-$\overline{Q}^{SPE}$ is the mean \si{\adc\per\pe} (i.e.\ the gain),
-and $\sigma_{SPE}$ is the resolution of the PMT-ADC system.
-$n$ is the actual number of PEs measured in a given noise window.
+$Q_i$ is the ADC value from a noise window,
+$\mu_i$ is the mean number of dark noise PEs per noise window for PMT $i$,
+$\overline{Q}_i^{\text{SPE}}$ is the mean \si{\adc\per\pe} (i.e.\ the gain),
+and $\sigma_{\text{SPE},i}$ is the resolution of the PMT-ADC system.
+$n$ is the number of PEs contributing to $Q_i$.
 The sum nominally runs from $0$ to $\infty$ but
 excludes $n=0$ because in that case there is no readout signal,
 and is truncated at $n=2$ because there are negligibly few dark noise events
@@ -119,8 +140,20 @@ using the low-intensity LED to generate SPE samples.
     \label{fig:gain}
 \end{figure}
 
+\subsection{Single channel non-linearity correction}
+\label{subsec:scnl}
+
+The electronics used to digitize the PMT signals have intrinsic
+non-linearities.
+\todo{Research SCNL}
+A correction is measured and applied to the charge value measured on each PMT channel
+for each event.
+
+
 \section{Light yield calibration}
 \label{sec:light_yield_calib}
+
+%TODO describe Co-60 calibration
 
 The light yield characterizes the average
 number of photoelectrons (PEs) observed by PMTs
@@ -172,6 +205,9 @@ The time calibration correction is then computed
 as the difference between an individual PMT's hit time
 (adjusted for time of flight)
 and the known pulse time of the LED.
+
+\section{Special calibration runs}
+\label{sec:special_calib}
 
 \section{Channel quality}
 \label{sec:channel_quality}

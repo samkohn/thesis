@@ -93,14 +93,13 @@ with artifacts of the interpolation process clearly visible.
 \label{sec:reco_energy}
 
 The reconstructed energy for an event is built up from the previously-described
-calibration values and the observed signals in each PMT,
-and then corrected for AD nonuniformity and nonlinearity.
+calibration values and the observed signals in each PMT.
 PMT observed ADC values are converted into charges using the gain
 and corrected for the single-channel nonlinearity.
 The total charge on all PMTs is converted into an energy value
 using the light yield measured during calibration,
 and then corrected to account for any disabled PMTs
-and the time-dependent spatial nonuniformity \cite{ngd2016}.
+and for variations in the detector response as a function of position and time.
 This process can be represented by the following formula:
 
 \begin{equation}
@@ -112,8 +111,10 @@ This process can be represented by the following formula:
 \end{equation}
 where $Q_i$ is the ADC value for PMT $i$,
 $\overline{Q}_i^{\text{SPE}}(t)$ and $N^{\text{PE}}(t)$
-are the gain for PMT $i$ and the light yield, respectively,
-$f_{\text{SCNL}}$ is the single-channel nonlinearity correction,
+are the gain for PMT $i$ and the light yield, respectively
+(\cref{sec:gain,sec:light_yield_calib}),
+$f_{\text{SCNL}}$ is the single-channel nonlinearity correction
+(\cref{subsec:scnl}),
 and $f_{\text{act}}(t)$ and $f_{\text{pos}}(\textbf{r}_{\text{rec}},t)$
 are the active PMT correction and nonuniformity correction,
 described below.
@@ -128,6 +129,17 @@ Thus if $n$ PMTs are disabled, the measured total charge must be increased by a 
 \end{equation}
 The correction is time-dependent since the number of disabled PMTs changes with time.
 \todo{Decide whether to study improved active PMT correction}
+
+The rest of this chapter will describe the
+nonuniformity correction $f_{\text{pos}}(\textbf{r}_{\text{rec}},t)$
+(\cref{subsec:nonuniformity})
+as well as characterizations of the detector energy response:
+the energy resolution (\cref{subsec:resolution}),
+relative energy scale (\cref{subsec:rel_energyscale}),
+and absolute energy scale (\cref{subsec:abs_energyscale}).
+
+\subsection{Nonuniformity correction}
+\label{subsec:nonuniformity}
 
 The nonuniformity correction ensures that events of a given physical energy
 occurring in different regions of the AD
@@ -156,7 +168,7 @@ Neutron captures with energy near \SI{8}{\MeV} were assumed to be nGd captures,
 and those with energy near \SI{2.2}{\MeV} were assumed to be nH.
 The peak value was extracted from a fit of the respective distributions
 for each pixel and for the entire sample.
-\todo{What is the "average" value for LS pixels?}
+\todo{What is the ``average'' value for LS pixels?}
 The nGd peak was fit with a double-Crystal Ball function \cite{cbfunction},
 and the nH peak was fit with a calorimeter function \cite{calorimeter2016}
 (described in \cref{subsec:delayed}).
@@ -216,3 +228,93 @@ yielding values of $\beta_0 + \beta_1r^2$ between
     }
     \label{fig:time_dep_nonunif}
 \end{figure}
+
+\subsection{Energy resolution}
+\label{subsec:resolution}
+
+The detector energy resolution for a scintillating detector can be modeled as
+\cite{energy_resolution}
+
+\begin{equation}
+    \frac{\sigma_E}{E} = \sqrt{a^2 + \frac{b^2}{E} + \frac{c^2}{E^2}},
+\end{equation}
+where $E$ is the reconstructed energy.
+The parameters $a,b,$ and $c$ represent contributions to the resolution
+from different sources.
+$a$ quantifies the impact due to the non-pointlike nature
+of the energy depositions in the scintillator,
+since events with larger energy deposit their energy over a larger spatial extent
+in the AD.
+This could also be understood as a consequence of residual nonuniformity.
+$b$ describes the size of the $\nicefrac{1}{\sqrt{E}}$ contribution,
+which corresponds to the combined counting statistics of
+the production, detection and digitization of photons.
+Lastly, $c$ is a constant contribution to $\sigma_E$
+representing the dark noise intrinsic to the PMTs.
+The resolution parameters can be extracted from a fit
+to the energy resolutions of a wide variety of calibration and intrinsic sources,
+as shown in \cref{fig:resolution}.
+The values for the resolution parameters are \todo[inline]{Resolution parameter values}.
+
+\begin{figure}
+    \missingfigure{Resolution fit plot}
+    \caption{Energy resolutions for calibration sources, neutron captures,
+        and natural $\alpha$'s present in the ADs.%
+    }
+    \label{fig:resolution}
+\end{figure}
+
+
+\subsection{Relative energy scale}
+\label{subsec:rel_energyscale}
+
+It is critical that all ADs measure the same energy when observing the same process.
+If an AD is biased and returns a higher or lower energy than the others,
+then the IBD selection efficiency for that AD may be affected,
+which would result in a bias in the measurement of \thetaot.
+The identicalness of the energy measurements is known as the relative energy scale,
+and it is determined by measuring the same process in all ADs and comparing
+the reconstructed energy.
+The energy scale of the GdLS region is extremely well-constrained
+by a thorough review of 13 calibration and intrinsic sources:
+$\gamma$-rays from \isotope[68]{Ge} and \isotope[60]{Co} calibration sources;
+neutron captures on Gd and H from both IBD and muon spallation;
+$\alpha$ decays of naturally-occuring \isotope[212]{Po},
+\isotope[214]{Po}, \isotope[215]{Po}, and \isotope[219]{Po};
+and $\gamma$-rays from \isotope[40]{K} and \isotope{208}[Tl].
+\Cref{fig:gdls_rel_energyscale} shows the relative variations
+for all of these sources among the 8 ADs.
+The variations are all within \SI{+-0.2}{\percent}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{ch_reconstruction/relative_energyscale}
+    \caption{
+        Comparison of 13 calibration and intrinsic source energies
+        among the 8 ADs, showing the \SI{+-0.2}{\percent}
+        relative energy scale variation in the GdLS region.
+    }
+    \label{fig:gdls_rel_energyscale}
+\end{figure}
+
+To include the LS region, the relative energy scale is studied
+by comparing the energy of the neutron capture on H (nH)
+among the ADs.
+This technique is described in detail in \cref{subsec:delayed}
+and results in a less-constrained relative energy scale variation
+of \SI{+-0.5}{\percent}.
+
+\subsection{Absolute energy scale}
+\label{subsec:abs_energyscale}
+
+The calibration and reconstruction procedures discussed so far
+only ensure that the ADs have nearly-identical energy responses,
+and that they all assign the lower-energy $\gamma$-ray peak from nGd capture
+to have energy \SI{7.95}{\MeV}.
+Missing from the characterization is whether any other physical process
+is assigned an accurate energy by the ADs.
+That is, even if all ADs observing the same process with energy $E_{\text{true}}$
+measure the same value $E_{\text{rec}}$,
+how close is that value to the original $E_{\text{true}}$?
+The deviation as a function of $E_{\text{true}}$ is known as
+the absolute energy scale.
