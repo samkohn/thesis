@@ -8,20 +8,26 @@ using a modular detector system arranged at near and far sites \cite{dybproposal
 The experiment is located in southeast China,
 approximately \SI{55}{\km} northeast of Hong Kong,
 on the campus of the Daya Bay and Ling Ao Nuclear Power Plants.
-Data taking began on 24 December 2011 and is planned to continue
-until December 2020.
+Groundbreaking for civil construction of the three underground
+experimental halls occurred in October 2007,
+and construction lasted approximately 4 years \cite{dyb_overview}.
+The antineutrino detectors in the first experimental hall (EH1)
+were ready for data taking on 11 August 2011,
+and EH2 was ready on 5 November 2011.
+With the completion of EH3, data taking began on 24 December 2011
+and is planned to continue until 12 December 2020.
 
 The Daya Bay site is ideal for an oscillation experiment.
 Its six reactor cores together form one of the most intense \nuebar{}
-sources on Earth \cite{dybproposal2006}.
+sources on Earth \cite{detector_system}.
 The power plant campus is also located at the base of a mountain ridge,
-providing an ideal location for antineutrino detectors that need to be
+providing an ideal location for antineutrino detectors that must be
 protected from cosmic-ray muons without having to dig deep mines.
 The tunnel layout allows for easy access to the experiment via electric golf cart.
 
 \section{Reactors and experimental halls}
 
-Six pressurized-water nuclear reactor cores are used
+Six pressurized-water nuclear reactors are used
 as the \nuebar{} source for Daya Bay.
 Each reactor has an output of \SI{2.9}{\giga\watt_{th}}
 and combined they produce approximately \num{3.5e21}\,\nuebar/s \cite{ngd2016}.
@@ -29,9 +35,9 @@ The reactors are arranged in three pairs: Daya Bay, Ling Ao, and Ling Ao II.
 The location of the cores determined the layout of the Daya Bay experiment.
 
 The experiment is arranged into three experimental halls (EHs).
-EH1 is located close to the Daya Bay cores (\SIrange{350}{400}{\meter}),
+EH1 is located close to the Daya Bay cores (\SIrange{357}{372}{\meter}),
 and EH2 is located close to the Ling Ao and Ling Ao II cores
-(\SIrange{450}{550}{\meter}).
+(\SIrange{467}{558}{\meter}).
 They are therefore known collectively as the near halls.
 Their purpose is to constrain the \nuebar{} flux for the
 relative oscillation measurement,
@@ -53,7 +59,8 @@ The layout of the EHs with respect to the reactors is shown in \cref{fig:layout}
     \begin{subfigure}{0.49\textwidth}
         \includegraphics[width=\textwidth]{ch_detector/dayabay_map_3d}
     \end{subfigure}
-    \caption{Two views of the layout of the Daya Bay experiment.}
+    \caption{Two views of the layout of the Daya Bay experiment.
+    \todo[inline]{Track down Kam-Biu's satellite image}}
     \label{fig:layout}
 \end{figure}
 
@@ -70,10 +77,10 @@ and the baseline are shown in \cref{tab:baselines}.
 To accelerate the experiment startup timeline,
 only six of the planned eight ADs were installed in 2011:
 2 in EH1, 1 in EH2, and 3 in EH3.
-This so-called 6-AD period lasted from December 2011 until July 2012.
+This so-called 6-AD period lasted from 24 December 2011 until 28 July 2012. % Put exact dates
 The experiment was shut down while the remaining two ADs were installed
 in EH2 and EH3.
-The 8-AD period began in October 2012.
+The 8-AD period began on 19 October 2012.
 At the end of 2017, EH1-AD1 was chosen to be repurposed as a test stand
 for liquid scintillator studies for the JUNO experiment \cite{junoproposal2016},
 and was decommissioned from Daya Bay.
@@ -87,7 +94,7 @@ The water pool is covered by a resistive plate chamber (RPC) array
 to provide additional sensitivity to incoming muons.
 \Cref{fig:eh3_wp_photo} shows a photograph of EH3 during installation of the ADs,
 when the RPC had not yet been moved into position to cover the water pool.
-Also visible mounted to the near and far walls are two muon telescopes
+Also visible mounted to the near and far walls are two muon RPC telescopes
 which were used for muon studies during detector commissioning \cite{muonsystem2015}.
 
 \begin{figure}
@@ -122,8 +129,23 @@ The SSV has a height and diameter of \SI{5}{\m} and is filled with \SI{40}{\tonn
 of mineral oil.
 Each acrylic vessel is made of UV-transparent acrylic
 and has a thickness of approximately \SI{1.5}{\cm}.
-The liquid scintillator is linear alkylbenzene.
-\todo{Describe LAB}
+
+The liquid scintillator cocktail was designed to optimize the optical properties
+and maximize stability over time \cite{gdls2014}.
+Linear alkylbenzene (LAB) is used as the solvent and \nuebar{} target,
+into which \SI{3}{\g\per\liter} of 2,5-diphenyloxazole (PPO)
+is dissolved as a fluor,
+along with \SI{15}{\mg\per\liter} of the wavelength shifter
+p-bis-(o-methylstyryl)-benzene (bis-MSB).
+This LS is used to fill the OAV.
+To dissolve Gd into the LS for the IAV, the chelating ligand
+3,5,5-trimethylhexanoic acid (TMHA) was chosen for its ease of production
+and its stability in solution with LAB.
+During LS production, the approximately \SI{185}{\tonne} of GdLS for the IAV
+was produced first,
+after which the equipment was cleaned with a diluted HCl solution and purified water
+so that the undoped LS could then be produced for the OAV.
+
 Each AD contains overflow tanks to allow the liquid in each region
 to respond to the slight expected changes in temperature and pressure.
 ADs were also fitted with three automated calibration units (ACUs)
@@ -149,6 +171,19 @@ rather than ``light,''
 though the charge collected by a PMT anode
 is of course a proxy for the number of incident photons.
 
+Before the ADs were filled with LS, GdLS, and mineral oil,
+they were tested in a series of so-called dry runs \cite{dryrun1}.
+The PMTs were supplied with high voltage
+to verify the stability of the gain and dark rate.
+The ACUs were deployed, and the calibration LEDs
+were used to induce charge signals on the PMTs
+to exercise not only the PMTs but also the front-end electronics,
+the online DAQ system and the offline storage.
+It was during the dry runs that the issue of PMT light emission,
+or flasher events, was discovered.
+These events must be filtered out from the data stream,
+as described in \cref{sec:flashers}.
+
 \begin{figure}
     \centering
     \begin{subfigure}{\textwidth}
@@ -161,11 +196,13 @@ is of course a proxy for the number of incident photons.
         \includegraphics[height=0.4\textheight]{ch_detector/ADcutaway}
     \end{subfigure}
     \caption{Two views of the Daya Bay antineutrino detector (AD)}
+    % Use 2D figure from NIMA 811 (2016) 133
     \label{fig:ad_cutaway}
 \end{figure}
 
 
 
+\todo{move some of this text to the intro}
 The ADs are optimized to detect inverse beta decay (IBD) interactions
 originating in the GdLS or LS:
 
@@ -185,16 +222,16 @@ Meanwhile, the neutron thermalizes within $\sim \SI{10}{\micro\second}$
 and then scatters randomly until it is eventually captured
 on Gd (in the GdLS only) or on a proton in the form of \isotope[1]{H}
 (in both the GdLS and LS).
-This happens with a characteristic time of $\sim \SI{30}{\micro\second}$
-in GdLS and $\sim \SI{150}{\micro\second}$ in LS.
+This happens with a characteristic time of $\sim \SI{28}{\micro\second}$
+in GdLS and $\sim \SI{215}{\micro\second}$ in LS.
 The shorter time in the GdLS is by design,
 due to the large capture cross section of a thermalized neutron
 on a Gd nucleus compared to H (\SI{49}{\kilo\barn} vs. \SI{0.332}{\barn})
 \cite{gdls2014}.
-If the neutron captures on Gadolinium, the excited nucleus
+If the neutron captures on Gadolinium (nGd), the excited nucleus
 will emit $\gamma$-rays in one of two decay chains,
 both of which have a combined energy of approximately \SI{8}{\mev}.
-If the neutron captures on a Hydrogen nucleus present as part of
+If the neutron captures on a Hydrogen (nH) nucleus present as part of
 the liquid scintillator hydrocarbon chains,
 the $n+\isotope[1]{H} \to \isotope[2]{H} + \gamma$ reaction will occur;
 the emitted $\gamma$-ray has an energy of \SI{2.2}{\mev}.
@@ -210,7 +247,7 @@ This process is depicted in \cref{fig:ibd_cartoon}.
     \label{fig:ibd_cartoon}
 \end{figure}
 
-The LS region serves an important purpose for the main \thetaot
+The LS region serves an important purpose for the main \thetaot{}
 analysis using neutron capture on Gadolinium (nGd).
 It significantly reduces the fraction of $\gamma$-rays from the nGd capture
 that escape from the scintillating volume and distort the energy spectrum.
@@ -224,14 +261,14 @@ This risk is somewhat mitigated by the lower energy of the nH $\gamma$'s
 (\SI{2.2}{\mev} vs. \SI{8}{\mev}).
 
 
-\section{Muon detectors}
+\section{Water pools and muon detectors}
 \label{sec:wp}
 
 The muon detection system for Daya Bay consists of
 the water pool and the RPC system covering the water pool.
-As data from the RPC is not used in the \thetaot{} analysis.
-Its description, along with more details of the entire muon system,
-can be found in \cite{muonsystem2015}.
+As data from the RPC is not used in the \thetaot{} analysis,
+its description, along with extensive details of the entire muon system,
+will be left to \cite{muonsystem2015}.
 All three water pools are \SI{10}{\m} deep.
 The near-hall water pools are \SI{10}{\m} wide and \SI{16}{\m} long,
 while the far-hall water pool is \SI{16}{\m} in both dimensions.
@@ -245,13 +282,30 @@ Both the inner and outer water shields are instrumented with photomultiplier tub
 to detect the Cherenkov radiation from muons traversing the water.
 The near-hall water pools each contain \num{288} PMTs,
 and the far-hall water pool contains \num{384} PMTs.
+A further breakdown is shown in \cref{tab:wp_pmts}.
 \num{619} of these PMTs were newly-purchased \SI{20}{\cm}
 model R5912 from Hamamatsu,
 and the remaining \num{341} were \SI{8}{\inch} models 9350KA
 and D642KB from EMI
 donated by the MACRO experiment.
 The IWS has been demonstrated to tag \SI{100}{\percent} of muons
-that reach the ADs.
+that reach the ADs using the trigger thresholds described in \cref{tab:trigger}.
+
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{llll}
+        \hline
+        Hall & IWS & OWS (inward/outward) & Total\\
+        \hline
+        EH1 & 121 & 167 (103/64) & 288\\
+        EH2 & 121 & 167 (103/64) & 288\\
+        EH3 & 160 & 224 (128/96) & 384\\
+        \hline
+    \end{tabular}
+    \caption{Muon system PMTs \cite{muonsystem2015}}
+    \label{tab:wp_pmts}
+\end{table}
 
 \begin{figure}
     \centering
@@ -275,7 +329,7 @@ providing better than \num{0.1}-photoelectron (PE) resolution.
 A \SI{50}{\percent} attenuated copy of the signal is passed to a copy
 of the same ADC to allow for higher dynamic range in processing high-energy
 events.
-Refer to \cite[Sec.~II]{ngd2016} for the details
+Refer to \cite{sidebyside,ngd2016} for the details
 of the front-end electronics system.
 The threshold to activate a single PMT channel's front-end electronics
 is approximately \SI{0.25}{\pe}.
@@ -284,10 +338,15 @@ awaiting a full-detector trigger signal.
 
 The various detectors in an EH are triggered independently
 by a master trigger board based on the conditions given in \cref{tab:trigger}.
+The primary triggers for detecting \nuebar{} in the ADs are the NHIT and ESUM triggers.
+The NHIT trigger is based on the number of PMTs simultaneously over threshold,
+and the ESUM trigger is based on a simple sum of the photoelectrons
+from each PMT.
+The efficienies of the NHIT and ESUM triggers are shown in \cref{fig:trig_eff}.
 Note that the trigger criteria are lower than the event selection
 criteria used for the \thetaot{} analysis and described in \cref{ch:event_selection}.
-Each channel's TDC is stopped when it receives a trigger signal
-from the master trigger board.
+Each channel's TDC is sent a stop signal when it receives a trigger signal
+from the master trigger board\todo{Ask Kam-Biu about use of prescaled triggers}.
 For every channel with a TDC reading of \SI{<1.2}{\us},
 the TDC reading, peak ADC value and the pedestal ADC value
 (the ADC output given no PMT signal)
@@ -321,7 +380,25 @@ The resulting data files comprise the raw data from Daya Bay.
     \label{tab:trigger}
 \end{table}
 
+\begin{figure}
+    \centering
+    \includegraphics[height=0.8\textheight]{ch_detector/trigger_efficiency_sidebyside}
+    \caption{
+        Trigger efficiency as a function of reconstructed energy
+        at the edge of the AD target volume ($r=\SI{120}{\cm},z=\SI{135}{\cm}$).
+        The top figure is for NHIT triggers while the bottom figure is for ESUM triggers.
+        Triangles represent efficiency measurements from \isotope[68]{Ge} source data.
+        Circles result from LED scans.
+        The curves show best fits based on error functions.
+        The vertical lines indicate minimum reconstructed energies $E_{\text{min}}$
+        of IBD positrons.
+        Figure and caption from \cite{sidebyside}.
+    }
+    \label{fig:trig_eff}
+\end{figure}
 
+
+%TODO move to either Intro or Conclusions chapter
 \section{Previous results}
 
 Since the start of data taking on 24 December 2011,
