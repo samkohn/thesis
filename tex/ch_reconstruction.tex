@@ -28,11 +28,13 @@ Daya Bay uses two independent position reconstruction algorithms,
 both of which rely on the pattern of charge measurements across all PMTs in an AD.
 The reconstruction used in this \thetaot{} analysis is known as ``AdSimple;''
 the name was inherited from a predecessor algorithm \cite{adsimple1}.
-The other reconstruction is called ``AdScaled,''
-in which a center-of-charge position is computed,
+The other reconstruction is called ``AdScaled.''
+
+In AdScaled, a center-of-charge position is computed,
 averaging over each PMT position weighted by the charge on the PMT,
 and a parametrized correction derived from simulation
 is applied to determine the reconstructed position \cite{ngd2016}.
+However, AdSimple was determined to be the best for use in the nH analysis.
 
 In AdSimple,
 each event's PMT charge pattern is compared to a library of \num{9600} templates
@@ -66,6 +68,8 @@ The value of $\textbf{r}_{\text{rec}}$ which minimizes $\chi^2$
 is used as the reconstructed position.
 The distribution of reconstructed positions is shown in \cref{fig:position_map},
 with artifacts of the interpolation process clearly visible.
+
+\todo[inline]{Diagram here or in Detector chapter showing coordinate system}
 
 \begin{figure}
     \centering
@@ -170,6 +174,7 @@ The peak value was extracted from a fit of the respective distributions
 for each pixel and for the entire sample.
 \todo{What is the ``average'' value for LS pixels?}
 The nGd peak was fit with a double-Crystal Ball function \cite{cbfunction},
+\todo[inline]{Describe CB function here or in Calibration chapter}
 and the nH peak was fit with a calorimeter function \cite{calorimeter2016}
 (described in \cref{subsec:delayed}).
 A correction was then applied to each event's energy based on its position:
@@ -189,12 +194,15 @@ at the outer edge of the OAV (LS region).
         Nonuniformity corrections based on the energy of spallation neutrons
         capturing on Gd and H.
         Plot based on data from \cite{nonuniformity2}.
+        \todo[inline]{Try to find 3D contour map of nonuniformity}
     }
     \label{fig:nonuniformity_map}
 \end{figure}
 
 The Earth's magnetic field caused a nonuniformity
 as a function of azimuthal angle $\phi$ of approximately \SI{1}{\percent}.
+This effect was correlated with the orientation of the PMTs with respect
+to the geomagnetic field.
 A model was constructed to account for this effect:
 \begin{equation}
     f_{\text{pos}}(\phi) = 1 + \alpha\sin(\phi-\phi_0),
@@ -218,13 +226,15 @@ yielding values of $\beta_0 + \beta_1r^2$ between
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{ch_reconstruction/time_dep_nonunif}
+    \includegraphics[width=0.8\textwidth]{ch_reconstruction/time_dep_nonunif}
     \caption{
         Relative change over time in energy for spallation neutrons capturing on H.
         Each color is a different range of event radius.
         The correction coefficients $\beta_0$ and $\beta_1$ are determined
         from a fit of the slope as a function of radius.
         Figure taken from \cite{nonuniformity4}.
+        \todo[inline]{Photoshop yellow line to a different color}
+        \todo[inline]{Add table showing $\beta_{0,1}$ for each AD, if available}
     }
     \label{fig:time_dep_nonunif}
 \end{figure}
@@ -241,12 +251,12 @@ The detector energy resolution for a scintillating detector can be modeled as
 where $E$ is the reconstructed energy.
 The parameters $a,b,$ and $c$ represent contributions to the resolution
 from different sources.
-$a$ quantifies the impact due to the non-pointlike nature
+Parameter $a$ quantifies the impact due to the non-pointlike nature
 of the energy depositions in the scintillator,
 since events with larger energy deposit their energy over a larger spatial extent
 in the AD.
 This could also be understood as a consequence of residual nonuniformity.
-$b$ describes the size of the $\nicefrac{1}{\sqrt{E}}$ contribution,
+Parameter $b$ describes the size of the $\nicefrac{1}{\sqrt{E}}$ contribution,
 which corresponds to the combined counting statistics of
 the production, detection and digitization of photons.
 Lastly, $c$ is a constant contribution to $\sigma_E$
@@ -282,6 +292,7 @@ neutron captures on Gd and H from both IBD and muon spallation;
 $\alpha$ decays of naturally-occuring \isotope[212]{Po},
 \isotope[214]{Po}, \isotope[215]{Po}, and \isotope[219]{Po};
 and $\gamma$-rays from \isotope[40]{K} and \isotope{208}[Tl].
+\todo{Add \isotope[12]{B} characterization of $\beta$'s}
 \Cref{fig:gdls_rel_energyscale} shows the relative variations
 for all of these sources among the 8 ADs.
 The variations are all within \SI{+-0.2}{\percent}.
