@@ -77,7 +77,7 @@ In addition to themselves creating background signals in the ADs
 from their own energy deposits,
 muons also create other sources of background.
 A muon which enters an AD can produce
-the rare unstable isotopes \li, \he, and \boron{} (\cref{subsec:li9}).
+the rare unstable isotopes \li and \he (\cref{subsec:li9}).
 These isotopes can decay through processes that exactly mimic the IBD signature.
 A muon can instead interact with the rock surrounding the EHs
 and generate energetic ``fast'' neutrons,
@@ -122,11 +122,11 @@ $\SI{6}{\meter}\times\SI{2}{\mev\per\cm}=\SI{1200}{\mev}$.
 These events are assumed to be caused by muons which create particle showers,
 explaining the additional energy deposits.
 These particle showers produce a much higher rate of
-\li, \he, and \boron.
+\li and \he.
 Because \li{} in particular has a long lifetime of \SI{257.2}{\milli\second},
 the veto window for showering muons is extended to \SI{1}{\second}
 to allow all but $\sim e^{-4}$ of the \li{} to decay before the veto window ends.
-The residual \li, \he, and \boron events in the dataset are characterized
+The residual \li and \he events in the dataset are characterized
 and subtracted in \cref{subsec:li9}.
 
 The muon veto also affects the coincidence selection
@@ -1223,10 +1223,36 @@ would also change the fraction of partially-escaping $\gamma$'s.
 \section{Irreducible correlated backgrounds}
 \label{sec:correlated_bg}
 
-\subsection{Muon-correlated backgrounds}
+After applying all coincidence, distance, time and energy cuts,
+and after statistically subtracting the accidental background,
+the sample of IBD candidates still is not pure.
+The accidental background analysis by construction accounts for
+all possible backgrounds that create single uncorrelated AD events,
+but it is not sensitive to physical processes that produce
+correlated prompt-delayed pairs.
+These correlated backgrounds include muon-induced unstable isotopes (\cref{subsec:li9}),
+muon-induced fast neutrons (\cref{subsec:fastn}),
+and $\gamma$-rays from the Am-C calibration source (\cref{subsec:amc}).
+
+The muon-induced backgrounds are particularly pernicious
+because the near halls have higher muon rates than the far hall,
+and thus an intrinsically higher rate of these backgrounds.
+If the backgrounds are not correctly subtracted,
+they will change the near-far ratio in a way that mimics the effects of \thetaot.
+
+\subsection{Muon-induced unstable isotopes}
 \label{subsec:li9}
 
-\subsection{Fast neutrons}
+Muon interactions with nuclei (primarily \isotope[12]{C}) in the AD
+can produce the unstable exotic isotopes \li and \he.
+These isotopes $\beta$-decay to neutron-unstable excited states
+of \isotope[9]{Be} and \isotope[8]{Li}, respectively,
+leading to a nonzero probability of a $\beta^{-}$-n coincidence.
+Unfortunately, the $\beta$ energies lie in the range of IBD prompt energies,
+so these \li and \he decays exactly mimic the signature of true IBDs.
+
+
+\subsection{Muon-induced fast neutrons}
 \label{subsec:fastn}
 
 \subsection{Am-C calibration source}
