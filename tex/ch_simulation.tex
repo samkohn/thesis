@@ -308,8 +308,50 @@ since the residual flasher events were generated with \SI{1}{\s} time gaps
 between consecutive flashers.
 \todo[inline]{Add more when Olivia reports back}
 
-\section{Efficiency Monte Carlo}
+\section{Detailed Monte Carlo}
 \label{sec:thu_toymc}
 
 \section{Studies using the detailed Monte Carlo}
 \label{sec:thu_toymc_studies}
+
+\subsection{Prompt energy efficiency}
+\label{subsec:thu_toymc_prompt}
+
+The detailed Monte Carlo was used to estimate the prompt energy efficiency,
+the fraction of IBD events whose reconstructed prompt energy
+satisfied the prompt energy criterion of $E > \SI{1.5}{\MeV}$
+(\cref{subsec:prompt_energy}).
+The spectrum of reconstructed energy for the Monte Carlo sample of IBD prompt events
+is shown in \cref{fig:prompt_eff_mc}.
+The prompt energy cut efficiency is the fraction of events in the histogram
+with energy above \SI{1.5}{\mev}.
+\todo[inline]{Fill in details of absolute efficiency determination}
+
+The AD-uncorrelated uncertainty on the prompt energy efficiency
+was also determined using the simulation.
+Each AD has a slightly different relative energy scale (\cref{subsec:rel_energyscale}),
+resulting in different fractions of IBD prompt events
+being assigned a reconstructed energy above \SI{1.5}{\MeV}.
+The relative energy scale variation was measured to be \SI{+-0.5}{\percent},
+and this effect was reproduced by simply
+scaling the reconstructed energy for each simulated event by \SI{+-0.5}{\percent}.
+The variation in efficiency due to this re-scaling,
+and therefore the AD-uncorrelated relative uncertainty on the prompt energy efficiency,
+was \SI{+-0.1}{\percent}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.49\textwidth]{%
+        ch_event_selection/prompt_energy_mc%
+    }
+    \includegraphics[width=0.49\textwidth]{%
+        ch_event_selection/delayed_energy_mc%
+    }
+    \caption{The spectrum of reconstructed energy for simulated IBD prompt (left)
+        and delayed (right) events
+        in the Monte Carlo study used to compute the prompt and delayed
+        energy cut absolute efficiencies.
+        The prompt spectrum is also used to compute the prompt energy cut
+    efficiency AD-uncorrelated uncertainty.}
+    \label{fig:prompt_eff_mc}
+\end{figure}
