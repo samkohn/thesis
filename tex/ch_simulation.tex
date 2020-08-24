@@ -1,24 +1,80 @@
 \chapter{Simulation}
 
-Monte Carlo simulation was used for both validation of the event selection algorithms
-and determination of the energy cut efficiencies and uncertainty.
+Monte Carlo simulation was used to validate the event selection algorithms
+and estimate the energy cut efficiencies and uncertainty.
 Two independent simulation programs were developed to achieve these goals.
 
-\section{Event Selection Monte Carlo}
+A simplified Monte Carlo simulation was developed to model the structure
+of the Daya Bay data stream \cite{dyb_toymc, dyb_toymc_docdb}.
+Rather than simulating the details of physical processes such as scintillation,
+neutron capture, and electronics response,
+the simplified Monte Carlo used parametrized distributions
+to determine the most relevant AD-level observables including the event timestamp
+and reconstructed energy and position.
+This simulation was configured to match various assumptions
+about the Daya Bay data model,
+such as a particular rate of uncorrelated events,
+or the presence or absence of a certain background.
+The resulting output data sets could then be analyzed
+to determine the validity of the analysis
+under the input configuration.
+Data sets could be generated with different assumptions
+about time correlations or position distributions,
+and impact of those assumptions on the final analysis could be assessed.
+However, due to its simplified nature,
+the simulation was not able to provide insights about the distributions themselves.
+
+A second, more detailed, Monte Carlo simulation was used
+to investigate the detector's response to individual events\todo{cite THU MC}.
+This simulation included detailed tracking of individual energy depositions,
+scintillator response, and particle interactions such as positron annihilation.
+The resulting data sets consisted of detailed information about individual
+simulated IBD events,
+such as the incident \nuebar{} energy, the target volume (LS or GdLS),
+neutron kinetic energy, etc.,
+as well as the reconstructed position and energy
+based on the simulated electronics response.
+This data set could be used to extract efficiencies
+by computing the fraction of simulated events which satisfied
+various analysis cut criteria.
+
+The detailed simulation produced each event independently,
+and did not attempt to simulate the actual Daya Bay data files
+containing multiple types of events with various time correlations.
+Thus each simulation had a specialized domain,
+and both were necessary to complete the analysis.
+The simplified simulation was able to answer questions about the more complicated
+event selection procedures such as determining the accidental background
+or the \li{} and \he{} contamination (\cref{sec:acc,subsec:li9}),
+and the detailed simulation was able to estimate
+the prompt and delayed energy cut efficiencies (\cref{sec:energy_cuts}).
+The details of the simplified and detailed simulations will be described
+in \cref{sec:toymc,sec:thu_toymc}, respectively.
+A sample of studies that relied on the simulations will be presented
+in \cref{sec:toymc_studies,sec:thu_toymc_studies}.
+
+\section{Simplified Monte Carlo}
 \label{sec:toymc}
 
-A Monte Carlo simulation was developed to model the time correlation structure
-of the Daya Bay data stream \cite{dyb_toymc, dyb_toymc_docdb}.
-The simulation uses placeholder values for most quantities such as reconstructed energy
-rather than simulating particle trajectories and interactions in the LS and PMTs,
-hence it is known as a ``toy Monte Carlo.''
-The internal details and basic functionality of the simulation,
-as well as a sample of the validation studies that used simulated data,
-will be described.
+The primary purpose of the simplified Monte Carlo
+is for determining the efficiency and effectiveness of the event selection.
+In practice, the simulation was used to generate data sets
+containing ``idealized'' versions of various event types
+(with known energy distribution, no fluctuations, no electronics effects, etc.),
+with the same data file format as the actual Daya Bay data files,
+so that they can be processed using exactly the same software pipeline
+as the real data.
+These data sets were then studied to determine how the event selection procedure
+performs under ideal circumstances.
+The configuration could be varied to, for example,
+increase the rate of a particular background process,
+or tighten the position correlation between IBD prompt and delayed events,
+and the effect of that change could be studied.
 
-The simulation is based on a collection of event types:
+The simulation is based on a core set of event types:
 Single, Correlated, and Muon.
-Additional event types can be added if additional functionality is desired.
+Additional event types such as Flasher and \li{} were added to support specific studies
+(see \cref{sec:toymc_studies}).
 The simulation's configuration allows for customization of the event rate
 for each different event type,
 and also for multiple variants of the event type.
@@ -26,23 +82,20 @@ For example, one type of Correlated event could be configured to represent nH IB
 and a second type could be configured to represent nGd IBDs
 with a shorter coincidence time, higher delayed energy,
 and with the delayed event position limited to the GdLS (IAV) region of the AD.
-%Crucially, since the prompt and delayed events are correlated,
-%they are generated together by the simulation,
-%so the rate of Correlated events is the rate of prompt-delayed pairs;
-%similarly, for Muon events, the rate represents the rate of physical muons
-%rather than the sum of rates of muon-like signals in the water pools and ADs.
+
 When the simulation is executed,
 the appropriate number of each type of event is generated
 based on the desired time interval to be simulated.
-The events are then time-ordered
-and saved to disk in the same ROOT file data format
-as produced by the Daya Bay data production.
+The events are then saved to disk in the same ROOT file data format
+used by the Daya Bay data production.
 An additional ROOT TTree structure containing the ``truth information''
 for each event is included in the output data file.
 For this simulation, the only ``truth'' hidden from the data output
 is the event type that the given data entry represents.
 The characteristics associtated with the different event types
 are described below.
+
+\subsection{Types of generated events}
 
 Single events represent uncorrelated signals,
 which in Daya Bay are mostly due to natural radioactive decays in the AD
@@ -64,7 +117,7 @@ modeled as an exponential distribution,
 the simulation first determines the timestamp for a prompt event at random.
 Then the coincidence time delay between prompt and delayed events is generated
 from an exponential distribution
-whose scale is specified in the simulation configuration.
+whose time constant is specified in the simulation configuration.
 The prompt and delayed energies are determined independently at random
 using uniform distributions specified by the simulation configuration.
 The position of the prompt event is chosen at random
@@ -72,26 +125,34 @@ within the GdLS or LS volumes (again, as specified by the configuration),
 and the delayed position is chosen to be correlated with the prompt position.
 Since exact modeling of the position correlations is not crucial,
 a simple exponential distribution is used to determine the displacement
-in each direction ($x,y,$ and $z$).
+in each direction ($x,y,$ and $z$) for these Correlated events.
+In the recorded truth information,
+prompt and delayed events are assigned separate labels
+even though they both form part of the same Correlated event type.
 
 Muon events represent signals created by muons traversing
 the water pools and ADs (\cref{sec:muonveto}).
 For simplicity, each muon is assumed to create a signal
 in the inner water pool with probability \num{1}.
-A portion of the muon signals, by default \SI{19.95}{\percent},
+The rates and energies were chosen to approximately model
+the true distributions and rates of muon signals in the near halls (EH1 and EH2).
+A portion of the muon signals, \SI{19.95}{\percent},
 traverse the AD, depositing an energy chosen at random between
 \SIlist{20;2000}{\MeV}.
-A smaller subset of the muon signals, by default \SI{0.05}{\percent},
-creat particle showers in the AD, depositing an energy chosen at random between
+A smaller subset of the muon signals, \SI{0.05}{\percent},
+create particle showers in the AD, depositing an energy chosen at random between
 \SIlist{2500;5000}{\MeV}.
-These fractions and energies were chosen as defaults to approximately model
-the true distributions and rates of muon signals in the near halls (EH1 and EH2).
 The time delay between WP and AD muons is assigned to be \SI{50}{\ns},
 chosen since in real data there a nonzero time offset between WP and AD muons,
 but the distribution of time offsets
 is not a critical feature of the event selection.
+All of the choices of energies and rates are approximations
+designed to capture the general behavior of muons at Daya Bay
+without adding excessive complexity to the simulation.
 
-\subsection{Uncorrelated event rate}
+\section{Studies with the simplified Monte Carlo}
+\label{sec:toymc_studies}
+\subsection{Study of uncorrelated event rate}
 
 The procedure for determining the uncorrelated event rate
 is described in \cref{subsec:singles}.
@@ -109,28 +170,53 @@ and an empirical rate for uncorrelated events was extracted
 for each of the 100 data sets.
 The distribution of measured uncorrelated event rates
 is shown in \cref{fig:toymc_singles_dist}.
-The mean singles rate was \SI{19.9935}{\Hz},
-which is a bias of \SI{0.033}{\percent} relative to the ``true'' input rate.
+The mean singles rate was \SI{19.9935+-0.0013}{\Hz}
+which is a bias of \SI{0.033}{\percent} (5 standard deviations)
+relative to the ``true'' input rate.
+\todo[inline]{Explain why such a small bias is an issue}
+
+%The bias in the measured uncorrelated event rate,
+%if also present in the real Daya Bay data,
+%would have led to an underestimation of accidental coincidence events in each AD.
+%The final extracted IBD rate therefore would have been slightly higher
+%than the actual IBD rate in each AD,
+%by approximately the same number of IBDs per day per AD,
+%(since the singles rate and therefore accidental rate
+%is approximately the same in each AD).
+%This affine scaling would have lessened the apparent deficit of IBDs
+%between the near and far halls,
+%thus biasing the measurement of \thetaot.
 
 It was hypothesized that the bias was due to an unintended effect
 of the absolute fixed input event rate,
 which does not fluctuate according to Poisson statistics in the simulation.
 Each simulated 10-minute data file has precisely the same number of uncorrelated events,
 which violates the assumption that the number of events follows the Poisson distribution.
-If individual data files were longer, then any impact on the measured singles rate
+Specifically, at an uncorrelated event rate of \SI{20}{\Hz},
+each file contains exactly \num{12000} uncorrelated events.
+If the occurrence of uncorrelated events were truly random,
+then each 10-minute file should expect fluctuations of approximately
+$\sqrt{12000} = 110$~events or \SI{0.09}{\percent}.
+The impact of the absence of these fluctuations
+on the probability of an accidental coincidence is complex;
+therefore, an additional simulation was performed
+to assess the impact.
+If individual data files were longer, then the relative size of fluctuations,
+and therefore any impact on the measured singles rate,
 should be suppressed.
 A second set of 100 data sets was generated to test this hypothesis,
 where each data set was a single 1000-minute data file.
 The distributrion of measured uncorrelated event rates from this second data set
 is shown in \cref{fig:toymc_singles_dist}.
 There was a larger spread due to the shorter duration of each data file,
-but the mean over all 100 data sets was \SI{19.9966}{\Hz},
-which is a bias of \SI{0.017}{\percent}.
+but the mean over all 100 data sets was \SI{19.9966+-0.0022}{\Hz},
+which is a bias of \SI{0.017}{\percent} or 2 standard deviations.
 The bias decreased as the length of the simulated data file increased
 (even as the number of events in the data set decreased),
-validating both the origin of the bias
-and that the event selection software can successfully extract
-the uncorrelated event rate with minimal bias.
+suggesting that the origin of the bias is related to the length of the simulated files.
+Thus the simulation was able to confirm that
+the event selection software can successfully extract
+the uncorrelated event rate with high precision and minimal bias.
 
 \begin{table}[ht]
     \centering
@@ -179,7 +265,7 @@ of the software used to search for decays of muon-induced isotopes
 In addition to generating water pool, AD and showering muons,
 the simulation also generated muon-correlated neutrons
 and muon-correlated unstable isotope decays
-meant to represent \li and \he.
+meant to represent \li{} and \he.
 The analysis software identified a muon as neutron-tagged
 if it was followed by a neutron-like signal
 with a delay of between \SIlist{20;200}{\us}.
@@ -224,3 +310,6 @@ between consecutive flashers.
 
 \section{Efficiency Monte Carlo}
 \label{sec:thu_toymc}
+
+\section{Studies using the detailed Monte Carlo}
+\label{sec:thu_toymc_studies}
