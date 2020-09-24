@@ -1,7 +1,7 @@
 \chapter{Simulation}
 
 Monte Carlo simulation was used to validate the event selection algorithms
-and estimate the energy cut efficiencies and uncertainty.
+and estimate the energy cut efficiencies and uncertainties.
 Two independent simulation programs were developed to achieve these goals.
 
 A simplified Monte Carlo simulation was developed to model the structure
@@ -56,8 +56,11 @@ in \cref{sec:toymc_studies,sec:thu_toymc_studies}.
 \section{Simplified Monte Carlo}
 \label{sec:toymc}
 
+\todo[inline]{Be more clear about not trying to reproduce energy distributions}
 The primary purpose of the simplified Monte Carlo
-is for determining the efficiency and effectiveness of the event selection.
+is to examine one specific aspect of the experiment:
+the time correlations and relations between events, both signal and background.
+%for determining the efficiency and effectiveness of the event selection.
 In practice, the simulation was used to generate data sets
 containing ``idealized'' versions of various event types
 (with known energy distribution, no fluctuations, no electronics effects, etc.),
@@ -133,7 +136,7 @@ even though they both form part of the same Correlated event type.
 Muon events represent signals created by muons traversing
 the water pools and ADs (\cref{sec:muonveto}).
 For simplicity, each muon is assumed to create a signal
-in the inner water pool with probability \num{1}.
+in the inner water pool with a probability of \SI{100}{\percent}.
 The rates and energies were chosen to approximately model
 the true distributions and rates of muon signals in the near halls (EH1 and EH2).
 A portion of the muon signals, \SI{19.95}{\percent},
@@ -350,7 +353,7 @@ was \SI{+-0.1}{\percent}.
     \includegraphics[width=0.49\textwidth]{%
         ch_event_selection/delayed_energy_mc%
     }
-    \caption{The spectrum of reconstructed energy for simulated IBD prompt (left)
+    \caption{Spectrum of reconstructed energy for simulated IBD prompt (left)
         and delayed (right) events
         in the Monte Carlo study used to compute the prompt and delayed
         energy cut absolute efficiencies.
