@@ -1,0 +1,154 @@
+\chapter{Measurement of \texorpdfstring{$\thetaot$}{theta13}}
+\label{ch:analysis}
+
+The 3-flavor model of neutrino oscillation described in \cref{ch:intro}
+was tested for goodness-of-fit against the Daya Bay observations,
+and best-fit values for the oscillation parameters \thetaot{} and \dmee{}
+were extracted.
+A \chisquare{} expression was created to quantify the agreement
+between the model prediction and observations (\cref{sec:fitter}).
+The model prediction relies on the observed events at the near halls (EH1 and EH2)
+to predict the far-hall (EH3) observations
+with minimal reliance on the intricacies of reactor modelling
+and neutrino production (\cref{sec:prediction}).
+
+\section{Statistical methods}
+\label{sec:fitter}
+
+Standard frequentist techniques were used to determine best-fit parameters
+and goodness-of-fit between the 3-flavor neutrino oscillation model
+and the data observed by Daya Bay.
+A \chisquare{} expression with nuisance parameters
+was the primary tool for this analysis.
+Variants of this technique have been used both in previous Daya Bay nH analyses
+and in other Daya Bay results including nGd \thetaot{} analyses
+and absolute reactor \nuebar{} flux and spectral measurements
+\cite{nh2016,ngd2016,reactorflux2017,extractionreactorflux2019}.
+The generic structure of such \chisquare{} expressions
+can be derived from Eq.~(39.17) of \cite{pdg} as:
+
+\begin{equation}
+    \label{eq:chisquare_generic}
+    \chisquare = \sum_i \left(
+        \frac{F_{\text{obs},i} - F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu})}
+            {\sigma_{\text{obs},i}}
+        \right)^2
+        +
+        \sum_j \frac{\nu_j^2}{\tilde{\sigma}_{\nu,j}^2},
+\end{equation}
+where $F_{\text{obs},i}$ is the observed value for data point $i$
+with uncertainty $\sigma_{\text{obs},i}$;
+$F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu})$
+is the model prediction for data point $i$
+which depends on $\boldsymbol{\eta}$, the model parameters of interest,
+and $\boldsymbol{\nu}=(\nu_1, \ldots, \nu_m)$,
+the model nuisance parameters.
+In this formulation, the nuisance parameters are dimensionless,
+and in the model they always accompany a paired quantity $A_j$,
+which intuitively represents the physically-relevant quantity
+(such as a detection efficiency or background rate)
+that the nuisance parameter introduces uncertainty for:
+
+\begin{equation}
+    (1+\nu_j)A_j.
+\end{equation}
+Thus the $\nu_j$ can be interpreted as the deviation of $A_j$
+from an expected or constrained value,
+and the $\tilde{\sigma}_{\nu,j}$ are the (independently-determined)
+\emph{relative} uncertainties of $A_j$
+which set the scale for allowable values of $\nu_j$.
+The $A_j$ remain fixed during the minimization procedure.
+
+The values of $\boldsymbol{\eta}$ and $\boldsymbol{\nu}$
+which minimize \cref{eq:chisquare_generic}
+provide best-fit parameters of interest,
+while ensuring that the nuisance parameters $\nu_j$
+remain in some sense small.
+Intuitively, the parameters $A_j$ are allowed to deviate slightly
+from their estimated values,
+but large deviations penalize the \chisquare{} and so are discouraged.
+
+For this analysis, each data point $F_{\text{obs},i}$
+is the number of observed events passing all event selection criteria
+(\cref{ch:event_selection})
+in a particular far-hall antineutrino detector $d$ (in EH3),
+during a particular data-taking period $k$ (6-AD, 8-AD or 7-AD).
+Since EH3-AD4 was not operative during the 6-AD period,
+there are $3 + 4 + 4 = 11$ observed data points:\todo{energy bins?}
+
+\begin{equation}
+    \mathbf{F}_{\text{obs}} =
+    (N^{\text{obs}}_{\text{6-AD, EH3-AD1}}, \ldots, N^{\text{obs}}_{\text{7-AD, EH3-AD4}})
+\end{equation}
+The model prediction
+$F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu}) = N_{\text{pred},j}(\boldsymbol{\eta};\boldsymbol{\nu})$,
+described in depth in the following section,
+depends on the observed event rates at the near halls (EH1 and EH2),
+reactor power and fission fractions,
+differing background rates for each AD,
+conversion between reconstructed prompt energy and true \nuebar{} energy,
+detection efficiencies,
+and, of course, neutrino oscillation parameters.
+The $\boldsymbol{\eta}$ vector contains the neutrino oscillation parameters.
+The remaining dependencies are assigned to nuisance parameters
+to account for uncertainties in the values used in the prediction.
+In particular,
+
+\begin{align}
+    \begin{split}
+        \boldsymbol{\eta} &= (\thetaot, \dmee) \\
+        \boldsymbol{\nu} &= (
+            \boldsymbol{\alpha},
+            \boldsymbol{\epsilon},
+            \boldsymbol{\eta_B},
+            \boldsymbol{\eta_N}),
+    \end{split}
+\end{align}
+where the nuisance parameters are collected into smaller vectors.
+The vector $\boldsymbol{\alpha}$ represents reactor flux uncertainties,
+$\boldsymbol{\epsilon}$ represents detection efficiency uncertainties,
+$\boldsymbol{\eta_B}$ represents background rate uncertainties,
+and $\boldsymbol{\eta_N}$ represents the statistical uncertainty
+of the observed event rate at the near hall ADs.
+
+The full \chisquare{} expression used in the rate-only\todo{rate + shape?} analysis is:
+
+\begin{align}
+    \begin{split}
+        \chi^2 &= \sum_{\substack{j \in \\\text{far ADs}}}
+            \frac{
+                (N_{\text{obs},j}
+                - N_{\text{pred},j}(\boldsymbol{\eta};\boldsymbol{\nu}))^2}
+            {\sigma_{\text{obs},j}^2 } \\
+            &+ \sum_{\substack{r \in \\\text{reactors}}}
+                \frac{\alpha_r^2}{\tilde{\sigma}_R^2}
+            + \sum_{\substack{d \in \\\text{all ADs}}}
+            \left(
+                \frac{\epsilon_d^2}{\tilde{\sigma}_D^2}
+                + \frac{\eta_{B,d}^2}{\tilde{\sigma}_{B,d}^2}
+            \right)
+            + \sum_{\substack{d \in \\\text{near ADs}}}
+            \frac{\eta_{N,d}^2}{\tilde{\sigma}^2_{\text{obs},d}}
+    \end{split}
+\end{align}
+
+%For example, the number of accidental background events in a given near AD
+%is estimated to be $N_{\text{acc}}$.
+%In the model, this value is subtracted from the total
+%observed events in that AD, $N_{\text{obs}}$.
+%The expression used to account for the subtraction is,
+%in simplified form,
+
+%\begin{equation}
+    %(1+\nu_{\text{obs}})N_{\text{obs}} - (1+\nu_{\text{acc}})N_{\text{acc}},
+%\end{equation}
+%thereby modeling both the statistical uncertainty of the near AD observation
+%(as $\nu_{\text{obs}}$ is allowed to change)
+%and the systematic uncertainty inherent in
+%estimating the number of accidental background events
+%(reflected in changes to $\nu_{\text{acc}}$).
+
+
+
+\section{Near-far projection}
+\label{sec:prediction}
