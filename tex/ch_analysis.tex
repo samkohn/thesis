@@ -5,12 +5,205 @@ The 3-flavor model of neutrino oscillation described in \cref{ch:intro}
 was tested for goodness-of-fit against the Daya Bay observations,
 and best-fit values for the oscillation parameters \thetaot{} and \dmee{}
 were extracted.
+For a \nuebar{} with energy $E_\nu$,
+the probability that it will be detected as a \nuebar{}
+after traveling a distance $L$ is predicted in the 3-flavor model as:
+
+\begin{align}\label{eq:p_sur}
+    \begin{split}
+        P_\text{sur} = 1 &- \cos^4\thetaot\sin^22\theta_{12}\sin^2\Delta_{21} \\
+                         &- \sin^22\thetaot(\cos^2\theta_{12}\sin^2\Delta_{31}
+                     + \sin^2\theta_{12}\sin^2\Delta_{32}) \\
+        \simeq 1 &- \cos^4\thetaot\sin^22\theta_{12}\sin^2\Delta_{21} \\
+                 &- \sin^22\thetaot\sin^2\Delta_{ee},
+\end{split}
+\end{align}
+where
+$\Delta_{ji} \simeq 1.267 \Delta m^2_{ji} (\si{\eV}^2) L(\si{\m})/E_\nu (\si{\MeV})$,
+and
+$\Delta m_{ee} \simeq \cos^2\theta_{12}\left|\Delta m^2_{31}\right| +
+\sin^2\theta_{12}\left|\Delta m^2_{32}\right|$.
+As described in detail in \cref{ch:intro},
+the use of $\Delta m^2_{ee}$ to model the Daya Bay observations
+is appropriate since the measurement is not sensitive
+to the $O(\SI{1}{\percent})$ difference between $\Delta m^2_{31}$ and $\Delta m^2_{32}$.
+Either form of \cref{eq:p_sur} can be used to compute the \nuebar{} survival probability
+from the Daya Bay reactors to the near and far halls.
+This analysis uses the second, simplified form.
+Values for the physical mass-squared differences will be computed
+based on the extracted value of $\Delta m^2_{ee}$.
+
+To assess the validity of the 3-flavor model and extract best-fit values
+of the oscillation parameters,
+a comparison was made between the observed near-site and far-site \nuebar{} spectra.
+The comparison relies on the number of observed events at the near halls (EH1 and EH2)
+and $P_\text{sur}$ from the 3-flavor oscillation model
+to predict the far-hall (EH3) observations
+with minimal reliance on the intricacies of reactor modeling
+and antineutrino production (\cref{sec:prediction}).
 A \chisquare{} expression was created to quantify the agreement
 between the model prediction and observations (\cref{sec:fitter}).
-The model prediction relies on the observed events at the near halls (EH1 and EH2)
-to predict the far-hall (EH3) observations
-with minimal reliance on the intricacies of reactor modelling
-and neutrino production (\cref{sec:prediction}).
+
+\section{Near-far projection}
+\label{sec:prediction}
+
+The Daya Bay experiment was configured to use
+identically-designed antineutrino detectors (ADs) at near and far sites
+so that the measurements of the near and far ADs could be directly compared
+with minimal systematic uncertainty due to detection efficiency
+and reactor modeling.
+A predictive model was designed to implement the intuitive notion
+that the observations at a near-hall AD can be used to predict
+the observations at a far-hall AD \cite{p12e_fitter,p14a_fitter}.
+This ``near-far projection'' model estimates the contribution of each reactor core
+to a given near AD's IBD sample,
+then extrapolates each core's contribution to the far hall
+based on oscillation effects, AD-reactor distance,
+and differences in livetime, target mass and efficiency.
+An alternative class of models,
+where the observations at both near and far ADs
+are predicted based on a model of reactor \nuebar{} emission
+in addition to oscillation effects,
+has been used for both nH and nGd analyses \cite{nh2016, ngd2016}.
+In this thesis, the near-far projection model is used for the first time
+to extract \thetaot{} from observations of neutron capture on Hydrogen.
+
+
+In the simplest configuration, with a single near observation,
+a single far observation, and a single isotropic source of \nuebar,
+the ratio of the number of observed far events $N_\text{f}$
+to the number of observed near events $N_\text{n}$
+depends on only a small set of quantities:
+the detection efficiencies $\varepsilon_\text{n/f}$,
+the number of target protons $N_\text{p,n/f}$,
+the distances (baselines) $L_\text{n/f}$ between the detectors and the source,
+and the oscillation survival probability $P_\text{sur}(E_\nu, L_\text{n/f})$.
+If the efficiencies, baselines, and number of target protons are well-understood,
+then the near-far ratio becomes sensitive
+to small changes in the survival probability via the formula \cite{ngd2016}
+
+\begin{equation}\label{eq:near_far}
+    \frac{N_\text{f}}{N_\text{n}} = \left(\frac{N_\text{p,f}}{N_\text{p,n}}\right)
+    \left(\frac{L_\text{n}}{L_\text{f}}\right)^2
+    \left(\frac{\varepsilon_\text{f}}{\varepsilon_\text{n}}\right)
+    \left[\frac{P_\text{sur}(E_\nu, L_\text{f})}{P_\text{sur}(E_\nu, L_\text{n}}\right].
+\end{equation}
+
+In practice, the presence at Daya Bay of multiple \nuebar{} sources
+in the form of six reactor cores located hundreds of meters apart
+necessitated a more complex variant of \cref{eq:near_far}
+that accounted for both the differences in reactor power and spectrum over time,
+and the two near halls, both of which observe \nuebar{}'s
+in various stages of oscillation from all six reactor cores.
+Given a set of observed IBD candidates at a near-hall Daya Bay AD,
+the near-far projection model performs the following steps,
+illustrated in \cref{fig:near_far_cartoon}:
+
+\begin{figure}
+    \missingfigure{Near-far cartoon}
+    \caption{Illustration of the near-far projection model.}
+    \label{fig:near_far_cartoon}
+\end{figure}
+
+\begin{enumerate}
+    \item Subtract backgrounds from the near hall measurement
+        and adjust for detection efficiencies
+    \item Convert the reconstructed prompt energy spectrum
+        into an estimated true \nuebar{} energy spectrum
+    \item Predict the contribution of each reactor core
+        the observed \nuebar{} spectrum,
+        including minor oscillation effects
+    \item Extrapolate each core's contribution to the far hall ADs,
+        accounting for oscillation effects and the AD-reactor baseline
+    \item Convert the \nuebar{} energy back into reconstructed energy
+    \item Correct for the far AD's detection efficiency, backgrounds,
+        target mass, and livetime
+\end{enumerate}
+The predicted spectrum at each far-hall AD can be compared
+with the observed spectrum, as described in \cref{sec:fitter}.
+For the rate-only analysis, a single bin of reconstructed energy is used.
+
+\subsection{Near-hall backgrounds and efficiencies}
+\label{subsec:near_bg_eff}
+
+The observed number of IBD candidates must be adjusted
+to account for the backgrounds and efficiencies described in \cref{ch:event_selection}.
+The backgrounds this analysis accounts for are
+accidentals, \li{}/\he{}, fast neutrons, and \amc{}.
+The only efficiencies which vary significantly between ADs,
+the muon-veto livetime efficiency $\varepsilon_\mu$
+and the multiplicity efficiency $\varepsilon_m$,
+can be measured precisely and so are directly accounted for.
+Other efficiencies such as the delayed energy cut efficiency
+are estimated for a generic or average AD and assigned a relative uncertainty.
+Since the near-far projection model is a relative measurement,
+only deviations from the estimated value
+impact the final prediction.
+Therefore the remaining efficiencies are accounted for
+by terms which quantify that potential difference.
+Given a near-hall observation of $N_{\text{cand},i}$ IBD candidates
+and $N_{\text{bg},i}$ predicted backgrounds in reconstructed bin $i$,
+the corrected number of IBDs is
+
+\begin{equation}
+    N_{\text{IBD},i} =
+    \frac{N_{\text{cand},i} - N_{\text{bg},i}}{\varepsilon_\mu\varepsilon_m\prod_n(1+\nu_n)},
+\end{equation}
+where $\nu_n$ is the relative difference between efficiency $n$
+and the estimated average value determined in \cref{ch:event_selection}.
+In practice the $\nu_n$ are implemented as nuisance or pull parameters
+so they can be adjusted during the fit procedure.
+
+\subsection{Extracting the true \texorpdfstring{\nuebar{}}{antineutrino} spectrum}
+\label{subsec:reco_to_true_energy}
+
+The true \nuebar{} energy spectrum observed by the near halls
+is required to compute oscillation probabilities.
+The conversion from reconstructed to true energy
+is impacted not only by the energy resolution and calibration
+but also by a set of nonlinearities described in \cref{subsec:abs_energyscale}.
+A detector response matrix was created
+using the detailed Monte Carlo simulation (\cref{sec:thu_toymc})
+by binning simulated events based on the true incoming \nuebar{} energy
+and the reconstructed energy of the prompt event.
+For each bin of reconstructed energy,
+a probability distribution function (PDF) was constructed
+which described the spectrum of incident \nuebar{}'s
+attributable to the IBDs in that reconstructed energy bin.
+The detector response matrix and the set of PDFs
+for both the rate-only and spectral measurements
+are shown in \cref{fig:drm}.
+A separate true \nuebar{} spectrum is computed
+for each bin of reconstructed energy for each near-hall AD as
+
+\begin{equation}
+    N_i(E_{\text{true}}) = N_{\text{IBD},i} \cdot f_{\text{DRM},i}(E_{\text{true}}),
+\end{equation}
+where $f_{\text{DRM},i}(E_{\text{true}})$ is the probability
+that an event in reconstructed energy bin $i$
+was caused by a \nuebar{} with true energy $E_{\text{true}}$.
+
+This methodology was used instead of the more-obvious
+inverting of the detector response matrix
+because the process of inverting the matrix is numerically unstable.
+Since variations in the detector response were highly constrained,
+\todo{cite energy scale}
+the resulting true \nuebar{} spectra were meaningful when compared between ADs.
+
+
+\begin{figure}
+    \missingfigure{Detector response matrix and normalized PDFs}
+    \label{fig:drm}
+\end{figure}
+
+
+
+
+
+
+
+
+
 
 \section{Statistical methods}
 \label{sec:fitter}
@@ -38,7 +231,7 @@ can be derived from Eq.~(39.17) of \cite{pdg} as:
 \end{equation}
 where $F_{\text{obs},i}$ is the observed value for data point $i$
 with uncertainty $\sigma_{\text{obs},i}$;
-$F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu})$
+and $F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu})$
 is the model prediction for data point $i$
 which depends on $\boldsymbol{\eta}$, the model parameters of interest,
 and $\boldsymbol{\nu}=(\nu_1, \ldots, \nu_m)$,
@@ -81,7 +274,8 @@ there are $3 + 4 + 4 = 11$ observed data points:\todo{energy bins?}
     (N^{\text{obs}}_{\text{6-AD, EH3-AD1}}, \ldots, N^{\text{obs}}_{\text{7-AD, EH3-AD4}})
 \end{equation}
 The model prediction
-$F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu}) = N_{\text{pred},j}(\boldsymbol{\eta};\boldsymbol{\nu})$,
+$\mathbf{F}_{\text{pred}}(\boldsymbol{\eta};\boldsymbol{\nu})$
+of the event counts for the far-hall ADs,
 described in depth in the following section,
 depends on the observed event rates at the near halls (EH1 and EH2),
 reactor power and fission fractions,
@@ -132,6 +326,17 @@ The full \chisquare{} expression used in the rate-only\todo{rate + shape?} analy
     \end{split}
 \end{align}
 
+Fitting software was implemented using the SciPy package's
+$\mathtt{optimize.least\_squares}$ function,
+which relies on the Trust Region Reflective algorithm \todo{cite SciPy and TRR alg.}
+to perform the least-squares fit.
+
+%If the predictions based on different near-hall AD observations agree,
+%it can be concluded that the effects due to reactor modeling
+%and variation between detectors have been properly accounted for.
+
+
+
 %For example, the number of accidental background events in a given near AD
 %is estimated to be $N_{\text{acc}}$.
 %In the model, this value is subtracted from the total
@@ -149,6 +354,3 @@ The full \chisquare{} expression used in the rate-only\todo{rate + shape?} analy
 %(reflected in changes to $\nu_{\text{acc}}$).
 
 
-
-\section{Near-far projection}
-\label{sec:prediction}
