@@ -130,10 +130,12 @@ The observed number of IBD candidates must be adjusted
 to account for the backgrounds and efficiencies described in \cref{ch:event_selection}.
 The backgrounds this analysis accounts for are
 accidentals, \li{}/\he{}, fast neutrons, and \amc{}.
-The only efficiencies which vary significantly between ADs,
+Efficiencies which can be measured precisely for each AD,
+namely
 the muon-veto livetime efficiency $\varepsilon_\mu$
-and the multiplicity efficiency $\varepsilon_m$,
-can be measured precisely and so are directly accounted for.
+multiplicity efficiency $\varepsilon_m$,
+and target proton efficiency $\varepsilon_p$,
+are directly accounted for.
 Other efficiencies such as the delayed energy cut efficiency
 are estimated for a generic or average AD and assigned a relative uncertainty.
 Since the near-far projection model is a relative measurement,
@@ -143,16 +145,26 @@ Therefore the remaining efficiencies are accounted for
 by terms which quantify that potential difference.
 Given a near-hall observation of $N_{\text{cand},i}$ IBD candidates
 and $N_{\text{bg},i}$ predicted backgrounds in reconstructed bin $i$,
-the corrected number of IBDs is
+the predicted number of IBDs is
 
-\begin{equation}
+\begin{equation}\label{eq:near_hall_bg_eff}
     N_{\text{IBD},i} =
-    \frac{N_{\text{cand},i} - N_{\text{bg},i}}{\varepsilon_\mu\varepsilon_m\prod_n(1+\nu_n)},
+    \frac{N_{\text{cand},i} - N_{\text{bg},i}}{
+        \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}\prod_n(1+\nu_{n,i})
+    },
 \end{equation}
 where $\nu_n$ is the relative difference between efficiency $n$
 and the estimated average value determined in \cref{ch:event_selection}.
 In practice the $\nu_n$ are implemented as nuisance or pull parameters
 so they can be adjusted during the fit procedure.
+The resulting $N_{\text{IBD},i}$ represents
+the estimated number of IBD interactions in AD $i$,
+including those which occurred during muon or multiplicity vetoes,
+but not those which failed the prompt and delayed energy cuts
+or the coincidence distanct-time (DT) cut,
+corrected for AD-to-AD differences in those cut efficiencies
+and for differences in target mass.
+
 
 \subsection{Extracting the true \texorpdfstring{\nuebar{}}{antineutrino} spectrum}
 \label{subsec:reco_to_true_energy}
@@ -182,6 +194,16 @@ for each bin of reconstructed energy for each near-hall AD as
 where $f_{\text{DRM},i}(E_{\text{true}})$ is the probability
 that an event in reconstructed energy bin $i$
 was caused by a \nuebar{} with true energy $E_{\text{true}}$.
+The true-energy spectra derived from the various reconstructed energy bins
+are never combined or mixed;
+thus each bin of reconstructed energy can be considered an independent measurement
+of the near-far ratio.
+\Cref{subsec:true_to_reco_farhall} describes the procedure at the far hall
+for converting from true \nuebar{} energy back into reconstructed prompt positron energy.
+For simplicity, the dependence on reconstructed energy bin is omitted
+from the notation for subsequent steps of the near-far projection.
+Similarly, all energies are assumed to be true \nuebar{} energies,
+not reconstructed prompt energies.
 
 This methodology was used instead of the more-obvious
 inverting of the detector response matrix
@@ -189,6 +211,7 @@ because the process of inverting the matrix is numerically unstable.
 Since variations in the detector response were highly constrained,
 \todo{cite energy scale}
 the resulting true \nuebar{} spectra were meaningful when compared between ADs.
+\todo[inline]{Consider a more formal derivation of the correctness of this method}
 
 
 \begin{figure}
@@ -197,13 +220,175 @@ the resulting true \nuebar{} spectra were meaningful when compared between ADs.
 \end{figure}
 
 
+\subsection{Separating near-hall observation into reactor components}
+\label{subsec:flux_fraction}
 
+Each AD observed \nuebar{}'s originating from all six reactor cores.
+The near-far projection model decomposes each AD $i$'s observation
+of true \nuebar{} spectra $N_i(E)$ (for each bin of reconstructed energy)
+into IBD contributions $N_{ij}(E)$ from each reactor core $j$,
+where $\sum_j N_{ij}(E) = N_i(E)$.
+The fraction $f_{ij}$ of IBDs in near-hall AD $i$
+due to \nuebar{}'s from core $j$ is known as the flux fraction.
+The spectrum and flux of emitted \nuebar{}'s from each core is relied on
+to compute the flux fractions.
+By design, model uncertainties and biases common to all cores cancel
+due to the relative nature of the flux fraction quantity.
 
+The \nuebar{} spectrum is estimated for each of the four main fission isotopes
+(\isotope[235]{U}, \isotope[238]{U}, \isotope[239]{Pu}, and \isotope[241]{Pu})
+using the Huber-Muller model.
+Weekly average fission fractions and power levelsfor each core
+are obtained from the power company.
+The energy emitted per fission for each isotope is estimated from
+[insert model].\todo[inline]{Decide which thermal energy per fission to use}
+Corrections due to nonequilibrium effects, $c^{\text{ne}}$,
+and spent nuclear fuel, $S^{\text{snf}}$
+are estimated by .\todo{include more on noneq. and snf}
+Therefore, for each week, the total number of antineutrinos
+of a given energy emitted from each core can be computed,
+given knowledge of a particular AD's livetime.
+The total livetime of each AD for each week is computed
+(ignoring the muon veto, which was corrected for in
+\cref{eq:near_hall_bg_eff}).
+The total expected number of \nuebar{}'s produced by core $j$
+during the livetime of AD $i$ is therefore
+\begin{equation}
+    \phi_{ij}(E) = \sum_{\text{weeks }w}
+        \frac{W_{\text{th},w}}{\sum_q f_{q,w} e_q}
+        \sum_{\substack{\text{isotopes}\\q}}
+        f_{q,w} S_q(E) c_{q,w}^{\text{ne}} + S_w^{\text{snf}}.
+\end{equation}
 
+From these reactor fluxes, the flux fractions can be determined
+by comparing each core's individual flux to the total from all reactors,
+accounting for the $\nicefrac{1}{L^2}$ dependence of an isotropic emission
+and minor oscillation effects:
+\begin{equation}\label{eq:flux_fraction}
+    f_{ij}(E) = \frac{\phi_{ij}(E)P_\text{sur}(L_{ij}, E)/L_{ij}^2}{
+        \sum_l \phi_{il}(E)P_\text{sur}(L_{il}, E)/L_{il}^2
+    },
+\end{equation}
+where the sum in the denominator is over all cores
+Note that in principle the IBD cross section $\sigma_{IBD}(E)$
+should be included ($\phi \to \sigma_{IBD}\phi$),
+but this factor is common to all cores (and all ADs)
+and does not impact the ratio $f_{ij}$.
+The cross section was still required to determine the detector response matrix
+(\cref{sec:thu_toymc,subsec:reco_to_true_energy}).
 
+The number of IBDs observed at a given AD $i$ due to \nuebar{}'s from core $j$
+can be computed from the flux fraction $f_{ij}$ as
+\begin{equation}\label{eq:num_ibds_from_core_ij}
+    N_{ij}(E) = f_{ij}(E) \times N_i(E).
+\end{equation}
 
+\subsection{Extrapolating from near halls to far hall}
+\label{subsec:extrapolation}
 
+A prediction $F_{k,ij}(E)$ can be made of the number of expected IBDs
+at a far-hall AD $k$ due to reactor core $j$
+given an observation at a near-hall AD $i$.
+The ratio of the far-hall prediction to the near-hall observation
+is analogous to the ``near-far ratio'' (\cref{eq:near_far})
+that is the conceptual foundation
+for the Daya Bay experimental design.
+A distinct ratio exists for each combination of near AD, far AD and reactor core,
+for a total of $4 \times 4 \times 6 = 96$ ratios, also known as extrapolation factors
+$e_{k,ij}$:
+\begin{equation}\label{eq:extrapolation}
+    e_{k,ij} = \frac{\phi_{kj}(E)P_\text{sur}(L_{kj}, E)/L_{kj}^2}{
+        \phi_{ij}(E)P_\text{sur}(L_{ij}, E)/L_{ij}^2
+    }.
+\end{equation}
+Compared to \cref{eq:near_far}, the extrapolation factors
+do not account for differences in efficiency and number of target protons,
+since those corrections are made in other steps of the near-far projection.
+On the other hand, the extrapolation factors do include a dependence on
+differences in \nuebar{} exposure and detector livetime via the $\phi$ terms.
+These differences arise due to slightly different DAQ livetimes
+between the experimental halls
+and a reactor flux which changes over time.
 
+The predicted count of IBDs at far AD $k$ due to \nuebar{} from core $j$
+based on the observation at near AD $i$ can be computed as
+\begin{equation}
+    F_{k,ij}(E) = e_{k,ij}(E) \times N_{ij}(E).
+\end{equation}
+The number of IBDs at a far AD including contributions from all cores,
+but still based on a single near AD observation,
+is simply the sum over all cores,
+\begin{equation}
+    F_{k,i}(E) = \sum_j F_{k,ij}(E).
+\end{equation}
+
+\subsection{Estimating the far-hall reconstructed spectrum}
+\label{subsec:true_to_reco_farhall}
+
+Independent predicted values $F_{k,i}(E;E_\text{rec})$ are obtained
+for each bin of reconstructed prompt energy $E_\text{rec}$.
+This quantity, in full detail,
+is the predicted number of IBDs at far-hall AD $k$
+with true \nuebar{} energy $E$,
+based on the observed number of IBDs at near-hall AD $i$
+in reconstructed energy bin $E_\text{rec}$.
+Naively, the conversion from true to reconstructed energy
+should be performed by applying the detector response matrix
+from \cref{subsec:reco_to_true_energy}.
+However, the \nuebar{} energy spectrum was not obtained
+through inversion of the response matrix;
+the alternate, PDF-based method was used.
+With this method, the \nuebar{}'s do not model physical \nuebar{}'s with energy $E$.
+Rather, they represent fictitious entities which always
+lead to IBDs in the reconstructed energy bin $E_\text{rec}$,
+and which are parametrized by a quantity $E$ that determines
+the projection from near AD to far AD.
+Thus the predicted ``events'' represented by a particular
+$F_{k,i}(E;E_\text{rec})$ will all, by definition,
+manifest as IBDs in reconstructed energy bin $E_\text{rec}$,
+and the total expected number of IBDs in $E_\text{rec}$ becomes
+\begin{equation}
+    F_{k,i}(E_\text{rec}) = \sum_E F_{k,i}(E; E_\text{rec}),
+\end{equation}
+with the sum taken over the finely-binned true energy values
+used in the detector response matrix and PDFs.
+
+\subsection{Compare with far-hall values}
+\label{subsec:far_bg_eff}
+
+To compare the predicted number of IBDs $F_{k,i}(E_\text{rec})$
+at far AD $k$ due to near AD $i$
+to an actual observation at far AD $k$,
+the prediction must account for far-hall backgrounds and efficiencies.
+Additionally, there are multiple near-hall ADs
+and hence multiple predictions for a single far-hall observed value,
+but it is desirable to have a single prediction for each observation
+to make use of the statistical methods in \cref{sec:fitter}.
+
+To account for far-hall backgrounds and efficiencies,
+the reverse of \cref{eq:near_hall_bg_eff} is applied
+using the far-hall values for efficiencies and backgrounds:
+\begin{equation}
+    F_{\text{pred},k,i}(E_\text{rec}) = F_{k,i}(E_\text{rec})\left(
+        \varepsilon_{\mu,k}\varepsilon_{m,k}\varepsilon_{p,k}
+        \prod_n(1 + \nu_{n,k})
+    \right)
+    + N_{\text{bg},k}(E_\text{rec}).
+\end{equation}
+The resulting predicted numbers of IBD candidates
+are directly comparable to each other (i.e. based on different near ADs)
+and to the observed far-hall AD values.
+
+Finally, to extract a single predicted value $F_{\text{pred},k}$
+based on multiple near-hall AD observations,
+the predictions from the near ADs are averaged:
+\begin{equation}
+    F_{\text{pred},k}(E_\text{rec}) = \frac{1}{N_\text{near ADs}}
+    \sum_i F_{\text{pred},k,i}(E_\text{rec}).
+\end{equation}
+Since the near ADs have approximately the same exposure and livetime
+within a given data-taking period (6, 8, or 7-AD),
+an unweighted average is used.
 
 \section{Statistical methods}
 \label{sec:fitter}
