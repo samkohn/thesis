@@ -2,7 +2,7 @@
 *.fdb_latexmk
 *.fls
 *.log
-thesis.pdf
+thesis*.pdf
 tex/*.pdf
 *.synctex.gz
 *.out
