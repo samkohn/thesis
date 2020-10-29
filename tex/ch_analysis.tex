@@ -298,8 +298,10 @@ to the total from all reactors,
 accounting for the $\nicefrac{1}{L^2}$ dependence of isotropic \nuebar{} emission
 and minor oscillation effects:
 \begin{equation}\label{eq:flux_fraction}
-    f_{ik}(E) = \frac{\phi_{ik}(E)P_\text{sur}(L_{ik}, E)/L_{ik}^2}{
-        \sum_l \phi_{il}(E)P_\text{sur}(L_{il}, E)/L_{il}^2
+    f_{ik}(E;\thetaot,\dmee) = \frac{
+        \phi_{ik}(E) P_\text{sur} (L_{ik}, E;\thetaot,\dmee)/L_{ik}^2
+    }{
+        \sum_l \phi_{il}(E)P_\text{sur}(L_{il}, E;\thetaot,\dmee)/L_{il}^2
     },
 \end{equation}
 where the sum in the denominator is over all cores.
@@ -340,8 +342,9 @@ A distinct ratio exists for each combination of a near AD, a far AD and a reacto
 for a total of $4 \times 4 \times 6 = 96$ ratios, also known as extrapolation factors
 $e_{j,ik}$:
 \begin{equation}\label{eq:extrapolation}
-    e_{j,ik} = \frac{\phi_{jk}(E)P_\text{sur}(L_{jk}, E)/L_{jk}^2}{
-        \phi_{ik}(E)P_\text{sur}(L_{ik}, E)/L_{ik}^2
+    e_{j,ik}(E;\thetaot,\dmee) = \frac{
+        \phi_{jk}(E)P_\text{sur}(L_{jk}, E;\thetaot,\dmee)/L_{jk}^2}{
+        \phi_{ik}(E)P_\text{sur}(L_{ik}, E;\thetaot,\dmee)/L_{ik}^2
     }.
 \end{equation}
 Like the flux fractions, the extrapolation factors
@@ -359,13 +362,14 @@ and a reactor flux which changes over time.
 The predicted count of IBDs at far AD $j$ due to \nuebar{} from core $k$
 based on the observation at near AD $i$ (all in reconstructed energy bin $b$) can be computed as
 \begin{equation}
-    F_{j,ik}^{(b)}(E) = e_{j,ik}(E) \times N_{ik}^{(b)}(E).
+    F_{j,ik}^{(b)}(E;\thetaot,\dmee) = e_{j,ik}(E;\thetaot,\dmee) \times
+        N_{ik}^{(b)}(E;\thetaot,\dmee).
 \end{equation}
 The number of IBDs at a far AD including contributions from all cores,
 but still based on a single near AD observation,
 is simply the sum over all cores,
 \begin{equation}
-    F_{j,i}^{(b)}(E) = \sum_k F_{j,ik}^{(b)}(E).
+    F_{j,i}^{(b)}(E;\thetaot,\dmee) = \sum_k F_{j,ik}^{(b)}(E;\thetaot,\dmee).
 \end{equation}
 
 \subsection{Estimating the far-hall reconstructed spectrum}
@@ -394,7 +398,7 @@ $F_{j,i}^{(b)}(E)$ will all, by definition,
 manifest as IBDs in reconstructed energy bin $b$,
 and the total expected number of IBDs in bin $b$ becomes
 \begin{equation}
-    F_{j,i}^{(b)} = \sum_E F_{j,i}^{(b)}(E),
+    F_{j,i}^{(b)}(\thetaot,\dmee) = \sum_E F_{j,i}^{(b)}(E;\thetaot,\dmee),
 \end{equation}
 with the sum taken over the finely-binned true energy values
 used in the detector response matrix and PDFs.
@@ -414,7 +418,8 @@ to make use of the statistical methods in \cref{sec:fitter}.
 To account for backgrounds and efficiencies at the far ADs,
 the reverse of \cref{eq:near_hall_bg_eff} is applied:
 \begin{equation}\label{eq:far_hall_bg_eff}
-    F_{\text{pred},j,i}^{(b)} = F_{j,i}^{(b)}\left(
+    F_{\text{pred},j,i}^{(b)}(\thetaot;\dmee) = F_{j,i}^{(b)}(\thetaot;\dmee)
+    \left(
         \varepsilon_{\mu,j}\varepsilon_{m,j}\varepsilon_{p,j}
         \prod_n(1 + \nu_{n,j})
     \right)
@@ -442,10 +447,10 @@ The steps of the near-far projection procedure can be combined into a single for
 This formula gives the prediction for the number of observed events
 in far-hall AD $j$ based on a given near-hall AD:
 \begin{multline}\label{eq:full_prediction}
-    F_{\text{pred},j,i}^{(b)} =
+    F_{\text{pred},j,i}^{(b)}(\thetaot,\dmee) =
     N_{\text{bg},j}^{(b)}(1 + \eta_{B,j}) +
-    (N_{\text{cand},i}^{(b)}(1 + \eta_{N,i}^{(b)}) - N_{\text{bg},i}^{(b)}
-    (1 + \eta_{B,i})) \times \\
+    \left[N_{\text{cand},i}^{(b)}(1 + \eta_{N,i}^{(b)}) - N_{\text{bg},i}^{(b)}
+    (1 + \eta_{B,i})\right] \times \\
     \frac{
         \varepsilon_{\mu,j}\varepsilon_{m,j}\varepsilon_{p,j}
         \prod_n(1 + \nu_{n,j})
@@ -453,17 +458,19 @@ in far-hall AD $j$ based on a given near-hall AD:
         \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}\prod_n(1+\nu_{n,i})
     }
         \sum_{E,k}
-        e_{j,ik}(E) f_{ik}(E)
+        e_{j,ik}(E; \thetaot,\dmee) f_{ik}(E; \thetaot,\dmee)
         f_{\text{DRM},i}^{(b)}(E) \delta E.
 \end{multline}
 The expressions for $f_{ik}$ and $e_{j,ik}$ are omitted for simplicity,
 but can be found in \cref{eq:flux_fraction} and \cref{eq:extrapolation}, respectively.
-Note that the dependence on \thetaot{} and \dmee{} is hidden in those two terms.
+Note that the dependence on \thetaot{} and \dmee{} is contained in those two terms.
 As mentioned in previous sections and discussed in detail in \cref{sec:fitter},
 the various $\nu$ and $\eta$ terms represent nuisance parameters
 that quantify the uncertainties on various model inputs,
 including efficiencies, background estimates,
 and the statistical uncertainty of the near-hall AD observations.
+Additional reactor-related nuisance parameters in $f_{ik}$ and $e_{j,ik}$ are omitted
+for notational simplicity but are included in the actual prediction.
 
 \section{Statistical methods}
 \label{sec:fitter}
@@ -482,7 +489,7 @@ can be derived from Eq.~(39.17) of \cite{pdg} as:
 
 \begin{equation}
     \label{eq:chisquare_generic}
-    \chisquare = \sum_i \left(
+    \chisquare = \sum_{i=1}^{n_\text{obs}} \left(
         \frac{F_{\text{obs},i} - F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu})}
             {\sigma_{\text{obs},i}}
         \right)^2
@@ -519,6 +526,16 @@ remain in some sense small.
 Intuitively, a value of $\nu_j \neq 0$ represents
 a deviation of the physical parameter $A_j$ from its estimated value;
 large deviations penalize the \chisquare{} and so are discouraged.
+If the model is a good description of the data,
+and if all observations are independent,
+then the distribution of the best-fit (minimum) $\chi^2$
+(over repeated hypothetical experiments)
+follows a $\chi^2$ distribution with $n_\text{obs} - n_\eta$ degrees of freedom,
+where $n_\eta$ is the number of components of $\boldsymbol{\eta}$,
+that is, the number of free parameters in the fit.
+Note that introducing additional nuisance parameters
+paired with penalty terms (the second summation term in \cref{eq:chisquare_generic})
+does not change the number of degrees of freedom.
 
 For this analysis, each data point $F_{\text{obs},i}$
 is the number of observed events passing all event selection criteria
