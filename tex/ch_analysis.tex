@@ -229,24 +229,34 @@ A detector response matrix was created
 using the detailed Monte Carlo simulation (\cref{sec:thu_toymc})
 by binning simulated events based on the true incoming \nuebar{} energy
 and the reconstructed energy of the prompt event.
+The simulation was configured so that the incident \nuebar{} energy
+was drawn from the expected reactor \nuebar{} spectrum,
+weighted by the IBD cross section \todo{cite IBD cross section?}.
 For each bin of reconstructed energy,
 a probability function was constructed
 which described the spectrum of incident \nuebar{}'s
-attributable to the IBDs in that reconstructed energy bin.
+attributable to the IBDs in that reconstructed energy bin,
+given the results of the simulation.
+This probability was adjusted to account for
+oscillation effects and so depended on \thetaot{} and \dmee{}
+as well as the location of each AD relative to the reactor cores.
 The detector response matrix and the set of PDFs
-for both the rate-only and spectral measurements
+for both the rate-only and spectral measurements,
+without the oscillation corrections,
 are shown in \cref{fig:drm}.
 Although there are bins in both true and reconstructed energies,
 the true energy binning is dense enough ($\delta E_{\text{true}} = \SI{0.01}{\MeV}$)
 that the notation for continuous distributions is more convenient.
-A separate true \nuebar{} spectrum is computed
+
+Given the near-hall AD observations,
+a separate true \nuebar{} spectrum is computed
 for each bin of reconstructed energy for each near-hall AD $i$ as
 
 \begin{equation}
     N_i^{(b)}(E_{\text{true}}) = N_{\text{IBD},i}^{(b)}
-    \cdot f_{\text{DRM},i}^{(b)}(E_{\text{true}}) \delta E_{\text{true}},
+    \cdot f_{\text{DRM},i}^{(b)}(E_{\text{true}}; \thetaot, \dmee) \delta E_{\text{true}},
 \end{equation}
-where $f_{\text{DRM},i}^{(b)}(E_{\text{true}})$ is the probability density
+where $f_{\text{DRM},i}^{(b)}(E_{\text{true}}; \thetaot, \dmee)$ is the probability density
 that an event in reconstructed energy bin $b$
 of AD $i$
 was caused by a \nuebar{} with true energy $E_{\text{true}}$.
