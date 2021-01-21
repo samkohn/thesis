@@ -280,8 +280,9 @@ The values for the resolution parameters are \todo[inline]{Resolution parameter 
 
 It is critical that all ADs measure the same energy when observing the same process.
 If an AD is biased and returns a higher or lower energy than the others,
-then the IBD selection efficiency for that AD may be affected,
-which would result in a bias in the measurement of \thetaot.
+then the IBD selection efficiency and spectral shape for that AD
+may be different than at the other ADs,
+which would bias the measurement of \thetaot{} and \dmee{}.
 The identicalness of the energy measurements is known as the relative energy scale,
 and it is determined by measuring the same process in all ADs and comparing
 the reconstructed energy.
@@ -313,7 +314,12 @@ by comparing the energy of the neutron capture on H (nH)
 among the ADs.
 This technique is described in detail in \cref{subsec:delayed}
 and results in a less-constrained relative energy scale variation
-of \SI{+-0.5}{\percent}.
+of \SI{+-0.5}{\percent}, which is conservatively adopted
+as the energy scale uncertainty over the entire AD.
+The impact of this variation on the prompt energy cut efficiency
+and the prompt spectrum shape
+is studied using simulation
+as described in \cref{subsec:thu_toymc_prompt}.
 
 \subsection{Absolute energy scale}
 \label{subsec:abs_energyscale}

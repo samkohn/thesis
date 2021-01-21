@@ -185,7 +185,7 @@ and target proton effective efficiency
 $\varepsilon_{p,i}=\nicefrac{N_{p,\text{AD }i}}{N_{p,\text{EH1-AD1}}}$,
 are directly accounted for,
 and are listed in Table X.\todo{Tables with rates \& efficiencies}
-The remaining efficiencies, listed in Table Y,
+The remaining efficiencies, listed in \cref{tab:efficiencies},
 are estimated for a generic or average AD and assigned a relative uncertainty.
 Since the near-far projection is a relative measurement,
 only deviations of individual ADs' efficiencies from the estimated mean value
@@ -198,23 +198,74 @@ of AD $i$,
 the predicted number of IBDs is
 
 \begin{equation}\label{eq:near_hall_bg_eff}
-    N_{\text{IBD},i}^{(b)} =
+    N_{\text{IBD},i}^{(b)}(\thetaot, \dmee) =
     \frac{N_{\text{cand},i}^{(b)} - N_{\text{bg},i}^{(b)}}{
-        \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}\prod_n(1+\nu_{n,i})
+        \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}(1+\nu_{\varepsilon,i})
+        (1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot, \dmee))
+        (1 + \delta_{p,i}(\thetaot, \dmee))
     },
 \end{equation}
-where $\nu_n$ is the fractional relative difference between efficiency $n$
-and the estimated average value determined in \cref{ch:event_selection}.
-In practice the $\nu_n$'s are implemented as nuisance or pull parameters
+where $\nu_{\varepsilon,i}$ is the fractional relative difference from
+the estimated average value determined in \cref{ch:event_selection}
+for the detection efficiency from all sources except the prompt energy cut.
+The AD-to-AD differences in prompt energy cut efficiency arise from two effects:
+the distortion of the spectrum from oscillations,
+and the distortion of the spectrum from differences
+in relative energy scale.
+The dependence of the prompt energy cut efficiency on the oscillation parameters
+is represented by $\delta_{p,i}(\thetaot, \dmee)$ (\cref{subsec:prompt_energy}).
+The relative energy scale (\cref{subsec:rel_energyscale})
+is accounted for by a separate AD-dependent parameter $\nu_{\text{relE},i}$,
+the fractional deviation of a given AD's energy scale
+from the nominal value assumed for all ADs.
+The parameter $a_{\text{relE},i}^{(b)}(\thetaot, \dmee)$
+represents the fractional change to a given bin of reconstructed energy
+if the relative energy scale were to change by $1\sigma \sim \SI{+-0.5}{\percent}$.
+Its dependence on a given AD and the oscillation parameters is
+due to the baseline-dependent distortion of the IBD spectrum
+induced by neutrino oscillation.
+This effect is separate from the direct impact on prompt energy efficiency
+due to oscillations represented by $\delta_{p,i}$.
+The values for $a_{\text{relE},i}^{(b)}(\thetaot, \dmee)$ were determined using
+a simulated Monte Carlo dataset (\cref{subsec:thu_toymc_prompt}).
+The factor $(1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\dmee))$
+therefore accounts for changes in the prompt spectrum of
+both shape and normalization (i.e.\ prompt energy cut efficiency)
+due to differences in the relative energy scale between ADs.
+In practice $\nu_{\varepsilon,i}$ and $\nu_{\text{relE},i}$
+are implemented as nuisance or pull parameters
 so they can be adjusted during fitting.
-The resulting $N_{\text{IBD},i}^{(b)}$ represents
+
+The resulting $N_{\text{IBD},i}^{(b)}(\thetaot, \dmee)$ represents
 the estimated number of IBD interactions in AD $i$,
 reconstructed energy bin $b$,
 including those which occurred during muon or multiplicity vetoes,
 but not those which failed the prompt and delayed energy cuts
 or the coincidence distanct-time (DT) cut,
 corrected for AD-to-AD differences in all cut efficiencies
-and for differences in number of target protons (target mass).
+and for differences in number of target protons (target mass)
+and differences in energy scale between ADs (relative energy scale).
+Its dependence on the oscillation parameters at this point in the process
+is from the prompt energy efficiency
+and the relative energy scale uncertainty.
+
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{ll}
+        \hline
+        Efficiency source &  AD-uncorrelated uncertainty\\
+        \hline
+        Delayed energy cut & 121 (TODO)\\
+        Coincidence distance-time (DT) cut & 160 \\
+        etc. & \\
+        \hline
+        Relative energy scale uncertainty & 121 \\
+        \hline
+    \end{tabular}
+    \caption{Detection efficiencies\todo[inline]{Table of detection efficiencies}}
+    \label{tab:efficiencies}
+\end{table}
 
 
 \subsection{Extracting the true \texorpdfstring{\nuebar{}}{antineutrino} spectrum}
@@ -428,11 +479,10 @@ to make use of the statistical methods in \cref{sec:fitter}.
 To account for backgrounds and efficiencies at the far ADs,
 the reverse of \cref{eq:near_hall_bg_eff} is applied:
 \begin{equation}\label{eq:far_hall_bg_eff}
-    F_{\text{pred},j,i}^{(b)}(\thetaot;\dmee) = F_{j,i}^{(b)}(\thetaot;\dmee)
-    \left(
+    F_{\text{pred},j,i}^{(b)}(\thetaot,\dmee) = F_{j,i}^{(b)}(\thetaot,\dmee)
         \varepsilon_{\mu,j}\varepsilon_{m,j}\varepsilon_{p,j}
-        \prod_n(1 + \nu_{n,j})
-    \right)
+        (1 + \nu_{\varepsilon,j})
+        (1 + \nu_{\text{relE},j}\cdot a_{\text{relE},j}^{(b)}(\thetaot,\dmee))
     + N_{\text{bg},j}^{(b)}.
 \end{equation}
 The resulting predicted numbers of IBD candidates
@@ -458,18 +508,23 @@ This formula gives the prediction for the number of observed events
 in far-hall AD $j$ based on a given near-hall AD:
 \begin{multline}\label{eq:full_prediction}
     F_{\text{pred},j,i}^{(b)}(\thetaot,\dmee) =
-    N_{\text{bg},j}^{(b)}(1 + \eta_{B,j}) +
+    \bigg(
     \left[N_{\text{cand},i}^{(b)}(1 + \eta_{N,i}^{(b)}) - N_{\text{bg},i}^{(b)}
-    (1 + \eta_{B,i})\right] \times \\
-    \frac{
+    (1 + \eta_{B,i})\right]\bigg. \\
+    \times \frac{
         \varepsilon_{\mu,j}\varepsilon_{m,j}\varepsilon_{p,j}
-        \prod_n(1 + \nu_{n,j})
+        (1 + \nu_{\varepsilon,j})
+        (1 + \nu_{\text{relE},j}\cdot a_{\text{relE},j}^{(b)}(\thetaot,\dmee))
     }{
-        \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}\prod_n(1+\nu_{n,i})
-    }
-        \sum_{E,k}
+        \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}
+        (1+\nu_{\varepsilon,i})
+        (1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\dmee))
+    } \\
+    \bigg.
+    \times \sum_{E,k}
         e_{j,ik}(E; \thetaot,\dmee) f_{ik}(E; \thetaot,\dmee)
-        f_{\text{DRM},i}^{(b)}(E) \delta E.
+        f_{\text{DRM},i}^{(b)}(E) \delta E \bigg) \\
+    + N_{\text{bg},j}^{(b)}(1 + \eta_{B,j})
 \end{multline}
 The expressions for $f_{ik}$ and $e_{j,ik}$ are omitted for simplicity,
 but can be found in \cref{eq:flux_fraction} and \cref{eq:extrapolation}, respectively.
