@@ -166,17 +166,55 @@ which is \SI{100}{\percent} \cite{muonsystem2015}.
 The muon veto efficiency over time for the near and far halls
 is shown in \cref{fig:veto_eff} for each data run.
 
+The effective muon rate $R_\mu$ is computed for each run
+by counting the number of muon veto windows
+after combining overlapping windows, and dividing by the muon-corrected
+livetime $\varepsilon_\mu t_{\text{DAQ}}$.
+Overlapping windows are combined and counted as a single ``muon event.''
+This effective quantity is useful
+because when computing the counting statistics of single and coincident events
+(\cref{sec:acc}),
+the relevant metrics are the time until the next veto window begins
+and the time since the last veto window ended,
+neither of which depends on the length of a veto window
+or the number of overlapping muon vetos.
+The following scenarios can lead to overlapping muon veto windows:
+\begin{itemize}
+    \item A single physical muon can create multiple muon events
+        that satisfy up to three of the four muon criteria,
+        if that muon creates signals in the inner and outer water shields,
+        and also enters an AD and deposits at least \SI{20}{\mev} worth of scintillation light.
+        Such a muon would be an inner water shield muon,
+        an outer water shield muon, and an AD
+        (or showering) muon.
+    \item Multiple muons can randomly occur in quick succession,
+        such that the second muon occurs within the veto window of the first.
+    \item One muon could occur shortly after the end of a previous veto window,
+        so that the pre-muon veto of the later muon overlaps with the
+        post-muon veto of the earlier one.
+        Any candidate event occuring between the two muons would be vetoed.
+\end{itemize}
+The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}
+
 \begin{figure}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_eff_near_bydate}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_eff_far_bydate}
     \caption{
         Muon veto efficiency $\varepsilon_\mu$ over time for
-        the near halls (top) and far hall (bottom).
+        the near halls (left) and far hall (right).
         Each data point represents one data run.
     }
     \label{fig:veto_eff}
 \end{figure}
 
+\begin{figure}
+    \missingfigure{Effective muon rate}
+    \caption{
+        Effective muon rate $R_\mu$ over time for the near halls and far hall.
+        Each data point represents one data run.
+    }
+    \label{fig:muon_rate}
+\end{figure}
 
 %\section{Initial data preparation}
 %\label{sec:dataprep}
@@ -387,7 +425,7 @@ The efficiency of this multiplicity cut is derived in \cref{ap:singlesformula} a
     \end{split}
 \end{align}
 where $R_s$ is the rate of uncorrelated events,
-$R_\mu$ is the number of muon veto windows divided by the muon-corrected livetime,
+$R_\mu$ is the effective muon rate,
 and \tc{} is the length of the coincidence window, \SI{1499}{\us}.
 The multiplicity efficiency over time is shown in \cref{fig:mult_eff}.
 More concerning is when two uncorrelated events
@@ -515,7 +553,9 @@ the vast majority of remaining AD events are caused by uncorrelated
 natural radioactive decays and are commonly known as ``singles,''
 although as will be shown shortly, this name is misleading,
 and a more appropriate name is ``uncorrelated events.''
-These events occur at approximately \SI{19}{\hertz} in each AD and,
+These events occur at approximately \SI{19}{\hertz} in each AD
+(for energies above \SI{1.5}{\MeV})
+and,
 because they are uncorrelated, their groupings in time follow Poisson statistics.
 In particular, there is a nonzero probability that
 two of these uncorrelated ``single'' events will occur within
@@ -546,7 +586,7 @@ the rate of uncorrelated events in the AD, again better known
 as the ``singles rate,'' for each individual data run.
 The singles rate is computed by first measuring the rate of
 \fold{1} coincidences in each run
-(with the prompt energy bound of \SIrange{1.5}{12}{\mev}).
+(with the prompt energy bound of \SIrange{1.5}{12}{\mev} from \cref{subsec:prompt_energy}).
 Given that rate, the true underlying rate of uncorrelated events can be
 computed by numerically solving the following formula
 (derived in \cref{ap:singlesformula}) for $R_s$:
@@ -578,49 +618,21 @@ computed by numerically solving the following formula
 In this formula, \tc{} represents the actual duration of the coincidence window,
 which technically begins \SI{1}{\micro\second} after the event,
 meaning that a value of $\tc=\SI{1499}{\micro\second}$ should be used (\cref{sec:daq}).
-This formula is valid under the assumption that all \fold{1}
-coincidences are formed from truly uncorrelated events.
-Since the rate of correlated events like IBDs and other backgrounds
-is \SI{<0.01}{\percent} the rate of correlated events,
-this is an appropriate approximation to make.
+This formula is valid under the assumption that all
+events in the data stream are truly uncorrelated in time.
+Residual flashers are anti-correlated in time
+but are vetoed from the data stream (\cref{sec:flashers}).
+Correlated events (both IBDs and other backgrounds)
+have a rate much smaller than the uncorrelated event rate
+($\nicefrac{R_{corr}}{R_s} \sim \num{5e-3}$)
+and have a negligible impact on the probability of a \fold{1} coincidence.
+\todo{Verify impact on R\_s}
+
 The terms in brackets together represent the probability
 that any given event does not fall in another event's coincidence window.
 The leading term is simply the uncorrelated event rate $R_s$ times
 the Poisson probability that no other uncorrelated event will occur
 inside the given coincidence window.
-The muon rate in this equation, $R_\mu$, is computed
-by counting the number of muon veto windows in each run
-after combining overlapping windows, and dividing by the muon-corrected
-livetime $\varepsilon_\mu t_{\text{DAQ}}$.
-Overlapping windows are combined and counted as a single ``muon event''
-because when computing the counting statistics of single and coincident events,
-the relevant quantities are the time until the next veto window begins
-and the time since the last veto window ended,
-neither of which changes if a given veto window
-is composed of multiple muons.
-
-The following scenarios can lead to overlapping muon veto windows.
-First, a single physical muon can create multiple muon events
-that satisfy up to three of the four muon criteria,
-if that muon creates signals in the inner and outer water shields,
-and also enters an AD and deposits at least \SI{20}{\mev} worth of scintillation light.
-Such a muon would then be an inner water shield, outer water shield, and AD
-(or showering) muon.
-Second, multiple muons can occur in quick succession,
-such that the second muon occurs within the veto window of the first.
-Lastly, one muon could occur shortly after the end of a previous veto window,
-so that the pre-muon veto of the later muon overlaps with the
-post-muon veto of the earlier one.
-For example, consider two water shield muons occuring within \SI{1900}{\micro\second}.
-Taking into account the implicit pre-muon veto
-and given that $\tc=\SI{1500}{\micro\second}$,
-any event occuring between those two muons will never be
-a part of any coincidence group, not even a \fold{1} group.
-Any event occuring in the first \SI{400}{\micro\second} would be vetoed outright
-by the water shield muon veto.
-And any event occuring in the latter \SI{1500}{\micro\second} would open a new
-coincidence window, but that window would contain the second muon,
-thus vetoing the original event.
 
 \begin{figure}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/singles_near_bydate}
@@ -709,7 +721,6 @@ which is then used to actually perform the background subtraction
 on the IBD candidates data set.
 The synthetic accidental coincidence samples are formed for each run
 by pairing up isolated events.
-\todo{Update based on $\varepsilon_{\text{DT,\,acc}}$ uncertainty requirements}
 In particular, each isolated event is assigned an index in time order,
 from $0$ to $N_{\text{isolated}}$.
 Then each event $i$ from the first half is paired up with
@@ -726,8 +737,15 @@ of $\tc=\SI{1.5}{\milli\second}$.
 From this synthetic accidental coincidence sample, $\varepsilon_{\text{DT,\,acc}}$,
 the fraction of accidental \fold{2} coincidences which pass the distance-time (DT) cut,
 can be computed.
-And a prompt-delayed energy spectrum can be computed that only includes
-synthetic accidental events which pass the DT cut,
+At this point in the event selection procedure,
+the prompt energy cut is known and fixed at \SIrange{1.5}{12}{\MeV}
+but the delayed energy cut is still undetermined (\cref{sec:energy_cuts}).
+After the delayed energy cut is extracted, $\varepsilon_{\text{total,\,acc}}$,
+the fraction of accidental \fold{2} coincidences
+which pass the full IBD selection including energy cuts,
+is computed.
+A prompt-delayed energy spectrum was computed that only includes
+synthetic accidental events which passed the DT cut,
 as shown in \cref{fig:acc_sample}.
 \adgrid[0.22\textheight]{
     Prompt-delayed spectra of the synthetic accidentals sample
@@ -741,15 +759,17 @@ as shown in \cref{fig:acc_sample}.
 The resulting prompt-delayed energy spectrum of synthetic accidental events
 can then be subtracted
 from the prompt-delayed spectrum measured from real data.
-For each run, the expected number of accidental events that pass the DT cut is
+For each run, the expected number of accidental coincidences
+with prompt and delayed energies between \SIlist{1.5;12}{\MeV}
+that pass the DT cut is
 
 \begin{equation}
-    N_{\text{acc}} = R_{\text{\fold{2}}} \times t_{\text{muon-corrected}}
+    N_{\text{acc,\,loose}} = R_{\text{\fold{2}}} \times t_{\text{muon-corrected}}
         \times \varepsilon_{\text{DT,\,acc}}
-    \label{eq:nacc}
+    \label{eq:nacc_loose}
 \end{equation}
 The synthetic accidentals prompt-delayed spectrum, represented as a histogram,
-is scaled so that the integral is $N_{\text{acc}}$.
+is scaled so that the integral is $N_{\text{acc,\,loose}}$.
 Then the histogram can be subtracted bin-by-bin from the corresponding histogram
 representing the actual \fold{2} coincidence data sample.
 The subtracted histograms are shown in \cref{fig:acc_sub_spectra}.
@@ -764,46 +784,89 @@ are used in \cref{subsec:delayed} to determine the delayed energy cut bounds.
 }{fig:acc_sub_spectra}{ch_background/sub_energy}
 
 The scale factor for the accidentals spectrum histogram,
-$\nicefrac{N_{\text{acc}}}{N_{\text{acc,\,synthetic,\,DT}}}$,
+$\frac{N_{\text{acc,\,loose}}}{N_{\text{isolated}}/2}$,
 can be used to create histograms for other accidentals-subtracted quantities,
 such as coincidence distance and DT, as well as 2D histograms of
 those quantities' distributions with respect to prompt and delayed energy.
 The accidentals-subtracted histogram of DT versus delayed energy
 was used to compute the efficiency of the DT cut for IBDs in \cref{sec:DT_cut}.
 
-The uncertainty assigned for the accidentals subtraction
-is derived from two sources: $N_{\text{acc}}$ (\cref{eq:nacc}),
-and $N_{\text{acc,\,synthetic,\,DT}}$.
-The first of these is ultimately derived from
-two measured statistical uncertainties,
-on $R_{\text{\fold{1}}}$ and $\varepsilon_{\text{DT,\,acc}}$;
-the second is itself a measured statistical uncertainty.
-For a typical run that lasts 24 hours,
-the statistical error on $R_{\text{\fold{1}}}$ is \SI{0.08}{\percent}.
-By computing the derivative $\frac{\partial R_s}{\partial R_{\text{\fold{1}}}}$
-to be $1.1$ for typical parameters in all 3 experimental halls,
-a typical error for $R_s$ of \SI{0.088}{\percent} is obtained.
-$R_s$ and $R_{\text{\fold{1}}}$ are almost \SI{100}{\percent} correlated,
-so, referencing the first line of \cref{eq:racc},
-the error on $R_{\text{\fold{2}}}$ is the sum of the errors
-of $R_s$ and $R_{\text{\fold{1}}}$,
-or, for the typical values cited above, \SI{0.168}{\percent}.
-This value can be combined with the error on $\varepsilon_{\text{DT,\,acc}}$
-to obtain the uncertainty on the number of predicted accidental coincidences
-contaminating each run's data, $N_{\text{acc}}$.
+The total expected number of accidental events
+that pass the full IBD selection is computed in a similar manner:
 
-The uncertainty on $\varepsilon_{\text{DT,\,acc}}$ is based on
-the statistical uncertainty of the number of synthetic accidental events
-which pass the DT cut given the fixed total number of synthetic accidentals:
 \begin{equation}
-    \frac{\delta\varepsilon_{\text{DT,\,acc}}}{\varepsilon_{\text{DT,\,acc}}}
-    = \frac{\delta N_{\text{acc,\,synthetic,\,DT}}}{
-        N_{\text{acc,\,synthetic,\,DT}}
-    }.
+    N_{\text{acc}} = R_{\text{\fold{2}}} \times t_{\text{muon-corrected}}
+        \times \varepsilon_{\text{total,\,acc}}
+    \label{eq:nacc}
 \end{equation}
-Most Daya Bay runs have $N_{\text{acc,\,synthetic,\,DT}}\sim10^3-10^4$
-so the uncertainty on $\varepsilon_{\text{DT,\,acc}}$ is approximately \SI{1}{\percent}.
-\todo{Upgrade $\varepsilon_{\text{DT,\,acc}}$ to have a better uncertainty}
+
+The uncertainty assigned for the accidentals subtraction
+is dominated by the systematic uncertainty in the subtraction procedure.
+Studies were performed to constrain the possible deviation
+of the true accidentals rate
+from the rate produced by the above procedure.
+Such an error would affect the IBD rates at the near and far ADs differently,
+leading to a bias in \thetaot{}.
+In fact, using the accidental and IBD event counts in Table X\todo{Event counts table},
+it can be shown that a bias of $b\si{\percent}$ in $N_{\text{acc}}$
+yields a bias in $N_{\text{IBD}}$ of $-1.2b\si{\percent}$ at the far site
+but only $-0.14b\si{\percent}$ at the near sites.
+
+The accuracy of the method used to compute $R_{s}$,
+the primary input to $R_{\text{\fold{2}}}$,
+was examined using the Toy Monte Carlo described in \cref{sec:toymc}.
+The results of the simulation study verified that
+the method extracts $R_s$ with high accuracy, at worst \SI{0.02}{\percent}.
+In particular, the treatment of the small correlated event rate as negligible
+is validated as an appropriate approximation.
+
+The assumption of a constant $R_s$ within a given run was also tested.
+The validity of this assumption is enhanced by the near-linearity of
+the dependence of $R_{\text{\fold{2}}}$ on $R_s$;
+if the relation were purely linear,
+then the average of $R_s$ within a run could be used to compute
+the averate $R_{\text{\fold{2}}}$ since averaging is a linear transformation.
+Hourly singles rates were computed, and deviations of up to \SI{4}{\percent}
+were found within runs.
+For a typical value of $R_s$ of \SI{18}{\Hz},
+and the worst-case scenario of half the run at a \SI{4}{\percent} excess
+and half the run at a \SI{4}{\percent} deficit,
+the impact on $R_{\text{\fold{2}}}$ is \SI{\sim0.04}{\percent}.
+
+The method of generating a synthetic accidentals sample
+by pairing up isolated single events was examined using actual data.
+The specific pairing algorithm, which pairs events from the first half of a run
+with events from the second half of a run,
+could create a synthetic sample not representative of true accidentals
+if the properties of uncorrelated events changed significantly during a run.
+An alternate pairing algorithm was designed to pair isolated events
+chosen at random (without replacement) from the set of singles from a given run.
+Values of $\varepsilon_{\text{DT,\,acc}}$ were extracted from each pairing algorithm.
+The average deviation between the two algorithms' values was within \SI{0.15}{\percent}.
+
+Based on these studies, the run-correlated, AD-correlated systematic uncertainty
+due to the procedure for determining the number of accidental events $N_{\text{acc}}$
+was taken to be \SI{0.15}{\percent}.
+The dominant source of uncertainty was the use of the pairing algorithm
+to determine $\varepsilon_{\text{DT,\,acc}}$ and $\varepsilon_{\text{total,\,acc}}$.
+
+The uncertainty for $N_{\text{acc}}$ due to the finite statistics
+of the synthetic accidentals sample
+and the Poisson fluctuations in counting $N_{\text{\fold{1}}}$
+(to extract $R_s$)
+was estimated based on a typical 24-hour run.
+For such a run, the uncertainty of $R_s$ was \SI{0.09}{\percent},
+and the statistical uncertainty of $\varepsilon_{\text{total,\,acc}}$
+was \SI{2.4}{\percent}.
+These relative uncertainties are combined to obtain
+the relative uncertainty on $N_{\text{acc}}$ for a given run of \SI{2.6}{\percent}.
+When combining runs over the data-taking period,
+the uncertainties are combined in quadrature,
+equivalent to suppressing the relative uncertainty by a factor of
+$\frac{1}{\sqrt{N_{\text{days}}}} \sim 40$.
+Thus the final statistical uncertainty on $N_{\text{acc}}$ is \SI{0.07}{\percent}.
+The correlated systematic uncertainty and the uncorrelated statistical uncertainty
+were implemented separately during the fit procedure described in \cref{ch:analysis}.
 
 The events represented in the accidentals-subtracted histograms
 are all correlated pairs
