@@ -202,7 +202,6 @@ the predicted number of IBDs is
     \frac{N_{\text{cand},i}^{(b)} - N_{\text{bg},i}^{(b)}}{
         \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}(1+\nu_{\varepsilon,i})
         (1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot, \dmee))
-        (1 + \delta_{p,i}(\thetaot, \dmee))
     },
 \end{equation}
 where $\nu_{\varepsilon,i}$ is the fractional relative difference from
@@ -212,8 +211,6 @@ The AD-to-AD differences in prompt energy cut efficiency arise from two effects:
 the distortion of the spectrum from oscillations,
 and the distortion of the spectrum from differences
 in relative energy scale.
-The dependence of the prompt energy cut efficiency on the oscillation parameters
-is represented by $\delta_{p,i}(\thetaot, \dmee)$ (\cref{subsec:prompt_energy}).
 The relative energy scale (\cref{subsec:rel_energyscale})
 is accounted for by a separate AD-dependent parameter $\nu_{\text{relE},i}$,
 the fractional deviation of a given AD's energy scale
@@ -224,8 +221,6 @@ if the relative energy scale were to change by $1\sigma \sim \SI{+-0.5}{\percent
 Its dependence on a given AD and the oscillation parameters is
 due to the baseline-dependent distortion of the IBD spectrum
 induced by neutrino oscillation.
-This effect is separate from the direct impact on prompt energy efficiency
-due to oscillations represented by $\delta_{p,i}$.
 The values for $a_{\text{relE},i}^{(b)}(\thetaot, \dmee)$ were determined using
 a simulated Monte Carlo dataset (\cref{subsec:thu_toymc_prompt}).
 The factor $(1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\dmee))$
@@ -235,6 +230,14 @@ due to differences in the relative energy scale between ADs.
 In practice $\nu_{\varepsilon,i}$ and $\nu_{\text{relE},i}$
 are implemented as nuisance or pull parameters
 so they can be adjusted during fitting.
+The dependence of prompt energy efficiency on oscillation parameters
+discussed in \cref{subsec:prompt_energy}
+should be applied at this stage for consistency.
+However, the effect for a given AD, represented as $\delta_{p,ik}(\thetaot, \dmee)$,
+depends on contributions from all 6 reactor cores,
+so the inclusion of these factors is postponed
+until they can be applied to each reactor core's contributions
+individually in \cref{subsec:flux_fraction}.
 
 The resulting $N_{\text{IBD},i}^{(b)}(\thetaot, \dmee)$ represents
 the estimated number of IBD interactions in AD $i$,
@@ -385,8 +388,17 @@ impact the prediction.
 The number of IBDs observed at a given AD $i$ due to \nuebar{}'s from core $k$
 can be computed from the flux fraction $f_{ik}$ as
 \begin{equation}\label{eq:num_ibds_from_core_ij}
-    N_{ik}^{(b)}(E) = f_{ik}(E) \times N_i^{(b)}(E).
+    N_{ik}^{(b)}(E) = \frac{
+        f_{ik}(E) \times N_i^{(b)}(E).
+    }{
+        1 + \delta_{p,ik}(\thetaot, \dmee)
+    },
 \end{equation}
+where the denominator is (belatedly) accounting for the dependence
+of the prompt energy efficiency on the \nuebar{} oscillations
+between core $k$ and AD $i$,
+as mentioned in \cref{subsec:near_bg_eff}
+and described in detail in \cref{subsec:prompt_energy}.
 
 \subsection{Extrapolating from near halls to far hall}
 \label{subsec:extrapolation}
@@ -422,10 +434,15 @@ and a reactor flux which changes over time.
 
 The predicted count of IBDs at far AD $j$ due to \nuebar{} from core $k$
 based on the observation at near AD $i$ (all in reconstructed energy bin $b$) can be computed as
-\begin{equation}
+\begin{equation}\label{eq:far_true_core_pred}
     F_{j,ik}^{(b)}(E;\thetaot,\dmee) = e_{j,ik}(E;\thetaot,\dmee) \times
-        N_{ik}^{(b)}(E;\thetaot,\dmee).
+        N_{ik}^{(b)}(E;\thetaot,\dmee) \times
+        (1 + \delta_{p,jk}(\thetaot, \dmee)).
 \end{equation}
+The prompt efficiency correction factor $\delta_{p,jk}$ is included
+to correct for oscillation effects between core $k$ and AD $j$,
+and is described in detail in \cref{subsec:prompt_energy}.
+
 The number of IBDs at a far AD including contributions from all cores,
 but still based on a single near AD observation,
 is simply the sum over all cores,
@@ -485,20 +502,14 @@ the reverse of \cref{eq:near_hall_bg_eff} is applied:
         (1 + \nu_{\text{relE},j}\cdot a_{\text{relE},j}^{(b)}(\thetaot,\dmee))
     + N_{\text{bg},j}^{(b)}.
 \end{equation}
+The prompt energy efficiency's dependence on oscillation parameters
+was accounted for in \cref{eq:far_true_core_pred},
+and the remainder of the prompt energy efficiency difference between ADs
+is due to relative energy scale differences,
+represented by the $a_{\text{relE},j}^{(b)}$ parameters.
 The resulting predicted numbers of IBD candidates
 are directly comparable to each other (i.e. based on different near ADs)
 and to the observed far-hall AD values.
-
-%Finally, to extract a single predicted value $F_{\text{pred},k}$
-%based on multiple near-hall AD observations,
-%the predictions from the near ADs are averaged:
-%\begin{equation}
-    %F_{\text{pred},j}^{(b)} = \frac{1}{N_\text{near ADs}}
-        %\sum_i F_{\text{pred},j,i}^{(b)}.
-%\end{equation}
-%Since the near ADs have approximately the same exposure and livetime
-%within a given data-taking period (6, 8, or 7-AD),
-%an unweighted average is used.
 
 \subsection{Summary of near-far projection}
 \label{subsec:model_summary}
@@ -508,7 +519,7 @@ This formula gives the prediction for the number of observed events
 in far-hall AD $j$ based on a given near-hall AD:
 \begin{multline}\label{eq:full_prediction}
     F_{\text{pred},j,i}^{(b)}(\thetaot,\dmee) =
-    \bigg(
+    \Bigg(
     \left[N_{\text{cand},i}^{(b)}(1 + \eta_{N,i}^{(b)}) - N_{\text{bg},i}^{(b)}
     (1 + \eta_{B,i})\right]\bigg. \\
     \times \frac{
@@ -521,9 +532,14 @@ in far-hall AD $j$ based on a given near-hall AD:
         (1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\dmee))
     } \\
     \bigg.
-    \times \sum_{E,k}
+    \times \sum_{E,k} \big[
         e_{j,ik}(E; \thetaot,\dmee) f_{ik}(E; \thetaot,\dmee)
-        f_{\text{DRM},i}^{(b)}(E) \delta E \bigg) \\
+        f_{\text{DRM},i}^{(b)}(E) \delta E
+    \times \frac{
+        1 + \delta_{p,jk}(\thetaot, \dmee)
+    }{
+        1 + \delta_{p,ik}(\thetaot, \dmee)
+    } \big] \Bigg) \\
     + N_{\text{bg},j}^{(b)}(1 + \eta_{B,j})
 \end{multline}
 The expressions for $f_{ik}$ and $e_{j,ik}$ are omitted for simplicity,
