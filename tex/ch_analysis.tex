@@ -720,10 +720,25 @@ The full \chisquare{} expression used in this analysis is:
     \end{split}
 \end{align}
 
-Fitting software was implemented using the SciPy package's
-$\mathtt{optimize.least\_squares}$ function,
-which relies on the Trust Region Reflective algorithm \todo{cite SciPy and TRR alg.}
-to perform the least-squares fit.
+The fitter was implemented in software using the
+\texttt{optimize.least\_squares} function from the SciPy Python package,
+which relies on the Trust Region Reflective algorithm
+to perform the \chisquare{} minimization \cite{scipy,trf_minimizer}.
+This minimizer relies on the cost function (\chisquare{})
+being a sum of squared terms,
+and expects the results of each trial
+to be an array of terms to be squared and summed.
+The Poisson maximum-likelihood \chisquare{} expression
+is not naturally represented as a sum of squares,
+but it can be trivially rewritten to comply with this requirement
+since each summand in the \chisquare{} expression of the form
+$F_\text{pred}-F_\text{obs}+F_\text{obs}\ln\frac{F_\text{obs}}{F_\text{pred}}$
+is always greater than or equal to 0.
+On occasion, this expression evaluated to a slightly-negative value
+due to the finite precision of floating-point arithmetic.
+These cases were handled by assigning the expression the value 0,
+an approximation which was accurate to better than one part in $10^{10}$.
+
 
 %If the predictions based on different near-hall AD observations agree,
 %it can be concluded that the effects due to reactor modeling
