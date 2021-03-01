@@ -565,25 +565,34 @@ Variants of this technique have been used both in previous Daya Bay nH analyses
 and in other Daya Bay results including nGd \thetaot{} analyses
 and absolute reactor \nuebar{} flux and spectral measurements
 \cite{nh2016,ngd2016,reactorflux2017,extractionreactorflux2019}.
+
+The fit procedure compared the observed number of \nuebar{} candidates
+in the 4 ADs at the far site to the prediction
+given the near sites' observations and a particular \thetaot{} and \dmee{}.
+Since the observed values represent counts,
+a \chisquare{} expression using the maximum likelihood expression
+for Poisson-distributed data was used.
 The generic structure of such \chisquare{} expressions
-can be derived from Eq.~(39.17) of \cite{pdg} as:
+can be derived from Eqs.~(39.16) and (39.17) of \cite{pdg} as:
 
 \begin{equation}
     \label{eq:chisquare_generic}
-    \chisquare = \sum_{i=1}^{n_\text{obs}} \left(
-        \frac{F_{\text{obs},i} - F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu})}
-            {\sigma_{\text{obs},i}}
-        \right)^2
+    \chisquare(\boldsymbol{\eta};\boldsymbol{\nu}) = 2\sum_{i=1}^{n} \left(
+        F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu}) - F_{\text{obs},i}
+        + F_{\text{obs},i}\ln
+        \frac{F_{\text{obs},i}}{F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu})}
+        \right)
         +
         \sum_j \frac{\nu_j^2}{\tilde{\sigma}_{\nu,j}^2},
 \end{equation}
-where $F_{\text{obs},i}$ is the observed value for data point $i$
-with uncertainty $\sigma_{\text{obs},i}$;
-and $F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu})$
+where $F_{\text{obs},i}$ is the observed value for data point $i$;
+$F_{\text{pred},i}$
 is the model prediction for data point $i$
 which depends on $\boldsymbol{\eta}$, the model parameters of interest,
 and $\boldsymbol{\nu}=(\nu_1, \ldots, \nu_m)$,
-the model nuisance parameters.
+the model nuisance parameters;
+and there are $n$ total observations.
+
 In this formulation, the nuisance parameters are dimensionless,
 and in the model they each accompany a paired quantity $A_j$,
 which intuitively represents the physically-relevant quantity
@@ -603,7 +612,7 @@ The values of $\boldsymbol{\eta}$ and $\boldsymbol{\nu}$
 which minimize \cref{eq:chisquare_generic}
 provide the best-fit parameters of interest $\eta_i$,
 while ensuring that the nuisance parameters $\nu_j$
-remain in some sense small.
+remain small compared to their uncertainties.
 Intuitively, a value of $\nu_j \neq 0$ represents
 a deviation of the physical parameter $A_j$ from its estimated value;
 large deviations penalize the \chisquare{} and so are discouraged.
@@ -618,68 +627,96 @@ Note that introducing additional nuisance parameters
 paired with penalty terms (the second summation term in \cref{eq:chisquare_generic})
 does not change the number of degrees of freedom.
 
-For this analysis, each data point $F_{\text{obs},i}$
-is the number of observed events passing all event selection criteria
-(\cref{ch:event_selection})
-in a particular far-hall antineutrino detector $d$ (in EH3),
-during a particular data-taking period $k$ (6-AD, 8-AD or 7-AD).
-Since EH3-AD4 was not operative during the 6-AD period,
-there are $3 + 4 + 4 = 11$ observed data points:\todo{energy bins?}
+\subsection{Fitter specification}
+\label{subsec:fitter_specification}
 
+For this analysis, each data point $F_{\text{obs},i}$
+was the number of observed events passing all event selection criteria
+(\cref{ch:event_selection})
+in a particular far-hall antineutrino detector $d$ (in EH3).
+There are thus 4 observed data points:
 \begin{equation}
     \mathbf{F}_{\text{obs}} =
-    (N^{\text{obs}}_{\text{6-AD, EH3-AD1}}, \ldots, N^{\text{obs}}_{\text{7-AD, EH3-AD4}})
+    (F^{\text{obs}}_{\text{EH3-AD1}},
+    F^{\text{obs}}_{\text{EH3-AD2}},
+    F^{\text{obs}}_{\text{EH3-AD3}},
+    F^{\text{obs}}_{\text{EH3-AD4}})
 \end{equation}
 The model prediction
 $\mathbf{F}_{\text{pred}}(\boldsymbol{\eta};\boldsymbol{\nu})$
 of the event counts for the far-hall ADs,
-described in depth in the following section,
+described in \cref{sec:prediction},
 depends on the observed event rates at the near halls (EH1 and EH2),
 reactor power and fission fractions,
 differing background rates for each AD,
 conversion between reconstructed prompt energy and true \nuebar{} energy,
 detection efficiencies,
 and, of course, neutrino oscillation parameters.
-The $\boldsymbol{\eta}$ vector contains the neutrino oscillation parameters.
-The remaining dependencies are assigned to nuisance parameters
+The $\boldsymbol{\eta}$ vector contains the single parameter of interest:
+the neutrino oscillation parameter \thetaot{}.
+The observations are not binned by energy,
+thus this analysis cannot be used to extract
+a precise measurement of \dmee{}.
+An input value of $\dmee = \SI{2.522(70)e-3}{\eV\squared}$
+was supplied from \cite{ngd2018}.
+The uncertainty in \dmee{} was implemented
+as a nuisance parameter as described below.
+
+The remaining model parameters
+are assigned to nuisance parameters
 to account for uncertainties in the values used in the prediction.
 In particular,
 
 \begin{align}
     \begin{split}
-        \boldsymbol{\eta} &= (\thetaot, \dmee) \\
+        \boldsymbol{\eta} &= (\thetaot) \\
         \boldsymbol{\nu} &= (
             \boldsymbol{\alpha},
             \boldsymbol{\epsilon},
+            \boldsymbol{\eta_{\text{relE}}},
             \boldsymbol{\eta_B},
-            \boldsymbol{\eta_N}),
+            \boldsymbol{\eta_N},
+            \boldsymbol{\eta_{\text{osc}}}),
     \end{split}
 \end{align}
 where the nuisance parameters are collected into smaller vectors.
 The vector $\boldsymbol{\alpha}$ represents reactor flux uncertainties,
-$\boldsymbol{\epsilon}$ represents detection efficiency uncertainties,
+$\boldsymbol{\epsilon}$ represents detection efficiency uncertainties
+(except for those induced by the relative energy scale uncertainty),
+$\boldsymbol{\eta_{\text{relE}}}$ represents the relative energy scale uncertainty,
 $\boldsymbol{\eta_B}$ represents background rate uncertainties,
-and $\boldsymbol{\eta_N}$ represents the statistical uncertainty
-of the observed event rate at the near hall ADs.
+$\boldsymbol{\eta_N}$ represents the statistical uncertainty
+of the observed event rate at the near hall ADs,
+and $\boldsymbol{\eta_{\text{osc}}}$ represents the uncertainty
+of the externally-imposed oscillation paramters, $\theta_{12}, \Delta m^2_{21},$
+and \dmee{}.
+The full listing of nuisance parameters
+can be found in Table X \todo{Pull parameters table}.
 
-The full \chisquare{} expression used in the rate-only\todo{rate + shape?} analysis is:
+The full \chisquare{} expression used in this analysis is:
 
 \begin{align}
     \begin{split}
-        \chi^2 &= \sum_{\substack{j \in \\\text{far ADs}}}
-            \frac{
-                (N_{\text{obs},j}
-                - N_{\text{pred},j}(\boldsymbol{\eta};\boldsymbol{\nu}))^2}
-            {\sigma_{\text{obs},j}^2 } \\
+        \chisquare(\thetaot;\boldsymbol{\nu}) &=
+            2\sum_{\substack{j \in \\\text{far ADs}}}
+        \left(
+            F_{\text{pred},j}(\thetaot;\boldsymbol{\nu}) - F_{\text{obs},j}
+            + F_{\text{obs},j}\ln
+            \frac{F_{\text{obs},j}}{F_{\text{pred},j}(\thetaot;\boldsymbol{\nu})}
+        \right) \\
             &+ \sum_{\substack{r \in \\\text{reactors}}}
                 \frac{\alpha_r^2}{\tilde{\sigma}_R^2}
             + \sum_{\substack{d \in \\\text{all ADs}}}
             \left(
                 \frac{\epsilon_d^2}{\tilde{\sigma}_D^2}
+                + \frac{\nu_{\text{relE},d}^2}{\tilde{\sigma}_{\text{relE}}^2}
                 + \frac{\eta_{B,d}^2}{\tilde{\sigma}_{B,d}^2}
             \right)
             + \sum_{\substack{d \in \\\text{near ADs}}}
-            \frac{\eta_{N,d}^2}{\tilde{\sigma}^2_{\text{obs},d}}
+            \frac{\eta_{N,d}^2}{\tilde{\sigma}^2_{\text{obs},d}} \\
+            &+ \frac{\nu_{\theta_{12}}^2}{\tilde{\sigma}_{12}^2}
+            + \frac{\nu_{\Delta m^2_{21}}^2}{\tilde{\sigma}_{21}^2}
+            + \frac{\nu_{\Delta m^2_{ee}}^2}{\tilde{\sigma}_{ee}^2}
     \end{split}
 \end{align}
 
