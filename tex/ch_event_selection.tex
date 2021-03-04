@@ -268,6 +268,217 @@ The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}
 \label{sec:flashers}
 
 \todo{Flashers section}
+The high voltage required to operate PMTs rendered them susceptible
+to electrostatic breakdown (sparks), also known as flashing.
+In the Daya Bay PMTs, flashing was observed
+at the PMT base circuit board (\cref{fig:flasher_photo}) \cite{flasherphotos_docdb}.
+Although the PMT bases were isolated from the
+PMT photocathodes by the black radial shield (\cref{ch:detector}),
+light from the spark could propagate within the PMT
+or otherwise circumvent the shielding.
+These photons created signals at the PMT's own photocathode
+or traversed the scintillating region and triggered other PMTs.
+Five distinct signatures were observed for flasher events.
+\begin{itemize}
+    \item ``Nominal flashers.'' Photons activated the flashing PMT's own photocathode,
+        creating a large signal.
+        Other photons traversed the scintillating region and were incident
+        on the PMT's directly across the AD, creating additional large signals.
+        Other PMTs observed only small signals.
+        Additionally, the shape of the voltage (charge) pulse from the
+        flashing PMT was broader than an ordinary signal.
+    \item ``2-inch flashers.'' The three 2-inch PMTs in each AD
+        used to monitor the scintillators also caused flasher events.
+        The signature was a large signal in one of those PMTs.
+    \item ``Top-ring flashers.'' Groups of signals were observed
+        with reconstructed positions far above the top ring of PMTs
+        and outside the scintillating region.
+        The physical origin of these flashers is not well understood,
+        but one possibility is that light from a flashing PMT
+        escapes the base of the PMT
+        and passes through a small gap between the radial shield
+        and the reflector at the top of the ADs.
+        The gap is much smaller at the bottom of the ADs,
+        explaining the absence of bottom-ring flashers.
+        Another possibility is that these events
+        were 2-inch PMTs flashing at a lower energy,
+        thus evading the cut used to reject 2-inch flashers.
+    \item ``Outside flashers.'' Groups of signals were observed
+        with reconstructed positions far outside the scintillating region.
+        The physical origin of these flashers is not well understood.
+    \item ``Hidden flashers.''
+        During investigations of the other types of flasher events,
+        groups of signals were observed that survived the existing cuts
+        but were suspected to be flashers.
+        Their physical origin is poorly understood.
+\end{itemize}
+
+Flasher events occasionally generated enough light to be categorized as muon-like.
+Events which satisfied both a muon criterion and a flasher criterion
+were conservatively treated as muons.
+
+Previous Daya Bay analyses only rejected the first two types of flashers,
+nominal and 2-inch flashers,
+because the latter three types were accounted for
+as part of the uncorrelated background (\cref{sec:acc}).
+Additional efforts within the Daya Bay collaboration
+to characterize the remaining so-called residual flashers
+revealed that these events are not purely uncorrelated,
+and so could not be fully accounted for as part of the uncorrelated background.
+In particular, the distribution of time delays
+between consecutive residual flashers
+shows that they are anti-correlated in time:
+as shown in \cref{fig:flasher_anticorr},
+a residual flasher never flashes twice within $\lesssim \SI{0.3}{\s}$.
+The energy distribution of the residual flasher events
+limited their relevance to only the nH analysis; the nGd analysis was not affected.
+The nominal and 2-inch flasher cuts are described in \cref{subsec:flash_nominal}.
+The remaining flasher cuts are described in \cref{subsec:flash_resid},
+and in \cref{subsec:flash_resid_study} the impact of the residual flashers
+is discussed.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{ch_event_selection/flasher_photo}
+    \caption{
+        Observation of electrostatic breakdown at the base of a Daya Bay PMT
+        \cite{flasherphotos_docdb}
+    }
+    \label{fig:flasher_photo}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.48\textwidth]{ch_event_selection/resid_flasher_dt_EH3_AD1}
+    \includegraphics[width=0.48\textwidth]{%
+        ch_event_selection/resid_flasher_dt_zoomed_EH3_AD1%
+    }
+    \caption{
+        Left: The distribution of time delays
+        of a subset of residual flashers in EH3-AD1.
+        Right: The same distribution, zoomed in to shorter delays.
+        The minimum coincidence time of a residual flasher pair is always
+        $\gtrsim \SI{0.7}{\s}$.
+        Plots taken from \cite{beda_resid_flasher_dt}.
+    }
+    \label{fig:flasher_anticorr}
+\end{figure}
+
+\subsection{Nominal and 2-inch flasher cuts}
+\label{subsec:flash_nominal}
+
+The characteristic event geometry of nominal flasher events
+leads to a simple discriminator to reject them on an event-by-event basis.
+The flashing PMT itself had by far the largest observed charge
+for a flasher event since it was the source of the emitted light.
+The emitted photons traveled directly across the AD
+and were incident on the PMTs opposite the flashing PMT;
+PMTs which were not directly across from the flashing PMT
+observed much less light.
+The PMT which observed the most charge for each event
+was identified as a potential flasher.
+A quantity $f_{\text{max}}$ was defined as the fraction of total event charge
+which was collected by the potential flasher,
+$f_{\text{max}} = Q_{\text{max}}/Q_{\text{total}}$.
+For nominal flasher events, $f_{\text{max}}$ was much larger than for ordinary events.
+The PMTs were divided into 4 quadrants based on their column in the AD
+relative to the potential flasher,
+with the potential flasher at the center of Quadrant 1,
+and the PMTs opposite the potential flasher assigned to Quadrant 3.
+The total charge observed by the PMTs in a given Quadrant $i$
+was labeled $Q_i$.
+The degree to which the light in an event was focused
+opposite the potential flasher
+is represented by the quantity $f_{\text{quad}} = Q_3/(Q_2 + Q_4)$,
+which is large when more charge is observed in Quadrant 3
+relative to the two side quadrants (2 and 4).
+The discriminator for nominal flashers was defined as
+\begin{equation}
+    f_{\text{ID}} = \log_{10}\left(
+        f_{\text{Quad}}^2 + \left(
+            \frac{f_{\text{max}}}{0.45}
+        \right)^2
+    \right),
+\end{equation}
+with $f_{\text{ID}} < 0$ for IBD candidates and other physics events,
+and $f_{\text{ID}} > 0$ for nominal flasher events.
+As shown in \cref{fig:flasher_nominal_cut},
+very few events have $f_{\text{ID}}\sim0$;
+it is an effective cut for unambiguously partitioning the set of events.
+The few events near the $f_{\text{ID}} = 0$ boundary
+are treated in \cref{subsec:flash_resid}.
+All nominal flasher-like events (with $f_{\text{ID}} > 0$) were rejected
+and were excluded from the coincidence selection.
+
+\begin{figure}
+    \missingfigure{MaxQ vs Quadrant plot, and $f_{\text{ID}}$ histogram}
+    \caption{
+        Left: $f_{\text{max}}$ vs. $f_{\text{quad}}$ for EH1-AD1,
+        with the ellipse representing $f_{\text{ID}} = 0$.
+        Right: The distribution of $f_{\text{ID}}$ for all ADs.
+    }
+    \label{fig:flasher_nominal_cut}
+\end{figure}
+
+The 2-inch monitor PMTs also caused flasher events.
+It was determined that ordinary events (non-flashers)
+never deposited more than \SI{100}{\pe} worth of light
+in a 2-inch PMT;
+events where any 2-inch PMT observed \SI{100}{\pe} or more
+were therefore rejected as 2-inch flasher events.
+Additional flasher events caused by these PMTs with less than \SI{100}{\pe}
+may be the physical origin of top-ring flashers,
+discussed in \cref{subsec:flash_resid}.
+
+\subsection{Residual flasher cuts}
+\label{subsec:flash_resid}
+
+The remaining three types of flasher events---%
+top ring, outside, and hidden flashers---%
+were collectively referred to as residual flashers.
+Top-ring flashers were easily identified and removed
+by rejecting any event with a reconstructed position
+of $z > \SI{2.4}{\m}$ and $r^2 > \SI{0.25}{\m\squared}$
+(\cref{fig:flash_top_ring}).
+(Another variant of this cut uses $r^2 > \SI{0.5}{\m\squared}$.)
+The number of true physical single events and
+true IBD events removed by this cut was negligible.
+Outside flashers were similarly easy to remove
+by rejecting any event with a reconstructed position
+of $r > \SI{2.2}{\m}$,
+again with a negligible inefficiency for singles and IBDs.
+
+The hidden flashers, as the name implies, proved more difficult to isolate.
+They were first noticed during an examination of the distribution of distances
+between consecutive events.
+Sharp peaks were observed in EH3-AD1 at distances of \SIlist{0;2.75;2.9;3.1}{\m},
+and in EH3-AD3 and EH3-AD4 at \SI{0}{\m}.
+Further inspection of the position distribution of events with these distances
+revealed ``hot spots'' within and outside the ADs.
+Those events outside the AD were tagged as outside flashers.
+To isolate the remaining hidden flashers,
+various distributions were explored using the existing flasher-related variables,
+including the $f_{\text{ID}}$ parameter and the various quadrant charges $Q_i$.
+Eventually, a trapeziod-shaped cut in the parameter space of
+$f_{\text{ID}}$ vs. $Q_1/Q_2$ was identified which rejected
+$\SI{>80}{\percent}$ of hidden flashers while incorrectly rejecting only
+$\sim\SI{0.02}{\percent}$ of true IBDs.
+Events which satisfied all of the the following three criteria were rejected:
+(1) $Q_1/Q_2 > 0.6$; (2) $f_{\text{ID}} > 0.5 \times Q_1/Q_2 - 0.8$;
+and (3) $f_{\text{ID}} > 0.3$ \cite{flashers_jinjing,beda_resid_flasher_dt}.
+
+
+\begin{figure}
+    \missingfigure{Top-ring flashers position}
+    \caption{
+        The position distribution of single events in EHX-ADY,
+        with the top-ring flashers clearly visible at $z > \SI{2.4}{\m}$.
+    }
+    \label{fig:flash_top_ring}
+\end{figure}
+
+
+\subsection{Impact of residual flashers}
+\label{subsec:flash_resid_study}
 
 \section{Coincidence selection}
 \label{sec:coincidence}
