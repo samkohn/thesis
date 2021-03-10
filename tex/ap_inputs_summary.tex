@@ -1,0 +1,165 @@
+\chapter{Summary of analysis inputs}
+\label{ap:inputs_summary}
+
+Each quantity and measurement used as an input to the fitter
+was constrained through individual studies.
+A complete list of inputs and description of the constraints and validations
+is provided below.
+
+\section{Reactor}
+\label{sec:summary_reactor}
+
+Reactor operation data was provided by the power plant operator
+and compiled into meaningful inputs by Daya Bay collaborators.
+\begin{itemize}
+    \item The reactor power levels were compiled directly from
+        the supplied data.
+    \item The reactor \nuebar{} emitted spectra and rates
+        were computed using the Huber-Mueller model,
+        fission fractions provided by the power plant,
+        and energy per fission from XYZ.\todo{citations for reactor spectra}
+\end{itemize}
+These quantities were combined to produce the total reactor flux
+as a function of energy used in \cref{subsec:flux_fraction,subsec:extrapolation}.
+
+\section{Antineutrino Detectors}
+\label{sec:summary_ads}
+
+The Daya Bay antineutrino detectors (ADs) were designed to be
+nearly identical.
+The major systematic uncertainties of the analysis derive from
+the degree to which the ADs deviate from being exactly identical.
+
+\begin{itemize}
+    \item The detector response matrix was estimated using the toy Monte Carlo
+        described in \todo{cref section on LBNL ToyMC} \cite{lbnl_toymc}.
+        The simulation included effects from
+        the absolute energy nonlinearity (\cref{subsec:abs_energyscale}),
+        with a particular focus on correcting for energy loss inside the
+        inner acrylic vessel (``IAV effect'').
+        Using an independently-generated detector response matrix
+        had a negligible effect on the final measurement.
+    \item The expected true IBD spectrum was computed from
+        the predicted reactor spectrum,
+        the IBD cross section,\todo{cite IBD cross section}
+        and oscillation effects (adjusted during fitting).
+        Since the cross section is identical at all ADs,
+        there was no uncertainty due to the cross section.
+    \item The relative energy scale uncertainty was measured
+        by fitting the nH capture delayed energy peaks
+        using the calorimeter function (\cref{subsec:delayed}).
+        The full range of fit values was \SI{0.5}{\percent},
+        which was taken to be the relative energy scale uncertainty.
+        %The impact of the relative energy scale uncertainty
+        %was estimated using a toy Monte Carlo event sample \cref{sec:thu_toymc}.
+        %The fractional change to the number of IBDs
+        %within each bin of reconstructed energy was computed
+        %assuming an \SI{0.5}{\percent} shift in relative energy scale.
+        %During the fit, the pull parameter for a given AD
+        %was used to adjust the event counts in each bin
+        %based on the pre-computed fractional changes.
+    \item The prompt energy cut efficiency uncertainty
+        was estimated using a toy Monte Carlo event sample \cref{sec:thu_toymc}.
+        By shifting the reconstructed energies according to the
+        \SI{0.5}{\percent} relative energy scale uncertainty,
+        the change in efficiency could be measured to be \SI{0.1}{\percent}.
+    \item The corrections to the prompt efficiency
+        due to the oscillation-induced shape distortion
+        were estimated using a toy Monte Carlo event sample (\cref{sec:thu_toymc}).
+        The prompt efficiency was computed after re-weighting the sample
+        based on a variety of combinations of oscillation parameters
+        (\cref{subsec:prompt_energy}).
+        During the fit, the exact correction factors were determined
+        using a linear interpolation between pre-computed points.
+    \item The delayed energy cut efficiency uncertainty
+        was measured from data by comparing the relative increase in efficiency
+        across ADs between the nominal cut and an extended cut
+        (\cref{subsec:delayed}).
+        The increase in efficiency for each AD was consistent to within
+        \SI{\pm 0.2}{\percent} (half-range).
+    \item The combined distance-time (DT) cut efficiency uncertainty
+        was estimated using two different samples of accidentals-subtracted events:
+        the nGd sample and an nH sample with a restricted prompt energy cut
+        of $E_p > \SI{3.5}{\MeV}$ (\cref{sec:DT_cut}).
+        Both of these samples were minimally impacted by the accidental background,
+        so the accidentals-subtracted distributions
+        had negligible systematic uncertainty.
+        The absolute efficiencies for these samples were measured directly from data,
+        and the half-range across ADs for each sample
+        was used as the relative uncertainty.
+        The AD-uncorrelated uncertainty for the final data sample
+        was taken to be the larger of the relative uncertainties
+        of the two samples.
+    \item The number of target protons was computed using measured values
+        of the masses of the GdLS, LS and acrylic detector volumes
+        and the proton densities of each substance \cite{nh2016technote}.
+        The AD-uncorrelated uncertainty was computed
+        using the uncertainties for the mass and proton density.
+        A single relative uncertainty was used for all ADs
+        with a negligible impact on the final measurement.
+    \item The muon veto efficiency ($\varepsilon_\mu$) was computed from data
+        as the fraction of DAQ livetime that did not lie within a muon veto window
+        (\cref{sec:muonveto}).
+        The AD-uncorrelated uncertainty was negligible.
+    \item The multiplicity veto efficiency ($\varepsilon_m$) was computed
+        using the singles rate for each AD (\cref{sec:coincidence}).
+        The AD-uncorrelated uncertainty was negligible.
+\end{itemize}
+
+\section{Backgrounds}
+\label{sec:summary_bg}
+
+Irreducible backgrounds comprised over \SI{50}{\percent} of the \nuebar{} candidates
+at the far ADs.
+The dominant background was the accidental (uncorrelated) background,
+with smaller contributions from the correlated backgrounds.
+The characterization of correlated backgrounds was performed by Daya Bay collaborators.
+
+\begin{itemize}
+    \item The accidental background rate was characterized using
+        the singles (uncorrelated event) rate
+        and a synthetic sample of accidental events (\cref{sec:acc}).
+        The rate of uncorrelated events was used to compute the rate
+        of accidental coincidences among events at any energy,
+        distance, or coincidence time.
+        The synthetic sample, comprised of isolated single events paired together,
+        was used to estimate the fraction of accidental coincidences
+        which passed the energy and distance-time (DT) cut criteria
+        ($\varepsilon_{\text{total,\,acc}}$).
+        The statistical uncertainty ($\sim\SI{0.1}{\percent}$) was computed
+        by propagating the counting and binomial errors
+        from the singles rate measurement and $\varepsilon_{\text{total,\,acc}}$.
+        A systematic uncertainty (\SI{0.04}{\percent}) was estimated
+        by comparing the predicted and actual number of events
+        with large DT values ($\text{DT} > \SI{3}{\m}$),
+        which are expected to be purely accidental coincidences.
+    \item The cosmogenic isotope (\li{}/\he{}) background (\cref{subsec:li9})
+        was characterized by modifying the muon veto
+        to allow for events shortly following an energetic muon.
+        The distribution of delays since the previous muon
+        was fit using the known livetimes of \li{}, \he{}, and \boron{}
+        to extract the number of events in the modified sample.
+        For low- and medium-energy muons, an additional neutron event
+        was required for the modified selection (``neutron tagging'').
+        The final contamination of these events was computed
+        by mathematically applying the nominal muon vetoes
+        and the estimated efficiency of the neutron tag requirement.
+        The uncertainty on the number of events is due to
+        the fit uncertainty (statistical)
+        and the uncertainty on the neutron tag efficiency
+        (systematic).
+    \item The fast-neutron background (\cref{subsec:fastn}) was characterized by
+        examining events occuring shortly following muon signals
+        in the outer water shield (OWS), assumed to be fast neutrons.
+        The assumption was validated by comparing the OWS-tagged spectrum
+        to the nominal IBD-like spectrum at energies between \SIlist{12;100}{\MeV}.
+        Normalizing the OWS-tagged spectrum to the nominal spectrum
+        yields the number of background events within \SIrange{1.5}{12}{\MeV}.
+        Uncertainties were determined by comparing the OWS-tagged spectrum
+        below \SI{12}{\MeV} to a function which was fit to the IBD-like spectrum
+        above \SI{12}{\MeV} and extrapolated to the energy range of interest.
+    \item The \amc{} background (\cref{subsec:amc}) was estimated by
+        examining the top-bottom asymetry in each AD.
+        The spectral shape was measured during a special data run
+        using a high-intensity \amc{} source.
+\end{itemize}
