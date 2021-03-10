@@ -267,7 +267,6 @@ The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}
 \section{Flasher events}
 \label{sec:flashers}
 
-\todo{Flashers section}
 The high voltage required to operate PMTs rendered them susceptible
 to electrostatic breakdown (sparks), also known as flashing.
 In the Daya Bay PMTs, flashing was observed
@@ -329,13 +328,11 @@ In particular, the distribution of time delays
 between consecutive residual flashers
 shows that they are anti-correlated in time:
 as shown in \cref{fig:flasher_anticorr},
-a residual flasher never flashes twice within $\lesssim \SI{0.3}{\s}$.
+a residual flasher never flashes twice within $\lesssim \SI{0.7}{\s}$.
 The energy distribution of the residual flasher events
 limited their relevance to only the nH analysis; the nGd analysis was not affected.
 The nominal and 2-inch flasher cuts are described in \cref{subsec:flash_nominal}.
-The remaining flasher cuts are described in \cref{subsec:flash_resid},
-and in \cref{subsec:flash_resid_study} the impact of the residual flashers
-is discussed.
+The remaining flasher cuts are described in \cref{subsec:flash_resid}.
 
 \begin{figure}
     \centering
@@ -464,21 +461,41 @@ $\SI{>80}{\percent}$ of hidden flashers while incorrectly rejecting only
 $\sim\SI{0.02}{\percent}$ of true IBDs.
 Events which satisfied all of the the following three criteria were rejected:
 (1) $Q_1/Q_2 > 0.6$; (2) $f_{\text{ID}} > 0.5 \times Q_1/Q_2 - 0.8$;
-and (3) $f_{\text{ID}} > 0.3$ \cite{flashers_jinjing,beda_resid_flasher_dt}.
+and (3) $f_{\text{ID}} > 0.3$,
+as illustrated in \cref{fig:hidden_flasher_cut}
+\cite{flashers_jinjing,beda_resid_flasher_dt}.
+The estimated rate of residual flashers over time for each AD is shown
+in \cref{fig:hidden_flasher_rate}.
 
 
 \begin{figure}
     \missingfigure{Top-ring flashers position}
     \caption{
-        The position distribution of single events in EHX-ADY,
+        Position distribution of single events in EHX-ADY,
         with the top-ring flashers clearly visible at $z > \SI{2.4}{\m}$.
     }
     \label{fig:flash_top_ring}
 \end{figure}
 
+\begin{figure}
+    \missingfigure{$Q_1/Q_2$ vs ellipse ``hidden'' flasher cut plot}
+    \caption{
+        Distribution of events in $Q_1/Q_2$-$f_{\text{ID}}$ space.
+        The events within the black outline are vetoed as
+        hidden flashers.
+        Events above $f_{\text{ID}}=0$ are already vetoed as nominal flashers.
+    }
+    \label{fig:hidden_flasher_cut}
+\end{figure}
 
-\subsection{Impact of residual flashers}
-\label{subsec:flash_resid_study}
+\begin{figure}
+    \missingfigure{Hidden flasher rate over time}
+    \caption{
+        Rate of hidden flashers over time for each AD.
+    }
+    \label{fig:hidden_flasher_rate}
+\end{figure}
+
 
 \section{Coincidence selection}
 \label{sec:coincidence}
