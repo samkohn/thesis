@@ -1579,3 +1579,55 @@ so these \li and \he decays exactly mimic the signature of true IBDs.
 
 \subsection{Am-C calibration source}
 \label{subsec:amc}
+
+\begin{table}[ht]
+    \caption{
+        Event selection summary.
+        The background and IBD rates are adjusted for
+        $\varepsilon_\mu$ and $\varepsilon_m$.
+        To convert from rates to counts, multiply by
+        $T_\text{DAQ}\varepsilon_\mu\varepsilon_m$.
+        The uncertainty on $N_{\text{acc}}$ and $R_{\text{acc}}$
+        is only the statistical (and AD-uncorrelated) uncertainty.
+        An additional \SI{0.1}{\percent} AD-correlated
+        systematic uncertainty is also included in the analysis.
+        The correlated background rates are taken from
+        [[Jinjing's DocDB 12121 slide 30]].
+        This event selection yields $\sin^22\theta_{13} = 0.06837$.
+        \todo[inline]{Final event selection table \& caption}
+    }
+    \label{tab:summary_event_selection}
+    \centering
+    \tiny
+    \setlength{\tabcolsep}{2.5pt}
+    \sisetup{
+        per-mode=reciprocal
+    }
+    \begin{tabular}[t]{rrrrrrrrr}  % 1 label and 8 ADs
+        \hline
+        & \multicolumn{2}{c}{EH1}
+        & \multicolumn{2}{c}{EH2}
+        & \multicolumn{4}{c}{EH3} \\
+        & EH1-AD1&EH1-AD2&EH2-AD1&EH2-AD2&EH3-AD1&EH3-AD2&EH3-AD3&EH3-AD4 \\
+\hline
+    \end{tabular}
+\end{table}
+\begin{table}[ht]
+    \caption{Summary of efficiency uncertainties}
+    \label{tab:summary_efficiencies}
+    \centering
+    \begin{tabular}[t]{rr}
+        \hline
+        & Uncertainty (\%) \\
+        \hline
+    Relative energy scale uncertainty & 0.50\\
+    Prompt energy cut eff. & 0.10\\
+    Delayed energy cut eff. & 0.20\\
+    Distance-time (DT) cut eff. & 0.50\\
+\hline
+    Combined cut eff. & 0.55\\
+    Target proton number & 0.37\\
+\hline
+    Total AD-uncorrelated uncertainty & 0.66\\
+    \end{tabular}
+\end{table}
