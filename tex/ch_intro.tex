@@ -159,11 +159,11 @@ A solution was found in the form of resonant fluorescence,
 the absorption and re-emission of a $\gamma$ ray
 by a nucleus with an energy level equal to that of the $\gamma$ ray.
 An obvious choice for this setup was the exact same isotope of $\isotope[152]{Sm}$,
-so target of $\text{Sm}_2\text{O}_2$
+so target of $\text{Sm}_2\text{O}_3$
 containing \SI{26.8}{\percent} \isotope[152]{Sm}
 was placed in a ring below the sample of \isotope[152]{Eu}
 (\cref{fig:lampshade}).
-The $\gamma$ rays which resonantly scattered on the $\text{Sm}_2\text{O}_2$
+The $\gamma$ rays which resonantly scattered on the $\text{Sm}_2\text{O}_3$
 were detected using a NaI scintillation counter.
 This arrangement selected only the desired $\gamma$ rays
 (those emitted in the same direction as the parent nucleus)
@@ -204,6 +204,9 @@ would only scatter if it had a upward-pointing spin, i.e. helicity $-1$.
 Conversely, downward-traveling $\gamma$ rays
 with helicity $-1$ are preferentially transmitted
 when the field is pointing down.
+Only the transmitted $\gamma$ rays have the opportunity to
+resonantly scatter off the $\text{Sm}_2\text{O}_3$
+and be detected by the NaI counter.
 A measured excess of
 $\frac{2(N_{\downarrow}-N_{\uparrow})}{N_{\downarrow}+N_{\uparrow}} =
 \num{0.017\pm0.003}$
@@ -215,11 +218,91 @@ had helicity $-1$.
 \subsection{Discovery of neutrino flavors}
 \label{subsec:nu_flavors}
 
-
+In 1962, Schwartz, Lederman and others used the
+Alternating Gradient Synchrotron (AGS) at Brookhaven
+to demonstrate that $\nu_\mu$ behaved differently from $\nu_e$
+\cite{numu_vs_nue}.
+In the world's first accelerator neutrino experiment,
+they produced a beam of $\nu_\mu$ by directing
+the \SI{15}{\GeV} AGS proton beam
+onto a fixed beryllium target and relying on the following reaction chain:
+\begin{align}\label{eq:accel_reaction_chain}
+    \begin{split}
+        p + \text{Be} \to &\pi^{\pm} + X \\
+        &\pi^{\pm} \to \mu^{\pm} + \nu(\bar{\nu}) \\
+    \end{split}
+\end{align}
+A series of spark chambers of total target mass \SI{10}{\tonne}
+was exposed to the neutrino beam,
+with the non-neutrino beam products attenuated
+by a \SI{13.5}{\m} thick steel wall.
+In a universe with only one type of neutrino (and one type of antineutrino),
+then the neutrino beam would have produced equal quantities
+of electrons and muons.
+After an exposure of \num{3.48e17}~protons ($\sim300$~hours),
+a total of 113 events were observed,
+of which 56 were identified as muon-like single-track or vertex events
+(5 of which were statistically attributed to cosmic ray contamination),
+8 were electron-like electromagnetic showers, and 49 were background.
+The electron-like events were attributed to
+kaon contamination in the beam,
+and, in any event, were not consistent with the
+expected energy distribution of events due to the
+primary muon-associated neutrino beam.
+With dozens of muon events and not a single electron event
+attributable to the muon-associated neutrinos,
+it was concluded that $\nu_\mu \neq \nu_e$.
 
 
 \subsection{Discovery of the neutral current}
 \label{subsec:neutral_current}
+
+In 1973, the Gargamelle neutrino experiment at CERN
+published an observation of neutrino interactions
+that did not involve a charged lepton,
+thus proving the existence of the hadronic neutral current (NC) weak interaction
+\cite{gargamelle_short,gargamelle}.
+The Gargamelle bubble chamber contained \SI{\sim10}{\tonne} of
+$\text{CF}_3\text{Br}$ within a \SI{2}{\tesla} magnetic field.
+It was exposed to a neutrino beam which could switch
+between $\nu_\mu$ and $\bar{\nu}_\mu$ modes.
+A search was undertaken for events of the form
+\begin{align}\label{eq:neutral_current}
+    \begin{split}
+        \nu_\mu(\bar{\nu}_\mu) + \text{N} &\to \nu_\mu(\bar{\nu}_\mu)
+        + \text{hadrons, and} \\
+        \nu_\mu(\bar{\nu}_\mu) + \text{N} &\to \mu^-(\mu^+) + \text{hadrons},
+    \end{split}
+\end{align}
+with the former representing NC interactions
+and the latter representing charged current (CC).
+102 $\nu$- and 64 $\bar{\nu}$-induced interactions were observed
+with the NC signature of only hadrons as interaction products,
+and no associated $\mu$.
+
+Gargamelle also observed a small number of leptonic NC interactions
+of the form $\nu + e \to \nu + e$.
+The first such event observed was found by a graduate student
+in 1974.
+Example bubble chamber photographs of hadronic
+and leptonic NC interactions are shown in \cref{fig:gargamelle}.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{ch_introduction/gargamelle_hadronic}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{ch_introduction/gargamelle_leptonic}
+    \end{subfigure}
+    \caption{
+        Photographs of a hadronic NC interaction (left, \cite{gargamelle_leptonic})
+        and the first observed leptonic NC interaction (right, \cite{gargamelle})
+        taken by the Gargamelle neutrino experiment.
+    }
+    \label{fig:gargamelle}
+\end{figure}
+
 
 \section{Neutrinos in the Standard Model}
 \label{sec:theory}
