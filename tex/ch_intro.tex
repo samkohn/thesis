@@ -312,20 +312,136 @@ to search for neutrinos produced by the sun \cite{davis_diff_nuebar}.
 This would provide experimental validation of the Standard Solar Model (SSM),
 which describes the nuclear fusion processes
 that are the source of the sun's energy.
-A tank of \SI{610}{\tonne} of $\text{CCL}_4$,
+The SSM predictions for neutrino fluxes (\cref{fig:solarflux})
+were computed by Bahcall,
+who worked closely with Davis \cite{bahcall2004}.
+A tank of \SI{610}{\tonne} of $\text{CCL}_4$
+located in the Homestake gold mine in South Dakota
 was used as a target for the reaction
 \begin{equation}\label{eq:davis_nu}
     \isotope[37]{Cl} + \nu \to \isotope[37]{Ar} + \beta^-.
 \end{equation}
+This reaction has a threshold of \SI{0.814}{\MeV} \cite{solar_review}
+and is accessible primarily to neutrinos
+produced via \isotope[8]{B} decay in the sun.
 A steady supply of helium gas was fed through the tank
 to collect the \isotope[37]{Ar},
-which was extracted from the helium,
+which was then extracted from the helium,
 separated from the contaminants xenon and krypton which were
 also dissolved in the $\text{CCL}_4$,
 and monitored with a proportional counter,
 with each decay corresponding to a single neutrino interaction \cite{homestake1968}.
-The experiment began in 1965, and released results periodically
-over almost 3 decades.
+The experiment began in 1965, with results released periodically
+until it shut down in 1992.
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{ch_introduction/solar_spectrum}
+    \caption{
+        Predicted solar neutrino fluxes according to the SSM \cite{bahcall2004}.
+    }
+    \label{fig:solarflux}
+\end{figure}
+
+Even in the early published results,
+the experiment observed a substantial deficit of neutrino events
+compared to the prediction from the SSM.
+Results were expressed in solar neutrino units (SNU),
+with $\SI{1}{\SNU} = 1$ interaction per second per target nucleus.
+In 1968, no significant number of events above background was observed;
+the limit of no more than \SI{3}{\SNU} was compared to a prediction of
+\SI{20\pm12}{\SNU} \cite{homestake1968}.
+After more than a decade of observation,
+the prediction and observation had evolved to \SI{5.8\pm2.2}{\SNU}
+and \SI{2.1\pm0.3}{\SNU}, respectively,
+and the discrepancy had become known as the ``solar neutrino problem.''
+The two remaining routes for resolving the discrepancy were
+(1) errors in the SSM, and (2) that neutrinos ``oscillate or decay''
+between their production in the sun and their detection on Earth \cite{davis1985}.
+
+Davis and others supported the construction of
+new experiments based on the same radiochemical principle,
+but using the reaction
+\begin{equation}\label{eq:gallium}
+    \isotope[71]{Ga} + \nu \to \isotope[71]{Ge} + \beta^-,
+\end{equation}
+which has a substantially lower threshold
+of \SI{0.233}{\MeV} (cf. \SI{0.814}{\MeV} for \isotope[37]{Cl})
+and thus is sensitive not just to \isotope[8]{B} neutrinos
+but also those from \isotope[7]{Be} and the $pp$ and $pep$ fusion cycles.
+The SAGE and GALLEX experiments observed deficits of approximately \SI{50}{\percent}
+compared to the SSM prediction \cite{sage,gallex}.
+The discrepancy between the \SI{\sim33}{\percent} deficit
+in the \isotope[37]{Cl} experiment
+and the \SI{50}{\percent} deficit in the \isotope[71]{Ga} experiments
+added additional layers to the solar neutrino problem.
+Separately, the Kamiokande-II experiment,
+employing an entirely different detection concept
+with a higher energy threshold,
+also observed \SI{\sim50}{\percent} of the SSM-predicted solar neutrino flux.
+
+In 1999, the Super-Kamiokande experiment's water cherenkov detector
+observed a deficit of upward-going atmospheric $\nu_\mu$
+relative to the rate of downward-going $\nu_\mu$.
+The upward-going neutrinos were produced on the opposite side of the Earth
+and so traveled farther than the downward-going neutrinos.
+Since negligibly few neutrinos scattered as they propagated through the Earth,
+this result provided evidence that neutrinos may oscillate to other flavors
+as they travel,
+suggesting that the solar neutrino problem may be resolved
+through a similar mechanism. \todo{cite SuperK}
+
+The Sudbury Neutrino Observatory (SNO) definitively resolved
+the solar neutrino problem in 2001 in favor of neutrino oscillations,
+validating the SSM as an accurate model of the processes powering the sun.
+\todo{cite SNO}
+The experiment monitored \SI{1}{\tonne} of heavy water ($\text{D}_2\text{O}$)
+surrounded by a spherical array of photomultiplier tubes (PMTs)
+which detect the Cherenkov radiation produced by neutrino interaction products.
+The use of heavy water, first proposed by Chen in 1984, \todo{cite Chen D2O}
+allowed SNO to observe both charged-current (CC)
+and neutral-current (NC) interactions,
+and thus compare the flux of solar $\nu_e$ with the total $\nu$ flux
+from the sun over all flavors.
+The three interaction categories for SNO were
+\begin{align}\label{eq:sno_interactions}
+    \begin{split}
+        \nu_e + \isotope[2]{H} & \to e^- + p + p \text{ (CC)} \\
+        \nu_x + \isotope[2]{H} & \to \nu_x + n + p
+        \to \nu_x + \isotope[2]{H} + \gamma \text{ (NC)} \\
+        \nu_x + e^- & \to \nu_x + e^- \text{ (elastic scatter (ES))}
+    \end{split}
+\end{align}
+In these reactions $\nu_x$ means any flavor of neutrino ($x = e,\mu,\tau$).
+ES reactions could occur via CC (for $\nu_e$ only, and with a higher cross section)
+or via NC (for all flavors including $\nu_e$).
+SNO reproduced the existing deficits using the CC interaction category,
+corroborating the observation of missing solar $\nu_e$.
+The NC observation that included all neutrino flavors matched the SSM prediction,
+as did the ES measurement.
+All of the neutrinos predicted by the SSM did reach Earth,
+but only some of them interacted as $\nu_e$: thus their flavors had changed.
+A summary diagram of the solar neutrino problem and its resolution by SNO
+is shown in \cref{fig:solar_neutrino_fixed}.
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{ch_introduction/solar_resolution}
+    \caption{
+        Predictions and measurements for \isotope[37]{Cl}, \isotope[71]{Ga},
+        $\text{H}_2\text{O}$, and $\text{D}_2\text{O}$ solar neutrino experiments.
+        Taken from \cite{bahcall_images} based on \cite{bahcall2005_diagram}.
+    }
+    \label{fig:solar_neutrino_fixed}
+\end{figure}
+
+\subsection{Measurement of oscillation parameters}
+\label{subsec:osc_param_exp}
+
+
+
+
+
+
+
 
 
 
