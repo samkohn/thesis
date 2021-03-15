@@ -9,7 +9,7 @@ not explained by the Standard Model
 which can be studied---not just searched for---on Earth in a laboratory setting.
 This chapter will introduce the history of neutrinos (\cref{sec:history});
 describe the modern theoretical understanding of neutrinos,
-both in the Standard Model and beyond (\cref{sec:theory});
+both in the Standard Model and beyond (\cref{sec:osc_intro});
 and present the experimental techniques used to study neutrino oscillations,
 focusing on those used by the Daya Bay experiment (\cref{sec:experiment_intro}).
 
@@ -385,10 +385,12 @@ relative to the rate of downward-going $\nu_\mu$.
 The upward-going neutrinos were produced on the opposite side of the Earth
 and so traveled farther than the downward-going neutrinos.
 Since negligibly few neutrinos scattered as they propagated through the Earth,
-this result provided evidence that neutrinos may oscillate to other flavors
+this result proved that atmospheric $\nu_\mu$ oscillate to other flavors
 as they travel,
-suggesting that the solar neutrino problem may be resolved
+suggesting that the solar neutrino problem may be resolved for $\nu_e$
 through a similar mechanism. \todo{cite SuperK}
+Super-Kamiokande also made a measurement of the solar neutrino flux
+which matched its predecessor Kamiokande's measurement.
 
 The Sudbury Neutrino Observatory (SNO) definitively resolved
 the solar neutrino problem in 2001 in favor of neutrino oscillations,
@@ -433,22 +435,164 @@ is shown in \cref{fig:solar_neutrino_fixed}.
     \label{fig:solar_neutrino_fixed}
 \end{figure}
 
+
+
+\section{Neutrino oscillations}
+\label{sec:osc_intro}
+
+The Standard Model of particle physics (SM)
+describes neutrinos as the massless electroweak partners
+to the left-handed charged leptons $e_L,\mu_L,\tau_L$.
+The discovery of neutrino oscillations provided proof that,
+like for quarks, neutrino flavor eigenstates are not
+eigenstates of the Hamiltonian (``energy eigenstates''),
+and further, that neutrinos have nonzero mass.
+The theoretical formalism for neutrino oscillation is discussed,
+followed by a description of the experiments which measured
+each oscillation parameter.
+
+\subsection{Oscillation theory}
+\label{subsec:theory}
+
+In the following, $c = \hbar = 1$ unless otherwise noted.
+In a generic theory with $n$ leptonic flavors,
+each charged lepton $l_\alpha^-$ is paired with
+an associated neutrino $\nu_\alpha$.
+The association is realized via the charged current (CC) interaction vertex,
+one form of which is $W^- \to l_\alpha^- + \nu_\alpha$.
+The neutrino state participating in this interaction
+is known as the $\alpha$ flavor eigenstate, notated $\ket{\nu_\alpha}$.
+In general, the flavor eigenstates will not be equal to the energy eigenstates
+$\ket{\nu_i}$
+(which are eigenstates of the Hamiltonian and have definite mass).
+The relation between the mass and flavor eigenstates can be written as
+\begin{align}\label{eq:general_eigenstates}
+    \begin{split}
+        \ket{\nu_\alpha} &= \sum_{i=1}^n U^*_{\alpha i} \ket{\nu_i} \\
+        \ket{\nu_i} &= \sum_{\alpha=1}^n U_{\alpha i} \ket{\nu_\alpha}
+    \end{split}
+\end{align}
+where $U$ is a unitary matrix known as the mixing matrix.
+The components of this equation obey the following unitarity relations:
+\begin{align}\label{eq:unitarity}
+    \begin{split}
+        \braket{\nu_\alpha | \nu_\beta} &= \delta_{\alpha\beta} \\
+        \braket{\nu_i | \nu_j} &= \delta_{ij} \\
+        U^\dagger U &= \mathbf{1}
+    \end{split}
+\end{align}
+
+The mass eigenstates are eigenstates of the Hamiltonian,
+$\hat{H}\ket{\nu_i(t)} = E_i\ket{\nu_i(t)}$,
+thus Schroedinger's equation takes a simple form:
+\begin{align}\label{eq:schroedinger}
+    \begin{split}
+        \hat{H}\ket{\nu_i(t)} = E_i\ket{\nu_i(t)} &= i\frac{d}{dt}\ket{\nu_i(t)} \\
+        \ket{\nu_i(t)} &= e^{-iE_it}\ket{\nu_i(0)}
+    \end{split}
+\end{align}
+Defining $\ket{\nu_i} = \ket{\nu_i(0)}$ and $\ket{\nu_\alpha} = \ket{\nu_\alpha(0)}$,
+the evolution of a flavor eigenstate can be expressed
+using \cref{eq:general_eigenstates}:
+\begin{align}\label{eq:state_evolution}
+    \begin{split}
+        \ket{\nu_\alpha(t)}
+        &= \sum_{i=1}^n U^*_{\alpha i} e^{-iE_it}\ket{\nu_i} \\
+        &= \sum_{i=1}^nU^*_{\alpha i} e^{-iE_it}
+        \left(\sum_{\rho=1}^n U_{\rho i} \ket{\nu_\rho}\right) \\
+        &= \sum_i\sum_\rho U^*_{\alpha i} U_{\rho i} e^{-iE_it}\ket{\nu_\rho}
+    \end{split}
+\end{align}
+The amplitude $A_{\alpha\to\beta}(t)$
+for observing the state $\ket{\nu_\beta}$ after
+a neutrino produced as $\ket{\nu_\alpha}$ evolves over time $t$
+is computed as the overlap
+\begin{align}\label{eq:osc_amplitude}
+    \begin{split}
+        A_{\alpha\to\beta}(t) = \braket{\nu_\beta | \nu_\alpha(t)}
+        &= \bra{\nu_\beta} \sum_i\sum_\rho U^*_{\alpha i} U_{\rho i}
+        e^{-iE_it}\ket{\nu_\rho} \\
+        &= \sum_i U^*_{\alpha i} U_{\beta i} e^{-iE_it} \\
+    \end{split}
+\end{align}
+The probability for observing $\ket{\nu_\alpha(t)}$ in state $\ket{\nu_\beta}$
+is simply the amplitude squared:
+\begin{align}\label{eq:oscprob_general}
+    \begin{split}
+        P_{\alpha\to\beta}(t) = \left|A_{\alpha\to\beta}(t)\right|^2
+        &= \left|\sum_i U^*_{\alpha i} U_{\beta i} e^{-iE_it}\right|^2 \\
+        &= \left(\sum_iU_{\alpha i} U^*_{\beta i} e^{iE_it}\right)
+        \left(\sum_j U^*_{\alpha j} U_{\beta j} e^{-iE_jt}\right) \\
+        &= \sum_i\sum_j U^*_{\alpha j} U^*_{\beta i} U_{\alpha i} U_{\beta j}
+        e^{-i(E_j - E_i)t}
+    \end{split}
+\end{align}
+All (currently) experimentally-accessible neutrinos are ultrarelativistic,
+i.e. $E \approx p \gg m$.
+Thus the energy can be approximated as
+\begin{align}\label{eq:energy_approx}
+    \begin{split}
+        E = \sqrt{p^2 + m^2}
+        &= p\sqrt{1 + \frac{m^2}{p^2}} \\
+        &\approx p\left(1 + \frac{m^2}{2p^2}\right) = p + \frac{m^2}{2p} \\
+        &\approx E + \frac{m^2}{2E}
+    \end{split}
+\end{align}
+At this point, a reasonable concern is the approximation $E \approx E + \frac{m^2}{2E}$
+being self-referential, nearly tautological considering the assumption $E \gg m$.
+A second leap of logic is the assertion that
+$\ket{\nu_\alpha}$ was produced in a state of definite energy,
+and thus $E_i$ equals the same constant $E$ for each superposed mass state $\ket{\nu_i}$,
+motivating the identity
+\begin{equation}\label{eq:msq_approx}
+    E_j - E_i \approx \frac{m_j^2 - m_i^2}{2E}.
+\end{equation}
+The established framework for computing oscillations
+using these approximations, known as the plane-wave formalism,
+is applicable over an extraordinarily wide
+kinematic parameter space despite the questionable logic.
+A more general wave-packet formalism avoids these concerns
+at the expense of additional mathematical machinery,
+and reaches the same conclusions for all current experiments.
+For a detailed discussion of the wave-packet formalism see \todo{cite wave packets}.
+
+Continuing on by applying \cref{eq:msq_approx} to \cref{eq:oscprob_general}
+with the ultrarelativistic approximation $t \approx L$
+and the definition $\Delta m^2_{ij} = m_i^2 - m_j^2$,
+\begin{align}\label{eq:oscprob_general_2}
+    \begin{split}
+        P_{\alpha\to\beta}(L)
+        &= \sum_{ij} U^*_{\alpha j} U^*_{\beta i} U_{\alpha i} U_{\beta j}
+        e^{i\frac{\Delta m^2_{ij}}{2E}L}
+    \end{split}
+\end{align}
+This expression can be simplified by considering the terms where $i=j$
+separately from those where $i\neq j$.
+When $i=j$, $\Delta m^2_{ij} = 0$.
+Using the symmetry of \cref{eq:oscprob_general_2} under $i\leftrightarrow j$
+and Euler's formula for $e^{ix}$,
+the oscillation probability becomes
+\begin{align}\label{eq:oscprob_general_3}
+    \begin{split}
+        P_{\alpha\to\beta}(L) =
+        & \sum_i \left|U_{\alpha i}\right|^2 \left|U_{\beta i}\right|^2 \\
+        & + 2\sum_{i>j} \Re \left[
+            U^*_{\alpha j} U^*_{\beta i} U_{\alpha i} U_{\beta j}
+        \right]
+        \cos\left(\Delta m^2_{ij}\frac{L}{2E}\right) \\
+        & + 2\sum_{i>j} \Im \left[
+            U^*_{\alpha j} U^*_{\beta i} U_{\alpha i} U_{\beta j}
+        \right]
+        \sin\left(\Delta m^2_{ij}\frac{L}{2E}\right) \\
+    \end{split}
+\end{align}
+with $\Re$ and $\Im$ denoting the real and imaginary parts (respectively)
+of a complex number.
+To simplify further, 
+
+
 \subsection{Measurement of oscillation parameters}
 \label{subsec:osc_param_exp}
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Neutrinos in the Standard Model}
-\label{sec:theory}
 
 \section{Reactor neutrino experiments}
 \label{sec:experiment_intro}
