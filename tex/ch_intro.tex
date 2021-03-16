@@ -566,12 +566,13 @@ and the definition $\Delta m^2_{ij} = m_i^2 - m_j^2$,
         e^{i\frac{\Delta m^2_{ij}}{2E}L}
     \end{split}
 \end{align}
-This expression can be simplified by considering the terms where $i=j$
-separately from those where $i\neq j$.
+This expression can be simplified by grouping the terms where $i=j$
+and those where $i\neq j$.
 When $i=j$, $\Delta m^2_{ij} = 0$.
-Using the symmetry of \cref{eq:oscprob_general_2} under $i\leftrightarrow j$
-and Euler's formula for $e^{ix}$,
-the oscillation probability becomes
+For $i\neq j$, the matrix terms and the phase term can each be written
+as the sum of real and imaginary parts and multiplied together term-by-term.
+The final (real) probability contains contributions from both
+the real and imaginary parts but as desired is purely real:
 \begin{align}\label{eq:oscprob_general_3}
     \begin{split}
         P_{\alpha\to\beta}(L) =
@@ -588,11 +589,346 @@ the oscillation probability becomes
 \end{align}
 with $\Re$ and $\Im$ denoting the real and imaginary parts (respectively)
 of a complex number.
-To simplify further, 
+To simplify further, the leading term can be rewritten
+using the unitarity relation, squared:
+\begin{align}\label{eq:sub_unitarity}
+    \begin{split}
+        \delta_{\alpha\beta}
+        &= (U^\dagger U)^2_{\alpha\beta} \\
+        &= \sum_{ij} U^*_{\alpha j} U^*_{\beta i} U_{\alpha i} U_{\beta j} \\
+        &= \sum_i \left|U_{\alpha i}\right|^2 \left|U_{\beta i}\right|^2
+        + 2\sum_{i>j} \Re \left[
+            U^*_{\alpha j} U^*_{\beta i} U_{\alpha i} U_{\beta j}
+        \right]
+    \end{split}
+\end{align}
+Substituting \cref{eq:sub_unitarity} into \cref{eq:oscprob_general_3}
+and using the trigonometric identity $2\sin^2(\nicefrac{\theta}{2}) = 1 - \cos\theta$,
+the general formula for oscillation probability for $n$ neutrinos is obtained:
+\begin{align}\label{eq:oscprob_general_final}
+    \begin{split}
+        P_{\alpha\to\beta}(L) =
+        &\ \delta_{\alpha\beta} \\
+        & - 4\sum_{i>j} \Re \left[
+            U^*_{\alpha j} U^*_{\beta i} U_{\alpha i} U_{\beta j}
+        \right]
+        \sin^2\left(\Delta m^2_{ij}\frac{L}{4E}\right) \\
+        & + 2\sum_{i>j} \Im \left[
+            U^*_{\alpha j} U^*_{\beta i} U_{\alpha i} U_{\beta j}
+        \right]
+        \sin\left(\Delta m^2_{ij}\frac{L}{2E}\right) \\
+    \end{split}
+\end{align}
+In the special case where $\alpha = \beta$, the probability
+is known as the survival probability.
+The product of matrix elements
+$U^*_{\alpha j} U^*_{\beta i} U_{\alpha i} U_{\beta j}$
+becomes manifestly real,
+hence the imaginary term in \cref{eq:oscprob_general_final} is zero,
+yielding the general formula for survival probability:
+\begin{equation}\label{eq:survival_prob_general}
+        P_{\text{sur}} = P_{\alpha\to\alpha}(L) =
+        1 - 4\sum_{i>j}
+        \left|U_{\alpha i}\right|^2
+        \left|U_{\alpha j}\right|^2
+        \sin^2\left(\Delta m^2_{ij}\frac{L}{4E}\right) \\
+\end{equation}
+The phase of the oscillation can be rewritten in physical units,
+inserting the dimensionful values for $c$ and $\hbar$:
+\begin{equation}\label{eq:osc_phase_shorthand}
+    \Delta m^2_{ij}\frac{L}{4E} \to
+    \Delta m^2_{ij} c^4 \frac{L}{4\hbar cE}
+    \approx 1.267
+    \frac{\Delta m^2_{ij}}{(\SI{1}{\eV}/c^2)^2}
+    \frac{L}{\SI{1}{\m}}
+    \frac{\SI{1}{\MeV}}{E}
+\end{equation}
 
+When considering oscillations of antineutrinos ($\bar{\nu}$)
+from (anti-)flavor $\bar{\alpha}$ to $\bar{\beta}$,
+the only difference is that the complex conjugate
+of the unitary mixing matrix is used,
+leading to an identical result for survival probability,
+and a slightly-altered result for the general case,
+\begin{align}\label{eq:oscprob_general_anti}
+    \begin{split}
+        P_{\bar{\alpha}\to\bar{\beta}}(L) =
+        &\ \delta_{\alpha\beta} \\
+        & - 4\sum_{i>j} \Re \left[
+            U^*_{\alpha j} U^*_{\beta i} U_{\alpha i} U_{\beta j}
+        \right]
+        \sin^2\left(\Delta m^2_{ij}\frac{L}{4E}\right) \\
+        & - 2\sum_{i>j} \Im \left[
+            U^*_{\alpha j} U^*_{\beta i} U_{\alpha i} U_{\beta j}
+        \right]
+        \sin\left(\Delta m^2_{ij}\frac{L}{2E}\right), \\
+    \end{split}
+\end{align}
+where the application of the complex conjugate does not affect
+the real part of the product of matrix terms,
+and changes only the sign of the imaginary part.
+
+\subsection{Two-neutrino mixing}
+
+Before addressing the three-flavor oscillation phenomenology,
+it is helpful to consider the two-flavor case,
+which is both easier to understand
+and also a good approximation to the oscillation behavior
+of atmospheric $\nu_\mu$.
+The $2\times2$ mixing matrix is purely real
+and has only a single physical degree of freedom,
+and has the form
+\begin{equation}\label{eq:2d_mixing}
+    U_{2\times2} =
+    \begin{pmatrix}
+        \cos\theta & \sin\theta \\
+        -\sin\theta & \cos\theta
+    \end{pmatrix},
+\end{equation}
+where $\theta$ is known as the mixing angle.
+Since this matrix is purely real,
+there is no difference between the neutrino and anti-neutrino
+oscillation equations, preserving CP symmetry.
+The two flavors are denoted $\alpha$ and $\beta$,
+and the two mass states 1 and 2 with mass difference $\Delta m^2$.
+The probability of a neutrino produced in the $\ket{\nu_\alpha}$ state
+being observed as $\nu_\beta$ is then
+\begin{equation}\label{eq:2d_osc}
+    P_{\alpha\to\beta} = 4\cos^2\theta\sin^2\theta
+    \sin^2\left(\Delta m^2_{ij}\frac{L}{4E}\right)
+    = \sin^22\theta \sin^2\left(\Delta m^2_{ij}\frac{L}{4E}\right),
+\end{equation}
+and the survival probability is
+\begin{equation}\label{eq:2d_p_sur}
+    P_{\alpha\to\alpha} = 1 -
+    \sin^22\theta \sin^2\left(\Delta m^2_{ij}\frac{L}{4E}\right),
+\end{equation}
+satisfying $P_{\alpha\to\beta} + P_{\alpha\to\alpha} = 1$ as expected.
+These equations provide an intuitive meaning to the paramter $\theta$:
+if $\theta = 0$, no oscillation will occur,
+and if $\theta = \nicefrac{\pi}{2}$,
+at the oscillation maximum, the neutrino will have a \SI{100}{\percent}
+probability for being observed as a $\nu_\beta$.
+This case is known as maximal mixing.
+In the three-flavor scenario that describes the current understanding
+of neutrino oscillation,
+atmospheric $\nu_\mu$ are observed to mix near-maximally with $\nu_\tau$,
+with very little probability to mix with $\nu_e$,
+corresponding to the relevant mixing angle being close to $\nicefrac{\pi}{2}$.
+
+\subsection{Three-neutrino mixing}
+
+Three-neutrino mixing has a much more diverse phenomenology
+than the simpler two-neutrino case
+due to the additional degrees of freedom for a $3\times3$ unitary matrix.
+The neutrino mixing matrix is known as the PMNS matrix,
+named for Pontecorvo, Maki, Nakagawa and Sakata.
+There are many different parametrizations of such a matrix,
+but the one most convenient in describing neutrino oscillations is
+\begin{equation}\label{eq:pmns}
+    U_{\text{PMNS}} =
+    \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & c_{23} & s_{23} \\
+        0 & -s_{23} & c_{23}
+    \end{pmatrix}
+    \begin{pmatrix}
+        c_{13} & 0 & s_{13}e^{-i\delta} \\
+        0 & 1 & 0 \\
+        -s_{13}e^{i\delta} & 0 & c_{13}
+    \end{pmatrix}
+    \begin{pmatrix}
+        c_{12} & s_{12} & 0 \\
+        -s_{12} & c_{12} & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}
+\end{equation}
+where $s_{ij} = \sin\theta_{ij}$ for the three real mixing angles
+$\theta_{12},\theta_{23}$, and $\theta_{13}$.
+The complex phase $\delta$ is also known as $\delta_{CP}$
+since CP violation is only possible if the PMNS matrix is complex,
+i.e. $\delta_{CP} \notin \{0, \pi\}$.
+The parametrization in \cref{eq:pmns} emphasizes the different oscillation regimes:
+The first term is dominant for atmospheric neutrino oscillations,
+with energies in the few \si{\GeV} range
+and baselines of tens to thousands of \si{\km}.
+The second term is dominant in reactor experiments
+with energies in the few \si{\MeV} range
+and baselines of \SI{\sim1}{\km},
+and also in recent accelerator experiments
+with both baselines and energies $\sim1000$ times higher.
+The third term is dominant for solar neutrinos,
+which, due to the interaction with the highly dense matter in the solar interior,
+have an entirely different oscillation phenomenology from the one described here.
+See \todo{Cite solar MSW} for a detailed discussion.
+
+If the neutrino were a Majorana particle,
+an additional two parameters, the Majorana phases,
+would govern the mixing between states.
+They would appear as an additional factor in \cref{eq:pmns}
+of the form $\text{diag}(e^{i\alpha_1}, e^{i\alpha_2}, 1)$.
+These additional parameters do not influence neutrino mixing.
+
+Mass state 1 is defined as the lighter of the two states
+participating in solar oscillations,
+mass state 2 is the other relevant solar state,
+and mass state 3 is the state which does not participate in solar oscillations.
+The question of whether mass state 3 is heavier or lighter than the other two
+is still unresolved;
+this question is known as the neutrino mass ordering (or hierarchy) problem.
+The normal ordering (NO) is $m_1 < m_2 < m_3 \Leftrightarrow \Delta m^2_{31} > 0$,
+and the inverted ordering (IO) is
+$m_3 < m_1 < m_2 \Leftrightarrow \Delta m^2_{31} < 0$.
+No matter the true mass ordering,
+the mass splittings of the three neutrinos obey the sum rule
+\begin{equation}\label{eq:sum_rule}
+    \Delta m^2_{31} = \Delta m^2_{21} + \Delta m^2_{32}.
+\end{equation}
+The current measured values for all oscillation parameters are \cite{pdg}
+\todo{Fill in ``this work''}
+\begin{align}\label{eq:current_values}
+    \begin{split}
+        \sin^2\theta_{12} &= \num{0.307\pm0.013} \\
+        \sin^2\theta_{23} &=
+        \begin{cases}
+            \num{0.545\pm0.021} & (\text{NO}) \\
+            \num{0.547\pm0.021} & (\text{IO})
+        \end{cases} \\
+        \sin^2\theta_{13} &=
+        \begin{cases}
+            \num{2.18\pm0.07} & (\text{global average}) \\
+                              & (\text{this work})
+        \end{cases} \\
+        \Delta m^2_{21} &= \SI{7.53\pm0.18e-5}{\eV\squared} \\
+        \Delta m^2_{32} &=
+        \begin{cases}
+            \SI{2.453\pm0.034e-3}{\eV\squared} & (\text{NO}) \\
+            -2.546^{+0.034}_{-0.040}\times 10^{-3}\,\si{\eV\squared} & (\text{IO})
+        \end{cases} \\
+        \delta_{CP} &= (\num{1.36\pm0.17})\times \SI{\pi}{\radian}\ (\text{NO})
+    \end{split}
+\end{align}
+In this listing, the convention of reporting $\sin^2\theta_{ij}$
+rather than $\sin^22\theta_{ij}$ was used
+so that the octant of $\theta_{23}$
+(whether it is greater than or less than \SI{45}{\degree})
+is readily apparent.
+At current experimental resolutions,
+$\Delta m^2_{32}$ is still just barely indistinguishable from $\Delta m^2_{31}$,
+given the above-quoted uncertainty in $\Delta m^2_{32}$ of
+\SI{3.4e-5}{\eV\squared} compared to
+a best-fit value for $\Delta m^2_{21}$ of \SI{7.53e-5}{\eV\squared}.
 
 \subsection{Measurement of oscillation parameters}
 \label{subsec:osc_param_exp}
+
+The solar parameters $\theta_{12}$ and $\Delta m^2_{21}$
+were first measured using data from the aforementioned
+Homestake / \isotope[37]{Cl}, SAGE, GALLEX/GNO, and SNO experiments.
+Because the flavor transition mechanism is different from
+the oscillation framework described in \cref{subsec:theory},
+a detailed description of the measurement will be left to \cite{neutrino_textbook}.
+Modern data relies on measurements from the Super-Kamiokande experiment.
+The KamLAND experiment performed
+an independent measurement of the solar parameters
+by observing reactor antineutrinos
+over a baseline of \SI{\sim285}{\km}.
+The agreement of the reactor antineutrino measurement from KamLAND
+with the existing solar neutrino results
+was a major success of the theory of neutrino oscillations.
+
+Though the earliest signs of neutrino disappearance and oscillations
+were discovered in the solar neutrino sector,
+a parallel history exists in observations of atmospheric neutrinos.
+Atmospheric neutrinos are secondary decay products of
+collisions of cosmic rays (mostly protons) with nuclei in the atmosphere.
+Among the most common primary decay products are $\pi^{\pm}$,
+which undergo the decay $\pi^+ \to \mu^+ + \nu_\mu$ and its CP conjugate.
+The daughter muons then decay via $\mu^+ \to \bar{\nu_\mu} + e^+ + \nu_e$
+and its CP conjugate.
+Thus over the energy range where all muons decay before they reach the ground,
+the expected ratio of $\nu_\mu$ to $\nu_e$ fluxes should be about 2.
+The precise expectation can be computed with a Monte Carlo simulation
+that incorporates knowledge of the atmosphere and of the kinematics of
+pion, kaon and muon decays.
+
+In 1988, the Kamiokande experiment observed a ratio of muon-type to electron-type
+atmospheric neutrino events of only \SI{\sim60}{\percent}
+as large as the Monte Carlo prediction,\todo{Cite Kamio\-kande atmo}
+thus uncovering the so-called atmospheric neutrino anomaly.
+The IMB experiment observed fluxes broadly consistent with
+the reports from Kamiokande.
+The Super-Kamiokande experiment provided the resolution
+to the atmospheric anomaly in 1998
+by comparing the flux of upward-going neutrinos
+to that of downward-going neutrinos.
+The fluxes were predicted to be independent of zenith angle
+by a convenient property of spherical geometry
+assuming only that the cosmic ray flux was uniform around the Earth,
+which is true for cosmic rays with energy above a few \si{\GeV}.
+Thus neutrino fluxes over different baselines
+could be compared directly to each other
+in a model-independent manner, rather than
+just to Monte Carlo predictions.
+A nonzero up-down asymmetry of $-0.296\pm0.048(\text{stat.})\pm0.01(\text{syst.})$
+was observed for muon-type events (including neutrinos and antineutrinos),
+but the up-down asymmetry for electron-type events
+of $-0.036\pm0.076\pm0.02$ was consistent with zero \cite{superk1998}.
+Later investigations \cite{superk2004} showed the characteristic $\nicefrac{L}{E}$
+dependence when comparing the observed muon-type events
+to a Monte Carlo prediction,
+with the distance traveled inferred from the zenith angle.
+\todo{Super-K figures}
+The events used in the analysis had a reconstructed $\nicefrac{L}{E}$
+with a resolution of \SI{<70}{\percent},
+thus the characteristic shape of the $\nicefrac{L}{E}$ curve
+was mostly washed out.
+However, the location of the oscillation maximum
+can be seen in Figure Y (where it appears as a minimum of surviving $\nu_\mu$),
+providing the first measurement of $\Delta m^2_{32} = \SI{2.4e-3}{\eV\squared}$
+Equally importantly, the asymptotic behavior
+at large $\nicefrac{L}{E}$ reveals
+the average value for the oscillation probability.
+Since it is near $\nicefrac{1}{2}$,
+the observation favored a value of $\sin^22\theta_{12} = 1$,
+corresponding to maximal mixing.
+
+The value of $\theta_{13}$ was first measured
+by the Daya Bay experiment in 2012.
+The experiment will be described in detail in the rest of this thesis.
+
+The final oscillation parameter, $\delta_{CP}$,
+is the subject of considerable current experimental effort.
+Attempts to measure $\delta_{CP}$ involve
+accelerator experiments comparing the rates of
+$\nu_\mu\to\nu_e$ and $\bar{\nu}_\mu\to\bar{\nu}_e$ oscillations.
+The current generation of experiments consists of
+T2K, which utilizes the Super-Kamiokande detector;
+and NOvA, which uses a large segmented liquid scintillator detector
+which is the largest freestanding plastic structure ever built.
+These experiments provided the above-referenced measurement to $\delta_{CP}$.
+The next generation of experiments is currently under construction
+and includes DUNE in the United States
+and Hyper-Kamiokande in Japan.
+
+Two classes of experiments are sensitive to the neutrino mass ordering.
+The first is the same accelerator experiments searching for $\delta_{CP}$;
+the neutrino beams in these experiments travel substantial distances
+through the Earth's crust,
+which induces different distortions to the $\nu_e$ appearance spectrum
+depending on the mass ordering.
+The second class of experiments currently consists of
+a single experiment under construction: JUNO.
+Using similar technology to Daya Bay,
+the JUNO experiment will perform a precise measurement
+of the reactor \nuebar{} spectrum
+at the $\Delta m^2_{21}$ oscillation maximum,
+where the slight difference between
+$\Delta m^2_{32}$ and $\Delta m^2_{31}$
+will cause different effects depending
+on which mass splitting is larger.
+Current experiments' data agrees better with normal ordering (NO)
+predictions than with IO at the level of $2\sigma$ to $3\sigma$.
 
 \section{Reactor neutrino experiments}
 \label{sec:experiment_intro}
