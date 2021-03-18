@@ -819,6 +819,15 @@ given the above-quoted uncertainty in $\Delta m^2_{32}$ of
 \SI{3.4e-5}{\eV\squared} compared to
 a best-fit value for $\Delta m^2_{21}$ of \SI{7.53e-5}{\eV\squared}.
 
+\begin{figure}
+    \missingfigure{
+        Plots showing oscillation probabilities when starting with
+        $e,\mu,\tau$ neutrinos
+    }
+    \caption{Transition and survival probabilities for each neutrino flavor.}
+    \label{fig:oscprob}
+\end{figure}
+
 \subsection{Measurement of oscillation parameters}
 \label{subsec:osc_param_exp}
 
@@ -930,6 +939,135 @@ on which mass splitting is larger.
 Current experiments' data agrees better with normal ordering (NO)
 predictions than with IO at the level of $2\sigma$ to $3\sigma$.
 
-\section{Reactor neutrino experiments}
+\section{Reactor neutrino experiments and \texorpdfstring{\thetaot}{theta13}}
 \label{sec:experiment_intro}
 
+As illustrated by \cref{fig:oscprob},
+the probability of a transition of $\nu_e \leftrightarrow \nu_\mu$
+or $\nu_e \leftrightarrow \nu_\tau$
+has two characteristic wavelengths and amplitudes:
+the larger is governed by $\theta_{12}$ and $\Delta m^2_{21}$,
+while the smaller is governed by
+$\theta_{13}$, $\Delta m^2_{32}$, and $\Delta m^2_{31}$
+with a typical $\nicefrac{L}{E}$ scale of \SI{\sim0.5}{\km\per\MeV}.
+The two experimentally-feasible signatures for \thetaot{}-governed oscillations
+are $\nu_\mu\to\nu_e$ (appearance) and $\nu_e\to\nu_{\mu/\tau}$ (disappearance).
+Appearance is most conveniently observed using accelerator neutrinos,
+which are produced as a beam of primarily $\nu_\mu$ or $\bar{\nu}_\mu$.
+Disappearance is easiest to observe using reactor \nuebar.
+
+There are numerous systematic issues associated with the appearance measurement
+which have until the last decade or so been prohibitive.
+For example, since the probability of $\nu_e$ appearance is so small,
+just a few percent,
+the proportion of the beam that is either $\nu_\mu$ or $\nu_\tau$ is large,
+necessitating extremely accurate flavor identification of detected events.
+A small false positive rate of mistaking $\nu_\mu$ events as $\nu_e$
+would substantially bias the measurement.
+Further, the composition of the neutrino beam must be know extremely well.
+The standard method for neutrino beam production (\cref{subsec:nu_flavors})
+also produces charged kaons, which decay to $e^\pm + (\nu_e/\nuebar)$
+with a much larger branching ratio than the equivalent decay for pions.
+Thus a measurement of $\nu_e$ appearance must be able to justify
+that it is not just observing $\nu_e$ that were produced directly
+by the accelerator.
+
+On the other hand, the disappearance measurement using reactor \nuebar is
+free from many of the issues faced by the accelerator experiments.
+With characteristic neutrino energies of \SIrange{1}{8}{\MeV},
+any neutrinos which oscillated into $\nu_{\mu/\tau}$
+would be below threshold for producing the associated charged lepton,
+obviating the need for flavor identification.
+Further, nuclear reactors produce neutrinos via $\beta^-$ decay,
+thus producing only \nuebar.
+The ideal interaction to observe these \nuebar events
+is inverse beta decay (IBD),
+which was used by Reines and Cowan in the first detection of neutrino events,
+not coincidentally also from reactor \nuebar{} (\cref{subsec:discovery}).
+As in the Reines and Cowan experiment,
+modern reactor \nuebar{} experiments use liquid scintillator
+as a detection medium.
+Unlike in that earlier experiment, though,
+modern experiments use liquid scintillator as the neutrino target itself,
+using organic scintillators with a large number of free protons
+in the form of \isotope[1]{H}.
+
+The IBD reaction, $\nuebar + p \to e^+ + n$,
+creates two signals with a characteristic
+time delay between them, in a pattern known as a ``double''
+or ``delayed'' coincidence.
+The positron annihilates almost immediately (\SI{<1}{\nano\second})
+into two $\gamma$-rays, which produce scintillation light
+corresponding to the kinetic energy of the positron plus the
+annihilation energy of $2\times \SI{0.511}{\mev}$.
+This positron annihilation is the prompt signal
+and serves as an effective timestamp for the interaction.
+Meanwhile, the neutron thermalizes within $\sim \SI{10}{\micro\second}$
+and then scatters randomly until it is eventually captured
+on a nucleus in the target.
+The neutron capture results in emission of one or multiple $\gamma$-rays,
+which interact in the liquid scintillator to produce the delayed light signal.
+This prompt-delayed coincidence pattern is an extremely efficient
+discriminator for IBD events against a wide variety of sources of background.
+The full IBD interaction and detection process
+is depicted in \cref{fig:ibd_cartoon}.
+Additional details on the specific properties of the Daya Bay
+liquid scintillator and detector are provided in \cref{ch:detector}.
+
+\begin{figure}
+    \missingfigure{IBD cartoon}
+    \caption{Graphical depiction of the IBD interaction and delayed coincidence.}
+    \label{fig:ibd_cartoon}
+\end{figure}
+
+The first attempt to probe the \thetaot{} parameter space
+in this way was the Chooz experiment in France. \todo{cite Chooz}
+This experiment compared the observed number of \nuebar{} events
+with the predicted number based on
+models of the nuclear reactor \nuebar{} flux
+and the detector response.
+Chooz was unable to observe a value for \thetaot{} inconsistent with 0,
+due to both low statistics and a large systematic uncertainty
+stemming from the reactor modeling.
+
+The next generation of experiments improved on Chooz
+by increasing the target mass to get better statistics,
+and by employing an additional set of detectors
+located close to the reactor cores
+that would constrain the un-oscillated flux.
+By designing the near detectors to be functionally identical,
+both sources the reactor modeling uncertainty
+and the detector response uncertainty
+would be nearly eliminated.
+Three such experiments were built:
+RENO in South Korea,
+Double Chooz in France,
+and Daya Bay in China, the subject of this thesis.
+
+\section{Previous results}
+
+Since the start of data taking on 24 December 2011,
+the Daya Bay experiment has produced numerous measurements of
+\thetaot{}, (searches for) sterile neutrinos, reactor \nuebar{} flux,
+and a variety of other physical phenomena.
+The first Daya Bay measurement of \thetaot{} in April 2012
+was the first nonzero measurement of that quantity.
+This measurement used \SI{55}{\day} of \nuebar{} data
+and, as mentioned previously, only six ADs were operational at the time.
+Since then, Daya Bay has published updated results using IBDs detected by
+either neutron capture on Gadolinium (nGd)
+(\cite{ngd2012,ngd2013,ngd2014,ngd2015,ngd2016,ngd2018}) or neutron capture on Hydrogen (nH),
+as shown in \cref{fig:theta13_vs_t}.
+
+\begin{figure}
+    \centering
+    \includegraphics[height=0.4\textheight]{ch_detector/theta13_vs_time}
+    \caption{
+        Published values of $\sin^{2}2\thetaot$ over time
+        for both nGd and nH analyses.
+        Some nGd results were reported with separate statistical
+        and systematic errors;
+        those have been combined linearly for this plot.
+    }
+    \label{fig:theta13_vs_t}
+\end{figure}

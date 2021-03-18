@@ -200,27 +200,11 @@ as described in \cref{sec:flashers}.
     \label{fig:ad_cutaway}
 \end{figure}
 
-
-
-\todo{move some of this text to the intro}
 The ADs are optimized to detect inverse beta decay (IBD) interactions
-originating in the GdLS or LS:
-
-\begin{equation}
-    \nuebar + p \to e^+ + n.
-\end{equation}
-This interaction creates two signals with a characteristic
-time delay between them, in a pattern known as a ``double''
-or ``delayed'' coincidence.
-The positron annihilates almost immediately (\SI{<1}{\nano\second})
-into two $\gamma$-rays, which produce scintillation light
-corresponding to the kinetic energy of the positron plus the
-annihilation energy of $2\times \SI{0.511}{\mev}$.
-This positron annihilation is the prompt signal
-and serves as an effective timestamp for the interaction.
-Meanwhile, the neutron thermalizes within $\sim \SI{10}{\micro\second}$
-and then scatters randomly until it is eventually captured
-on Gd (in the GdLS only) or on a proton in the form of \isotope[1]{H}
+originating in the GdLS or LS. See \cref{sec:experiment_intro}
+for a detailed description of the IBD interaction.
+The neutrons produced by IBD thermalize in the liquid scintillator
+and capture on Gd (in the GdLS only) or on a proton in the form of \isotope[1]{H}
 (in both the GdLS and LS).
 This happens with a characteristic time of $\sim \SI{28}{\micro\second}$
 in GdLS and $\sim \SI{215}{\micro\second}$ in LS.
@@ -231,21 +215,15 @@ on a Gd nucleus compared to H (\SI{49}{\kilo\barn} vs. \SI{0.332}{\barn})
 If the neutron captures on Gadolinium (nGd), the excited nucleus
 will emit $\gamma$-rays in one of two decay chains,
 both of which have a combined energy of approximately \SI{8}{\mev}.
-If the neutron captures on a Hydrogen (nH) nucleus present as part of
+If the neutron captures on a Hydrogen nucleus present as part of
 the liquid scintillator hydrocarbon chains,
-the $n+\isotope[1]{H} \to \isotope[2]{H} + \gamma$ reaction will occur;
+the $n+\isotope[1]{H} \to \isotope[2]{H} + \gamma$ reaction (nH) will occur;
 the emitted $\gamma$-ray has an energy of \SI{2.2}{\mev}.
 In either event, the $\gamma$-rays will deposit their energy
 in the liquid scintillator.
 The \SIlist[list-pair-separator = { or }]{2.2;8}{\mev} signal
 from the neutron capture comprises the delayed signal of the
 double coincidence.
-This process is depicted in \cref{fig:ibd_cartoon}.
-
-\begin{figure}
-    \missingfigure{IBD cartoon}
-    \label{fig:ibd_cartoon}
-\end{figure}
 
 The LS region serves an important purpose for the main \thetaot{}
 analysis using neutron capture on Gadolinium (nGd).
@@ -346,7 +324,7 @@ The efficienies of the NHIT and ESUM triggers are shown in \cref{fig:trig_eff}.
 Note that the trigger criteria are lower than the event selection
 criteria used for the \thetaot{} analysis and described in \cref{ch:event_selection}.
 Each channel's TDC is sent a stop signal when it receives a trigger signal
-from the master trigger board\todo{Ask Kam-Biu about use of prescaled triggers}.
+from the master trigger board.
 For every channel with a TDC reading of \SI{<1.2}{\us},
 the TDC reading, peak ADC value and the pedestal ADC value
 (the ADC output given no PMT signal)
@@ -395,35 +373,5 @@ The resulting data files comprise the raw data from Daya Bay.
         Figure and caption from \cite{sidebyside}.
     }
     \label{fig:trig_eff}
-\end{figure}
-
-
-%TODO move to either Intro or Conclusions chapter
-\section{Previous results}
-
-Since the start of data taking on 24 December 2011,
-the Daya Bay experiment has produced numerous measurements of
-\thetaot{}, (searches for) sterile neutrinos, reactor \nuebar{} flux,
-and a variety of other physical phenomena.
-The first Daya Bay measurement of \thetaot{} in April 2012
-was the first nonzero measurement of that quantity.
-This measurement used \SI{55}{\day} of \nuebar{} data
-and, as mentioned previously, only six ADs were operational at the time.
-Since then, Daya Bay has published updated results using IBDs detected by
-either neutron capture on Gadolinium (nGd)
-(\cite{ngd2012,ngd2013,ngd2014,ngd2015,ngd2016,ngd2018}) or neutron capture on Hydrogen (nH),
-as shown in \cref{fig:theta13_vs_t}.
-
-\begin{figure}
-    \centering
-    \includegraphics[height=0.4\textheight]{ch_detector/theta13_vs_time}
-    \caption{
-        Published values of $\sin^{2}2\thetaot$ over time
-        for both nGd and nH analyses.
-        Some nGd results are presented with separate statistical
-        and systematic errors;
-        those have been combined linearly for this plot.
-    }
-    \label{fig:theta13_vs_t}
 \end{figure}
 
