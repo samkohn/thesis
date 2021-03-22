@@ -52,7 +52,7 @@ The modern understanding of $\beta$ decay is therefore
 \begin{equation}\label{eq:beta_modern}
     n \to p + e^- + \nuebar
 \end{equation}
-This process and its permutations
+This process and its equivalents for $\mu$ and $\tau$
 provide the vast majority of opportunities for
 experimental investigation of the neutrino to this day.
 
@@ -79,9 +79,9 @@ detected as a delayed event by the liquid scintillator.
 IBD events were identified by the coincidence of a prompt and delayed event
 at a rate of \SI[per-mode=reciprocal]{2.88\pm0.22}{\per\hour},
 only present when the reactor was powered on.
-This experiment was the progenitor of the Daya Bay experiment,
-which also observes IBD events using a liquid scintillator detector
-and the principle of the prompt-delayed coincidence.
+This experiment was the earliest progenitor of the Daya Bay experiment,
+which also observes reactor \nuebar{} using a liquid scintillator detector
+and the principle of the prompt-delayed coincidence for IBD events.
 
 \subsection{Difference between \texorpdfstring{$\nu$ and $\bar{\nu}$}{nu and nu-bar}}
 \label{subsec:nu_vs_nubar}
@@ -94,7 +94,7 @@ In 1954, Davis attempted to observe the reaction
     \isotope[37]{Cl} + \bar{\nu} \to \isotope[37]{Ar} + \beta^-
 \end{equation}
 which is forbidden by lepton number conservation.
-If $\nu=\bar{\nu}$, then lepton number conservation is violated
+If $\nu=\bar{\nu}$, then lepton number conservation could be violated
 and the reaction could occur.
 A tank containing \SI{3900}{\liter} of $\text{CCl}_4$
 was placed in close proximity to the Brookhaven nuclear reactor.
@@ -114,7 +114,7 @@ for neutrino oscillations.
 
 The helicity $\frac{\sigma\cdot p}{\vert p\vert}$ of the neutrino was measured by
 Goldhaber, Grodzins and Sunyar in 1957 \cite{helicity_measurement,helicity_review}.
-The reaction chain
+The kinematics of the reaction chain
 \begin{align}\label{eq:lampshade}
     \begin{split}
         e^- + \isotope[152m]{Eu}(0^-) \to \nu_e
@@ -122,75 +122,25 @@ The reaction chain
           & \isotope[152]{Sm}^*(1^-) \to \isotope[152]{Sm}(0^+) + \gamma
     \end{split}
 \end{align}
-allows for a connection between the helicity (polarization)
-of the emitted $\gamma$
-with the helicity of the $\nu_e$, which is not directly detected,
-as follows.
-The total inital momentum is approximately 0.
-Therefore the decay products $\nu_e$ and $\isotope[152]{Sm}^*(1^-)$
-must have equal and opposite momenta.
-Similarly, the initial angular momentum (including spin) is $\pm\nicefrac{1}{2}$,
-and the daughter nucleus is known to have spin 1,
-therefore the spins of the decay products must point in opposite directions.
-Since both decay products have spins and momenta in opposite directions,
-they must have the same helicity.
-When the $\isotope[152]{Sm}^*(1^-)$ decays,
-occasionally the $\gamma$ will be emitted in the same direction
-as the momentum of the parent nucleus (recoiling against the $\nu_e$).
-In this case, since the final state of the \isotope[152]{Sm} has spin 0,
-the $\gamma$ must have the same spin and direction of momentum
-as the parent $\isotope[152]{Sm}^*$ and therefore the same helicity as the $\nu_e$.
-If the $\gamma$ is emitted in a different direction,
-it has a nonzero probability of having the opposite helicity.
-A method was required to select only those $\gamma$ rays which
-were emitted in the same direction as the momentum of the parent nucleus
-to ensure they had the same helicity as the emitted $\nu_e$.
-
-\begin{figure}
-    \includegraphics[width=0.5\textwidth]{ch_introduction/helicity_setup}
-    \caption{
-        Schematic layout of the experiment which measured
-        the helicity of the neutrino \cite{helicity_measurement}.
-    }
-    \label{fig:lampshade}
-\end{figure}
-
-A solution was found in the form of resonant fluorescence,
-the absorption and re-emission of a $\gamma$ ray
-by a nucleus with an energy level equal to that of the $\gamma$ ray.
-An obvious choice for this setup was the exact same isotope of $\isotope[152]{Sm}$,
-so target of $\text{Sm}_2\text{O}_3$
-containing \SI{26.8}{\percent} \isotope[152]{Sm}
-was placed in a ring below the sample of \isotope[152]{Eu}
-(\cref{fig:lampshade}).
-The $\gamma$ rays which resonantly scattered on the $\text{Sm}_2\text{O}_3$
-were detected using a NaI scintillation counter.
-This arrangement selected only the desired $\gamma$ rays
-(those emitted in the same direction as the parent nucleus)
-due to the following properties of resonant fluorescence:
-The emitted $\gamma$ rays are in general
-slightly (\SI{\sim3}{\eV}) below the energy
-needed to re-excite the same mode in a target nucleus
-due to the recoil during absorption.
-The $\gamma$ rays emitted in exactly the same direction
-as the parent $\isotope[152]{Sm}^*$
-experince a recoil on emission which takes the form of
-a Doppler shift to higher energy
-(due to the parent's own recoil against the $\nu_e$).
-Even the additional energy from the maximal Doppler shift
-was not sufficient to cause the resonant fluorescence;
-only when coupled with the random thermal motion
-of both the parent and target nuclei
-was there a non-negligible probability of interaction.
-Thus the $\gamma$ rays reaching the NaI counter
-must have been resonantly scattered off the target \isotope[152]{Sm};
-therefore they must have been emitted in exactly the same direction
-as the parent $\isotope[152]{Sm}^*(1-)$,
-carrying the same helicity as the $\nu_e$
-that caused the initial recoil.
+ensure that if the final $\gamma$-ray is emitted
+in exactly the opposite direction as the emitted $\nu_e$,
+then they will have the same helicity.
+Since those $\gamma$-rays of interest
+are also maximally Doppler boosted by the recoil of the $\isotope[152]{Sm}^*(1^-)$,
+a system was devised to only accept the highest-energy $\gamma$-rays.
+Specifically, only the $\gamma$-rays which had been Doppler boosted
+would be able to excite the same nuclear state in a separate sample of
+$\text{Sm}_2\text{O}_3$,
+through a process known as resonant fluorescence or resonant scattering.
+$\gamma$-rays emitted at any other angle would suffer from energy loss
+due to recoil effects
+and thus would not be able to excite the same energy level in a separate nucleus.
+A NaI scintillation counter was placed behind shielding
+so that only $\gamma$-rays which were scattered by the $\text{Sm}_2\text{O}_3$
+would be detected (\cref{fig:lampshade}).
 
 The helicity of the emitted $\gamma$ rays was measured
-using an electromagnet surrounding the \isotope[152]{Eu} source.
+using an electromagnet surrounding the \isotope[152m]{Eu} source.
 When the electrons in the magnet were polarized in a particular direction,
 only $\gamma$ rays with the opposite polarization (spin)
 would Compton scatter off them.
@@ -208,17 +158,86 @@ Only the transmitted $\gamma$ rays have the opportunity to
 resonantly scatter off the $\text{Sm}_2\text{O}_3$
 and be detected by the NaI counter.
 A measured excess of
-$\frac{2(N_{\downarrow}-N_{\uparrow})}{N_{\downarrow}+N_{\uparrow}} =
+$\frac{N_{\downarrow}-N_{\uparrow}}{(N_{\downarrow}+N_{\uparrow})/2} =
 \num{0.017\pm0.003}$
 was observed,
 indicating that the $\gamma$ rays, and therefore the neutrino,
 had helicity $-1$.
 
+%allows for a connection between the helicity (polarization)
+%of the emitted $\gamma$
+%with the helicity of the $\nu_e$, which is not directly detected,
+%as follows.
+%The total inital momentum is approximately 0.
+%Therefore the decay products $\nu_e$ and $\isotope[152]{Sm}^*(1^-)$
+%must have equal and opposite momenta.
+%Similarly, the initial angular momentum (including spin) is $\pm\nicefrac{1}{2}$,
+%and the daughter nucleus is known to have spin 1,
+%therefore the spins of the decay products must point in opposite directions.
+%Since both decay products have spins and momenta in opposite directions,
+%they must have the same helicity.
+%When the $\isotope[152]{Sm}^*(1^-)$ decays,
+%occasionally the $\gamma$ will be emitted in the same direction
+%as the momentum of the parent nucleus (recoiling against the $\nu_e$).
+%In this case, since the final state of the \isotope[152]{Sm} has spin 0,
+%the $\gamma$ must have the same spin and direction of momentum
+%as the parent $\isotope[152]{Sm}^*$ and therefore the same helicity as the $\nu_e$.
+%If the $\gamma$ is emitted in a different direction,
+%it has a nonzero probability of having the opposite helicity.
+%A method was required to select only those $\gamma$ rays which
+%were emitted in the same direction as the momentum of the parent nucleus
+%to ensure they had the same helicity as the emitted $\nu_e$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_introduction/helicity_setup}
+    \caption{
+        Schematic layout of the experiment which measured
+        the helicity of the neutrino \cite{helicity_measurement}.
+    }
+    \label{fig:lampshade}
+\end{figure}
+
+%A solution was found in the form of resonant fluorescence,
+%the absorption and re-emission of a $\gamma$ ray
+%by a nucleus with an energy level equal to that of the $\gamma$ ray.
+%An obvious choice for this setup was the exact same isotope of $\isotope[152]{Sm}$,
+%so target of $\text{Sm}_2\text{O}_3$
+%containing \SI{26.8}{\percent} \isotope[152]{Sm}
+%was placed in a ring below the sample of \isotope[152]{Eu}
+%(\cref{fig:lampshade}).
+%The $\gamma$ rays which resonantly scattered on the $\text{Sm}_2\text{O}_3$
+%were detected using a NaI scintillation counter.
+%This arrangement selected only the desired $\gamma$ rays
+%(those emitted in the same direction as the parent nucleus)
+%due to the following properties of resonant fluorescence:
+%The emitted $\gamma$ rays are in general
+%slightly (\SI{\sim3}{\eV}) below the energy
+%needed to re-excite the same mode in a target nucleus
+%due to the recoil during absorption.
+%The $\gamma$ rays emitted in exactly the same direction
+%as the parent $\isotope[152]{Sm}^*$
+%experince a recoil on emission which takes the form of
+%a Doppler shift to higher energy
+%(due to the parent's own recoil against the $\nu_e$).
+%Even the additional energy from the maximal Doppler shift
+%was not sufficient to cause the resonant fluorescence;
+%only when coupled with the random thermal motion
+%of both the parent and target nuclei
+%was there a non-negligible probability of interaction.
+%Thus the $\gamma$ rays reaching the NaI counter
+%must have been resonantly scattered off the target \isotope[152]{Sm};
+%therefore they must have been emitted in exactly the same direction
+%as the parent $\isotope[152]{Sm}^*(1-)$,
+%carrying the same helicity as the $\nu_e$
+%that caused the initial recoil.
+
+
 
 \subsection{Discovery of neutrino flavors}
 \label{subsec:nu_flavors}
 
-In 1962, Schwartz, Lederman and others used the
+In 1962, Schwartz, Lederman, \emph{et~al.} used the
 Alternating Gradient Synchrotron (AGS) at Brookhaven
 to demonstrate that $\nu_\mu$ behaved differently from $\nu_e$
 \cite{numu_vs_nue}.
@@ -282,8 +301,7 @@ and no associated $\mu$.
 
 Gargamelle also observed a small number of leptonic NC interactions
 of the form $\nu + e \to \nu + e$.
-The first such event observed was found by a graduate student
-in 1974.
+The first such event was found by a graduate student in 1974.
 Example bubble chamber photographs of hadronic
 and leptonic NC interactions are shown in \cref{fig:gargamelle}.
 
@@ -315,11 +333,11 @@ that are the source of the sun's energy.
 The SSM predictions for neutrino fluxes (\cref{fig:solarflux})
 were computed by Bahcall,
 who worked closely with Davis \cite{bahcall2004}.
-A tank of \SI{610}{\tonne} of $\text{CCL}_4$
+A tank of \SI{610}{\tonne} of $\text{CCl}_4$
 located in the Homestake gold mine in South Dakota
 was used as a target for the reaction
 \begin{equation}\label{eq:davis_nu}
-    \isotope[37]{Cl} + \nu \to \isotope[37]{Ar} + \beta^-.
+    \isotope[37]{Cl} + \nu_e \to \isotope[37]{Ar} + \beta^-.
 \end{equation}
 This reaction has a threshold of \SI{0.814}{\MeV} \cite{solar_review}
 and is accessible primarily to neutrinos
@@ -328,16 +346,24 @@ A steady supply of helium gas was fed through the tank
 to collect the \isotope[37]{Ar},
 which was then extracted from the helium,
 separated from the contaminants xenon and krypton which were
-also dissolved in the $\text{CCL}_4$,
+also dissolved in the $\text{CCl}_4$,
 and monitored with a proportional counter,
 with each decay corresponding to a single neutrino interaction \cite{homestake1968}.
 The experiment began in 1965, with results released periodically
 until it shut down in 1992.
 
 \begin{figure}
+    \centering
     \includegraphics[width=\textwidth]{ch_introduction/solar_spectrum}
     \caption{
         Predicted solar neutrino fluxes according to the SSM \cite{bahcall2004}.
+        The units of neutrino flux are incident neutrinos
+        \si[per-mode=reciprocal]{\per\square\cm\per\second} for monoenergetic processes
+        and incident neutrinos
+        \si[per-mode=reciprocal]{\per\square\cm\per\second\per\MeV}
+        for continuous processes.
+        The quoted percentages represent the uncertainty
+        on the normalization of the flux for the corresponding process.
     }
     \label{fig:solarflux}
 \end{figure}
@@ -362,44 +388,54 @@ Davis and others supported the construction of
 new experiments based on the same radiochemical principle,
 but using the reaction
 \begin{equation}\label{eq:gallium}
-    \isotope[71]{Ga} + \nu \to \isotope[71]{Ge} + \beta^-,
+    \isotope[71]{Ga} + \nu_e \to \isotope[71]{Ge} + \beta^-,
 \end{equation}
 which has a substantially lower threshold
 of \SI{0.233}{\MeV} (cf. \SI{0.814}{\MeV} for \isotope[37]{Cl})
 and thus is sensitive not just to \isotope[8]{B} neutrinos
-but also those from \isotope[7]{Be} and the $pp$ and $pep$ fusion cycles.
-The SAGE and GALLEX experiments observed deficits of approximately \SI{50}{\percent}
+but also those from \isotope[7]{Be} and the $pp$ and $pep$ fusion cycles in the sun.
+The SAGE and GALLEX/GNO experiments observed deficits of approximately \SI{50}{\percent}
 compared to the SSM prediction \cite{sage,gallex}.
 The discrepancy between the \SI{\sim33}{\percent} deficit
 in the \isotope[37]{Cl} experiment
 and the \SI{50}{\percent} deficit in the \isotope[71]{Ga} experiments
 added additional layers to the solar neutrino problem.
-Separately, the Kamiokande-II experiment,
-employing an entirely different detection concept
-with a higher energy threshold,
-also observed \SI{\sim50}{\percent} of the SSM-predicted solar neutrino flux.
+Separately, the Kamiokande-II and Kamiokande-III experiments,
+which used an $\text{H}_2\text{O}$ target
+and PMTs to detect Cherenkov radiation from the energetic electron produced by
+\begin{equation}\label{eq:kamiokande}
+    \nu_e + p \to n + e^-,
+\end{equation}
+also observed \SI{\sim50}{\percent} of the SSM-predicted solar neutrino flux
+\cite{kamiokande_III}.
+The experiment's ability to assign timestamps and directions to each neutrino event
+also led to the first direct confirmation that these neutrinos
+were actually coming from the sun:
+the outgoing $e^-$ tended to point away from the sun,
+no matter the time of day or year.
 
-In 1999, the Super-Kamiokande experiment's water cherenkov detector
+In 1998, the Super-Kamiokande experiment's water Cherenkov detector
 observed a deficit of upward-going atmospheric $\nu_\mu$
-relative to the rate of downward-going $\nu_\mu$.
+relative to the rate of downward-going $\nu_\mu$ \cite{superk1998}.
 The upward-going neutrinos were produced on the opposite side of the Earth
 and so traveled farther than the downward-going neutrinos.
 Since negligibly few neutrinos scattered as they propagated through the Earth,
 this result proved that atmospheric $\nu_\mu$ oscillate to other flavors
 as they travel,
 suggesting that the solar neutrino problem may be resolved for $\nu_e$
-through a similar mechanism. \todo{cite SuperK}
-Super-Kamiokande also made a measurement of the solar neutrino flux
-which matched its predecessor Kamiokande's measurement.
+through a similar mechanism.
+Super-Kamiokande also made measurements of the solar neutrino flux
+which matched its predecessor Kamiokande's measurement
+\cite{superk_solar1998,superk_solar2001}.
 
 The Sudbury Neutrino Observatory (SNO) definitively resolved
 the solar neutrino problem in 2001 in favor of neutrino oscillations,
-validating the SSM as an accurate model of the processes powering the sun.
-\todo{cite SNO}
+validating the SSM as an accurate model of the processes powering the sun
+\cite{sno2001}.
 The experiment monitored \SI{1}{\tonne} of heavy water ($\text{D}_2\text{O}$)
 surrounded by a spherical array of photomultiplier tubes (PMTs)
 which detect the Cherenkov radiation produced by neutrino interaction products.
-The use of heavy water, first proposed by Chen in 1984, \todo{cite Chen D2O}
+The use of heavy water, first proposed by Chen in 1984 \cite[Ref.\ 15 of][]{chen_d2o},
 allowed SNO to observe both charged-current (CC)
 and neutral-current (NC) interactions,
 and thus compare the flux of solar $\nu_e$ with the total $\nu$ flux
@@ -408,8 +444,9 @@ The three interaction categories for SNO were
 \begin{align}\label{eq:sno_interactions}
     \begin{split}
         \nu_e + \isotope[2]{H} & \to e^- + p + p \text{ (CC)} \\
-        \nu_x + \isotope[2]{H} & \to \nu_x + n + p
-        \to \nu_x + \isotope[2]{H} + \gamma \text{ (NC)} \\
+        \nu_x + \isotope[2]{H} & \to \nu_x + n + p  \text{ (NC)}\\
+                               & \text{with }n + \isotope[2]{H} \to
+                               \isotope[3]{H} + \gamma (\SI{6.26}{\MeV}) \\
         \nu_x + e^- & \to \nu_x + e^- \text{ (elastic scatter (ES))}
     \end{split}
 \end{align}
@@ -418,14 +455,40 @@ ES reactions could occur via CC (for $\nu_e$ only, and with a higher cross secti
 or via NC (for all flavors including $\nu_e$).
 SNO reproduced the existing deficits using the CC interaction category,
 corroborating the observation of missing solar $\nu_e$.
-The NC observation that included all neutrino flavors matched the SSM prediction,
+The NC observation included all neutrino flavors and matched the SSM prediction,
 as did the ES measurement.
 All of the neutrinos predicted by the SSM did reach Earth,
 but only some of them interacted as $\nu_e$: thus their flavors had changed.
+The SNO experiment ran in a second phase
+with salt (NaCl) added to the $\text{D}_2\text{O}$
+to allow for higher-energy neutron captures
+(and thus better energy resolution and event discrimination)
+in the NC channel via \cite{sno_salt2004,neutrino_textbook}
+\begin{equation}\label{eq:sno_salt}
+    n + \isotope[35]{Cl} \to \isotope[35]{Cl} + \text{several }\gamma\text{'s }
+    (\SI{8.57}{\MeV})
+\end{equation}
+Comparisons of $\nu_e$ with $\nu_{\mu,\tau}$ fluxes
+from SNO and Super-Kamiokande are shown in \cref{fig:sno_plots},
+both from the initial 2001 announcement
+and in 2004 after the measurement with NaCl.
 A summary diagram of the solar neutrino problem and its resolution by SNO
 is shown in \cref{fig:solar_neutrino_fixed}.
 
 \begin{figure}
+    \centering
+    \includegraphics[width=0.49\textwidth]{ch_introduction/sno_first}
+    \includegraphics[width=0.49\textwidth]{ch_introduction/sno_salt}
+    \caption{
+        Measured fluxes of solar $\nu_e$ and ``solar'' $\nu_{\mu,\tau}$
+        constrained by SNO and Super-Kamiokande,
+        compared to the SSM prediction \cite{sno2001,sno_salt2004}.
+    }
+    \label{fig:sno_plots}
+\end{figure}
+
+\begin{figure}
+    \centering
     \includegraphics[width=\textwidth]{ch_introduction/solar_resolution}
     \caption{
         Predictions and measurements for \isotope[37]{Cl}, \isotope[71]{Ga},
@@ -434,7 +497,6 @@ is shown in \cref{fig:solar_neutrino_fixed}.
     }
     \label{fig:solar_neutrino_fixed}
 \end{figure}
-
 
 
 \section{Neutrino oscillations}
@@ -455,6 +517,8 @@ each oscillation parameter.
 \label{subsec:theory}
 
 In the following, $c = \hbar = 1$ unless otherwise noted.
+This derivation follows those presented in \cite{neutrino_textbook}
+and \cite{huang_thesis}.
 In a generic theory with $n$ leptonic flavors,
 each charged lepton $l_\alpha^-$ is paired with
 an associated neutrino $\nu_\alpha$.
@@ -528,33 +592,35 @@ is simply the amplitude squared:
     \end{split}
 \end{align}
 All (currently) experimentally-accessible neutrinos are ultrarelativistic,
-i.e. $E \approx p \gg m$.
+i.e. $p \gg m$.
 Thus the energy can be approximated as
 \begin{align}\label{eq:energy_approx}
     \begin{split}
-        E = \sqrt{p^2 + m^2}
-        &= p\sqrt{1 + \frac{m^2}{p^2}} \\
-        &\approx p\left(1 + \frac{m^2}{2p^2}\right) = p + \frac{m^2}{2p} \\
-        &\approx E + \frac{m^2}{2E}
+        E_i = \sqrt{p^2 + m_i^2}
+        &= p\sqrt{1 + \frac{m_i^2}{p^2}} \\
+        &\approx p\left(1 + \frac{m_i^2}{2p^2}\right) = p + \frac{m_i^2}{2p} \\
+        &\approx E_0 + \frac{m_i^2}{2E_0},
     \end{split}
 \end{align}
-At this point, a reasonable concern is the approximation $E \approx E + \frac{m^2}{2E}$
-being self-referential, nearly tautological considering the assumption $E \gg m$.
-A second leap of logic is the assertion that
-$\ket{\nu_\alpha}$ was produced in a state of definite energy,
-and thus $E_i$ equals the same constant $E$ for each superposed mass state $\ket{\nu_i}$,
-motivating the identity
+where $E_0$ is the energy that a massless neutrino would have with momentum $p$.
+An assumption is made that the three ``components'' $\ket{\nu_i}$
+of the neutrino state $\ket{\nu_\alpha}$
+were produced with the same momentum $p$ but slightly different energies $E_i$.
+This assumption is in general poorly justified,
+but for the fact that the resulting equations are validated by experiments.
+In any event, this approximation yields the identity
 \begin{equation}\label{eq:msq_approx}
-    E_j - E_i \approx \frac{m_j^2 - m_i^2}{2E}.
+    E_j - E_i \approx \frac{m_j^2 - m_i^2}{2E_0}.
 \end{equation}
 The established framework for computing oscillations
 using these approximations, known as the plane-wave formalism,
 is applicable over an extraordinarily wide
-kinematic parameter space despite the questionable logic.
+kinematic parameter space despite the unusual assumption.
 A more general wave-packet formalism avoids these concerns
 at the expense of additional mathematical machinery,
 and reaches the same conclusions for all current experiments.
-For a detailed discussion of the wave-packet formalism see \todo{cite wave packets}.
+For a detailed discussion of the wave-packet formalism see
+\cite[Ch.\ 8 of]{neutrino_textbook}.
 
 Continuing on by applying \cref{eq:msq_approx} to \cref{eq:oscprob_general}
 with the ultrarelativistic approximation $t \approx L$
@@ -760,7 +826,7 @@ with both baselines and energies $\sim1000$ times higher.
 The third term is dominant for solar neutrinos,
 which, due to the interaction with the highly dense matter in the solar interior,
 have an entirely different oscillation phenomenology from the one described here.
-See \todo{Cite solar MSW} for a detailed discussion.
+See \cite{neutrino_textbook} for a detailed discussion.
 
 If the neutrino were a Majorana particle,
 an additional two parameters, the Majorana phases,
@@ -785,7 +851,7 @@ the mass splittings of the three neutrinos obey the sum rule
     \Delta m^2_{31} = \Delta m^2_{21} + \Delta m^2_{32}.
 \end{equation}
 The current measured values for all oscillation parameters are \cite{pdg}
-\todo{Fill in ``this work''}
+\todo{Update ``this work'' if needed}
 \begin{align}\label{eq:current_values}
     \begin{split}
         \sin^2\theta_{12} &= \num{0.307\pm0.013} \\
@@ -797,7 +863,7 @@ The current measured values for all oscillation parameters are \cite{pdg}
         \sin^2\theta_{13} &=
         \begin{cases}
             \num{2.18\pm0.07e-2} & (\text{global average}) \\
-                              & (\text{this work})
+            \num{1.74\pm0.25e-2} & (\text{this work})
         \end{cases} \\
         \Delta m^2_{21} &= \SI{7.53\pm0.18e-5}{\eV\squared} \\
         \Delta m^2_{32} &=
@@ -820,6 +886,7 @@ given the above-quoted uncertainty in $\Delta m^2_{32}$ of
 a best-fit value for $\Delta m^2_{21}$ of \SI{7.53e-5}{\eV\squared}.
 
 \begin{figure}
+    \centering
     \includegraphics[width=\textwidth]{ch_introduction/oscprob_plot}
     \caption{
         Transition and survival probabilities for a neutrino
@@ -841,21 +908,46 @@ a best-fit value for $\Delta m^2_{21}$ of \SI{7.53e-5}{\eV\squared}.
 \subsection{Measurement of oscillation parameters}
 \label{subsec:osc_param_exp}
 
+\subsubsection{Solar parameters}
 The solar parameters $\theta_{12}$ and $\Delta m^2_{21}$
 were first measured using data from the aforementioned
 Homestake / \isotope[37]{Cl}, SAGE, GALLEX/GNO, and SNO experiments.
-Because the flavor transition mechanism is different from
-the oscillation framework described in \cref{subsec:theory},
-a detailed description of the measurement will be left to \cite{neutrino_textbook}.
-Modern data relies on measurements from the Super-Kamiokande experiment.
+The flavor transition mechanism is different from
+the vacuum oscillation framework described in \cref{subsec:theory}.
+the high matter densities in the sun impact the flavor transitions
+through the Mikheyev-Smirnov-Wolfenstein (MSW) matter effect.
+A detailed description of the measurement and MSW effect
+will be left to \cite{neutrino_textbook}.
+Modern values for the solar parameters rely
+on measurements from the Super-Kamiokande experiment.
+
 The KamLAND experiment performed
 an independent measurement of the solar parameters
-by observing reactor antineutrinos
-over a baseline of \SI{\sim285}{\km}.
+by observing reactor antineutrinos from all over Japan
+at an average baseline of \SI{\sim180}{\km},
+with the first results announced in 2002.
 The agreement of the reactor antineutrino measurement from KamLAND
 with the existing solar neutrino results
 was a major success of the theory of neutrino oscillations.
+\Cref{fig:kamland_plus_solar} shows the constraints
+from KamLAND using the vacuum oscillation framework
+and from solar experiments using the MSW framework.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{ch_introduction/kamland_solar_fit}
+    \caption{
+        Allowed region for neutrino oscillation parameters from KamLAND and solar
+        neutrino experiments.
+        The side-panels show the $\Delta \chi^2$-profiles
+        for KamLAND (dashed) and solar experiments (dotted) individually,
+        as well as the combination of the two (solid).
+        Figure and caption taken from \cite{kamland_latest}.
+    }
+    \label{fig:kamland_plus_solar}
+\end{figure}
+
+\subsubsection{Atmospheric parameters}
 Though the earliest signs of neutrino disappearance and oscillations
 were discovered in the solar neutrino sector,
 a parallel history exists in observations of atmospheric neutrinos.
@@ -865,18 +957,19 @@ Among the most common primary decay products are $\pi^{\pm}$,
 which undergo the decay $\pi^+ \to \mu^+ + \nu_\mu$ and its CP conjugate.
 The daughter muons then decay via $\mu^+ \to \bar{\nu_\mu} + e^+ + \nu_e$
 and its CP conjugate.
-Thus over the energy range where all muons decay before they reach the ground,
+Thus for energies low enough that all muons decay before they reach the ground,
 the expected ratio of $\nu_\mu$ to $\nu_e$ fluxes should be about 2.
 The precise expectation can be computed with a Monte Carlo simulation
 that incorporates knowledge of the atmosphere and of the kinematics of
-pion, kaon and muon decays.
+pion, kaon and muon decays \cite{neutrino_textbook}.
 
-In 1988, the Kamiokande experiment observed a ratio of muon-type to electron-type
-atmospheric neutrino events of only \SI{\sim60}{\percent}
-as large as the Monte Carlo prediction,\todo{Cite Kamio\-kande atmo}
-thus uncovering the so-called atmospheric neutrino anomaly.
+In 1988, the Kamiokande experiment observed muon and electron-type
+atmospheric neutrino events and compared their rates to a Monte Carlo prediction.
+The rate of electron-type neutrino events matched the prediction,
+but the rate of muon-type events was only \SI{59\pm7}{\percent}
+of the rate predicted by the Monte Carlo simulation \cite{kamiokande_atmo}.
 The IMB experiment observed fluxes broadly consistent with
-the reports from Kamiokande.
+the reports from Kamiokande \cite{imb_atmo}.
 The Super-Kamiokande experiment provided the resolution
 to the atmospheric anomaly in 1998
 by comparing the flux of upward-going neutrinos
@@ -884,7 +977,8 @@ to that of downward-going neutrinos.
 The fluxes were predicted to be independent of zenith angle
 by a convenient property of spherical geometry
 assuming only that the cosmic ray flux was uniform around the Earth,
-which is true for cosmic rays with energy above a few \si{\GeV}.
+which is true for cosmic rays with energy above a few \si{\GeV}
+(energetic enough to be unaffected by the geomagnetic field).
 Thus neutrino fluxes over different baselines
 could be compared directly to each other
 in a model-independent manner, rather than
@@ -896,39 +990,66 @@ of $-0.036\pm0.076\pm0.02$ was consistent with zero \cite{superk1998}.
 Later investigations \cite{superk2004} showed the characteristic $\nicefrac{L}{E}$
 dependence when comparing the observed muon-type events
 to a Monte Carlo prediction,
-with the distance traveled inferred from the zenith angle.
-\todo{Super-K figures}
+with the distance traveled inferred from the zenith angle
+(see \cref{fig:superk_l_over_e}).
 The events used in the analysis had a reconstructed $\nicefrac{L}{E}$
 with a resolution of \SI{<70}{\percent},
 thus the characteristic shape of the $\nicefrac{L}{E}$ curve
 was mostly washed out.
 However, the location of the oscillation maximum
-can be seen in Figure Y (where it appears as a minimum of surviving $\nu_\mu$),
+can be seen in \cref{fig:superk_l_over_e}
+(where it appears as a minimum of surviving $\nu_\mu$),
 providing the first measurement of $\Delta m^2_{32} = \SI{2.4e-3}{\eV\squared}$
 Equally importantly, the asymptotic behavior
 at large $\nicefrac{L}{E}$ reveals
 the average value for the oscillation probability.
-Since it is near $\nicefrac{1}{2}$,
+Since the average value is $\sim\nicefrac{1}{2}$,
 the observation favored a value of $\sin^22\theta_{12} = 1$,
 corresponding to maximal mixing.
 
-The value of $\theta_{13}$ was first measured
-by the Daya Bay experiment in 2012.
-The experiment will be described in detail in the rest of this thesis.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{ch_introduction/superk_atmo_l_over_e}
+    \caption{
+        Ratio of the data to the MC events without neutrino oscillation (points)
+        as a function of the reconstructed L/E together with
+        the best-fit expectation for 2-flavor $\nu_\mu\leftrightarrow\nu_\tau$
+        oscillations (solid line).
+        The error bars are statistical only.
+        Also shown are the best-fit expectation for neutrino decay (dashed line)
+        and neutrino decoherence (dotted line).
+        Figure and caption taken from \cite{superk2004}.
+    }
+    \label{fig:superk_l_over_e}
+\end{figure}
 
+\subsubsection{Reactor parameter}
+The measurement of the final real mixing angle \thetaot{}
+will be described in detail in \cref{sec:experiment_intro}.
+The final real mixing angle \thetaot{}
+governs the probability of $\nu_e$ (dis)appearance
+at the atmospheric scale of $L/E \sim \SI{1}{\km\per\MeV}$.
+
+The Daya Bay experiment and \thetaot{} analysis
+will be described in detail in the rest of this thesis.
+
+\subsubsection{CP phase and mass ordering}
 The final oscillation parameter, $\delta_{CP}$,
 is the subject of considerable current experimental effort.
 Attempts to measure $\delta_{CP}$ involve
 accelerator experiments comparing the rates of
 $\nu_\mu\to\nu_e$ and $\bar{\nu}_\mu\to\bar{\nu}_e$ oscillations.
 The current generation of experiments consists of
-T2K, which utilizes the Super-Kamiokande detector;
-and NOvA, which uses a large segmented liquid scintillator detector
-which is the largest freestanding plastic structure ever built.
-These experiments provided the above-referenced measurement to $\delta_{CP}$.
+T2K, which utilizes the Super-Kamiokande detector
+and recently published evidence of $\delta_{CP}\neq 0$
+at a significance of $3\sigma$ \cite{t2k_deltacp};
+and NOvA,
+which uses a large segmented liquid scintillator detector \cite{nova_deltacp}.
+These experiments provided the above-referenced measurement to $\delta_{CP}$
+(\cref{eq:current_values}).
 The next generation of experiments is currently under construction
-and includes DUNE in the United States
-and Hyper-Kamiokande in Japan.
+and includes DUNE in the United States \todo{Which DUNE pub to cite?}
+and Hyper-Kamiokande in Japan \cite{hyperk2015}.
 
 Two classes of experiments are sensitive to the neutrino mass ordering.
 The first is the same accelerator experiments searching for $\delta_{CP}$;
@@ -937,7 +1058,7 @@ through the Earth's crust,
 which induces different distortions to the $\nu_e$ appearance spectrum
 depending on the mass ordering.
 The second class of experiments currently consists of
-a single experiment under construction: JUNO.
+a single experiment under construction: JUNO \cite{junoproposal2016}.
 Using similar technology to Daya Bay,
 the JUNO experiment will perform a precise measurement
 of the reactor \nuebar{} spectrum
@@ -946,7 +1067,8 @@ where the slight difference between
 $\Delta m^2_{32}$ and $\Delta m^2_{31}$
 will cause different effects depending
 on which mass splitting is larger.
-Current experiments' data agrees better with normal ordering (NO)
+Current observations from accelerator experiments
+agree better with normal ordering (NO)
 predictions than with IO at the level of $2\sigma$ to $3\sigma$.
 
 \section{Reactor neutrino experiments and \texorpdfstring{\thetaot}{theta13}}
@@ -966,7 +1088,39 @@ Appearance is most conveniently observed using accelerator neutrinos,
 which are produced as a beam of primarily $\nu_\mu$ or $\bar{\nu}_\mu$.
 Disappearance is easiest to observe using reactor \nuebar.
 
-There are numerous systematic issues associated with the appearance measurement
+Given that atmospheric neutrino observations were consistent
+with a two-flavor oscillation model which only included $\nu_\mu\leftrightarrow\nu_\tau$,
+it was inferred that any $\nu_\mu\to\nu_e$ transitions
+must occur with a low or zero probability.
+The Chooz and Palo Verde reactor \nuebar{} experiments
+attempted to observe the disappearance of \nuebar{} in the 1990s
+\cite{chooz1999,paloverde2001};
+the consistency of their observations with the predicted no-oscillation flux
+provided constraints of $\sin^22\thetaot \lesssim 0.1$,
+but were limited by systematic uncertainties
+due to reactor models of \nuebar{} emission.
+\Cref{fig:chooz_exclusion} shows the best limits
+from reactor and atmospheric measurements
+based on the full Chooz data set.
+Follow-up experiments were planned,
+and attempts to measure \thetaot{} via $\nu_e$ appearance
+using accelerator neutrinos were undertaken.
+
+\begin{figure}
+    \centering
+    \includegraphics[height=0.5\textheight]{ch_introduction/chooz_exclusion}
+    \caption{
+        Exclusion contours for $\sin^22\thetaot$ and $\Delta m^2_{32}$
+        at the end of the Chooz experiment \cite{chooz1999}.
+        The hashed regions represent the exclusion contours
+        based on Super-Kamiokande atmospheric measurements.
+    }
+    \label{fig:chooz_exclusion}
+\end{figure}
+
+\subsection{Experimental principles for measuring \texorpdfstring{\thetaot}{theta13}}
+\label{subsec:theta13_experiments}
+There are numerous systematic uncertainties associated with the $\nu_\mu\to\nu_e$ appearance measurement
 which have until the last decade or so been prohibitive.
 For example, since the probability of $\nu_e$ appearance is so small,
 just a few percent,
@@ -974,7 +1128,7 @@ the proportion of the beam that is either $\nu_\mu$ or $\nu_\tau$ is large,
 necessitating extremely accurate flavor identification of detected events.
 A small false positive rate of mistaking $\nu_\mu$ events as $\nu_e$
 would substantially bias the measurement.
-Further, the composition of the neutrino beam must be know extremely well.
+Further, the composition of the neutrino beam must be known extremely well.
 The standard method for neutrino beam production (\cref{subsec:nu_flavors})
 also produces charged kaons, which decay to $e^\pm + (\nu_e/\nuebar)$
 with a much larger branching ratio than the equivalent decay for pions.
@@ -982,15 +1136,15 @@ Thus a measurement of $\nu_e$ appearance must be able to justify
 that it is not just observing $\nu_e$ that were produced directly
 by the accelerator.
 
-On the other hand, the disappearance measurement using reactor \nuebar is
+On the other hand, the disappearance measurement using reactor \nuebar{} is
 free from many of the issues faced by the accelerator experiments.
 With characteristic neutrino energies of \SIrange{1}{8}{\MeV},
 any neutrinos which oscillated into $\nu_{\mu/\tau}$
 would be below threshold for producing the associated charged lepton,
 obviating the need for flavor identification.
 Further, nuclear reactors produce neutrinos via $\beta^-$ decay,
-thus producing only \nuebar.
-The ideal interaction to observe these \nuebar events
+thus producing only \nuebar{}.
+The ideal interaction to observe these \nuebar{} events
 is inverse beta decay (IBD),
 which was used by Reines and Cowan in the first detection of neutrino events,
 not coincidentally also from reactor \nuebar{} (\cref{subsec:discovery}).
@@ -1001,16 +1155,45 @@ Unlike in that earlier experiment, though,
 modern experiments use liquid scintillator as the neutrino target itself,
 using organic scintillators with a large number of free protons
 in the form of \isotope[1]{H}.
+Systematic uncertainties arise in constraining the reactor \nuebar{} flux
+and in accumulating sufficient statistics
+so that any observed deficit of \nuebar{}
+can be attributed to \thetaot{} rather than mis-modeling of the reactor
+or a statistical fluctuation.
+
+The next generation of reactor experiments
+was designed to remedy the issue of reactor systematics
+by constructing antineutrino detectors at both near and far sites
+with respect to the reactor cores,
+with the near detectors constraining the flux prediction
+and decreasing the systematic uncertainty.
+The value of $\theta_{13}$ was first measured
+with a significance of $\geq 5\sigma$
+by the Daya Bay experiment in 2012 \cite{ngd2012},
+followed closely by the RENO \cite{reno2012}
+and Double Chooz \cite{doublechooz2012} experiments.
+Accelerator experiments T2K and MINOS
+searched for $\nu_\mu\to\nu_e$ (``$\nu_e$ appearance'')
+and observed evidence for a nonzero \thetaot{}
+as early as 2011 \cite{t2k2011,minos2011},
+but only at a significance of $2\sigma$ to $3\sigma$.
+Subsequent searches by accelerator experiments (e.g. \cite{t2k2018})
+resulted in values of \thetaot{} which generally agree
+with the reactor measurements.
+
+\subsection{Observing Inverse Beta Decay}
+\label{subsec:ibd_intro}
 
 The IBD reaction, $\nuebar + p \to e^+ + n$,
 creates two signals with a characteristic
 time delay between them, in a pattern known as a ``double''
 or ``delayed'' coincidence.
-The positron annihilates almost immediately (\SI{<1}{\nano\second})
-into two $\gamma$-rays, which produce scintillation light
-corresponding to the kinetic energy of the positron plus the
-annihilation energy of $2\times \SI{0.511}{\mev}$.
-This positron annihilation is the prompt signal
+The positron quickly deposits its kinetic energy in the liquid scintillator
+and annihilates within $\lesssim\SI{1}{\nano\second}$
+into two \SI{0.511}{\MeV} $\gamma$-rays
+which also deposit their energy into the liquid scintillator.
+The combined light from the kinetic energy and annihilation $\gamma$-rays
+is the prompt signal
 and serves as an effective timestamp for the interaction.
 Meanwhile, the neutron thermalizes within $\sim \SI{10}{\micro\second}$
 and then scatters randomly until it is eventually captured
@@ -1019,54 +1202,36 @@ The neutron capture results in emission of one or multiple $\gamma$-rays,
 which interact in the liquid scintillator to produce the delayed light signal.
 This prompt-delayed coincidence pattern is an extremely efficient
 discriminator for IBD events against a wide variety of sources of background.
-The full IBD interaction and detection process
-is depicted in \cref{fig:ibd_cartoon}.
+%The full IBD interaction and detection process
+%is depicted in \cref{fig:ibd_cartoon}.
 Additional details on the specific properties of the Daya Bay
 liquid scintillator and detector are provided in \cref{ch:detector}.
 
-\begin{figure}
-    \missingfigure{IBD cartoon}
-    \caption{Graphical depiction of the IBD interaction and delayed coincidence.}
-    \label{fig:ibd_cartoon}
-\end{figure}
+%\begin{figure}
+    %\missingfigure{IBD cartoon}
+    %\caption{Graphical depiction of the IBD interaction and delayed coincidence.}
+    %\label{fig:ibd_cartoon}
+%\end{figure}
 
-The first attempt to probe the \thetaot{} parameter space
-in this way was the Chooz experiment in France. \todo{cite Chooz}
-This experiment compared the observed number of \nuebar{} events
-with the predicted number based on
-models of the nuclear reactor \nuebar{} flux
-and the detector response.
-Chooz was unable to observe a value for \thetaot{} inconsistent with 0,
-due to both low statistics and a large systematic uncertainty
-stemming from the reactor modeling.
-
-The next generation of experiments improved on Chooz
-by increasing the target mass to get better statistics,
-and by employing an additional set of detectors
-located close to the reactor cores
-that would constrain the un-oscillated flux.
-By designing the near detectors to be functionally identical,
-both sources the reactor modeling uncertainty
-and the detector response uncertainty
-would be nearly eliminated.
-Three such experiments were built:
-RENO in South Korea,
-Double Chooz in France,
-and Daya Bay in China, the subject of this thesis.
 
 \section{Previous results}
 
 Since the start of data taking on 24 December 2011,
 the Daya Bay experiment has produced numerous measurements of
-\thetaot{}, (searches for) sterile neutrinos, reactor \nuebar{} flux,
-and a variety of other physical phenomena.
-The first Daya Bay measurement of \thetaot{} in April 2012
-was the first nonzero measurement of that quantity.
+\thetaot{}, (searches for) sterile neutrinos \cite{dyb_sterile2020},
+and the reactor \nuebar{} flux and spectrum \cite{dyb_spec_decomp2019},
+and has also investigated
+a variety of other physical phenomena (e.g. \cite{dyb_cpt2018}).
+The Daya Bay measurement of \thetaot{} in April 2012
+was the first nonzero measurement of that quantity
+at a $5\sigma$ significance.
 This measurement used \SI{55}{\day} of \nuebar{} data
 and, as mentioned previously, only six ADs were operational at the time.
 Since then, Daya Bay has published updated results using IBDs detected by
 either neutron capture on Gadolinium (nGd)
-(\cite{ngd2012,ngd2013,ngd2014,ngd2015,ngd2016,ngd2018}) or neutron capture on Hydrogen (nH),
+\cite{ngd2012,ngd2013,ngd2014,ngd2015,ngd2016,ngd2018}
+or neutron capture on Hydrogen (nH)
+\cite{nh2014,nh2016}
 as shown in \cref{fig:theta13_vs_t}.
 
 \begin{figure}
