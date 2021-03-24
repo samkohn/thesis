@@ -152,13 +152,12 @@ to the prompt energy cut efficiency induced by the relative energy scale shift.
 To avoid double-counting the change in number of events
 due to a shift in relative energy scale,
 the prompt energy cut efficiency is omitted
-from the fit model and the constraint
+from the fit model and from the constraint
 on the pull parameter representing the overall detection efficiency uncertainty.
 
 \section{Data stream simulation}
 \label{sec:toymc}
 
-\todo[inline]{Diagram of simulation process}
 The Daya Bay event selection process (\cref{ch:event_selection})
 depends on more than just the properties of a single AD event;
 there are anti-correlation requirements such as the muon veto,
@@ -205,8 +204,29 @@ An additional ROOT TTree structure containing the ``truth information''
 for each event was included in the output data file.
 For this simulation, the only ``truth'' not also present in the data output
 was the event type that the given data entry represents.
+A flowchart describing the steps in the simulation
+is provided in \cref{fig:my_toymc_flowchart}.
 The characteristics associtated with the different event types
 are described below.
+
+\begin{figure}
+    \includegraphics[width=0.49\textwidth]{ch_simulation/singles_flow}
+    \includegraphics[width=0.49\textwidth]{ch_simulation/correlated_flow}
+    \caption{
+        Diagram depicting the data stream simulation steps
+        for Single events (left) and Correlated events (right).
+        The steps are event count and timestamps (top),
+        energy and position (middle), and serialization (bottom).
+        Different colors represent different event types:
+        green, violet and blue represent Single,
+        prompt Correlated and delayed Correlated,
+        respectively.
+        The highlight colors in the serialization phase
+        represent the ``truth'' information stored separately.
+    }
+    \label{fig:my_toymc_flowchart}
+\end{figure}
+
 
 The simulation is based on a core set of event types:
 Single, Correlated, and Muon.
@@ -537,8 +557,61 @@ between consecutive flashers.
 An independent toy Monte Carlo was implemented
 to generate spectra of reconstructed prompt energy for each AD,
 under assumptions of a wide variety of systematic uncertainties,
-backgrounds, and reactor paramters.
+backgrounds, and reactor parameters.
 This simulation was originally \cite{lbnl_toymc,p12e_fitter,p14a_fitter} used to generate covariance matrices for
 and validate the performance of
 one of the fitter programs for the nGd analysis
 \cite[Method A of][]{ngd2016}.
+It was used essentially unmodified to validate the fitter for this (nH) analysis
+(\cref{ch:analysis}).
+
+The simulation received as input predicted \nuebar{} flux and spectrum data
+which were computed \cite{christine_reactor} based on data from the reactor operator
+and the models by Huber \cite{reactor_huber}
+and Mueller \emph{et al.} \cite{reactor_mueller}.
+For each reactor-AD pair, the spectra were updated
+based on the configured oscillation parameters
+and suppressed by $\nicefrac{1}{L^2}$ due to isotropic emission.
+The true \nuebar{} spectrum for IBD interactions was computed
+based on the IBD cross section \cite{ibd_xsec,ibd_xsec_note},
+number of target protons, and the projected reactor flux.
+The detection efficiencies and muon and multiplicity veto efficiencies
+were also applied.
+A model for the detector response was applied to the true interaction energy
+to account for the conversion to positron energy,
+energy losses in the IAV,
+energy nonlinearities in the scintillator and electronics,
+and the energy resolution.
+The final simulated energies could be scaled by a fixed factor
+to account for the relative energy scale uncertainty.
+All of the quantities just mentioned could be configured
+to be either known or uncertain, in which case
+the relevant values in the simulation would be
+adjusted by a configurable random amount
+to simulate a systematic uncertainty.
+Predicted rates and spectra for background events
+were added after the IBD prompt spectra were fully generated.
+The backgrounds could be randomly fluctuated to account for
+uncertainties in their rates and spectra.
+Lastly, the number of events in each bin of reconstructed energy
+could optionally be fluctuated to account for statistical uncertainty.
+\Cref{fig:lbnl_toymc_flowchart} shows the above steps as a flowchart.
+
+\begin{figure}
+    \includegraphics[width=0.6\textwidth]{ch_simulation/lbnl_toymc_flowchart}
+    \caption{
+        Steps to simulate the prompt reconstructed spectra
+        at each AD.
+        Figure taken from \cite{lbnl_toymc}.
+    }
+    \label{fig:lbnl_toymc_flowchart}
+\end{figure}
+
+%Hundreds of thousands of simulated data sets were generated
+%using this simulation
+%in order to validate the fitter for this analysis.
+%The simulation's configuration was modified
+%to allow for the ability to disable fluctuations
+%independently at the near sites and far site,
+%since the $\chi^2$ expression for the fit
+%treated the near and far sites differently.
