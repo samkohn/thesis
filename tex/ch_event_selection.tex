@@ -80,7 +80,7 @@ In addition to themselves creating background signals in the ADs
 from their own energy deposits,
 muons also create other sources of background.
 A muon which enters an AD can produce
-the rare unstable isotopes \li and \he (\cref{subsec:li9}).
+the rare unstable isotopes \li{} and \he{} (\cref{subsec:li9}).
 These isotopes can decay through processes that exactly mimic the IBD signature.
 A muon can instead interact with the rock surrounding the EHs
 and generate energetic ``fast'' neutrons,
@@ -125,11 +125,11 @@ $\SI{6}{\meter}\times\SI{2}{\mev\per\cm}=\SI{1200}{\mev}$.
 These events are assumed to be caused by muons which create particle showers,
 explaining the additional energy deposits.
 These particle showers produce a much higher rate of
-\li and \he.
+\li{} and \he{}.
 Because \li{} in particular has a long lifetime of \SI{257.2}{\milli\second},
 the veto window for showering muons is extended to \SI{1}{\second}
 to allow all but $\sim e^{-4}$ of the \li{} to decay before the veto window ends.
-The residual \li and \he events in the dataset are characterized
+The residual \li{} and \he{} events in the dataset are characterized
 and subtracted in \cref{subsec:li9}.
 
 The muon veto also affects the coincidence selection
@@ -1551,33 +1551,220 @@ would also change the fraction of partially-escaping $\gamma$'s.
 \section{Irreducible correlated backgrounds}
 \label{sec:correlated_bg}
 
-After applying all coincidence, distance, time and energy cuts,
-and after statistically subtracting the accidental background,
-the sample of IBD candidates still is not pure.
-The accidental background analysis by construction accounts for
-all possible backgrounds that create single uncorrelated AD events,
-but it is not sensitive to physical processes that produce
+Any event in the double coincidence dataset
+that passed all multiplicity, distance, and energy cuts
+and that was not caused by an IBD interaction followed by
+neutron capture on hydrogen (nH)
+was an irreducible background.
+The accidental background analysis (\cref{sec:acc})
+characterized the rate and spectrum of
+the irreducible uncorrelated background,
+but it was not sensitive to physical processes that produced
 correlated prompt-delayed pairs.
-These correlated backgrounds include muon-induced unstable isotopes (\cref{subsec:li9}),
+These correlated backgrounds included muon-induced unstable isotopes (\cref{subsec:li9}),
 muon-induced fast neutrons (\cref{subsec:fastn}),
-and $\gamma$-rays from the Am-C calibration source (\cref{subsec:amc}).
+and $\gamma$-rays from the \amc{} calibration source (\cref{subsec:amc}).
 
-The muon-induced backgrounds are particularly pernicious
-because the near halls have higher muon rates than the far hall,
+The muon-induced backgrounds were particularly pernicious
+because the near halls had higher muon rates than the far hall,
 and thus an intrinsically higher rate of these backgrounds.
-If the backgrounds are not correctly subtracted,
-they will change the near-far ratio in a way that mimics the effects of \thetaot.
+If the backgrounds were not correctly characterized,
+they would change the near-far ratio in a way that mimicked the effects of \thetaot.
 
 \subsection{Muon-induced unstable isotopes}
 \label{subsec:li9}
 
+\todo[inline]{Good DocDB source for THU Li9}
 Muon interactions with nuclei (primarily \isotope[12]{C}) in the AD
-can produce the unstable exotic isotopes \li and \he.
-These isotopes $\beta$-decay to neutron-unstable excited states
+produced the unstable exotic isotopes \li{} and \he{}.
+These isotopes $\beta$-decayed to neutron-unstable excited states
 of \isotope[9]{Be} and \isotope[8]{Li}, respectively,
-leading to a nonzero probability of a $\beta^{-}$-n coincidence.
-Unfortunately, the $\beta$ energies lie in the range of IBD prompt energies,
-so these \li and \he decays exactly mimic the signature of true IBDs.
+leading to a nonzero probability of a $\beta^{-}$-n coincidence \cite{kamland_li9}.
+Unfortunately, the range of $\beta^-$ energies overlapped substantially
+with the range of IBD prompt ($e^+$) energies,
+and the neutron from a $\beta^-$-n decay behaved
+exactly the same as a neutron from an IBD interaction.
+Thus the \li{} and \he{} decays had the same signature as true IBDs.
+Further, the lifetimes for \li{} and \he{} were
+\SI{257.23}{\ms} and \SI{171.60}{\ms}, respectively,
+meaning that the \SI{800}{\us} veto for AD muons
+with energy below \SI{2.5}{\GeV} will almost always
+\emph{not} veto the subsequent \li{} or \he{} decay.
+The shower muon veto of \SI{1}{\s} still allowed acceptance of
+$\sim e^{-4}$ of the associated \li{} and \he{} events.
+In the following, unless otherwise stated,
+\li{} will be used to mean both \li{} and \he{}.
+
+The number of \li{} events contaminating the double coincidence sample
+was determined by exploiting those events' time correlation
+with the muon event which created the parent \li{} nucleus.
+An alternate event selection with no post-muon veto
+was performed to increase the contribution of \li{} events
+in the resulting data sample.
+Additionally, the prompt energy threshold
+was raised to $E_p > \SI{3.5}{\MeV}$
+to reduce the impact of accidental events.
+Muon events were categorized into energy classes
+of \SIrange{0.02}{1}{\GeV}, \SIrange{1}{2.5}{\GeV},
+and \SI{>2.5}{\GeV}.
+Additionally, any muon which was accompanied by
+an AD event with energy between \SIlist{1.8;12}{\MeV}
+during the interval of \SIrange{20}{200}{\us} following the muon
+was ``tagged'' as a neutron-producing muon.
+These neutron-tagged muons had an increased likelihood
+of producing \li{}.
+For each energy class of muon,
+an additional subsample of neutron-tagged muons was also formed.
+The double coincidence candidates which passed the alternate selection
+were similarly categorized based on the classification
+of the most recent preceding AD muon,
+and the time since the preceding muon
+was saved in a histogram specific to the muon classification.
+Since the \li{} process was common to all of the ADs within a given hall,
+the events from ADs in the same hall were combined
+to decrease the statistical uncertainty of the rate estimation.
+
+The distribution of times since the preceding muon
+for events correlated with muons (namely \li{})
+was different from the distribution for events uncorrelated with muons
+(such as IBDs or accidental backgrounds).
+In particular, for muon-uncorrelated events,
+the probability density for time since the preceding muon
+being between $t$ and $t + dt$ was
+\begin{equation}\label{eq:li9_muon_uncorr}
+    p_\text{uncorr.}(t) = R_\mu e^{-R_\mu t}dt,
+\end{equation}
+where $R_\mu$ was the rate of muon events in the particular category being examined.
+Muon-correlated events had a time-since-muon distribution
+which depends on both the muon rate and the decay lifetime:
+\begin{equation}\label{eq:li9_muon_corr}
+    p_\text{corr.}(t) = \lambda_\text{iso.} e^{-\lambda_\text{iso.} t}dt,
+\end{equation}
+where $\lambda_\text{iso.} = R_\mu + \nicefrac{1}{\tau_\text{iso.}}$
+and $\tau_\text{iso.}$ is the decay time
+for the muon-correlated isotope.
+
+At very short times since the preceding muon,
+there was an additional muon-correlated signal
+which, unlike \li{}, did decay away completely
+during the nominal muon veto windows.
+This signal consisted of accidental coincidences
+of two \boron{} decays,
+which were known to be produced in large quantities
+during muon events \cite{kamland_li9}
+and have a lifetime of \SI{20.2}{\ms}.
+The distribution of time since the preceding muon
+for \boron{}-\boron{} accidental coincidences
+had the same form as \cref{eq:li9_muon_corr},
+except that $\lambda_\text{B} = R_\mu + \nicefrac{2}{\tau_{B}}$
+since two \boron{} decays are required.
+
+The measured distributions of times since the preceding muon
+were each fit independently with a linear combination of the above distributions:
+\begin{align}\label{eq:li9_fit_fn}
+    \begin{split}
+        f(t) &= N_\text{bkg} (r \lambda_\text{Li} e^{-\lambda_\text{Li} t}
+        + (1-r) \lambda_\text{He} e^{-\lambda_\text{He} t}) \\
+             &+ N_\text{uncorr} R_\mu e^{-R_\mu t} \\
+             &+ N_\text{B} \lambda_\text{B} e^{-\lambda_\text{B} t}
+    \end{split}
+\end{align}
+In this fit, $N_\text{bkg}, N_\text{uncorr}$, and $N_\text{B}$
+were free parameters representing the number of \li{} events,
+number of muon-uncorrelated events (IBDs and other backgrounds),
+and \boron{}-\boron{} coincidences, respectively.
+The fits were not sensitive enough to extract $r$,
+the fraction of the background due to \li{} rather than \he{},
+so the value was fixed during the fits at \todo{Specific $r$ treatment by THU}.
+A systematic uncertainty was assessed by manually varying $r$
+and observing the impact on $N_\text{bkg}$.
+The histograms and best-fit curves for EH1 and EH3 are shown
+in \cref{fig:li9_fits}.
+The histograms for EH2 are qualitatively the same as those for EH1.
+
+\begin{figure}
+    \missingfigure{\li{} fit plots}
+    \caption{
+        Histograms of time since the preceding muon
+        at EH1 and EH3.
+        The histograms for EH2 are qualitatively the same as for EH1.
+    }
+    \label{fig:li9_fits}
+\end{figure}
+
+For the lowest energy class (\SIrange{0.02}{1}{\GeV}),
+production of \li{} was so rare that the fitter
+could not effectively discriminate the additional events
+on top of the uncorrelated events (i.e. IBDs and accidentals).
+Thus only the neutron-tagged sample was used to characterize this muon sample.
+A systematic uncertainty was assessed on the neutron tag efficiency,
+the estimated fraction of \li{} events produced by neutron-tagged muons.
+The value of this efficiency was estimated by examining
+the corresponding efficiency with higher-energy muons,
+where it has a value of \SI{\sim60}{\percent}.
+The systematic uncertainty on the neutron tag efficiency of \SI{45}{\percent}
+is estimated based on the variation of the efficiency
+among the higher-energy muon classes at the different experimental halls.
+
+The extracted values for $N_\text{bkg}$ for each class of muons
+were converted into the number of \li{} events
+actually contaminating the neutrino candidate data sample.
+First, $N_\text{bkg}$ included many \li{} events which were vetoed
+by the muon veto in the nominal selection.
+The fraction of surviving events was computed
+using the known decay lifetimes
+of \li{} (\SI{257.23}{\ms}) and \he{} (\SI{171.60}{\ms})
+and the length of the muon veto windows
+(\SI{800}{\us} for $E_\mu < \SI{2.5}{\GeV}$
+and \SI{1}{\s} for $E_\mu > \SI{2.5}{\GeV}$).
+Negligibly few \li{} events (\SI{<0.4}{\percent})
+were vetoed by the \SI{800}{\us} criterion,
+but \SI{98}{\percent} were vetoed by the \SI{1}{\s} criterion
+for high energy muons.
+After this correction was applied,
+the event count was further corrected
+by the difference in prompt energy cut efficiencies
+between the \SI{3.5}{\MeV} cut used in this study
+and the \SI{1.5}{\MeV} cut used for neutrino candidates.
+The measurement of the \li{} spectrum and prompt efficiency
+will be discussed below.
+Lastly, the number of events in a given experimental hall
+was divided into counts for each AD
+based on the ratio of DAQ livetimes among the ADs within that hall.
+All ADs within a hall shared the same effective rate of \li{} events
+(corrected for slight differences in $\varepsilon_\mu$ and $\varepsilon_m$)
+and the same relative uncertainty.
+
+The spectrum of \li{} events was computed
+by comparing a \li{}-rich sample to a pure-IBD sample of events.
+The \li{}-rich sample was selected as events
+where the time to the preceding ``shower muon'' ($E_\mu > \SI{2.5}{\GeV}$)
+was less than \SI{0.2}{\s}.
+The pure-IBD sample consisted of events
+where the time to the preceding muon ($E_\mu \gtrsim \SI{1.3}{\GeV}$)
+was greater than \SI{1.5}{\s},
+thus rejecting \SI{>99.8}{\percent} of \li{} events.
+The prompt spectrum from the pure-IBD sample
+is normalized to the fitted value for $N_\text{uncorr}$
+and subtracted from the prompt spectrom of the \li{}-rich sample.
+The resulting \li{} prompt spectrum is shown in \cref{fig:li9_spec}.
+The prompt energy cut efficiency correction
+used to estimate the actual contamination in the neutrino candidate sample
+was computed based on this spectrum,
+which was assumed to be common among all ADs.
+
+\begin{figure}
+    \missingfigure{\li{} prompt spectrum}
+    \caption{
+        Prompt spectrum for \li{} background events.
+    }
+    \label{fig:li9_spec}
+\end{figure}
+
+The nH and nGd analyses used slightly different selection criteria
+to measure the \li{} rate;
+a detailed description of the nGd procedure can be found in \cite{chris_li9},
+while the specific values used in this analysis can be found in \cite{jinjing_2020may}.
 
 
 \subsection{Muon-induced fast neutrons}
