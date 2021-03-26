@@ -1615,14 +1615,32 @@ These neutron-tagged muons had an increased likelihood
 of producing \li{}.
 For each energy class of muon,
 an additional subsample of neutron-tagged muons was also formed.
+
 The double coincidence candidates which passed the alternate selection
-were similarly categorized based on the classification
+were categorized based on the classification
 of the most recent preceding AD muon,
 and the time since the preceding muon
-was saved in a histogram specific to the muon classification.
+was saved in a histogram specific to the muon class.
 Since the \li{} process was common to all of the ADs within a given hall,
 the events from ADs in the same hall were combined
-to decrease the statistical uncertainty of the rate estimation.
+to improve the statistical uncertainty of the rate estimation.
+A visualization of the alternate event selection
+is shown in \cref{fig:li9_timeline}.
+
+\begin{figure}
+    \includegraphics{ch_event_selection/timeline_li9}
+    \caption{
+        Event selection procedure for \li{} events.
+        Neutron tags are identified within a short time window
+        immediately following the muon.
+        Double coincidences are only considered
+        if they occur later than XYZ ms after a muon.
+        The time delay between the prompt event and the muon
+        is stored in a time-to-previous-muon histogram.
+        \todo[inline]{Li9 timeline caption}
+    }
+    \label{fig:li9_timeline}
+\end{figure}
 
 The distribution of times since the preceding muon
 for events correlated with muons (namely \li{})
@@ -1632,17 +1650,37 @@ In particular, for muon-uncorrelated events,
 the probability density for time since the preceding muon
 being between $t$ and $t + dt$ was
 \begin{equation}\label{eq:li9_muon_uncorr}
-    p_\text{uncorr.}(t) = R_\mu e^{-R_\mu t}dt,
+    p_\text{uncorr}(t) = R_\mu e^{-R_\mu t}dt,
 \end{equation}
 where $R_\mu$ was the rate of muon events in the particular category being examined.
 Muon-correlated events had a time-since-muon distribution
 which depends on both the muon rate and the decay lifetime:
 \begin{equation}\label{eq:li9_muon_corr}
-    p_\text{corr.}(t) = \lambda_\text{iso.} e^{-\lambda_\text{iso.} t}dt,
+    p_\text{corr}(t) = \lambda_\text{iso} e^{-\lambda_\text{iso} t}dt,
 \end{equation}
-where $\lambda_\text{iso.} = R_\mu + \nicefrac{1}{\tau_\text{iso.}}$
-and $\tau_\text{iso.}$ is the decay time
+where $\lambda_\text{iso} = R_\mu + \nicefrac{1}{\tau_\text{iso}}$
+and $\tau_\text{iso}$ is the decay time
 for the muon-correlated isotope.
+
+\begin{table}
+    \centering
+    \caption{Modified event selection for \li{} analysis.}
+    \label{tab:li9}
+    \begin{tabular}[t]{rl}
+        \hline
+        Post-muon veto & XYZ \si{\us} \\
+        Prompt energy cut & \SI{3.5}{\MeV} \\
+        Delayed energy cut & see \cref{tab:delayed_bounds} \\
+        \hline
+        Low-energy muon range & \SIrange{0.02}{1}{\GeV} \\
+        Mid-energy muon range & \SIrange{1}{2.5}{\GeV} \\
+        High-energy muon range & \SI{>2.5}{\GeV} \\
+        \hline
+        Neutron tag event time & \SIrange{20}{200}{\us} after muon \\
+        Neutron tag event energy & \SIrange{1.8}{12}{\MeV} \\
+        \hline
+    \end{tabular}
+\end{table}
 
 At very short times since the preceding muon,
 there was an additional muon-correlated signal
@@ -1652,7 +1690,7 @@ This signal consisted of accidental coincidences
 of two \boron{} decays,
 which were known to be produced in large quantities
 during muon events \cite{kamland_li9}
-and have a lifetime of \SI{20.2}{\ms}.
+and had a lifetime of \SI{20.2}{\ms}.
 The distribution of time since the preceding muon
 for \boron{}-\boron{} accidental coincidences
 had the same form as \cref{eq:li9_muon_corr},
@@ -1694,8 +1732,8 @@ The histograms for EH2 are qualitatively the same as those for EH1.
 
 For the lowest energy class (\SIrange{0.02}{1}{\GeV}),
 production of \li{} was so rare that the fitter
-could not effectively discriminate the additional events
-on top of the uncorrelated events (i.e. IBDs and accidentals).
+could not effectively discriminate the \li{} events
+on top of the muon-uncorrelated events (i.e. IBDs and accidentals).
 Thus only the neutron-tagged sample was used to characterize this muon sample.
 A systematic uncertainty was assessed on the neutron tag efficiency,
 the estimated fraction of \li{} events produced by neutron-tagged muons.
@@ -1703,37 +1741,40 @@ The value of this efficiency was estimated by examining
 the corresponding efficiency with higher-energy muons,
 where it has a value of \SI{\sim60}{\percent}.
 The systematic uncertainty on the neutron tag efficiency of \SI{45}{\percent}
-is estimated based on the variation of the efficiency
+is estimated \todo{confirm uncertainty in THU} based on the variation of the efficiency
 among the higher-energy muon classes at the different experimental halls.
 
 The extracted values for $N_\text{bkg}$ for each class of muons
 were converted into the number of \li{} events
-actually contaminating the neutrino candidate data sample.
-First, $N_\text{bkg}$ included many \li{} events which were vetoed
-by the muon veto in the nominal selection.
-The fraction of surviving events was computed
-using the known decay lifetimes
-of \li{} (\SI{257.23}{\ms}) and \he{} (\SI{171.60}{\ms})
-and the length of the muon veto windows
-(\SI{800}{\us} for $E_\mu < \SI{2.5}{\GeV}$
-and \SI{1}{\s} for $E_\mu > \SI{2.5}{\GeV}$).
-Negligibly few \li{} events (\SI{<0.4}{\percent})
-were vetoed by the \SI{800}{\us} criterion,
-but \SI{98}{\percent} were vetoed by the \SI{1}{\s} criterion
-for high energy muons.
-After this correction was applied,
-the event count was further corrected
-by the difference in prompt energy cut efficiencies
-between the \SI{3.5}{\MeV} cut used in this study
-and the \SI{1.5}{\MeV} cut used for neutrino candidates.
-The measurement of the \li{} spectrum and prompt efficiency
-will be discussed below.
-Lastly, the number of events in a given experimental hall
-was divided into counts for each AD
-based on the ratio of DAQ livetimes among the ADs within that hall.
-All ADs within a hall shared the same effective rate of \li{} events
-(corrected for slight differences in $\varepsilon_\mu$ and $\varepsilon_m$)
-and the same relative uncertainty.
+actually contaminating the neutrino candidate data sample
+using the following formula:
+\begin{equation}\label{eq:li9_rate_conv}
+    N_\text{in data}^{\text{AD }i} =
+    \frac{\varepsilon_p(\SI{1.5}{\MeV})}{\varepsilon_p(\SI{3.5}{\MeV})}
+    \times
+    \frac{\varepsilon_{\mu,i} T_{\text{DAQ},i}}{
+        \sum_j \varepsilon_{\mu,j} T_{\text{DAQ},j}
+    }
+    \times
+    \sum_{E\in\set{E_1,E_2,E_3}}
+    \frac{N_{\text{bkg},E}}{\alpha_{ntag, E}} e^{-V_E/\tau_{\text{Li}}}
+\end{equation}
+The first term corrected for the different prompt energy cut
+in the \li{} selection compared to the nominal IBD selection;
+the efficiencies were based on the \li{} prompt spectrum computed below.
+The second term divided the events for an entire hall
+into portions attributed to each AD based on the nominal unvetoed livetime.
+The index $j$ sums over all ADs within the same hall.
+The third term is a sum of the extracted event counts
+over the three muon energy classes, denoted by $E_1,E_2,E_3$.
+The weighting factor $\alpha_{ntag,E}$ was equal to
+the neutron tag efficiency for the low energy muon class $E_1$
+where the neutron tag data sample was used to extract $N_\text{bkg}$,
+and was equal to unity for the other two classes.
+Lastly, the exponential term accounted for \li{} decay
+over the actual muon veto windows in the nominal event selection,
+which had values $V_{E1} = V_{E2} = \SI{800}{\us}$
+and $V_{E3} = \SI{1}{\s}$.
 
 The spectrum of \li{} events was computed
 by comparing a \li{}-rich sample to a pure-IBD sample of events.
@@ -1745,13 +1786,26 @@ where the time to the preceding muon ($E_\mu \gtrsim \SI{1.3}{\GeV}$)
 was greater than \SI{1.5}{\s},
 thus rejecting \SI{>99.8}{\percent} of \li{} events.
 The prompt spectrum from the pure-IBD sample
-is normalized to the fitted value for $N_\text{uncorr}$
+was normalized to the fitted value for $N_\text{uncorr}$
 and subtracted from the prompt spectrom of the \li{}-rich sample.
-The resulting \li{} prompt spectrum is shown in \cref{fig:li9_spec}.
-The prompt energy cut efficiency correction
+The resulting \li{} prompt spectrum is shown in \cref{fig:li9_spec}
+and was assumed to be common among all ADs.
+The prompt energy cut efficiency ratio
 used to estimate the actual contamination in the neutrino candidate sample
-was computed based on this spectrum,
-which was assumed to be common among all ADs.
+was computed based on this spectrum.
+
+The sources of uncertainty in the number of \li{} events
+in the double coincidence data sample
+can be seen in the quantities that contributed to \cref{eq:li9_rate_conv}.
+The prompt energy cut efficiency ratio has an uncertainty
+due to the statistical uncertainty of each bin in the extracted \li{} spectrum
+(\cref{fig:li9_spec}).
+No uncertainty was attributed to the livetime factor since
+both the livetime and muon veto efficiency were known precisely.
+The neutron tag efficiency
+was the largest source of systematic uncertainty for the lowest-energy muons.
+The fit result $N_\text{bkg}$ was associated with a statistical uncertainty
+from the fit.
 
 \begin{figure}
     \missingfigure{\li{} prompt spectrum}
@@ -1770,9 +1824,268 @@ while the specific values used in this analysis can be found in \cite{jinjing_20
 \subsection{Muon-induced fast neutrons}
 \label{subsec:fastn}
 
-\subsection{Am-C calibration source}
+Muon interactions in the rock surrounding the Daya Bay experimental halls
+could produce energetic ``fast'' neutrons
+which occasionally penetrated through the water pools
+and into the scintillating volume in an AD.
+These fast neutrons could scatter off a proton in the scintillator,
+with the proton recoil causing a prompt-like scintillation signal.
+When the neutron subsequently captured on a hydrogen or gadolinium nucleus,
+the resulting prompt-delayed coincidence
+could pass all selection criteria and contaminate the double coincidence data set.
+
+The presence of fast neutron events in the double coincidence data set
+was demonstrated by modifying the event selection
+to remove the upper limit on prompt energy (nominally $E_p < \SI{12}{\MeV}$)
+and examining events with prompt energy up to \SI{300}{\MeV}
+(keeping all other event selection criteria intact),
+as shown in [color]\todo{Update with plot} in \cref{fig:fast_neutron}.
+The long tail of the spectrum was attributed to fast neutron events.
+This tail provided an important constraint on the fast neutron contamination
+in the nominal double coincidence data set.
+The modified data set will be referred to as the
+``extended double coincidence'' data set.
+
+The number of such fast neutron events in the nominal double coincidence data set
+was estimated by isolating a sample of fast neutron events
+tagged by the muon system.
+The resulting spectrum could be normalized based on the high-energy tail
+of the modified sample's prompt energy spectrum
+to provide a prediction of the rate and spectrum of fast neutron events
+with lower energies.
+
+The fast neutron events were selected by searching for
+double coincidences associated with signals
+in the outer water shield (OWS) of the muon system
+which had no other associated muon signal
+(see \cref{tab:fast_neutron}).
+These events were assumed to be fast neutron events
+which were caused by muons which traversed the outer water shield.
+The veto for all other muons was still applied in this sample,
+particularly the inner water shield (IWS) veto,
+so that there was no ambiguity about whether an AD signal
+was a muon or an energetic proton recoil from a fast neutron.
+The OWS-tagged sample and the extended double coincidence sample for each hall
+are shown in \cref{fig:fast_neutron}.
+To extract the number of fast neutron events in the double coincidence sample,
+the OWS-tagged sample was scaled by the normalization factor
+\begin{equation}\label{eq:fast_neutron_integral}
+    k_\text{fast neutron} = \frac{
+        \int_{\SI{12}{\MeV}}^{\SI{300}{\MeV}} \frac{dN_{\text{extended}}}{dE} dE
+    }{
+        \int_{\SI{12}{\MeV}}^{\SI{300}{\MeV}} \frac{dN_{\text{OWS}}}{dE} dE
+    },
+\end{equation}
+where the ``extended'' term refers to the histogram of prompt energies
+of the extended double coincidence sample,
+and the ``OWS'' term refers to the histogram for the OWS-tagged sample.
+The integral notation is used for simplicity,
+but in practice the bins are summed over as $\sum_i N(E_i)$.
+As shown in \cref{fig:fast_neutron},
+there is very good agreement in the shape of the two spectra.
+The number of fast neutrons in the nominal double coincidence sample
+is estimated as the number of events in the normalized OWS-tagged histogram
+over the nominal prompt energy range of \SIrange{1.5}{12}{\MeV}:
+\begin{equation}\label{eq:fast_neutron_count}
+    N_\text{fast neutron} = k_\text{fast neutron}
+    \int_{\SI{1.5}{\MeV}}^{\SI{12}{\MeV}} \frac{dN_{\text{OWS}}}{dE} dE.
+\end{equation}
+
+\begin{table}
+    \centering
+    \caption{
+        Modified event selection criteria for the OWS-tagged
+        double coincidence sample.
+    }
+    \label{tab:fast_neutron}
+    \begin{tabular}[t]{rl}
+        \hline
+        Prompt energy & \SIrange{1.5}{301.5}{\MeV} \\
+        Delayed energy & see \cref{tab:delayed_bounds} \\
+        Time from OWS muon to prompt signal & \SI{<0.3}{\us} \\
+        Time from any other muon to prompt signal & \SI{>1200}{\us} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\begin{figure}
+    \missingfigure{Fast neutron OWS + extended plots}
+    \caption{
+        Prompt energy spectra for each hall
+        showing the extended double coincidences
+        and the OWS-tagged sample.
+        The OWS-tagged sample has been normalized
+        so that its integral from X to Y MeV
+        matches the same integral in the extended double coincidence sample.
+        \todo[inline]{Fast neutron plot caption}
+    }
+    \label{fig:fast_neutron}
+\end{figure}
+
+\begin{figure}
+    \missingfigure{Fast neutron fit plot}
+    \caption{
+        Prompt energy spectra of the OWS-tagged
+        and extended double coincidence samples.
+        The solid curved line shows the best fit
+        to the extended double coincidence sample's
+        high energy range,
+        extrapolated to the lower-energy (nominal) range.
+    }
+    \label{fig:fast_neutron_fit}
+\end{figure}
+
+The uncertainty in this estimate was computed from three sources
+based on a parametri\-zation of the shape of the OWS-tagged spectrum
+using a modified power law function:
+\begin{equation}\label{eq:fast_neutron_powerlaw}
+    \frac{dN}{dE} = N_0 \left(\frac{E}{E_0}\right)^{-a-\frac{E}{E_0}}.
+\end{equation}
+This function was fit to the extended double coincidence spectrum
+over the energy range \SIrange{12}{300}{\MeV}
+and extrapolated to the lower-energy region,
+as shown in \cref{fig:fast_neutron_fit}.
+The uncertainties were derived based on the fitted function's
+ability to predict the value of $N_{\text{fast neutron}}$
+computed in \cref{eq:fast_neutron_count}
+by integrating the fitted function to obtain $N'_\text{fast neutron}$
+The three sources of uncertainty were as follows:
+(1) the full range of resulting $N'$ values
+when fit was performed using bin widths of \SIlist{1;2;3;4}{\MeV};
+(2) the maximum value of $\vert N_\text{fast neutron} - N'_\text{fast neutron}\vert$
+over the different binnings;
+and (3) the uncertainty in $N'_\text{fast neutron}$ due to
+the propagation of the parameter errors from the fit.
+For (3), the specific bin width used was arbitrarily chosen to be \SI{2}{\MeV}.
+The value $N_\text{fast neutron}$ by construction did not depend
+on the modified power law function in \cref{eq:fast_neutron_powerlaw}
+or the binning used to perform the fit.
+
+\subsection{\texorpdfstring{\amcbold}{Am-C} calibration source}
 \label{subsec:amc}
 
+The \amc{} calibration sources emitted neutrons at a rate of \SI{\sim0.7}{\Hz}
+to allow for calibration of the ADs' response to neutron capture events
+(\cref{ch:calibration}).
+When not deployed during weekly calibrations, these sources
+were stored within the ACUs at the top of each AD.
+The sources were designed to minimize
+the potential for correlated signals to reach the scintillating volume,
+e.g. by attenuating the $\alpha$ energy below the $\gamma$ production
+threshold for interactions with \isotope[13]{C} \cite{ngd2016}.
+However, the emitted neutrons were still able to generate
+correlated signals as follows.
+The prompt event consisted of an emitted neutron colliding inelastically
+with a nucleus (Fe, Cr, Mn or Ni) in the stainless steel surrounding the AD and ACU,
+producing $\gamma$-rays which occasionally was able to penetrate
+into the AD, where it interacted in the liquid scintillator.
+The neutron could subsequently capture on a (different) nucleus
+in the stainless steel or within the scintillating region,
+in either case producing additional $\gamma$-rays
+which, again, occasionally reached the scintillator and induced delayed signals.
+This was the only correlated background process
+which did not necessarily involve a neutron capture on H or Gd.
+
+The rate and prompt spectrum of the \amc{} background was determined
+during a special data run with an additional intense \amc{} source
+deployed on the lid of EH3-AD2 for 10 days during the summer of 2012,
+as shown in \cref{fig:amc_photo}.
+The double coincidences observed in EH3-AD2 showed a clear asymmetry
+between the upper and lower halves of the AD,
+as evidenced by the distribution of reconstructed prompt positions
+shown in \cref{fig:amc_position}.
+An asymmetry is visible in the blue curve (EH3-AD2)
+which is not present in the red curve
+(EH3-AD1, which did not have an intense \amc{} source).
+The additional events in the upper half of the AD
+were attributed to the intense \amc{} source creating additional background.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_event_selection/amc_photo_circled}
+    \caption{
+        Photograph of the intense \amc{} source (circled in red)
+        on the lid of EH3-AD2 between ACU-B and ACU-C \cite{amc_photo}.
+    }
+    \label{fig:amc_photo}
+\end{figure}
+
+A modified event selection requiring $z_\text{rec} > 0$
+for both prompt and delayed events
+was applied to both EH3-AD1 and EH3-AD2 data,
+and the accidental background was subtracted.
+(The accidental background increased in EH3-AD2 due to additional singles
+from the intense \amc{} source.)
+By subtracting the prompt energy distribution for EH3-AD1 from that of EH3-AD2,
+the number of additional \amc{}-induced events during the intense run
+was determined to be
+\begin{equation}\label{eq:amc_intense}
+    N_\text{int} = N_\text{EH3-AD2}(z > 0) - N_\text{EH3-AD1}(z > 0)
+    = \num{121.86\pm41.89}.
+\end{equation}
+The prompt reconstructed energy spectrum, shown in \cref{fig:amc_spectrum},
+was modeled by an exponential function,
+\begin{equation}\label{eq:amc_spec_fit}
+    f(E; N_0, E_0) = N_0 e^{-E/E_0}.
+\end{equation}
+The best-fit values were \todo{\amc{} fitted spectrum params}.
+
+The measurement from the intense run was converted
+into rates for each AD during the full data taking period
+by computing a proportionality constant
+relating the additional singles in the top half of an AD
+(relative to the bottom half)
+to the rate of \amc{} background events.
+Specifically, the number of single events
+with energy between \SIlist{6;12}{\MeV} was used
+since the impact of the \amc{} source was larger in that range.
+The proportionality constant was defined as
+\begin{align}\label{eq:amc_proportion}
+    \begin{split}
+        \alpha_\text{AmC} &= \frac{N_\text{int}}{
+            (N_\text{singles, int}(z>0) - N_\text{singles, int}(z < 0))
+        }_
+        {
+            \SI{6}{\MeV} < E < \SI{12}{\MeV}
+        } \\
+        &= \frac{N_\text{int}}{N_\text{diff, int}}.
+    \end{split}
+\end{align}
+The quantity $N_\text{diff}^{\text{AD }i}$ is defined for each AD $i$
+by the same singles asymmetry measurement
+given by the denominator of the first line of \cref{eq:amc_proportion}.
+The estimated number of \amc{} background events
+in the full nominal data sample for AD $i$ is
+\begin{equation}\label{eq:amc_count}
+    N_\text{AmC}^{\text{AD }i} = \alpha_\text{AmC} N_\text{diff}^{\text{AD }i}.
+\end{equation}
+A conservative uncertainty in the rate of \SI{50}{\percent}
+was sufficient to cover the differences between the observed data
+and a variety of simulations of the \amc{} background process.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{ch_event_selection/amc_position_asymmetry}
+    \caption{
+        Distributions of the reconstructed vertical ($z$) position
+        of prompt (left) and delayed (right) signals of nH IBD candidates
+        during the special \amc{} run period.
+        The red line is from EH3-AD1, which did not have the special \amc{} source,
+        and the blue line is from EH3-AD2, which did have the special \amc{} source.
+        Figure and caption taken from \cite{nh2016technote}.
+    }
+    \label{fig:amc_position}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \missingfigure{\amc{} subtracted spectrum}
+    \caption{Prompt reconstructed energy spectrum.}
+    \label{fig:amc_spectrum}
+\end{figure}
+
+
+\section{Event selection summary}
 \begin{table}[ht]
     \caption{
         Event selection summary.
