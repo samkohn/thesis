@@ -739,6 +739,55 @@ due to the finite precision of floating-point arithmetic.
 These cases were handled by assigning the expression the value 0,
 an approximation which was accurate to better than one part in $10^{10}$.
 
+\section{Fitter validation}
+\label{sec:fitter_validation}
+
+The implementations of the model described in \cref{sec:prediction}
+and the minimization procedure described in \cref{sec:fitter}
+(collectively, the ``fitter'')
+were validated against an existing Monte Carlo simulation
+designed for the nGd analysis.
+This simulation is described in detail in \cref{sec:lbnl_toymc}.
+Briefly, the simulation received as input
+all of the fitter inputs---efficiencies, livetimes, uncertainties, etc.---%
+except for the reconstructed prompt energy spectrum for each AD,
+and produced as output a set of plausible reconstructed prompt energy spectra
+given statistical fluctuations and systematic uncertainties.
+A given set of 8 prompt energy spectra (one for each AD)
+was termed a ``fake experiment.''
+The nH and nGd analyses were similar enough
+that the same fitter software could be used in either analysis
+simply by using the appropriate values for uncertainties, efficiencies,
+target masses and backgrounds
+(and, of course, the observed reconstructed prompt energy spectra).
+
+An initial validation was performed to ensure that
+the fitter could precisely extract \thetaot{}
+from the ``nominal'' fake experiment:
+one with all parameters set to the nominal values,
+and with no statistical fluctuations or systematic uncertainties
+(\cref{subsec:validation_nominal}).
+Next, the statistical fluctuations at the near and far halls were enabled,
+and the resulting variation in \thetaot{} values was examined
+(\cref{subsec:validation_stat}).
+A similar procedure was repeated for each source of systematic uncertainty
+(\cref{subsec:validation_syst}).
+Lastly, the full set of fluctuations and uncertainties was enabled
+to ensure the fitter could still extract an unbiased value of \thetaot{}
+(\cref{subsec:validation_final}).
+
+\subsection{No fluctuations}
+\label{subsec:validation_nominal}
+
+\subsection{Statistical fluctuations}
+\label{subsec:validation_stat}
+
+\subsection{Systematic uncertainties}
+\label{subsec:validation_syst}
+
+\subsection{Final validation}
+\label{subsec:validation_final}
+
 
 %If the predictions based on different near-hall AD observations agree,
 %it can be concluded that the effects due to reactor modeling
