@@ -15,7 +15,8 @@ The antineutrino detectors in the first experimental hall (EH1)
 were ready for data taking on 11 August 2011,
 and EH2 was ready on 5 November 2011.
 With the completion of EH3, data taking began on 24 December 2011
-and is planned to continue until 12 December 2020.
+and, with only brief interruptions,
+continued until 12 December 2020.
 
 The Daya Bay site is ideal for an oscillation experiment.
 Its six reactor cores together form one of the most intense \nuebar{}
@@ -44,9 +45,9 @@ relative oscillation measurement,
 and they each contain two antineutrino detector modules (ADs).
 EH3 is located farther away, approximately \SI{2}{\km} from the Daya Bay cores
 and \SI{1.5}{\km} from the Ling Ao cores,
-and is correspondingly also called the far hall.
+and is correspondingly called the far hall.
 EH3 is located at the first oscillation minimum
-for the oscillation controlled by \thetaot,
+for the oscillation controlled by $\Delta m^2_{32}$ (and $\Delta m^2_{31}$)
 and its purpose is to measure the decrease in \nuebar{} rate compared to the near halls.
 To increase statistics, EH3 contains four ADs.
 The layout of the EHs with respect to the reactors is shown in \cref{fig:layout}.
@@ -84,8 +85,8 @@ The 8-AD period began on 19 October 2012.
 At the end of 2017, EH1-AD1 was chosen to be repurposed as a test stand
 for liquid scintillator studies for the JUNO experiment \cite{junoproposal2016},
 and was decommissioned from Daya Bay.
-The 7-AD period began in January 2017 and will continue through the end of
-the Daya Bay experiment in December 2020.
+The 7-AD period began in January 2017 and continued through the end of
+the Daya Bay experiment on 12 December 2020.
 
 The ADs within each hall are collectively surrounded by a water pool,
 which acts as a passive shield against natural radioactivity present in the rock
@@ -107,7 +108,7 @@ which were used for muon studies during detector commissioning \cite{muonsystem2
 \section{Antineutrino detectors}
 
 The eight antineutrino detectors (ADs) are used to measure
-the rate and energy of millions of \nuebar interactions with high precision
+the rate and energy of millions of \nuebar{} interactions with high precision
 and low systematic uncertainty.
 Each AD consists of three concentric cylindrical regions
 contained in an outer stainless steel vessel (SSV),
@@ -138,7 +139,7 @@ is dissolved as a fluor,
 along with \SI{15}{\mg\per\liter} of the wavelength shifter
 p-bis-(o-methylstyryl)-benzene (bis-MSB).
 This LS is used to fill the OAV.
-To dissolve Gd into the LS for the IAV, the chelating ligand
+To dissolve Gd into the LS to fill the IAV, the chelating ligand
 3,5,5-trimethylhexanoic acid (TMHA) was chosen for its ease of production
 and its stability in solution with LAB.
 During LS production, the approximately \SI{185}{\tonne} of GdLS for the IAV
@@ -146,14 +147,14 @@ was produced first,
 after which the equipment was cleaned with a diluted HCl solution and purified water
 so that the undoped LS could then be produced for the OAV.
 
-Each AD contains overflow tanks to allow the liquid in each region
+Each AD contained overflow tanks to allow the liquid in each region
 to respond to the slight expected changes in temperature and pressure.
 ADs were also fitted with three automated calibration units (ACUs)
-which contain radioactive sources and LEDs to help calibrate the ADs.
+which contained radioactive sources and LEDs to help calibrate the ADs.
 The ACUs are described in detail in \cref{ch:calibration}.
 
 The mineral oil region also contained the 192 8-inch Hamamatsu R5912
-photomultiplier tubes (PMTs) that monitor the AD for scintillation light
+photomultiplier tubes (PMTs) that monitored the AD for scintillation light
 (and, secondarily, Cherenkov radiation).
 The PMTs are arranged in 8 rings of 24 PMTs on the outer edge of the mineral oil region.
 Light collection and detector uniformity is increased by the presence of
@@ -200,30 +201,67 @@ as described in \cref{sec:flashers}.
     \label{fig:ad_cutaway}
 \end{figure}
 
-The ADs are optimized to detect inverse beta decay (IBD) interactions
-originating in the GdLS or LS. See \cref{sec:experiment_intro}
-for a detailed description of the IBD interaction.
-The neutrons produced by IBD thermalize in the liquid scintillator
-and capture on Gd (in the GdLS only) or on a proton in the form of \isotope[1]{H}
+\subsection{Observing Inverse Beta Decay}
+\label{subsec:ibd_intro}
+
+The IBD reaction, $\nuebar + p \to e^+ + n$,
+creates two signals with a characteristic
+time delay between them, in a pattern known as a ``double''
+or ``delayed'' coincidence.
+When this reaction occurred in either the GdLS or LS region
+of a Daya Bay AD,
+the positron quickly deposited its kinetic energy in the liquid scintillator
+and annihilated within $\lesssim\SI{1}{\nano\second}$
+into two \SI{0.511}{\MeV} $\gamma$-rays
+which also deposited their energy into the LS.
+The combined light from the kinetic energy and annihilation $\gamma$-rays
+was the prompt signal
+and served as an effective timestamp for the interaction.
+The total prompt energy was related to the incident antineutrino energy
+via the mass-energy conservation relation
+\begin{equation}\label{eq:prompt_vs_nu_energy}
+    E_p \approx E_\nu - \delta_{pn} + m_e \approx E_\nu - \SI{0.78}{\MeV},
+\end{equation}
+where $\delta_{pn}$ is the mass difference between the neutron and proton.
+Meanwhile, the neutron produced by IBD thermalized in the liquid scintillator
+and captured on Gd (in the GdLS only) or on a proton in the form of \isotope[1]{H}
 (in both the GdLS and LS).
-This happens with a characteristic time of $\sim \SI{28}{\micro\second}$
+This happened with a characteristic time of $\sim \SI{28}{\micro\second}$
 in GdLS and $\sim \SI{215}{\micro\second}$ in LS.
-The shorter time in the GdLS is by design,
+The shorter time in the GdLS was by design,
 due to the large capture cross section of a thermalized neutron
 on a Gd nucleus compared to H (\SI{49}{\kilo\barn} vs. \SI{0.332}{\barn})
 \cite{gdls2014}.
-If the neutron captures on Gadolinium (nGd), the excited nucleus
-will emit $\gamma$-rays in one of two decay chains,
-both of which have a combined energy of approximately \SI{8}{\mev}.
-If the neutron captures on a Hydrogen nucleus present as part of
-the liquid scintillator hydrocarbon chains,
-the $n+\isotope[1]{H} \to \isotope[2]{H} + \gamma$ reaction (nH) will occur;
-the emitted $\gamma$-ray has an energy of \SI{2.2}{\mev}.
-In either event, the $\gamma$-rays will deposit their energy
+The term nGd is used to refer to the process neutron capture on Gd
+and the analysis of the data set containing nGd captures.
+The analogue for neutron capture on H is nH.
+For nGd captures, the excited nucleus
+emitted $\gamma$-rays in one of two decay chains,
+both of which had a combined energy of approximately \SI{8}{\MeV}.
+The nH capture reaction $n+\isotope[1]{H} \to \isotope[2]{H} + \gamma$
+would produce a \SI{2.2}{\MeV} $\gamma$-ray.
+In either event, the $\gamma$-rays deposited their energy
 in the liquid scintillator.
-The \SIlist[list-pair-separator = { or }]{2.2;8}{\mev} signal
-from the neutron capture comprises the delayed signal of the
+The \SIlist[list-pair-separator = { or }]{8;2.2}{\MeV} signal
+from the neutron capture on Gd or H, respectively, comprised the delayed signal of the
 double coincidence.
+This prompt-delayed coincidence pattern was an extremely efficient
+discriminator for IBD events against a wide variety of sources of background.
+The full IBD interaction and detection process
+is depicted in \cref{fig:ibd_cartoon}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{ch_detector/ibd}
+    \caption{
+        Graphical depiction of the IBD interaction and delayed coincidence.
+        The dotted outlined $e^+$ and $n$ represent the initial interaction products.
+        The thin black lines represent their trajectories
+        through the liquid scintillator.
+        The groups of three ``reaction'' marks indicate scintillation light.
+    }
+    \label{fig:ibd_cartoon}
+\end{figure}
 
 The LS region serves an important purpose for the main \thetaot{}
 analysis using neutron capture on Gadolinium (nGd).
