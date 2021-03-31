@@ -195,7 +195,7 @@ had helicity $-1$.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{ch_introduction/helicity_setup}
+    \includegraphics[width=0.38\textwidth]{ch_introduction/helicity_setup}
     \caption{
         Schematic layout of the experiment which measured
         the helicity of the neutrino \cite{helicity_measurement}.
@@ -378,13 +378,12 @@ until it shut down in 1992.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{ch_introduction/solar_spectrum}
+    \includegraphics[width=0.8\textwidth]{ch_introduction/solar_spectrum}
     \caption{
         Predicted solar neutrino fluxes according to the SSM \cite{bahcall2004}.
-        The units of neutrino flux are incident neutrinos
+        The units of neutrino flux are
         \si[per-mode=reciprocal]{\per\square\cm\per\second} for monoenergetic processes
-        and incident neutrinos
-        \si[per-mode=reciprocal]{\per\square\cm\per\second\per\MeV}
+        and \si[per-mode=reciprocal]{\per\square\cm\per\second\per\MeV}
         for continuous processes.
         The quoted percentages represent the uncertainty
         on the normalization of the flux for the corresponding process.
@@ -407,6 +406,28 @@ and the discrepancy had become known as the ``solar neutrino problem.''
 The two remaining routes for resolving the discrepancy were
 (1) errors in the SSM, and (2) that neutrinos ``oscillate or decay''
 between their production in the sun and their detection on Earth \cite{davis1985}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{ch_introduction/sno_salt}
+    \caption{
+        Measured fluxes of solar $\nu_e$ and ``solar'' $\nu_{\mu,\tau}$
+        constrained by SNO (Phases I and II) and Super-Kamiokande,
+        compared to the SSM prediction \cite{sno_salt2004}.
+    }
+    \label{fig:sno_plots}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{ch_introduction/solar_resolution}
+    \caption{
+        Predictions and measurements for \isotope[37]{Cl}, \isotope[71]{Ga},
+        $\text{H}_2\text{O}$, and $\text{D}_2\text{O}$ solar neutrino experiments.
+        Taken from \cite{bahcall_images} based on \cite{bahcall2005_diagram}.
+    }
+    \label{fig:solar_neutrino_fixed}
+\end{figure}
 
 Davis and others supported the construction of
 new experiments based on the same radiochemical principle,
@@ -457,13 +478,30 @@ The three interaction categories for SNO were
         \nu_e + \isotope[2]{H} & \to e^- + p + p \text{ (CC)} \\
         \nu_x + \isotope[2]{H} & \to \nu_x + n + p  \text{ (NC)}\\
                                & \text{with }n + \isotope[2]{H} \to
-                               \isotope[3]{H} + \gamma (\SI{6.26}{\MeV}) \\
+                               \isotope[3]{H} + \gamma (\SI{6.26}{\MeV})
+                               \text{ (Phase I),} \\
+                               & n + \isotope[35]{Cl} \to
+                               \isotope[36]{Cl} + \text{ multiple }\gamma\text{'s}
+                               (\SI{8.6}{\MeV})
+                               \text{ (Phase II), or} \\
+                               & n + \isotope[3]{He} \to
+                               \isotope[3]{H} + p \text{ (Phase III)}\\
         \nu_x + e^- & \to \nu_x + e^- \text{ (elastic scatter (ES))}
     \end{split}
 \end{align}
 In these reactions $\nu_x$ means any flavor of neutrino ($x = e,\mu,\tau$).
 Elastic scatter reactions could occur via CC (for $\nu_e$ only, and with a higher cross section)
 or via NC (for all flavors including $\nu_e$).
+The three phases of the experiment differed in the technique
+used to detect the neutron produced by the NC interaction.
+In Phase I, the target medium was pure $\text{D}_2\text{O}$.
+In Phase II, salt (NaCl) was dissolved in the target
+since \isotope[35]{Cl} has a much higher neutron capture cross section
+than \isotope[2]{H}, and also produces higher-energy $\gamma$-rays \cite{sno_salt2004}.
+In Phase III, the NaCl was removed
+and proportional counters containing \isotope[3]{He}
+were deployed to provide a complementary measurement of the NC channel
+with mostly-independent systematic uncertainties \cite{sno_ncd_instrumentation}.
 SNO reproduced the existing deficits using the CC interaction category,
 corroborating the observation of missing solar $\nu_e$.
 The NC observation included all neutrino flavors and matched the SSM prediction,
@@ -471,41 +509,32 @@ as did the ES measurement.
 All of the neutrinos predicted by the SSM did reach Earth,
 but only some of them interacted as $\nu_e$: thus their flavors had changed.
 Comparisons of $\nu_e$ with $\nu_{\mu,\tau}$ fluxes
-from SNO and Super-Kamiokande are shown in \cref{fig:sno_plots}.
+from SNO (Phases I and II) and Super-Kamiokande are shown in \cref{fig:sno_plots}.
 A summary diagram of the solar neutrino problem and its resolution by SNO
 is shown in \cref{fig:solar_neutrino_fixed}.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.45\textwidth]{ch_introduction/sno_salt}
-    \caption{
-        Measured fluxes of solar $\nu_e$ and ``solar'' $\nu_{\mu,\tau}$
-        constrained by SNO and Super-Kamiokande,
-        compared to the SSM prediction \cite{sno_salt2004}.
-    }
-    \label{fig:sno_plots}
-\end{figure}
+The KamLAND experiment performed
+an independent measurement of electron (anti)\-neutrino disappearance
+by observing reactor antineutrinos (\SI{\sim3}{\MeV}) from all over Japan
+at an average baseline of \SI{\sim180}{\km},
+with the first results announced in 2002 \cite{kamland_first}.
+Observations indicated significant distortion
+in the energy spectrum of \nuebar{} events,
+as shown in \cref{fig:kamland_spec}.
+The specific shape of the distortion
+matched the predictions of the three-flavor oscillation model
+described in \cref{subsec:theory}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{ch_introduction/solar_resolution}
+    \includegraphics[width=0.8\textwidth]{ch_introduction/kamland2008}
     \caption{
-        Predictions and measurements for \isotope[37]{Cl}, \isotope[71]{Ga},
-        $\text{H}_2\text{O}$, and $\text{D}_2\text{O}$ solar neutrino experiments.
-        Taken from \cite{bahcall_images} based on \cite{bahcall2005_diagram}.
+        Spectrum of \nuebar{} events at KamLAND.
+        The substantial trough around $L_0/E_{\bar{\nu}_e} = \SI{50}{\km\per\MeV}$
+        was a signature of neutrino oscillation.
     }
-    \label{fig:solar_neutrino_fixed}
+    \label{fig:kamland_spec}
 \end{figure}
-
-Due to the interaction with the highly dense matter in the solar interior,
-solar neutrinos
-have an entirely different oscillation phenomenology from
-accelerator, reactor and atmospheric neutrinos.
-The theoretical framework for neutrino oscillation
-accommodates both (ordinary) vacuum oscillations
-as well as the (solar) oscillations in matter.
-See \cite{neutrino_textbook} for a detailed discussion
-of oscillations in matter.
 
 \subsection{The atmospheric neutrino anomaly}
 \label{subsec:atmospheric_anomaly}
@@ -535,7 +564,8 @@ The IMB experiment observed fluxes broadly consistent with
 the reports from Kamiokande \cite{imb_atmo}.
 
 \begin{figure}
-    \includegraphics[width=0.5\textwidth]{ch_introduction/kamioka_atmo_spec}
+    \centering
+    \includegraphics[width=0.6\textwidth]{ch_introduction/kamioka_atmo_spec}
     \caption{
         Momentum spectra for electron-like (left) and muon-like (right) events
         at the Kamiokande detector \cite{kamiokande_atmo}.
@@ -574,6 +604,7 @@ which matched the results from Kamiokande.
 \cite{superk_solar1998,superk_solar2001}.
 
 \begin{figure}
+    \centering
     \includegraphics[width=\textwidth]{ch_introduction/superk_zenith_dist}
     \caption{
         Distributions of zenith angle at the Super-Kamiokande experiment
@@ -707,7 +738,7 @@ This assumption is in general poorly justified,
 but for the fact that the resulting equations are validated by experiments.
 In any event, this approximation yields the identity
 \begin{equation}\label{eq:msq_approx}
-    E_j - E_i \approx \frac{m_j^2 - m_i^2}{2E_0}.
+    E_j - E_i \approx \frac{m_j^2 - m_i^2}{2E}.
 \end{equation}
 The established framework for computing oscillation probabilities
 using these approximations, known as the plane-wave formalism,
@@ -927,7 +958,7 @@ The third term is dominant for solar neutrinos
 and for reactor neutrinos at baselines of \SI{\sim100}{\km}.
 
 The neutrino may be a Majorana particle.
-If so, an additional two parameters, the Majorana phases,
+If so, an additional two parameters %$\alpha_1$ and $\alpha_2$, the Majorana phases,
 would govern the mixing between states.
 They would appear as an additional factor in \cref{eq:pmns}
 of the form $\text{diag}(e^{i\alpha_1}, e^{i\alpha_2}, 1)$.
@@ -1013,17 +1044,18 @@ The solar parameters $\theta_{12}$ and $\Delta m^2_{21}$
 were first measured using data from the aforementioned
 Homestake/\isotope[37]{Cl}, SAGE, GALLEX/GNO, and SNO experiments.
 The high matter densities in the sun impact the neutrino flavor transitions
-through the Mikheyev-Smirnov-Wolfenstein (MSW) matter effect.
+through the Mikheyev-Smirnov-Wolfenstein (MSW) matter effect;
+the so-called ``vacuum oscillation'' model described above
+was not the dominant mechanism governing solar neutrinos,
+though the two mechanisms share the same fundamental PMNS (mixing) matrix.
 A detailed description of the measurements of $\theta_{12}$ and $\Delta m^2_21$ and the MSW effect
 will be left to \cite{neutrino_textbook}.
 Modern values for the solar parameters rely
 on measurements from the Super-Kamiokande experiment.
 
-The KamLAND experiment performed
-an independent measurement of the solar parameters
-by observing reactor antineutrinos from all over Japan
-at an average baseline of \SI{\sim180}{\km},
-with the first results announced in 2002.
+The KamLAND experiment results (\cref{fig:kamland_spec})
+were interpreted in the vacuum oscillation model
+as measurements of the solar mixing parameters.
 The agreement of the reactor antineutrino measurement from KamLAND
 with the existing solar neutrino results
 was a major success of the theory of neutrino mixing.
@@ -1114,7 +1146,7 @@ at a significance of $3\sigma$ \cite{t2k_deltacp}.
 These experiments provided the above-referenced measurement to $\delta_{CP}$
 (\cref{eq:current_values}).
 The next generation of experiments is currently under construction
-and includes DUNE in the United States \todo{Which DUNE pub to cite?}
+and includes DUNE in the United States \cite{dune_potential}
 and Hyper-Kamiokande in Japan \cite{hyperk2015}.
 
 Two classes of experiments are sensitive to the neutrino mass ordering.
