@@ -673,13 +673,13 @@ are all motivated in large part by the need to reduce the accidental background.
 
 The characteristic distance for a neutron capture on hydrogen
 is approximately \SI{200}{\milli\meter},
-and the characteristic time delay is \SI{150}{\us}.
+and the characteristic time delay is \SI{\sim215}{\us}.
 For accidental coincidences, the characteristic distance is
 the length scale of the AD, approximately \SI{3000}{\milli\meter},
 and the characteristic time based on the \fold{1} event rate
 is $\sim\SI{50000}{\us}$.
-On the time scale of the coincidence window length $\tc=\SI{1500}{\us}$,
-any particular coincidence time is equally probable.
+%On the time scale of the coincidence window length $\tc=\SI{1500}{\us}$,
+%any particular coincidence time is approximately equally probable.
 
 \adgrid{Distribution of coincidence distance and coincidence
 time\todo[inline]{Fix y axis tick labels}}{fig:dr_vs_dt}{ch_event_selection/dr_vs_dt}
@@ -694,13 +694,13 @@ The cluster at the lowest coincidence times and distances
 consists of IBD events.
 The rest of the events distributed with relatively uniform density
 across the plot are accidental coincidences from uncorrelated events.
-This plot was used to determine an ad-hoc distance and time cut
+This plot was used as a heuristic to determine a distance and time cut
 by drawing a line from \SI{800}{\milli\meter} at $0$ time
 to \SI{480}{\micro\second} at $0$ distance.
 This line effectively separates the higher-density region
 of correlated events from the uniform density region of accidental background.
-This cut is known as the DT cut and the line determining the cut has the equation
-
+The distance-time (DT) cut is defined by this line,
+and accepts events which satisfy the inequality
 \begin{equation}
     \text{DT} = \Delta r + v_0 \Delta t < \SI{800}{\milli\meter},
 \end{equation}
@@ -717,23 +717,126 @@ against the accidental background.
 \adgrid{Prompt-delayed energy spectra after applying
 the DT cut}{fig:after_DT_cut}{ch_event_selection/post_DT_cut}
 
-Applying the DT cut rejects the vast majority of accidental events
+Applying the DT cut rejected the vast majority of accidental events
 at a loss of approximately \SI{30}{\percent} of real IBDs.
-The efficiency is measured after subtracting the accidental background
-(\cref{sec:acc})
-by comparing the number of \fold{2} coincidences that pass the energy cuts and the DT cut
-with the number of \fold{2} coincidences that pass the energy cuts
-and a significantly relaxed DT cut of \SI{10}{\meter},
-encompasing \SI{>99.99}{\percent} of events:
-\begin{equation}
-    \varepsilon_{\text{DT}} = \frac{N(\text{DT} < \SI{800}{\milli\meter})}{
-    N(\text{DT} < \SI{10000}{\milli\meter})}.
+The absolute efficiency was defined as
+\begin{equation}\label{eq:abs_DT_eff}
+    \varepsilon_{\text{DT}} = \frac{
+        N_\text{IBD}[E_p \wedge E_d \wedge \text{DT}]
+    }%
+    {
+        N_\text{IBD}[E_p \wedge E_d]
+    },
+\end{equation}
+the fraction of IBD events passing the prompt and delayed energy cuts
+which also pass the DT cut.
+This value was estimated by constructing a 2D histogram
+showing the DT parameter and delayed energy value
+for all double coincidence events.
+A separate histogram was constructed using the same quantities
+but for the synthetic accidental background events, described in \cref{sec:acc}.
+The accidentals histogram was normalized so that
+\begin{equation}\label{eq:acc_sub_normalized}
+    \int_{E_d}\int_{\SI{3}{\m}}^{\SI{10}{\m}}
+    \frac{d^2N_\text{obs}}{dE_d d(\text{DT})}
+    dE_d d(\text{DT})
+    =
+    \int_{E_d}\int_{\SI{3}{\m}}^{\SI{10}{\m}}
+    \frac{d^2N_\text{acc}}{dE_d d(\text{DT})}
+    dE_d d(\text{DT})
+\end{equation}
+based on the assumption that all observed events
+with a DT parameter greater than \SI{3}{\m}
+were accidental coincidences.
+Subtracting the accidentals histogram from the observed double coincidences
+thus provided the distribution of correlated events
+(true IBDs as well as correlated backgrounds)
+as a function of delayed energy and DT parameter,
+denoted $N_\text{sub}$.
+By construction,
+\begin{equation}\label{eq:acc_sub_normalized_zero}
+    \int_{E_d}\int_{\SI{3}{\m}}^{\SI{10}{\m}}
+    \frac{d^2N_\text{sub}}{dE_d d(\text{DT})}
+    dE_d d(\text{DT})
+    = 0.
+\end{equation}
+A further assumption, that the position distribution of correlated backgrounds
+(most of which involved a prompt event followed by nH capture)
+was equal to the position distribution of IBDs,
+was made to allow the approximation of \cref{eq:abs_DT_eff} as
+\begin{equation}\label{eq:abs_DT_eff_approx}
+    \varepsilon_{\text{DT}} \approx \frac{
+        N_\text{sub}[E_p \wedge E_d \wedge \text{DT}]
+    }%
+    {
+        N_\text{sub}[E_p \wedge E_d]
+    }.
 \end{equation}
 \Cref{fig:ed_DT_sub} illustrates how the DT cut efficiency is measured
 for each AD using a histogram of delayed energy and DT value
 to determine the number of events which pass the nominal and relaxed DT cuts.
-The DT cut absolute efficiency for each AD is shown in \cref{fig:DT_eff},
-although it is not used as an input to the \thetaot{} analysis.
+The measured DT cut absolute efficiency for each AD is shown in \cref{fig:DT_eff}.
+Like all absolute detection efficiencies,
+$\varepsilon_{\text{DT}}$ was not used as an input to the \thetaot{} analysis.
+However, the variation between ADs was treated as the AD-uncorrelated uncertainty
+of the detection efficiency due to the DT cut.
+The \SI{>3}{\percent} apparent variation between ADs
+motivated additional investigation
+to determine whether the variability was intrinsic to the ADs
+or was simply an artifact of one or more of the assumptions
+used to extract the efficiency values.
+
+The extraction of the absolute efficiency was extremely sensitive
+to small variations in the accidentals subtraction procedure.
+The sensitivity arose when computing $N_\text{sub}[E_p \wedge E_d]$
+Most of the range of DT values was characterized by
+very few correlated events but many accidental coincidences.
+A change of \SI{0.01}{\percent} in the normalization (rate)
+of the subtracted background at a far site AD
+yielded a relative impact of \SI{2.1}{\percent} in the extracted DT cut efficiency,
+amplifying the bias by a factor of over 200.
+(The near site ADs were sensitive by a factor of $\sim30$.)
+Normalizing the high-DT range of the distributions,
+as shown in \cref{eq:acc_sub_normalized},
+addressed most of this issue,
+but the precise choice of lower bound
+could still impact the computation
+due to statistical fluctuations in the histogram bins near $\text{DT} = \SI{3}{\m}$.
+
+Two special selections were used to reduce the impact of
+the accidentals subtraction procedure on the DT cut efficiency uncertainty.
+The first selection consisted of events where the neutron captured on Gd
+rather than H.
+They were isolated using the plots shown in \cref{fig:ed_DT_sub}
+by selecting the region with delayed energy between \SIlist{6;12}{\MeV}.
+The second selection consisted of nH events
+with a prompt energy above \SI{3.5}{\MeV}.
+The accidentals-subtracted plots of delayed energy versus DT were
+modified to only include events with $E_p > \SI{3.5}{\MeV}$,
+and the DT efficiency procedure was repeated.
+The same delayed energy cut was used for this modified sample
+as for the nominal sample.
+The nGd subset yielded a full range of \SI{0.18}{\percent}
+in DT cut absolute efficiencies between ADs,
+while the $E_p > \SI{3.5}{\MeV}$ yielded a full range of \SI{0.94}{\percent}.
+The extracted efficiencies for each AD are shown in \cref{fig:DT_eff_subsamples}.
+Between these two subsets, almost the entire range
+of prompt and delayed positions and energies used in the nominal selection was represented,
+allowing the DT cut efficiency uncertainty to be accurately estimated
+with a minimal impact from the accidental background.
+Conservatively, the half-range of the $E_p > \SI{3.5}{\MeV}$ subset,
+\SI{\pm0.47}{\percent}, was
+used as the AD-uncorrelated uncertainty of the DT cut efficiency.
+
+\begin{figure}
+    \missingfigure{DT efficiency subsamples: nGd and $E_p > \SI{3.5}{\MeV}$}
+    \caption{
+        Extracted DT cut efficiencies for the subsample of events
+        with neutron capture on nGd and with prompt energy
+        greater than \SI{3.5}{\MeV}.
+    }
+    \label{fig:DT_eff_subsamples}
+\end{figure}
 
 \begin{figure}
     \centering
@@ -767,57 +870,6 @@ although it is not used as an input to the \thetaot{} analysis.
         \todo[inline]{Explain {\em very} clearly or remove}
     }
     \label{fig:DT_eff}
-\end{figure}
-
-The AD-uncorrelated uncertainty for the efficiency
-was determined from the data by examining the variation
-in measured absolute efficiency.
-The extraction of the absolute efficiency was extremely sensitive
-to small variations in the accidentals subtraction procedure.
-The sensitivity arose when computing $N(\text{DT} < \SI{10000}{\mm}$
-using a histogram representing the accidentals-subtracted
-distribution of DT values.
-Most of the range of DT values was characterized by
-very few correlated events but many accidental coincidences.
-A change of \SI{0.01}{\percent} in the normalization (rate)
-of the background to subtract at a far site AD
-yielded an impact of \SI{2.1}{\percent} in the extracted DT cut efficiency,
-amplifying the error by a factor of over 200.
-(The near site ADs were sensitive by a factor of $\sim30$.)
-
-Two special selections were used to reduce the impact of the
-the accidentals subtraction procedure on the DT cut efficiency uncertainty.
-The first selection consisted of events where the neutron captured on Gd
-rather than H.
-They were isolated using the plots shown in \cref{fig:ed_DT_sub}
-by selecting the region with delayed energy between \SIlist{6;12}{\MeV}.
-The second selection consisted of nH events
-with a prompt energy above \SI{3.5}{\MeV}.
-The accidentals-subtracted plots of delayed energy versus DT were
-modified to only include events with $E_p > \SI{3.5}{\MeV}$,
-and the DT efficiency procedure was repeated.
-The same delayed energy cut was used for this modified sample
-as for the nominal sample.
-The nGd subset yielded a variation of \SI{0.18}{\percent}
-in DT cut absolute efficiencies between ADs,
-while the $E_p > \SI{3.5}{\MeV}$ yielded a variation of \SI{0.94}{\percent}.
-The extracted efficiencies for each AD are shown in \cref{fig:DT_eff_subsamples}.
-Between these two subsets, almost the entire range
-of prompt and delayed positions and energies was represented,
-allowing the DT efficiency variation to be accurately computed
-with a minimal impact from the accidental background.
-Conservatively, the half-range of the $E_p > \SI{3.5}{\MeV}$ subset,
-\SI{\pm0.5}{\percent}, was
-used as the AD-uncorrelated uncertainty of the DT cut efficiency.
-
-\begin{figure}
-    \missingfigure{DT efficiency subsamples: nGd and $E_p > \SI{3.5}{\MeV}$}
-    \caption{
-        Extracted DT cut efficiencies for the subsample of events
-        with neutron capture on nGd and with prompt energy
-        greater than \SI{3.5}{\MeV}.
-    }
-    \label{fig:DT_eff_subsamples}
 \end{figure}
 
 \section{Accidental coincidences}
