@@ -60,20 +60,25 @@ The layout of the EHs with respect to the reactors is shown in \cref{fig:layout}
     \begin{subfigure}{0.49\textwidth}
         \includegraphics[width=\textwidth]{ch_detector/dayabay_map_3d}
     \end{subfigure}
-    \caption{Two views of the layout of the Daya Bay experiment.
-    \todo[inline]{Track down Kam-Biu's satellite image}}
+    \caption{Two views of the layout of the Daya Bay experiment.}
     \label{fig:layout}
 \end{figure}
 
 The EHs are located at underneath a mountain, which provides a substantial
 overburden to protect against cosmic-ray muons.
 The specific measurements of overburden, the positions of the ADs,
-and the baseline are shown in \cref{tab:baselines}.
+%and the baseline are shown in \cref{tab:baselines}.
 
-\begin{figure}
-    \missingfigure{Table of baselines and overburdens}
-    \label{tab:baselines}
-\end{figure}
+%\begin{table}[ht]
+    %\centering
+    %\begin{tabular}[t]{lSSSSSSSSSSSS}
+        %\toprule
+        %\midrule
+        %\bottomrule
+    %\end{tabular}
+    %\caption{Baselines and overburdens}
+    %\label{tab:baselines}
+%\end{table}
 
 To accelerate the experiment startup timeline,
 only six of the planned eight ADs were installed in 2011:
@@ -220,9 +225,9 @@ and served as an effective timestamp for the interaction.
 The total prompt energy was related to the incident antineutrino energy
 via the mass-energy conservation relation
 \begin{equation}\label{eq:prompt_vs_nu_energy}
-    E_p \approx E_\nu - \delta_{pn} + m_e \approx E_\nu - \SI{0.78}{\MeV},
+    E_p \approx E_\nu - \delta m_{pn} + m_e \approx E_\nu - \SI{0.78}{\MeV},
 \end{equation}
-where $\delta_{pn}$ is the mass difference between the neutron and proton.
+where $\delta m_{pn}$ is the mass difference between the neutron and proton.
 Meanwhile, the neutron produced by IBD thermalized in the liquid scintillator
 and captured on Gd (in the GdLS only) or on a proton in the form of \isotope[1]{H}
 (in both the GdLS and LS).
@@ -254,11 +259,12 @@ is depicted in \cref{fig:ibd_cartoon}.
     \centering
     \includegraphics[width=0.8\textwidth]{ch_detector/ibd}
     \caption{
-        Graphical depiction of the IBD interaction and delayed coincidence.
+        Graphical depiction of the IBD interaction and delayed coincidence
+        for neutron capture on hydrogen (nH).
         The dotted outlined $e^+$ and $n$ represent the initial interaction products.
         The thin black lines represent their trajectories
         through the liquid scintillator.
-        The groups of three ``reaction'' marks indicate scintillation light.
+        The ``whisker'' marks indicate production of scintillation light.
     }
     \label{fig:ibd_cartoon}
 \end{figure}
@@ -270,11 +276,13 @@ that escape from the scintillating volume and distort the energy spectrum.
 The presence of the LS region allows the entire GdLS volume to be
 the fiducial volume, obviating the need to cut on the reconstructed position
 of events, which would have added additional uncertainties to the analysis.
-However, for the neutron capture on Hydrogen analysis (nH),
+However, for the neutron capture on hydrogen analysis (nH),
 the $\gamma$-rays produced by nH capture in the LS region
 have a higher likelihood of escaping.
 This risk is somewhat mitigated by the lower energy of the nH $\gamma$'s
 (\SI{2.2}{\mev} vs. \SI{8}{\mev}).
+The \thetaot{} analysis accounts for escaping $\gamma$'s
+through assessment of the delayed energy cut efficiency (\cref{subsec:delayed}).
 
 
 \section{Water pools and muon detectors}
@@ -311,13 +319,13 @@ that reach the ADs using the trigger thresholds described in \cref{tab:trigger}.
 \begin{table}[ht]
     \centering
     \begin{tabular}[t]{llll}
-        \hline
+        \toprule
         Hall & IWS & OWS (inward/outward) & Total\\
-        \hline
+        \midrule
         EH1 & 121 & 167 (103/64) & 288\\
         EH2 & 121 & 167 (103/64) & 288\\
         EH3 & 160 & 224 (128/96) & 384\\
-        \hline
+        \bottomrule
     \end{tabular}
     \caption{Muon system PMTs \cite{muonsystem2015}}
     \label{tab:wp_pmts}
@@ -375,24 +383,29 @@ The resulting data files comprise the raw data from Daya Bay.
 \begin{table}[ht]
     \centering
     \begin{tabular}[t]{lllp{6cm}}
-        \hline
+        \toprule
         Detector & Criterion & Threshold value ($\geq$) & Explanation\\
-        \hline
+        \midrule
         AD & NHIT & \num{45} & Number of PMTs over threshold \\
         AD & ESUM & $\SI{65}{\pe}\approx \SI{0.4}{\MeV}$ & Analog sum of signals \\
         IWS & NHIT & \num{6} & \\
         OWS (near-hall) & NHIT & \num{7} & \\
         OWS (far-hall) & NHIT & \num{8} & \\
         AD & CALIB & - & Calibration trigger simultaneous with LED flash \\
-        \hline
-        \multicolumn{4}{c}{Ignored triggers for \thetaot{} analysis} \\
-                       \hline
+        \midrule
+        \multicolumn{4}{c}{Ignored in \thetaot{} analysis} \\
+        \cmidrule(r{17em}l{17em}){1-4}
         RPC & NHIT & \num{3} & Number of layers over threshold in a single module \\
         AD & RANDOM & - & Random triggers issued at \SI{10}{\Hz} \\
         All & XTRIG & - & Criteria at one detector can trigger another \\
-        \hline
+        \bottomrule
     \end{tabular}
-    \caption{Trigger criteria from \cite{ngd2016}}
+    \caption{
+        Trigger criteria from \cite{ngd2016}.
+        The latter three trigger types were not used in the \thetaot{} analysis;
+        events with those trigger types were rejected
+        during offline data processing.
+    }
     \label{tab:trigger}
 \end{table}
 
