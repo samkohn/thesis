@@ -28,10 +28,10 @@ the use of $\Delta m^2_{ee}$ to model the Daya Bay observations
 is appropriate since the measurement is not sensitive
 to the $O(\SI{1}{\percent})$ difference between $\Delta m^2_{31}$ and $\Delta m^2_{32}$.
 Either form of \cref{eq:p_sur} can be used to compute the \nuebar{} survival probability
-from the Daya Bay reactors to the near and far halls.
-This analysis uses the second, simplified form.
-Values for the physical mass-squared differences will be computed
-based on the extracted value of $\Delta m^2_{ee}$.
+from the Daya Bay reactors to the near and far halls,
+and this analysis uses the full 3-flavor form.
+%Values for the physical mass-squared differences will be computed
+%based on the extracted value of $\Delta m^2_{ee}$.
 
 To assess the validity of the 3-flavor model and extract the oscillation parameters'
 best-fit values,
@@ -568,7 +568,8 @@ and absolute reactor \nuebar{} flux and spectral measurements
 
 The fit procedure compared the observed number of \nuebar{} candidates
 in the 4 ADs at the far site to the prediction
-given the near sites' observations and a particular \thetaot{} and \dmee{}.
+given the near sites' observations, a particular value of \thetaot{},
+and values for all nuisance parameters.
 Since the observed values represent counts,
 a \chisquare{} expression using the maximum likelihood expression
 for Poisson-distributed data was used.
@@ -594,19 +595,20 @@ the model nuisance parameters;
 and there are $n$ total observations.
 
 In this formulation, the nuisance parameters are dimensionless,
-and in the model they each accompany a paired quantity $A_j$,
+and in the model they each multiply a paired quantity $A_j$,
 which intuitively represents the physically-relevant quantity
 (such as a detection efficiency or background rate)
 that the nuisance parameter introduces uncertainty for:
 \begin{equation}
-    (1+\nu_j)A_j.
+    A_j \to (1+\nu_j)A_j.
 \end{equation}
 Thus the $\nu_j$ can be interpreted as the deviation of $A_j$
 from an expected or constrained value,
 and the $\tilde{\sigma}_{\nu,j}$ are the (independently-determined)
 \emph{relative} uncertainties of $A_j$
 which set the scale for allowable values of $\nu_j$.
-The $A_j$ remain fixed during the minimization procedure.
+The values of $A_j$ remain fixed during the minimization procedure;
+only the values of $\nu_j$ are allowed to be altered by the fitter.
 
 The values of $\boldsymbol{\eta}$ and $\boldsymbol{\nu}$
 which minimize \cref{eq:chisquare_generic}
@@ -620,8 +622,12 @@ If the model is a good description of the data,
 and if all observations are independent,
 then the distribution of the best-fit (minimum) $\chi^2$
 (over repeated hypothetical experiments)
-follows a $\chi^2$ distribution with $n_\text{obs} - n_\eta$ degrees of freedom,
-where $n_\eta$ is the number of components of $\boldsymbol{\eta}$,
+follows a $\chi^2$ distribution with
+\begin{equation}\label{eq:ndf_def}
+    \text{NDF} = n_\text{obs} - \text{len}(\boldsymbol{\eta})
+\end{equation}
+degrees of freedom,
+where $\text{len}(\boldsymbol{\eta})$ is the number of components of $\boldsymbol{\eta}$,
 that is, the number of free parameters in the fit.
 Note that introducing additional nuisance parameters
 paired with penalty terms (the second summation term in \cref{eq:chisquare_generic})
@@ -644,16 +650,43 @@ There are thus 4 observed data points:
 \end{equation}
 The model prediction
 $\mathbf{F}_{\text{pred}}(\boldsymbol{\eta};\boldsymbol{\nu})$
-of the event counts for the far-hall ADs,
-described in \cref{sec:prediction},
-depends on the observed event rates at the near halls (EH1 and EH2),
+of the event counts for the far-hall ADs
+is described in \cref{sec:prediction}.
+Energy bins of size \SI{0.2}{\MeV} were used from \SIrange{1.5}{8.1}{\MeV},
+and a single bin of size \SI{3.9}{\MeV} was used from \SIrange{8.1}{12}{\MeV}.
+To obtain the total number of predicted events at a given far AD $j$
+based on measurements at a given near AD $i$,
+the individual bin predictions from \cref{eq:full_prediction} were summed:
+\begin{equation}\label{eq:hybrid_rate_shape}
+    F_{\text{pred},j,i}(\boldsymbol{\eta};\boldsymbol{\nu}) =
+    \sum_b F_{\text{pred},j,i}^{(b)}(\boldsymbol{\eta};\boldsymbol{\nu})
+\end{equation}
+To obtain a single value for the prediction at a given far AD $j$
+based on all of the near AD measurements,
+the individual predictions were averaged together:
+\begin{equation}\label{eq:average_near}
+    F_{\text{pred},j}(\boldsymbol{\eta};\boldsymbol{\nu}) =
+    \frac{1}{4} \sum_i
+    F_{\text{pred},j,i}(\boldsymbol{\eta};\boldsymbol{\nu})
+\end{equation}
+The vector of predictions contains one component for each far site AD:
+\begin{equation}\label{eq:f_pred_vector}
+    \mathbf{F}_\text{pred}(\boldsymbol{\eta};\boldsymbol{\nu}) =
+    (
+    F^{\text{pred}}_{\text{EH3-AD1}}(\boldsymbol{\eta};\boldsymbol{\nu}),
+    F^{\text{pred}}_{\text{EH3-AD2}}(\boldsymbol{\eta};\boldsymbol{\nu}),
+    F^{\text{pred}}_{\text{EH3-AD3}}(\boldsymbol{\eta};\boldsymbol{\nu}),
+    F^{\text{pred}}_{\text{EH3-AD4}}(\boldsymbol{\eta};\boldsymbol{\nu})
+    )
+\end{equation}
+This prediction vector depends on the observed event rates at the near halls (EH1 and EH2),
 reactor power and fission fractions,
 differing background rates for each AD,
 conversion between reconstructed prompt energy and true \nuebar{} energy,
 detection efficiencies,
 and, of course, neutrino oscillation parameters.
 The $\boldsymbol{\eta}$ vector contains the single parameter of interest:
-the neutrino oscillation parameter \thetaot{}.
+the neutrino mixing angle \thetaot{}.
 The observations are not binned by energy,
 thus this analysis cannot be used to extract
 a precise measurement of \dmee{}.
@@ -691,7 +724,51 @@ and $\boldsymbol{\eta_{\text{osc}}}$ represents the uncertainty
 of the externally-imposed oscillation paramters, $\theta_{12}, \Delta m^2_{21},$
 and \dmee{}.
 The full listing of nuisance parameters
-can be found in Table X \todo{Pull parameters table}.
+can be found in \cref{tab:systs}.
+
+\begin{table}[ht]
+    \centering
+    \footnotesize
+    \begin{tabular}[t]{lp{3.3cm}lp{3.8cm}}
+        \toprule
+        Systematics source & Relative uncertainty
+                          & Pull parameters
+                          & Notes\\
+        \midrule
+        Reactor power & \SI{0.8}{\percent}
+                      & 6 (1 per core) & \\
+        Reactor spectrum & negligible
+                         & 0
+                         & see \cref{sec:lbnl_toymc} \\
+        Detection efficiency & \SI{0.66}{\percent}
+                             & 8 (1 per AD)
+                             & Includes $\Delta N_p$, excludes prompt energy efficiency \\
+        Relative energy scale & \SI{0.5}{\percent}
+                              & 8 (1 per AD) & Includes prompt energy efficiency \\
+        All other detector response & negligible
+                                    & 0
+                                    & see \cref{sec:lbnl_toymc} \\
+        Accidental background rate & \SI{0.08}{\percent} to \SI{0.1}{\percent}
+                                   & 8 (1 per AD)
+                                   & \\
+        \li{}/\he{} background rate &
+        \SI{48}{\percent}, \SI{45}{\percent}, \SI{38}{\percent} for EH1, EH2, EH3
+                                    & 3 (1 per EH) & \\
+        Fast neutron background rate &
+        \SI{8}{\percent}, \SI{13}{\percent}, \SI{19}{\percent} for EH1, EH2, EH3
+                                     & 3 (1 per EH) & \\
+        \amc{} background rate & \SI{50}{\percent}
+                             & 1 & \\
+        Input mixing parameters &
+        \SI{2.4}{\percent}, \SI{2.6}{\percent}, \SI{2.8}{\percent} for
+        $\Delta m^2_{21},\theta_{12}, \dmee$
+                                & 3
+                                & \\
+        \bottomrule
+    \end{tabular}
+    \caption{Systematic uncertainties and associated nuisance parameters.}
+    \label{tab:systs}
+\end{table}
 
 The full \chisquare{} expression used in this analysis is:
 
@@ -743,10 +820,10 @@ an approximation which was accurate to better than one part in $10^{10}$.
 \label{sec:fitter_validation}
 
 The implementations of the model described in \cref{sec:prediction}
-and the minimization procedure described in \cref{sec:fitter}
+and the $\chi^2$ expression described in \cref{sec:fitter}
 (collectively, the ``fitter'')
 were validated against an existing Monte Carlo simulation
-designed for the nGd analysis.
+designed for the nGd analysis \cite{lbnl_toymc}.
 This simulation is described in detail in \cref{sec:lbnl_toymc}.
 Briefly, the simulation received as input
 all of the fitter inputs---efficiencies, livetimes, uncertainties, etc.---%
@@ -765,28 +842,197 @@ An initial validation was performed to ensure that
 the fitter could precisely extract \thetaot{}
 from the ``nominal'' fake experiment:
 one with all parameters set to the nominal values,
-and with no statistical fluctuations or systematic uncertainties
-(\cref{subsec:validation_nominal}).
+and with no statistical fluctuations or systematic uncertainties .
 Next, the statistical fluctuations at the near and far halls were enabled,
-and the resulting variation in \thetaot{} values was examined
-(\cref{subsec:validation_stat}).
-A similar procedure was repeated for each source of systematic uncertainty
-(\cref{subsec:validation_syst}).
+and the resulting variation in \thetaot{} values was examined.
+A similar procedure was repeated for each source of systematic uncertainty.
 Lastly, the full set of fluctuations and uncertainties was enabled
-to ensure the fitter could still extract an unbiased value of \thetaot{}
-(\cref{subsec:validation_final}).
+to ensure the fitter could still extract an unbiased value of \thetaot{}.
+This full fluctuations configuration was used to generate
+200 fake experiments for each of 36 different combinations
+of \thetaot{} and \dmee{}.
+The distribution of biases in the mean extracted value of \thetaot{}
+for each combination of parameters
+is shown in \cref{fig:final_validation}.
+On average, the fitter is able to extract \thetaot{}
+with a bias of \SI{<0.3}{\percent}.
 
-\subsection{No fluctuations}
-\label{subsec:validation_nominal}
+\begin{figure}
+    \missingfigure{Final fitter validation biases}
+    \caption{
+        Distribution of biases of the extracted \thetaot{}
+        for 36 combinations of \thetaot{} and \dmee{},
+        with 200 fake experiments per combination.
+    }
+    \label{fig:final_validation}
+\end{figure}
 
-\subsection{Statistical fluctuations}
-\label{subsec:validation_stat}
+\section{Results}
+\label{sec:results}
 
-\subsection{Systematic uncertainties}
-\label{subsec:validation_syst}
+The rate-only analysis described in this chapter
+was used to extract a value of \thetaot{}
+from the Daya Bay data set.
+The best-fit value of \thetaot{} corresponds to
+\begin{align}\label{eq:result}
+    \begin{split}
+        \sin^22\thetaot &= 0.0683^{+0.0085}_{-0.0092}\\
+        \thetaot &= 0.1322^{+0.0082}_{-0.0094}.
+    \end{split}
+\end{align}
+The minimum $\chi^2$ from the fit was 0.45 with 3 degrees of freedom.
+This $\chi^2$ value was low enough to raise concerns
+about the treatment of uncertainties and constraints in the fitter.
+However, on further inspection, a $\chi^2$ value near 0.45
+is actually more likely than the intuitively ``ideal'' value of 3,
+given the highly asymmetrical shape
+of the $\chi^2$ distribution with 3 degrees of freedom,
+shown in \cref{fig:chi2_pdf}.
+A scan of $\chi^2$ as a function of $\sin^22\thetaot$
+was performed to determine the uncertainty on the \thetaot{} measurement;
+the results of the scan are shown in \cref{fig:chi2_scan}.
+In this scan, the nuisance parameters were profiled,
+that is, the value of \thetaot{} was held fixed
+and the $\chi^2$ was minimized by adjusting only the nuisance parameters.
+The uncertainty obtained using the profiling method
+is equivalent to performing the full N-dimensional $\chi^2$ scan \cite{pdg}.
 
-\subsection{Final validation}
-\label{subsec:validation_final}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_analysis/min_chi2_final}
+    \caption{
+        Probability distribution function for the $\chi^2$ distribution
+        with 3 degrees of freedom.
+        The minimum $\chi^2$ extracted from the fitter
+        is marked with an X.
+        The expectation value of the minimum $\chi^2$
+        for any fit with 3 degrees of freedom is 3,
+        which is marked with a $+$.
+    }
+    \label{fig:chi2_pdf}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_analysis/chi2_scan_nominal}
+    \caption{
+        Extracted minimum $\chi^2$ as a function of $\sin^22\thetaot$.
+        For each point on the curve, the value of \thetaot{} was fixed
+        and the fitter minimized $\chi^2$
+        using only nuisance parameters.
+    }
+    \label{fig:chi2_scan}
+\end{figure}
+
+The error budget for this measurement of \thetaot{}
+was determined using the subtraction method \cite{nh2016technote}.
+This method compares the width of the $\chi^2$ profile
+with certain nuisance parameters disabled (fixed at 0)
+to the width of the nominal $\chi^2$ profile
+to determine the contribution of those paramters
+to the final uncertainty of \thetaot{}.
+Specifically, the effective uncertainty $\sigma$
+was defined as half the range of $\thetaot$ values
+producing a $\Delta \chi^2 \leq 1$.
+The nominal fit with all nuisance parameters enabled
+resulted in an effective uncertainty for \thetaot{} of
+\begin{equation}\label{eq:nominal_unc}
+    \sigma_\text{all} = \frac{0.0082 + 0.0094}{2} = 0.0088,
+\end{equation}
+where the two one-sided uncertainties are identical
+to those quoted for \thetaot{} in \cref{eq:result}.
+The uncertainty due to statistics at the far site was obtained
+by disabling all pull parameters
+and determining the new range for $\Delta \chi^2 \leq 1$.
+This was done without the use of the minimzer since all parameters were specified,
+including \thetaot{}.
+For all other (systematic) sources of uncertainty $u$,
+an effective uncertainty $\sigma^2_{\text{all}-u}$
+was obtained by disabling only the nuisance parameters
+controlling uncertainty $u$,
+and performing a $\chi^2$ scan.
+The final uncertainty in $\thetaot$ due to
+systematic uncertainty $u$ was
+\begin{equation}\label{eq:syst_error_budget}
+    \sigma^2_u = \sigma^2_\text{all} - \sigma^2_{\text{all}-u}.
+\end{equation}
+The modified $\chi^2$ scans are shown in \cref{fig:error_budget_scans},
+labeled by the pull parameter category whose impact was tested.
+Each source of uncertainty was converted into a relative contribution,
+\begin{equation}\label{eq:syst_error_rel}
+    f_u = \frac{\sigma^2_u}{\sigma^2_{\text{all}}}.
+\end{equation}
+The sum of the contributions does not equal unity
+due to correlations between the effects of the uncertainties
+on \thetaot{}.
+Thus a second version, the fractional contribution, was computed as
+\begin{equation}\label{eq:syst_error_frac}
+    \tilde{f}_u = \frac{\sigma^2_u}{\sum_v \sigma^2_v},
+\end{equation}
+with the sum taken over all sources of systematic and statistical uncertainty.
+The results for both $f_u$ and $\tilde{f}_u$ are
+listed in \cref{tab:error_budget}.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_analysis/error_budget_chi2_scans}
+    \caption{
+        Scans of $\chi^2$ vs. $\sin^22\thetaot$ with various pull parameters disabled
+        in order to determine the contribution of each uncertainty
+        to the total uncertainty. (See text for details.)
+        The curves labeled ``All'' and ``Stat. only''
+        have all pull parameters enabled and disabled, respectively.
+        ``Corr. bkg'' includes \li{}/\he{}, fast neutrons, and \amc{}.
+        ``Other'' is actually multiple overlapping curves,
+        one for each remaining row of \cref{tab:systs}.
+        Wider curves indicate a smaller contribution to the total uncertainty.
+    }
+    \label{fig:error_budget_scans}
+\end{figure}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{lSS}
+        \toprule
+        Uncertainty source & \parbox[t]{4cm}{
+            Relative contribution\\
+            $f_u = \left(%
+                \sigma^2_u/\sigma^2_\text{all}%
+            \right)$ [\%]
+        }
+        & \parbox[t]{4.2cm}{
+            Fractional contribution\\
+            $\tilde{f}_u = \left(%
+                \sigma^2_u/\sum_v\sigma^2_v%
+            \right)$ [\%]
+        }
+        \\
+        \midrule
+        Statistics (EH3) & 16.64 & 15.72 \\
+        Statistics (EH1 \& EH2) & 1.89 & 1.79 \\
+        Detection efficiency & 59.20 & 55.91 \\
+        Relative energy scale & 4.08 & 3.85 \\
+        Accidental background & 1.29 & 1.21 \\
+        \li{}/\he{} background & 14.25 & 13.45 \\
+        Fast neutron background & 2.09 & 1.97 \\
+        \amc{} background & 0.85 & 0.80 \\
+        Reactor power & 5.59 & 5.28 \\
+        Input $\theta_{12},\Delta m^2_{21}$, and \dmee{} & 0.01 & 0.01 \\
+        \addlinespace
+        Total & 105.88 & 100.00 \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+        Contribution of each source of uncertainty to the overall uncertainty
+        of \thetaot{}.
+        Listed values do not sum to the total in each column due to rounding.
+    }
+    \label{tab:error_budget}
+\end{table}
+
+
+
 
 
 %If the predictions based on different near-hall AD observations agree,
