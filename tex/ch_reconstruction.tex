@@ -132,7 +132,6 @@ Thus if $n$ PMTs are disabled, the measured total charge must be increased by a 
     f_{\text{act}}(n) = \frac{192}{n}.
 \end{equation}
 The correction is time-dependent since the number of disabled PMTs changes with time.
-\todo{Decide whether to study improved active PMT correction}
 
 The rest of this chapter will describe the
 nonuniformity correction $f_{\text{pos}}(\textbf{r}_{\text{rec}},t)$
@@ -194,7 +193,6 @@ at the outer edge of the OAV (LS region).
         Nonuniformity corrections based on the energy of spallation neutrons
         capturing on Gd and H.
         Plot based on data from \cite{nonuniformity2}.
-        \todo[inline]{Try to find 3D contour map of nonuniformity}
     }
     \label{fig:nonuniformity_map}
 \end{figure}
@@ -330,8 +328,9 @@ and that they all assign the lower-energy $\gamma$-ray peak from nGd capture
 to have energy \SI{7.95}{\MeV}.
 Missing from the characterization is whether any other physical process
 is assigned an accurate energy by the ADs.
-That is, even if all ADs observing the same process with energy $E_{\text{true}}$
-measure the same value $E_{\text{rec}}$,
+That is, even if all ADs observing the same process
+measure the same value $E_{\text{rec}}$
+when the process has true energy $E_{\text{true}}$,
 how close is $E_{\text{rec}}$ to $E_{\text{true}}$?
 The deviation as a function of $E_{\text{true}}$ is known as
 the absolute energy scale or the absolute energy nonlinearity.
@@ -408,9 +407,127 @@ which were used to produce effective nonlinearity models for $\gamma$-rays.
     \label{fig:gamma_conversion}
 \end{figure}
 
-The electronics nonlinearity was caused by interactions between
-the timing profile of the PMT signals and the response of the readout electronics.
-It was sensitive to the visible rather than true energy,
-since any energy lost in the scintillator was not observed by the PMTs.
-An effective model at the level of the AD rather than indivudal PMTs
-was found to adequately describe the behavior:
+\subsection{Single channel non-linearity correction}
+\label{subsec:scnl}
+
+The electronics used to digitize the PMT signals have intrinsic non-linearities,
+dominated by the summing circuit's performance
+when faced with multiple overlapping PMT signals.
+To precisely characterize the performance of the electronics,
+a dedicated 192-channel flash analog-to-digital converter (FADC) system
+was installed in EH1-AD1 in December 2015
+with the ability to digitize the raw PMT waveforms at \SI{1}{\GHz} \cite{scnl_technote}.
+\Cref{fig:fadc_schematic} shows the integration of the FADC system
+with the existing front-end electronics (FEE).
+Specifically, the FADC received copies of each PMT's HV-decoupled signal,
+amplified by a factor of 10,
+along with the clock and trigger signals issued by the FEE.
+Thus the FADC was able to record individual PMT waveforms
+without the nonlinearity effects faced by the FEE.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{ch_reconstruction/fadc_schematic}
+    \caption{
+        Schematic showing the integration of the FADC
+        with the existing FEE system.
+        Based on \cite{scnl_poster}.
+    }
+    \label{fig:fadc_schematic}
+\end{figure}
+
+These FADC waveforms were compared event-by-event and channel-by-channel
+to the records produced by the FEE as a ratio, $Q_\text{FEE}/Q_\text{FADC}$,
+as shown in \cref{fig:scnl_by_event}.
+A single curve was produced for each channel by taking the average ratio
+for a given bin of FADC charge.
+The results for each channel, as well as the average over all channels,
+is shown in \cref{fig:scnl_by_channel}.
+Variation among channels was limited to an RMS of \SI{1}{\percent}.
+
+Higher-energy events and those located near the edge of the AD
+tended to produce charge signals on some PMTs which
+saturated their FADC channels due to the amplification factor of 10.
+Saturated channels were excluded from the computation of the nominal nonlinearity curve,
+so a second approach was required to ensure the result was accurate
+for channels with $\gtrsim \SI{10}{\pe}$.
+A second nonlinearity curve, shown in \cref{fig:scnl_low_gain},
+was generated using a smaller amplification factor of 4 for the input to the FADC
+to reduce the effect of the saturated channels \cite{scnl_slides}.
+
+The two nonlinearity curves (high-gain and low-gain) were used
+to construct a table of corrections
+that convert the measured FEE charge on each channel
+to the average charge measured for similar events by the FADC.
+This correction was applied independently to each channel
+and was known as the ``single-channel nonlinearity correction'' or SCNL.
+The correction values are displayed as a curve in \cref{fig:scnl_correction};
+the correction was applied as
+\begin{equation}\label{eq:scnl}
+    f_\text{SCNL}(N_\text{PE}) = \frac{N_\text{obs,\,FEE}}{\text{FEE/FADC}},
+\end{equation}
+where FEE/FADC is the correction value from \cref{fig:scnl_correction}.
+A residual nonlinearity of \SI{0.5}{\percent}
+was attributed to the large event-by-event variations
+from the average (correction) value,
+especially when the charge on a channel is $\lesssim\SI{1}{\pe}$.
+The residual nonlinearity for a single channel is shown in \cref{fig:scnl_residual}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{ch_reconstruction/scnl_by_event}
+    \caption[Flash ADC comparison to FEE, event by event]{
+        Comparison of the extracted charge for a single PMT channel
+        (EH1-AD1, row 2, column 6)
+        over many events.
+        The vertical axis represents the ratio of the FEE-recorded charge
+        to the FADC-recorded charge for this channel.
+        Figure taken from \cite{scnl_technote}.
+    }
+    \label{fig:scnl_by_event}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{ch_reconstruction/scnl_by_channel}
+    \caption[Flash ADC comparison to FEE, channel by channel]{
+        Average ratio of FADC charge to FEE charge for each channel (black),
+        along with the average over all channels (red).
+        Figure taken from \cite{scnl_technote}.
+    }
+    \label{fig:scnl_by_channel}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{ch_reconstruction/scnl_low_gain}
+    \caption[Flash ADC comparison to FEE, low gain]{
+        Nonlinearity curves from the high-gain (factor of 10, black)
+        and the low-gain (factor of 4, red)
+        FADC data runs.
+        Figure taken from \cite{scnl_slides}.
+    }
+    \label{fig:scnl_low_gain}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{ch_reconstruction/scnl_correction}
+    \caption[SCNL: final correction curve]{
+        Single-channel nonlinearity (SCNL) correction
+        as a function of observed FEE charge.
+        Figure taken from \cite{scnl_technote}.
+    }
+    \label{fig:scnl_correction}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{ch_reconstruction/scnl_residual}
+    \caption[SCNL: residual nonlinearity]{
+        Observed single-channel nonlinearity before (red) and after (black)
+        the SCNL correction.
+        Figure taken from \cite{scnl_technote}.
+    }
+    \label{fig:scnl_residual}
+\end{figure}
