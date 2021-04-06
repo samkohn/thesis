@@ -63,16 +63,20 @@ The layout of the ACUs is shown in \cref{fig:ad_cutaway},
 and the construction and function of the ACUs
 is described in detail in \cite{calib2014}.
 
-Each ACU contains three radioactive sources and one LED
-which can be deployed into the AD during detector calibration,
+Each ACU contained three radioactive sources and one LED
+which were deployed into the AD during detector calibration,
 as listed in \cref{tab:calibsources}.
 The \isotope[60]{Co} and \isotope[241]{Am}-\isotope[13]{C} sources
-are housed in the same fixture and so are always deployed together.
+were originally housed in the same fixture and so were always deployed together.
+During the Summer 2012 shutdown, some of the \isotope[60]{Co} sources
+were swapped with the \isotope[68]{Ge} sources. \todo{Why swap Co-60 and Ge-68?}
 Sources were deployed weekly during calibration data runs.
-\todo{Describe the z positions and patterns etc. used during the weekly calibrations}
+The specific calibration schedule changed over the course of the experiment.
+The schedule for the final run period is shown in \cref{tab:calib_sched}.
 
 \begin{table}[ht]
     \centering
+    \footnotesize
     \begin{tabular}[t]{lllS}
         \toprule
         Source & Energy [\si{\MeV}] & Radiation & {Rate [\si{\Hz}]} \\
@@ -87,11 +91,52 @@ Sources were deployed weekly during calibration data runs.
     \caption{
         The 4 calibration sources used in each ACU (\cite{calib2014,amc2015}).
         The LED source had a maximum wavelength of \SI{435}{\nm}.
-        Adjusting the voltage applied to the LED from \SIrange{5.2}{7.2}{\V}
+        Adjusting the voltage applied to the LED from \SIrange{-5.2}{-7.2}{\V}
         produced signals of 10 to $10^5$~\si{\pe},
         corresponding to the energy range listed.
     }
     \label{tab:calibsources}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \footnotesize
+    \begin{tabular}[t]{lllSSS}
+        \toprule
+        ACU & Source & \parbox[b]{2.1cm}{Deployment\\frequency} & {$z$ position [m]} &
+        {Duration [s]} & {LED voltage [V]} \\
+        \midrule
+        A & \isotope[60]{Co} & Weekly & 0 & 600 & \\
+        \midrule
+        A & \isotope[60]{Co} & Bimonthly & 0 & 240 & \\
+        A & \isotope[60]{Co} & Bimonthly & +-0.70 & 240 & \\
+        A & \isotope[60]{Co} & Bimonthly & +-1.35 & 240 & \\
+        B & \amc{} + \isotope[60]{Co} & Bimonthly & 0 & 240 & \\
+        B & \amc{} + \isotope[60]{Co} & Bimonthly & +-0.70 & 240 & \\
+        B & \amc{} + \isotope[60]{Co} & Bimonthly & +-1.35 & 240 & \\
+        C & \isotope[60]{Co} & Bimonthly & 0 & 240 & \\
+        C & \isotope[60]{Co} & Bimonthly & +-0.70 & 240 & \\
+        C & \isotope[60]{Co} & Bimonthly & +-1.35 & 240 & \\
+        \midrule
+        A & LED & Monthly & 0 & 600 & -5.5 \\
+        A & LED & Monthly & 0 & 15 & -5.7 \\
+        A & LED & Monthly & 0 & 15 & -5.9 \\
+        A & LED & Monthly & 0 & 15 & -6.1 \\
+        A & LED & Monthly & 0 & 15 & -6.3 \\
+        A & LED & Monthly & 0 & 15 & -6.5 \\
+        A & LED & Monthly & 0 & 15 & -6.7 \\
+        A & LED & Monthly & 0 & 15 & -6.9 \\
+        A & LED & Monthly & 0 & 15 & -7.1 \\
+        A & LED & Monthly & 0 & 15 & -7.3 \\
+        A & LED & Monthly & 0 & 15 & -7.5 \\
+        A & \isotope[60]{Co} & Monthly & 0 & 600 \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+        Schedule and configuration of ACU calibration runs
+        over the final run period of the experiment.
+    }
+    \label{tab:calib_sched}
 \end{table}
 
 \section{Gain calibration}
@@ -176,7 +221,7 @@ It is measured both by deploying the \isotope[60]{Co} calibration source
 during weekly calibrations
 and using a rolling method based on muon-induced spallation neutron
 captures on Gd (nGd), which accumulates sufficient statistics
-approximately once per day \todo{Spn calibration statistics}.
+approximately once per day.
 
 Spallation neutrons are produced by muon interactions in the rock,
 water, and steel surrounding the ADs.
