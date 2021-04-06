@@ -77,7 +77,7 @@ Sources were deployed weekly during calibration data runs.
         \toprule
         Source & Energy [\si{\MeV}] & Radiation & {Rate [\si{\Hz}]} \\
         \midrule
-        \isotope[60]{Co} & 1.173 and 1.333 & $\gamma$-rays & 100 \\
+        \isotope[60]{Co} & $1.173 + 1.333=2.506$ & $\gamma$-rays & 100 \\
         \isotope[241]{Am}-\isotope[13]{C} & 3 to 6 & neutron &
             0.7 \\
         \isotope[68]{Ge} & $2\times0.511$ & positrons & 10 \\
@@ -168,8 +168,6 @@ using the LED source from the ACU to generate SPE samples.
 \section{Light yield calibration}
 \label{sec:light_yield_calib}
 
-%TODO describe Co-60 calibration
-
 The light yield characterizes the average
 number of photoelectrons (PEs) observed by PMTs
 per energy deposited in the liquid scintillator
@@ -191,16 +189,48 @@ with energy between \SIlist{6;12}{\MeV} shortly after muon signals.
 A background dataset is obtained with an offset time window
 and subtracted from the energy distribution of the spallation neutron dataset.
 The peaks from the two different isotopes overlap,
-so the distribution is then fit with a double Crystal Ball function \cite{cbfunction}.
-The location of the lower peak is then defined to represent \SI{7.95}{\MeV}.
+so the distribution is then fit with a double Crystal Ball function.
+The (single) Crystal Ball function has the form
+\begin{equation}\label{eq:crystal_ball}
+    f_\text{CB}(E;\alpha, n, E_0, \sigma) = N \times \begin{cases}
+        \exp\left(-\frac{(E-E_0)^2}{2\sigma^2}\right),
+            & \frac{E-E_0}{\sigma} > -\alpha \\
+        \left(\frac{n}{|\alpha|}\right)^n \exp\left(-\frac{|\alpha|^2}{2}\right)
+        \left(\frac{n}{|\alpha|} - |\alpha| - \frac{E-E_0}{\sigma}\right)^{-n},
+            & \frac{E-E_0}{\sigma} \leq -\alpha
+    \end{cases}
+\end{equation}
+where $E_0$ represents the peak energy,
+$\sigma$ is the resolution of the energy measurement,
+$n$ describes the power law for the low-energy tail,
+and $\alpha$ gives the location of the transition from peak to tail \cite{cbfunction}.
 \Cref{fig:lightyield} shows the light yield over time,
 as measured by the spallation neutron captures.
+
+The location of the lower $\gamma$-ray peak (in PE)
+was defined to represent \SI{7.95}{\MeV} in reconstructed energy.
+Events with other energies were assigned reconstructed energies
+based on an assumed linear relation between the measured charge
+and the total energy.
+Deviations from this assumption of absolute energy linearity were studied;
+the energy nonlinearity is discussed in \cref{subsec:abs_energyscale}.
 
 \begin{figure}
     \missingfigure{Light yield plot}
     \caption{Light yield over time, as measured by the spallation neutron method.}
     \label{fig:lightyield}
 \end{figure}
+
+An independent light yield calibration was performed
+using the \isotope[60]{Co} calibration source
+deployed during the weekly calibration runs.
+The \SI{2.506}{\MeV} total energy in $\gamma$-rays emitted by \isotope[60]{Co} decay
+provided the reference value for this alternate calibration.
+The light yield obtained from this calibration
+was different from the spallation neutron--based light yield
+due to the absolute energy nonlinearity.
+For this thesis, the spallation neutron--based light yield was used
+for all reconstructed energy values.
 
 \section{Time calibration}
 \label{sec:time_calib}
@@ -224,7 +254,58 @@ and the known pulse time of the LED.
 \section{Special calibration runs}
 \label{sec:special_calib}
 
-\todo[inline]{Special calibration runs}
+A variety of special calibration runs were performed
+to address specific questions which arose during operation of the experiment.
+During the Summer 2012 shutdown for the installation of EH2-AD2 and EH3-AD4,
+a special calibration was performed to characterize the correlated background
+due to the \amc{} calibration sources.
+The \amc{} background and the special calibration are described in \cref{subsec:amc}.
+During the December 2016/January 2017 shutdown for the decommissioning of EH1-AD1,
+two special calibrations were performed in that AD \cite{calib_proposal2017}.
+
+The first such study examined the impact of optical shadowing,
+when the calibration source enclosures and cable weights
+absorbed a small fraction of the scintillation light
+produced during calibration-related events,
+thus biasing the apparent energy deposited during a calibration event,
+as depicted in \cref{fig:optical_shadowing}.
+For the special calibration run,
+a reflective PTFE enclosure (estimated reflectivity \SI{100}{\percent})
+was used for the \isotope[60]{Co} source
+instead of the usual stainless steel (estimated reflectivity \SI{45}{\percent}).
+Additionally, the bottom weight was removed
+so that it would not impact the measurement via additional shadowing.
+The calibration run determined that
+the optical shadowing effect biased the light yield by \SI{\sim0.6}{\percent}.
+\todo{How was OS integrated into light yield?}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_calibration/optical_shadow}
+    \caption{
+        Diagram showing the an exaggerated example of optical shadowing,
+        not to scale.
+        The top and bottom capsule shapes are the weights
+        to keep the source enclosure (middle capsule) aligned.
+        The star represents an energy deposition in the liquid scintillator,
+        for example Compton scattering or $e^+e^-$ pair production.
+        The true effect of optical shadowing was approximately \SI{0.6}{\percent}.
+    }
+    \label{fig:optical_shadowing}
+\end{figure}
+
+The second special calibration run performed in winter of 2016-2017
+was a calibration of the absolute efficiency for neutron capture on Gd.
+Additional neutron emitters
+(higher-activity \amc{} as well as \isotope[241]{Am}-\isotope[9]{Be})
+were deployed along all three ACU axes,
+and the resulting neutron detection efficiency
+was \SI{81.48\pm0.74}{\percent},
+with the uncertainty reduced from a previous value of \SI{1.69}{\percent}.
+The analysis presented in this thesis
+relied on neutron captures on hydrogen (nH),
+so full details of the calibration procedure and determination of the efficiency
+will be left to \cite{reactor_flux2019}.
 
 \section{Channel quality}
 \label{sec:channel_quality}
@@ -244,15 +325,4 @@ will decrease by $\nicefrac{n}{192}$ (on average),
 relative to a configuration with \num{192} functioning PMTs,
 with $n$ representing the number of disabled PMTs.
 A correction is applied to the light yield to compensate for this average behavior.
-\todo{Inves-tigate active channel correction}
-
-%\section{Misc}
-
-%The LED has a maximum wavelength of \SI{435}{\nm}
-%and is used to calibrate the PMT gain and timing.
-%The amplitude of the LED can be varied to measure the PMT response
-%for different light levels.
-%The LED pulse width is $\sim\SI{10}{\ns}$ to allow for
-%precise measurements of differing response times among the PMTs.
-%The specifics of the time and gain calibration are described below.
 

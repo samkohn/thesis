@@ -66,10 +66,13 @@ to extend the domain of the $\chi^2$ function to all positions within the AD,
 not just the lattice points.
 The value of $\textbf{r}_{\text{rec}}$ which minimizes $\chi^2$
 is used as the reconstructed position.
-The distribution of reconstructed positions is shown in \cref{fig:position_map},
-with artifacts of the interpolation process clearly visible.
-
-\todo[inline]{Diagram here or in Detector chapter showing coordinate system}
+The distribution of reconstructed positions
+for all single and double coincidences in EH1-AD1
+is shown in \cref{fig:position_map};
+the distribution was qualitatively identical in all ADs.
+The grid pattern in the distribution is an artifact of the interpolation process.
+The maximum reconstructed radius displayed is \SI{2.2}{\m}
+due to the flasher cuts described in \cref{sec:flashers}.
 
 \begin{figure}
     \centering
@@ -85,10 +88,11 @@ with artifacts of the interpolation process clearly visible.
 \end{figure}
 
 \begin{figure}
-    \missingfigure{Reconstructed position distribution for events in EH1-AD1}
+    \centering
+    \includegraphics[width=0.8\textwidth]{ch_reconstruction/xy}
     \caption{
-        Reconstructed positions of events with energy within \SIrange{1.5}{12}{\MeV}
-        in EH1-AD1.
+        Reconstructed positions of single and double coincidence events
+        with energy within \SIrange{1.5}{12}{\MeV} in EH1-AD1.
     }
     \label{fig:position_map}
 \end{figure}
@@ -171,9 +175,8 @@ Neutron captures with energy near \SI{8}{\MeV} were assumed to be nGd captures,
 and those with energy near \SI{2.2}{\MeV} were assumed to be nH.
 The peak value was extracted from a fit of the respective distributions
 for each pixel and for the entire sample.
-\todo{What is the ``average'' value for LS pixels?}
-The nGd peak was fit with a double-Crystal Ball function \cite{cbfunction},
-\todo[inline]{Describe CB function here or in Calibration chapter}
+The nGd peak was fit with a double-Crystal Ball function \cite{cbfunction}
+(described in \cref{sec:light_yield_calib}),
 and the nH peak was fit with a calorimeter function \cite{calorimeter2016}
 (described in \cref{subsec:delayed}).
 A correction was then applied to each event's energy based on its position:
@@ -219,20 +222,25 @@ for each bin of radial position \cite{nonuniformity1}, which was parametrized as
     f_{\text{pos}}(t, r) = (\beta_0 + \beta_1r^2)t.
 \end{equation}
 All ADs showed a similar trend, so a combined fit was performed,
-yielding values of $\beta_0 + \beta_1r^2$ between
-\SIlist[retain-explicit-plus]{-0.12;+0.4}{\percent} per year.
+yielding the values
+\begin{align}\label{eq:tdnu_params}
+    \begin{split}
+        \beta_0 &= \SI[per-mode=reciprocal]{-0.116}{\per\year} \\
+        \beta_1 &= \SI[per-mode=reciprocal]{0.075}{\per\square\meter\per\year},
+    \end{split}
+\end{align}
+corresponding to rates of change between
+\SIlist[list-units=repeat,retain-explicit-plus]{-0.12;+0.4}{\percent} per year.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{ch_reconstruction/time_dep_nonunif}
+    \includegraphics[width=0.8\textwidth]{ch_reconstruction/time_dep_nonunif_recolor}
     \caption{
         Relative change over time in energy for spallation neutrons capturing on H.
         Each color is a different range of event radius.
         The correction coefficients $\beta_0$ and $\beta_1$ are determined
         from a fit of the slope as a function of radius.
         Figure taken from \cite{nonuniformity4}.
-        \todo[inline]{Photoshop yellow line to a different color}
-        \todo[inline]{Add table showing $\beta_{0,1}$ for each AD, if available}
     }
     \label{fig:time_dep_nonunif}
 \end{figure}
@@ -242,7 +250,6 @@ yielding values of $\beta_0 + \beta_1r^2$ between
 
 The detector energy resolution for a scintillating detector can be modeled as
 \cite{energy_resolution}
-
 \begin{equation}
     \frac{\sigma_E}{E} = \sqrt{a^2 + \frac{b^2}{E} + \frac{c^2}{E^2}},
 \end{equation}
@@ -262,12 +269,22 @@ representing the dark noise intrinsic to the PMTs.
 The resolution parameters can be extracted from a fit
 to the energy resolutions of a wide variety of calibration and intrinsic sources,
 as shown in \cref{fig:resolution}.
-The values for the resolution parameters are \todo[inline]{Resolution parameter values}.
+The values for the resolution parameters are \cite{ngd2016}
+\begin{align}\label{eq:resolution_params}
+    \begin{split}
+        a &= 0.016 \\
+        b &= \SI{0.081}{\MeV\tothe{1/2}} \\
+        c &= \SI{0.026}{\MeV}.
+    \end{split}
+\end{align}
 
 \begin{figure}
-    \missingfigure{Resolution fit plot}
+    \centering
+    \includegraphics[width=0.8\textwidth]{ch_reconstruction/energy_resolution}
     \caption{Energy resolutions for calibration sources, neutron captures,
-        and natural $\alpha$'s present in the ADs.%
+        and natural $\alpha$'s present in the ADs \cite{ngd2016}.
+        The dashed orange line shows the simulated impact
+        of optical shadowing (\cref{sec:special_calib}).
     }
     \label{fig:resolution}
 \end{figure}
@@ -291,7 +308,6 @@ neutron captures on Gd and H from both IBD and muon spallation;
 $\alpha$ decays of naturally-occuring \isotope[212]{Po},
 \isotope[214]{Po}, \isotope[215]{Po}, and \isotope[219]{Po};
 and $\gamma$-rays from \isotope[40]{K} and \isotope{208}[Tl].
-\todo{Add \isotope[12]{B} characterization of $\beta$'s}
 \Cref{fig:gdls_rel_energyscale} shows the relative variations
 for all of these sources among the 8 ADs.
 The variations are all within \SI{+-0.2}{\percent}.
@@ -332,12 +348,15 @@ That is, even if all ADs observing the same process
 measure the same value $E_{\text{rec}}$
 when the process has true energy $E_{\text{true}}$,
 how close is $E_{\text{rec}}$ to $E_{\text{true}}$?
+This question is particularly important when measuring the IBD prompt event energy,
+which is used to determine the original \nuebar{} energy $E_\nu$
+used to compute the survival probability (\cref{eq:p_sur_ee}).
 The deviation as a function of $E_{\text{true}}$ is known as
 the absolute energy scale or the absolute energy nonlinearity.
 
 The absolute energy scale deviated from unity due to four main effects:
 the IBD neutron recoil kinetic energy, scintillator quenching,
-Cherenkov radiation, and electronics nonlinearity. \todo{Cite DocDBs}
+Cherenkov radiation, and electronics nonlinearity \cite{ngd2016}.
 The effects were factored into electronics nonlinearities
 and nonlinearities in generating detectable light signals
 (i.e. visible energy, $E_{\text{vis}}$):
@@ -356,6 +375,12 @@ $f_{\text{scintillator}}(E_{\text{true}})$,
 and the arbitrary normalization $\beta$ defined so that
 $E_{\text{rec}} = E_{\text{true}}$
 at the nGd capture peak reference energy of \SI{7.95}{\MeV}.
+The electronics nonlinearity was applied on an event-by-event basis
+through the single channel nonlinearity correction (see \cref{subsec:scnl}).
+The scintillator nonlinearity was not applied to individual events;
+instead, it was factored into the interaction and detector response model
+applied to the binned data during the \thetaot{} fit procedure,
+as described in \cref{ch:analysis}.
 
 The neutron recoil energy was correlated with the \nuebar{} energy,
 but did not result in any scintillation or Cherenkov light.
