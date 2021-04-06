@@ -13,3 +13,4 @@ tex/*.pdf
 *.xml
 *.bib~*
 *.toc
+*.swp
