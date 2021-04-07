@@ -469,21 +469,25 @@ Events which satisfied all of the the following three criteria were rejected:
 and (3) $f_{\text{ID}} > 0.3$,
 as illustrated in \cref{fig:hidden_flasher_cut}
 \cite{flashers_jinjing,beda_resid_flasher_dt}.
-The estimated rate of residual flashers over time for each AD is shown
-in \cref{fig:hidden_flasher_rate}.
 
 
 \begin{figure}
-    \missingfigure{Top-ring flashers position}
+    %\includegraphics[width=\textwidth]{ch_event_selection/top_ring_flashers}
+    \missingfigure{Top ring flashers}
     \caption{
-        Position distribution of single events in EHX-ADY,
-        with the top-ring flashers clearly visible at $z > \SI{2.4}{\m}$.
+        Position distribution of single events in EH3-AD3
+        which pass the nominal and 2-inch flasher cuts,
+        have $E > \SI{0.7}{\MeV}$, and pass the usual muon vetos.
+        The top-ring flasher cut
+        vetoes all events to the right of the red dashed line (left)
+        or outside the red dashed circle (right).
     }
     \label{fig:flash_top_ring}
 \end{figure}
 
 \begin{figure}
     \missingfigure{$Q_1/Q_2$ vs ellipse ``hidden'' flasher cut plot}
+    \includegraphics[width=0.6\textwidth]{ch_event_selection/hidden_flasher_post_cut}
     \caption{
         Distribution of events in $Q_1/Q_2$-$f_{\text{ID}}$ space.
         The events within the black outline are vetoed as
@@ -491,14 +495,6 @@ in \cref{fig:hidden_flasher_rate}.
         Events above $f_{\text{ID}}=0$ are already vetoed as nominal flashers.
     }
     \label{fig:hidden_flasher_cut}
-\end{figure}
-
-\begin{figure}
-    \missingfigure{Hidden flasher rate over time}
-    \caption{
-        Rate of hidden flashers over time for each AD.
-    }
-    \label{fig:hidden_flasher_rate}
 \end{figure}
 
 
@@ -513,7 +509,6 @@ and is a potential coincidence candidate.
 Because of the nonzero length of the DAQ readout window,
 AD events occurring closer together than \SI{1}{\micro\second}
 are not necessarily distinct physical events (see \cref{sec:daq}).
-\todo{How frequently are 2 ``events'' so close?}
 Consequently, during the coincidence grouping process,
 the coincidence search window begins \SI{1}{\micro\second}
 after the initial AD event.
@@ -680,11 +675,9 @@ For accidental coincidences, the characteristic distance is
 the length scale of the AD, approximately \SI{3000}{\milli\meter},
 and the characteristic time based on the \fold{1} event rate
 is $\sim\SI{50000}{\us}$.
-%On the time scale of the coincidence window length $\tc=\SI{1500}{\us}$,
-%any particular coincidence time is approximately equally probable.
 
 \adgrid{Distribution of coincidence distance and coincidence
-time\todo[inline]{Fix y axis tick labels}}{fig:dr_vs_dt}{ch_event_selection/dr_vs_dt}
+time}{fig:dr_vs_dt}{ch_event_selection/dr_vs_dt}
 
 \Cref{fig:dr_vs_dt} shows the distribution of
 coincidence distance and coincidence time
@@ -737,7 +730,7 @@ showing the DT parameter and delayed energy value
 for all double coincidence events.
 A separate histogram was constructed using the same quantities
 but for the synthetic accidental background events, described in \cref{sec:acc}.
-The accidentals histogram was normalized so that
+The accidentals histogram $N_\text{acc}$ was normalized so that
 \begin{equation}\label{eq:acc_sub_normalized}
     \int_{E_d}\int_{\SI{3}{\m}}^{\SI{10}{\m}}
     \frac{d^2N_\text{obs}}{dE_d d(\text{DT})}
@@ -777,7 +770,8 @@ was made to allow the approximation of \cref{eq:abs_DT_eff} as
 \Cref{fig:ed_DT_sub} illustrates how the DT cut efficiency is measured
 for each AD using a histogram of delayed energy and DT value
 to determine the number of events which pass the nominal and relaxed DT cuts.
-The measured DT cut absolute efficiency for each AD is shown in \cref{fig:DT_eff}.
+The extracted DT cut absolute efficiency for each AD is shown in
+\cref{fig:DT_eff}, top right.
 Like all absolute detection efficiencies,
 $\varepsilon_{\text{DT}}$ was not used as an input to the \thetaot{} analysis.
 However, the variation between ADs was treated as the AD-uncorrelated uncertainty
@@ -786,7 +780,7 @@ The \SI{>3}{\percent} apparent variation between ADs
 motivated additional investigation
 to determine whether the variability was intrinsic to the ADs
 or was simply an artifact of one or more of the assumptions
-used to extract the efficiency values.
+used to extract the absolute efficiency values.
 
 The extraction of the absolute efficiency was extremely sensitive
 to small variations in the accidentals subtraction procedure.
@@ -798,10 +792,19 @@ of the subtracted background at a far site AD
 yielded a relative impact of \SI{2.1}{\percent} in the extracted DT cut efficiency,
 amplifying the bias by a factor of over 200.
 (The near site ADs were sensitive by a factor of $\sim30$.)
+The normalization factors derived for each AD
+corresponded to an effective accidentals rate
+within \SI{\pm0.04}{\percent} of the rate computed
+using the nominal singles rate--based methodology from \cref{sec:acc}.
+Thus although the nominal methodology was precise enough
+for computing \thetaot{},
+it was not precise enough for computing the DT cut efficiency,
+as evidenced by the differences between the top left (rate-based)
+and top right (normalized) plots in \cref{fig:DT_eff}.
 Normalizing the high-DT range of the distributions,
 as shown in \cref{eq:acc_sub_normalized},
-addressed most of this issue,
-but the precise choice of lower bound
+addressed most of this issue for the DT cut efficiency,
+but the precise choice of lower bound of the normalization integral
 could still impact the computation
 due to statistical fluctuations in the histogram bins near $\text{DT} = \SI{3}{\m}$.
 
@@ -821,7 +824,7 @@ as for the nominal sample.
 The nGd subset yielded a full range of \SI{0.18}{\percent}
 in DT cut absolute efficiencies between ADs,
 while the $E_p > \SI{3.5}{\MeV}$ yielded a full range of \SI{0.94}{\percent}.
-The extracted efficiencies for each AD are shown in \cref{fig:DT_eff_subsamples}.
+The extracted efficiencies for each AD are shown in \cref{fig:DT_eff}.
 Between these two subsets, almost the entire range
 of prompt and delayed positions and energies used in the nominal selection was represented,
 allowing the DT cut efficiency uncertainty to be accurately estimated
@@ -831,45 +834,46 @@ Conservatively, the half-range of the $E_p > \SI{3.5}{\MeV}$ subset,
 used as the AD-uncorrelated uncertainty of the DT cut efficiency.
 
 \begin{figure}
-    \missingfigure{DT efficiency subsamples: nGd and $E_p > \SI{3.5}{\MeV}$}
-    \caption{
-        Extracted DT cut efficiencies for the subsample of events
-        with neutron capture on nGd and with prompt energy
-        greater than \SI{3.5}{\MeV}.
-    }
-    \label{fig:DT_eff_subsamples}
-\end{figure}
-
-\begin{figure}
     \centering
     \includegraphics[width=0.49\textwidth, trim={0 0 0 1cm}, clip]{%
-        ch_event_selection/ed_DT_sub_EH1_AD1%
+        ch_event_selection/ed_DT_sub_EH1_AD1_normalized%
     }
     \includegraphics[width=0.49\textwidth, trim={0 0 0 1cm}, clip]{%
-        ch_event_selection/ed_DT_sub_EH2_AD1%
+        ch_event_selection/ed_DT_sub_EH2_AD1_normalized%
     } \\
     \includegraphics[width=0.49\textwidth, trim={0 0 0 1cm}, clip]{%
-        ch_event_selection/ed_DT_sub_EH3_AD1%
+        ch_event_selection/ed_DT_sub_EH3_AD1_normalized%
     }
     \caption{
         Accidentals-subtracted distribution of
         delayed energy and DT value, used to compute $\varepsilon_{\text{DT}}$.
         The green (solid) box shows the events included in the DT cut.
-        The black (dashed) box shows the events excluded by the DT cut.
+        The red (dashed) box shows the events excluded by the DT cut.
         The large fluctuations at high DT are due to the statistics
         of subtracting two almost-equal large numbers as part of the
         background subtraction procedure.
-        \todo[inline]{Update DT efficiency 2D histogram plots}
     }
     \label{fig:ed_DT_sub}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[height=0.4\textheight]{plot_diagnostics/distance_time_cut_efficiency}
+    \includegraphics[width=0.49\textwidth]{plot_diagnostics/distance_time_cut_efficiency}
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/DT_eff_normalized} \\
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/DT_eff_nGd}
+    \includegraphics[width=0.49\textwidth]{{ch_event_selection/DT_eff_Ep_3.5MeV}}
     \caption{
-        The DT cut efficiency for each AD. Error bars are statistical.
-        \todo[inline]{Explain {\em very} clearly or remove}
+        The DT cut efficiency for each AD using the four methodologies
+        described in the text.
+        Top left: singles rate--based subtraction;
+        top right: normalized subtraction, nominal energy cuts;
+        bottom left: normalized subtraction, nGd capture
+        ($\SI{6}{\MeV} < E_d < \SI{12}{\MeV}$);
+        bottom right: normalized subtraction, $E_p > \SI{3.5}{\MeV}$.
+        The absolute efficiency is not used in the \thetaot{} analysis.
+        The AD-uncorrelated uncertainty in the efficiency
+        was assigned to be the half-range of the $E_p > \SI{3.5}{\MeV}$
+        efficiency measuremetns, \SI{0.47}{\percent}.
     }
     \label{fig:DT_eff}
 \end{figure}
@@ -953,15 +957,8 @@ Residual flashers are anti-correlated in time
 but are vetoed from the data stream (\cref{sec:flashers}).
 Correlated events (both IBDs and other backgrounds)
 have a rate much smaller than the uncorrelated event rate
-($\nicefrac{R_{corr}}{R_s} \sim \num{5e-3}$)
+($\nicefrac{R_{\text{corr}}}{R_s} \sim 10^{-3}$)
 and have a negligible impact on the probability of a \fold{1} coincidence.
-\todo{Verify impact on R\_s}
-
-The terms in brackets together represent the probability
-that any given event does not fall in another event's coincidence window.
-The leading term is simply the uncorrelated event rate $R_s$ times
-the Poisson probability that no other uncorrelated event will occur
-inside the given coincidence window.
 
 \begin{figure}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/singles_near_bydate}
@@ -1035,6 +1032,7 @@ A symmetrical isolation cut of $\tc=\SI{1.5}{\milli\second}$ is used
 to ensure isolation before and after each candidate event.
 The spectrum of these (now truly) single events is shown in \cref{fig:singlespectra},
 obtained by summing the individual spectra from each data run.
+These spectra were used as the prompt energy spectra for the accidental background.
 
 \adgrid{Spectra of isolated single events in each AD.}{fig:singlespectra}{%
     ch_background/singles%
@@ -1122,10 +1120,9 @@ was used to compute the efficiency of the DT cut for IBDs in \cref{sec:DT_cut}.
 
 The total expected number of accidental events
 that pass the full IBD selection is computed in a similar manner:
-
 \begin{equation}
     N_{\text{acc}} = R_{\text{\fold{2}}} \times t_{\text{muon-corrected}}
-        \times \varepsilon_{\text{total,\,acc}}
+        \times \varepsilon_{\text{total,\,acc}}.
     \label{eq:nacc}
 \end{equation}
 
@@ -1136,7 +1133,7 @@ of the true accidentals rate
 from the rate produced by the above procedure.
 Such an error would affect the IBD rates at the near and far ADs differently,
 leading to a bias in \thetaot{}.
-In fact, using the accidental and IBD event counts in Table X\todo{Event counts table},
+In fact, using the accidental and IBD event counts in \cref{tab:summary_event_selection},
 it can be shown that a bias of $b\si{\percent}$ in $N_{\text{acc}}$
 yields a bias in $N_{\text{IBD}}$ of $-1.2b\si{\percent}$ at the far site
 but only $-0.14b\si{\percent}$ at the near sites.
@@ -1206,8 +1203,7 @@ where the neutron capture was on hydrogen.
 \Cref{fig:ncorr} shows the number of correlated events for each run
 with the appropriate error bars as described above.
 The total number of correlated events in each AD
-along with the uncertainty, is listed in Table Y.
-\todo[inline]{Table of total $N_{\text{corr}}$ for each AD}
+along with the uncertainty, is listed in \cref{tab:summary_event_selection}.
 
 \begin{figure}
     \missingfigure{Number of correlated events (accidentals-subtracted) over time
@@ -1248,21 +1244,21 @@ At the oscillation maximum, though, medium-energy \nuebar{},
 around \SIrange{2}{3}{\mev}, are most likely to oscillate.
 So a smaller fraction of IBDs will pass the cut,
 and the efficiency will be lower.
+This relative difference in efficiency between ADs
+impacted the extracted value of \thetaot{}.
 
 Corrections for each AD--reactor pair were computed
 and weighted to arrive at each AD's final prompt energy efficiency.
 Since the corrections to the efficiency depend on
 the amplitude of \nuebar{} oscillations, they rely on knowledge of \thetaot.
 (For example, there would be no correction at all if \thetaot{} were $0$.)
-To compute accurate corrections and, more importantly, an accurate value
-for \thetaot{}, an iterative process is used.
-\todo{Update to reflect the actual prompt efficiency used}
-Initially, no baseline-dependent correction is used and
-a value for \thetaot{} is obtained.
-That initial \thetaot{} is then used to compute baseline-dependent corrections,
-and the updated efficiencies are used to compute an updated value for \thetaot{}.
-This process is repeated until the \thetaot{} result converges.
-The correction factors for each AD are shown in \cref{fig:prompt_eff_osc}.
+A grid of correction values in (\thetaot{}, \dmee{}) parameter space
+was pre-computed for use during the fit process.
+The fitter used a linear interpolation to estimate the correction to use
+during a given iteration when the trial oscillation parameters
+did not lie precisely on a grid point.
+The correction factors at the best fit \thetaot{}
+for each AD are shown in \cref{fig:prompt_eff_osc}.
 
 \begin{figure}
     \missingfigure{Plot showing corrections to prompt energy effiency}
@@ -1685,13 +1681,11 @@ is shown in \cref{fig:li9_timeline}.
     \includegraphics{ch_event_selection/timeline_li9}
     \caption{
         Event selection procedure for \li{} events.
-        Neutron tags are identified within a short time window
+        Neutron tags were identified within a short time window
         immediately following the muon.
-        Double coincidences are only considered
-        if they occur later than XYZ ms after a muon.
         The time delay between the prompt event and the muon
-        is stored in a time-to-previous-muon histogram.
-        \todo[inline]{Li9 timeline caption}
+        was stored in a time-to-previous-muon histogram.
+        The muon veto window was ignored.
     }
     \label{fig:li9_timeline}
 \end{figure}
@@ -2164,12 +2158,46 @@ and a variety of simulations of the \amc{} background process.
         per-mode=reciprocal
     }
     \begin{tabular}[t]{rrrrrrrrr}  % 1 label and 8 ADs
-        \hline
+        \toprule
         & \multicolumn{2}{c}{EH1}
         & \multicolumn{2}{c}{EH2}
         & \multicolumn{4}{c}{EH3} \\
+        \cmidrule(l){2-3} \cmidrule(l){4-5} \cmidrule(l){6-9}
         & EH1-AD1&EH1-AD2&EH2-AD1&EH2-AD2&EH3-AD1&EH3-AD2&EH3-AD3&EH3-AD4 \\
-\hline
+\midrule
+        $T_{\text{DAQ}}$ [\si{\day}]& 1534.023&1734.799&1738.961&1551.955&1737.511&1737.511&1737.497&1550.001 \\
+%\midrule
+        $\Delta N_{\text{p}}$ [\%]& 0.00&-0.01&-0.13&-0.19&0.00&-0.01&0.29&-0.10 \\
+%\midrule
+        $\varepsilon_{\mu}$& 0.6387&0.6355&0.7063&0.7056&0.9660&0.9659&0.9657&0.9661 \\
+%\midrule
+        $\varepsilon_{m}$& 0.9510&0.9512&0.9515&0.9519&0.9504&0.9493&0.9493&0.9497 \\
+%\midrule
+        $R_{\mu}$ [\si{\Hz}]& 199.52&199.38&150.02&149.94&15.02&15.03&15.02&14.92 \\
+%\midrule
+        $R_s$ [\si{\Hz}]& 18.075&17.973&17.571&17.445&17.178&17.556&17.551&17.417 \\
+\arrayrulecolor{lightgray}
+\midrule
+\arrayrulecolor{black}
+        $N_{\text{cand}}$& 473697&544450&542197&471847&162005&164187&166372&144752 \\
+%\midrule
+        $N_{\text{acc}}$& $53207 \pm 54$&$59411 \pm 57$&$61232 \pm 57$&$52498 \pm 53$&$79658 \pm 64$&$82718 \pm 66$&$84643 \pm 67$&$71966 \pm 62$ \\
+%\midrule
+        $N_{\text{corr}}$& $420490 \pm 690$&$485039 \pm 740$&$480965 \pm 739$&$419349 \pm 689$&$82347 \pm 408$&$81469 \pm 411$&$81729 \pm 413$&$72786 \pm 385$ \\
+%\midrule
+        $R_{\text{acc}}$ [\si{\per\day}]& $57.11 \pm 0.06$&$56.65 \pm 0.05$&$52.39 \pm 0.05$&$50.36 \pm 0.05$&$49.94 \pm 0.04$&$51.92 \pm 0.04$&$53.14 \pm 0.04$&$50.61 \pm 0.04$ \\
+%\midrule
+        $R_{\text{Li9}}$ [\si{\per\day}]& $1.79 \pm 0.87$&$1.79 \pm 0.87$&$2.20 \pm 1.00$&$2.20 \pm 1.00$&$0.21 \pm 0.08$&$0.21 \pm 0.08$&$0.21 \pm 0.08$&$0.21 \pm 0.08$ \\
+%\midrule
+        $R_{\text{FastN}}$ [\si{\per\day}]& $2.29 \pm 0.18$&$2.29 \pm 0.18$&$1.73 \pm 0.23$&$1.73 \pm 0.23$&$0.16 \pm 0.03$&$0.16 \pm 0.03$&$0.16 \pm 0.03$&$0.16 \pm 0.03$ \\
+%\midrule
+        $R_{\text{AmC}}$ [\si{\per\day}]& $0.04 \pm 0.02$&$0.04 \pm 0.02$&$0.04 \pm 0.02$&$0.03 \pm 0.01$&$0.02 \pm 0.01$&$0.01 \pm 0.01$&$0.01 \pm 0.01$&$0.01 \pm 0.01$ \\
+%\midrule
+        $R_{\text{RadN}}$ [\si{\per\day}]& $0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$ \\
+%\midrule
+\addlinespace
+        $R_{\text{IBD}}$ [\si{\per\day}]& $446.99 \pm 1.16$&$458.19 \pm 1.14$&$407.35 \pm 1.21$&$398.15 \pm 1.22$&$51.04 \pm 0.29$&$50.56 \pm 0.29$&$50.73 \pm 0.29$&$50.60 \pm 0.30$ \\
+\bottomrule
     \end{tabular}
 \end{table}
 \begin{table}[ht]
