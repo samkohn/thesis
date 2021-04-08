@@ -261,8 +261,14 @@ Deviations from this assumption of absolute energy linearity were studied;
 the energy nonlinearity is discussed in \cref{subsec:abs_energyscale}.
 
 \begin{figure}
-    \missingfigure{Light yield plot}
-    \caption{Light yield over time, as measured by the spallation neutron method.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{ch_calibration/light_yield}
+    \caption{
+        Light yield over time, as measured by the spallation neutron method.
+        The light yield was measured less frequently in EH3
+        because of the lower rate of spallation neutron events
+        due to a smaller muon flux.
+    }
     \label{fig:lightyield}
 \end{figure}
 
@@ -322,16 +328,16 @@ Additionally, the bottom weight was removed
 so that it would not impact the measurement via additional shadowing.
 The calibration run determined that
 the optical shadowing effect biased the light yield by \SI{\sim0.6}{\percent}.
-\todo{How was OS integrated into light yield?}
+This correction was included in the light yield computations.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{ch_calibration/optical_shadow}
     \caption{
-        Diagram showing the an exaggerated example of optical shadowing,
-        not to scale.
-        The top and bottom capsule shapes are the weights
-        to keep the source enclosure (middle capsule) aligned.
+        Diagram showing optical shadowing, not to scale.
+        The top and bottom capsule shapes represent the weights
+        which kept the source enclosure (middle capsule) aligned.
+        The capsules were connected with a steel cable (not shown).
         The star represents an energy deposition in the liquid scintillator,
         for example Compton scattering or $e^+e^-$ pair production.
         The true effect of optical shadowing was approximately \SI{0.6}{\percent}.

@@ -472,27 +472,33 @@ as illustrated in \cref{fig:hidden_flasher_cut}
 
 
 \begin{figure}
-    %\includegraphics[width=\textwidth]{ch_event_selection/top_ring_flashers}
-    \missingfigure{Top ring flashers}
+    \centering
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/flashers_top_ring_EH3_AD1}
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/flashers_outside_EH3_AD1}\\
+    \includegraphics[width=0.5\textwidth]{ch_event_selection/flashers_hidden_EH3_AD1_arrows}
     \caption{
-        Position distribution of single events in EH3-AD3
+        Position distribution of events in EH3-AD1
         which pass the nominal and 2-inch flasher cuts,
-        have $E > \SI{0.7}{\MeV}$, and pass the usual muon vetos.
-        The top-ring flasher cut
-        vetoes all events to the right of the red dashed line (left)
-        or outside the red dashed circle (right).
+        have $E > \SI{1.5}{\MeV}$, pass the usual muon vetos,
+        and are vetoed by one of the three residual flasher cuts.
+        Top left: top-ring flashers;
+        top right: outside flashers;
+        bottom: hidden flashers.
+        The vast majority of the hidden flasher events
+        within $R^2 < \SI{1}{\m\squared}$
+        were single events and thus did not impact the IBD selection efficiency.
     }
     \label{fig:flash_top_ring}
 \end{figure}
 
 \begin{figure}
-    \missingfigure{$Q_1/Q_2$ vs ellipse ``hidden'' flasher cut plot}
+    \centering
     \includegraphics[width=0.6\textwidth]{ch_event_selection/hidden_flasher_post_cut}
     \caption{
-        Distribution of events in $Q_1/Q_2$-$f_{\text{ID}}$ space.
-        The events within the black outline are vetoed as
+        Distribution of IBD candidate events in $Q_1/Q_2$-$f_{\text{ID}}$ space.
+        The events within the black outline were vetoed as
         hidden flashers.
-        Events above $f_{\text{ID}}=0$ are already vetoed as nominal flashers.
+        Events above $f_{\text{ID}}=0$ were already vetoed as nominal flashers.
     }
     \label{fig:hidden_flasher_cut}
 \end{figure}
@@ -1200,19 +1206,8 @@ of a prompt event followed by neutron capture.
 And if the delayed energy cuts from \cref{subsec:delayed} are applied,
 then the remaining events represent correlated events
 where the neutron capture was on hydrogen.
-\Cref{fig:ncorr} shows the number of correlated events for each run
-with the appropriate error bars as described above.
 The total number of correlated events in each AD
 along with the uncertainty, is listed in \cref{tab:summary_event_selection}.
-
-\begin{figure}
-    \missingfigure{Number of correlated events (accidentals-subtracted) over time
-        for near and far halls.
-    }
-    \caption{}
-    \label{fig:ncorr}
-\end{figure}
-
 
 \section{Energy cuts}
 \label{sec:energy_cuts}
@@ -1887,7 +1882,7 @@ was demonstrated by modifying the event selection
 to remove the upper limit on prompt energy (nominally $E_p < \SI{12}{\MeV}$)
 and examining events with prompt energy up to \SI{300}{\MeV}
 (keeping all other event selection criteria intact),
-as shown in [color]\todo{Update with plot} in \cref{fig:fast_neutron}.
+as shown in in \cref{fig:fast_neutron}.
 The long tail of the spectrum was attributed to fast neutron events.
 This tail provided an important constraint on the fast neutron contamination
 in the nominal double coincidence data set.
@@ -1947,40 +1942,32 @@ over the nominal prompt energy range of \SIrange{1.5}{12}{\MeV}:
     }
     \label{tab:fast_neutron}
     \begin{tabular}[t]{rl}
-        \hline
+        \toprule
+        Quantity & Selection criterion \\
+        \midrule
         Prompt energy & \SIrange{1.5}{301.5}{\MeV} \\
         Delayed energy & see \cref{tab:delayed_bounds} \\
         Time from OWS muon to prompt signal & \SI{<0.3}{\us} \\
         Time from any other muon to prompt signal & \SI{>1200}{\us} \\
-        \hline
+        \bottomrule
     \end{tabular}
 \end{table}
 
 \begin{figure}
-    \missingfigure{Fast neutron OWS + extended plots}
+    \centering
+    \includegraphics{ch_event_selection/fast_neutron_spectra}
     \caption{
         Prompt energy spectra for each hall
-        showing the extended double coincidences
+        showing the extended double coincidences (``IBD candidates'')
         and the OWS-tagged sample.
         The OWS-tagged sample has been normalized
-        so that its integral from X to Y MeV
+        so that its integral from \SIrange{12}{300}{\MeV}
         matches the same integral in the extended double coincidence sample.
-        \todo[inline]{Fast neutron plot caption}
+        The red curve is a fit of \cref{eq:fast_neutron_powerlaw}
+        to the double coincidence sample over \SIrange{12}{300}{\MeV}
+        and has been extrapolated to the lower-energy (nominal) range.
     }
     \label{fig:fast_neutron}
-\end{figure}
-
-\begin{figure}
-    \missingfigure{Fast neutron fit plot}
-    \caption{
-        Prompt energy spectra of the OWS-tagged
-        and extended double coincidence samples.
-        The solid curved line shows the best fit
-        to the extended double coincidence sample's
-        high energy range,
-        extrapolated to the lower-energy (nominal) range.
-    }
-    \label{fig:fast_neutron_fit}
 \end{figure}
 
 The uncertainty in this estimate was computed from three sources
@@ -1992,7 +1979,7 @@ using a modified power law function:
 This function was fit to the extended double coincidence spectrum
 over the energy range \SIrange{12}{300}{\MeV}
 and extrapolated to the lower-energy region,
-as shown in \cref{fig:fast_neutron_fit}.
+as shown in \cref{fig:fast_neutron}.
 The uncertainties were derived based on the fitted function's
 ability to predict the value of $N_{\text{fast neutron}}$
 computed in \cref{eq:fast_neutron_count}
@@ -2136,19 +2123,11 @@ and a variety of simulations of the \amc{} background process.
 \section{Event selection summary}
 \begin{table}[ht]
     \caption{
-        Event selection summary.
+        Summary of the \nuebar{} event selection results.
         The background and IBD rates are adjusted for
         $\varepsilon_\mu$ and $\varepsilon_m$.
         To convert from rates to counts, multiply by
         $T_\text{DAQ}\varepsilon_\mu\varepsilon_m$.
-        The uncertainty on $N_{\text{acc}}$ and $R_{\text{acc}}$
-        is only the statistical (and AD-uncorrelated) uncertainty.
-        An additional \SI{0.1}{\percent} AD-correlated
-        systematic uncertainty is also included in the analysis.
-        The correlated background rates are taken from
-        [[Jinjing's DocDB 12121 slide 30]].
-        This event selection yields $\sin^22\theta_{13} = 0.06837$.
-        \todo[inline]{Final event selection table \& caption}
     }
     \label{tab:summary_event_selection}
     \centering
@@ -2166,35 +2145,22 @@ and a variety of simulations of the \amc{} background process.
         & EH1-AD1&EH1-AD2&EH2-AD1&EH2-AD2&EH3-AD1&EH3-AD2&EH3-AD3&EH3-AD4 \\
 \midrule
         $T_{\text{DAQ}}$ [\si{\day}]& 1534.023&1734.799&1738.961&1551.955&1737.511&1737.511&1737.497&1550.001 \\
-%\midrule
         $\Delta N_{\text{p}}$ [\%]& 0.00&-0.01&-0.13&-0.19&0.00&-0.01&0.29&-0.10 \\
-%\midrule
         $\varepsilon_{\mu}$& 0.6387&0.6355&0.7063&0.7056&0.9660&0.9659&0.9657&0.9661 \\
-%\midrule
         $\varepsilon_{m}$& 0.9510&0.9512&0.9515&0.9519&0.9504&0.9493&0.9493&0.9497 \\
-%\midrule
         $R_{\mu}$ [\si{\Hz}]& 199.52&199.38&150.02&149.94&15.02&15.03&15.02&14.92 \\
-%\midrule
         $R_s$ [\si{\Hz}]& 18.075&17.973&17.571&17.445&17.178&17.556&17.551&17.417 \\
 \arrayrulecolor{lightgray}
 \midrule
 \arrayrulecolor{black}
         $N_{\text{cand}}$& 473697&544450&542197&471847&162005&164187&166372&144752 \\
-%\midrule
         $N_{\text{acc}}$& $53207 \pm 54$&$59411 \pm 57$&$61232 \pm 57$&$52498 \pm 53$&$79658 \pm 64$&$82718 \pm 66$&$84643 \pm 67$&$71966 \pm 62$ \\
-%\midrule
         $N_{\text{corr}}$& $420490 \pm 690$&$485039 \pm 740$&$480965 \pm 739$&$419349 \pm 689$&$82347 \pm 408$&$81469 \pm 411$&$81729 \pm 413$&$72786 \pm 385$ \\
-%\midrule
         $R_{\text{acc}}$ [\si{\per\day}]& $57.11 \pm 0.06$&$56.65 \pm 0.05$&$52.39 \pm 0.05$&$50.36 \pm 0.05$&$49.94 \pm 0.04$&$51.92 \pm 0.04$&$53.14 \pm 0.04$&$50.61 \pm 0.04$ \\
-%\midrule
         $R_{\text{Li9}}$ [\si{\per\day}]& $1.79 \pm 0.87$&$1.79 \pm 0.87$&$2.20 \pm 1.00$&$2.20 \pm 1.00$&$0.21 \pm 0.08$&$0.21 \pm 0.08$&$0.21 \pm 0.08$&$0.21 \pm 0.08$ \\
-%\midrule
         $R_{\text{FastN}}$ [\si{\per\day}]& $2.29 \pm 0.18$&$2.29 \pm 0.18$&$1.73 \pm 0.23$&$1.73 \pm 0.23$&$0.16 \pm 0.03$&$0.16 \pm 0.03$&$0.16 \pm 0.03$&$0.16 \pm 0.03$ \\
-%\midrule
         $R_{\text{AmC}}$ [\si{\per\day}]& $0.04 \pm 0.02$&$0.04 \pm 0.02$&$0.04 \pm 0.02$&$0.03 \pm 0.01$&$0.02 \pm 0.01$&$0.01 \pm 0.01$&$0.01 \pm 0.01$&$0.01 \pm 0.01$ \\
-%\midrule
         $R_{\text{RadN}}$ [\si{\per\day}]& $0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$&$0.20 \pm 0.10$ \\
-%\midrule
 \addlinespace
         $R_{\text{IBD}}$ [\si{\per\day}]& $446.99 \pm 1.16$&$458.19 \pm 1.14$&$407.35 \pm 1.21$&$398.15 \pm 1.22$&$51.04 \pm 0.29$&$50.56 \pm 0.29$&$50.73 \pm 0.29$&$50.60 \pm 0.30$ \\
 \bottomrule
