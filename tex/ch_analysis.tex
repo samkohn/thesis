@@ -876,20 +876,20 @@ from the Daya Bay data set.
 The best-fit value of \thetaot{} corresponds to
 \begin{align}\label{eq:result}
     \begin{split}
-        \sin^22\thetaot &= 0.0683^{+0.0085}_{-0.0092}\\
-        \thetaot &= 0.1322^{+0.0082}_{-0.0094}.
+        \sin^22\thetaot &= 0.0731^{+0.0087}_{-0.0089}\\
+        \thetaot &= 0.1369^{+0.0082}_{-0.0088}.
     \end{split}
 \end{align}
-The minimum $\chi^2$ from the fit was 0.45 with 3 degrees of freedom.
+The minimum $\chi^2$ from the fit was 0.42 with 3 degrees of freedom.
 This $\chi^2$ value was low enough to raise concerns
 about the treatment of uncertainties and constraints in the fitter.
-However, on further inspection, a $\chi^2$ value near 0.45
-is actually more likely than the intuitively ``ideal'' value of 3,
+However, on further inspection, a $\chi^2$ value near 0.42
+was actually more likely than the intuitively ``ideal'' value of 3,
 given the highly asymmetrical shape
 of the $\chi^2$ distribution with 3 degrees of freedom,
 shown in \cref{fig:chi2_pdf}.
 A scan of $\chi^2$ as a function of $\sin^22\thetaot$
-was performed to determine the uncertainty on the \thetaot{} measurement;
+was performed to determine the uncertainty of the measurement;
 the results of the scan are shown in \cref{fig:chi2_scan}.
 In this scan, the nuisance parameters were profiled,
 that is, the value of \thetaot{} was held fixed
@@ -931,13 +931,15 @@ with certain nuisance parameters disabled (fixed at 0)
 to the width of the nominal $\chi^2$ profile
 to determine the contribution of those paramters
 to the final uncertainty of \thetaot{}.
+This procedure was carried out directly on \thetaot{} values
+rather than on $\sin^22\thetaot$.
 Specifically, the effective uncertainty $\sigma$
 was defined as half the range of $\thetaot$ values
 producing a $\Delta \chi^2 \leq 1$.
 The nominal fit with all nuisance parameters enabled
 resulted in an effective uncertainty for \thetaot{} of
 \begin{equation}\label{eq:nominal_unc}
-    \sigma_\text{all} = \frac{0.0082 + 0.0094}{2} = 0.0088,
+    \sigma_\text{all} = \frac{0.0082 + 0.0089}{2} = 0.00855,
 \end{equation}
 where the two one-sided uncertainties are identical
 to those quoted for \thetaot{} in \cref{eq:result}.
@@ -983,7 +985,8 @@ listed in \cref{tab:error_budget}.
         to the total uncertainty. (See text for details.)
         The curves labeled ``All'' and ``Stat. only''
         have all pull parameters enabled and disabled, respectively.
-        ``Corr. bkg'' includes \li{}/\he{}, fast neutrons, and \amc{}.
+        ``Corr. bkg.'' includes \li{}/\he{}, fast neutrons, \amc{}
+        and radiogenic neutrons.
         ``Other'' is actually multiple overlapping curves,
         one for each remaining row of \cref{tab:systs}.
         Wider curves indicate a smaller contribution to the total uncertainty.
@@ -993,7 +996,7 @@ listed in \cref{tab:error_budget}.
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}[t]{lSS}
+    \begin{tabular}[t]{lS}
         \toprule
         Uncertainty source & \parbox[t]{4cm}{
             Relative contribution\\
@@ -1001,26 +1004,21 @@ listed in \cref{tab:error_budget}.
                 \sigma^2_u/\sigma^2_\text{all}%
             \right)$ [\%]
         }
-        & \parbox[t]{4.2cm}{
-            Fractional contribution\\
-            $\tilde{f}_u = \left(%
-                \sigma^2_u/\sum_v\sigma^2_v%
-            \right)$ [\%]
-        }
         \\
         \midrule
-        Statistics (EH3) & 16.64 & 15.72 \\
-        Statistics (EH1 \& EH2) & 1.89 & 1.79 \\
-        Detection efficiency & 59.20 & 55.91 \\
-        Relative energy scale & 4.08 & 3.85 \\
-        Accidental background & 1.29 & 1.21 \\
-        \li{}/\he{} background & 14.25 & 13.45 \\
-        Fast neutron background & 2.09 & 1.97 \\
-        \amc{} background & 0.85 & 0.80 \\
-        Reactor power & 5.59 & 5.28 \\
-        Input $\theta_{12},\Delta m^2_{21}$, and \dmee{} & 0.01 & 0.01 \\
+        Statistics (EH3) & 16.01 \\
+        Statistics (EH1 \& EH2) & 3.14 \\
+        Detection efficiency & 54.73 \\
+        Relative energy scale & 4.27 \\
+        Accidental background & 1.38 \\
+        \li{}/\he{} background & 14.51 \\
+        Fast neutron background & 2.21 \\
+        \amc{} background & 0.94 \\
+        Radiogenic neutron background & 3.57 \\
+        Reactor power & 5.72 \\
+        Input $\theta_{12},\Delta m^2_{21}$, and \dmee{} & 0.01 \\
         \addlinespace
-        Total & 105.88 & 100.00 \\
+        Total & 106.49 \\
         \bottomrule
     \end{tabular}
     \caption{
