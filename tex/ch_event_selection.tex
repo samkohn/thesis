@@ -307,10 +307,10 @@ Five distinct signatures were observed for flasher events.
         Another possibility is that these events
         were 2-inch PMTs flashing at a lower energy,
         thus evading the cut used to reject 2-inch flashers.
-    \item ``Outside flashers.'' Groups of signals were observed
+    \item ``Large-$R$ flashers.'' Groups of signals were observed
         with reconstructed positions far outside the scintillating region.
         The physical origin of these flashers is not well understood.
-    \item ``Hidden flashers.''
+    \item ``Cluster flashers.''
         During investigations of the other types of flasher events,
         groups of signals were observed that survived the existing cuts
         but were suspected to be flashers.
@@ -406,17 +406,18 @@ and $f_{\text{ID}} > 0$ for nominal flasher events.
 As shown in \cref{fig:flasher_nominal_cut},
 very few events have $f_{\text{ID}}\sim0$;
 it is an effective cut for unambiguously partitioning the set of events.
-The few events near the $f_{\text{ID}} = 0$ boundary
-are treated in \cref{subsec:flash_resid}.
 All nominal flasher-like events (with $f_{\text{ID}} > 0$) were rejected
 and were excluded from the coincidence selection.
 
 \begin{figure}
-    \missingfigure{MaxQ vs Quadrant plot, and $f_{\text{ID}}$ histogram}
+    \centering
+    \includegraphics{ch_event_selection/nominal_flashers}
     \caption{
-        Left: $f_{\text{max}}$ vs. $f_{\text{quad}}$ for EH1-AD1,
-        with the ellipse representing $f_{\text{ID}} = 0$.
-        Right: The distribution of $f_{\text{ID}}$ for all ADs.
+        Nominal flasher cut variables for events in EH1-AD1 and EH1-AD2
+        from data taken during detector commissioning in 2011.
+        The ``Quadrant'' (vertical) axes show $f_\text{Quad}$,
+        and the ``MaxQ'' (horizontal) axes show $f_\text{Max}$.
+        The black curve in the lower-right represents $f_\text{ID} = 0$.
     }
     \label{fig:flasher_nominal_cut}
 \end{figure}
@@ -435,29 +436,35 @@ discussed in \cref{subsec:flash_resid}.
 \label{subsec:flash_resid}
 
 The remaining three types of flasher events---%
-top ring, outside, and hidden flashers---%
+top ring, large-$R$, and cluster flashers---%
 were collectively referred to as residual flashers.
+Their position distribution among all AD events
+with energy between \SIlist{1.5;12}{\MeV}
+is shown in \cref{fig:flasher_resid_pos}
 Top-ring flashers were easily identified and removed
 by rejecting any event with a reconstructed position
-of $z > \SI{2.4}{\m}$ and $r^2 > \SI{0.25}{\m\squared}$
-(\cref{fig:flash_top_ring}).
+of $z > \SI{2.4}{\m}$ and $r^2 > \SI{0.25}{\m\squared}$.
 (Another variant of this cut uses $r^2 > \SI{0.5}{\m\squared}$.)
 The number of true physical single events and
 true IBD events removed by this cut was negligible.
-Outside flashers were similarly easy to remove
+Large-$R$ flashers were similarly easy to remove
 by rejecting any event with a reconstructed position
 of $r > \SI{2.2}{\m}$,
 again with a negligible inefficiency for singles and IBDs.
+The large-$R$ flasher cut also rejects
+single events which were mis-reconstructed to have a large radius.
+These events dominate the plot showing events rejected by the large-$R$ cut.
+Some of the actual large-$R$ flashers can be seen in the plot
+showing the rejected cluster flasher events.
 
-The hidden flashers, as the name implies, proved more difficult to isolate.
+Cluster flashers proved more difficult to isolate.
 They were first noticed during an examination of the distribution of distances
 between consecutive events.
 Sharp peaks were observed in EH3-AD1 at distances of \SIlist{0;2.75;2.9;3.1}{\m},
 and in EH3-AD3 and EH3-AD4 at \SI{0}{\m}.
 Further inspection of the position distribution of events with these distances
 revealed ``hot spots'' within and outside the ADs.
-Those events outside the AD were tagged as outside flashers.
-To isolate the remaining hidden flashers,
+To isolate the cluster flashers,
 various distributions were explored using the existing flasher-related variables,
 including the $f_{\text{ID}}$ parameter and the various quadrant charges $Q_i$.
 Eventually, a trapeziod-shaped cut in the parameter space of
@@ -482,13 +489,14 @@ as illustrated in \cref{fig:hidden_flasher_cut}
         have $E > \SI{1.5}{\MeV}$, pass the usual muon vetos,
         and are vetoed by one of the three residual flasher cuts.
         Top left: top-ring flashers;
-        top right: outside flashers;
-        bottom: hidden flashers.
-        The vast majority of the hidden flasher events
+        top right: large-$R$ flashers;
+        bottom: cluster flashers.
+        The vast majority of the cluster flasher events
         within $R^2 < \SI{1}{\m\squared}$
-        were single events and thus did not impact the IBD selection efficiency.
+        were isolated single events
+        and thus did not impact the IBD selection efficiency.
     }
-    \label{fig:flash_top_ring}
+    \label{fig:flasher_resid_pos}
 \end{figure}
 
 \begin{figure}
@@ -499,6 +507,7 @@ as illustrated in \cref{fig:hidden_flasher_cut}
         The events within the black outline were vetoed as
         hidden flashers.
         Events above $f_{\text{ID}}=0$ were already vetoed as nominal flashers.
+        Figure taken from \cite{flasher_plots}.
     }
     \label{fig:hidden_flasher_cut}
 \end{figure}
@@ -1254,11 +1263,38 @@ during a given iteration when the trial oscillation parameters
 did not lie precisely on a grid point.
 The correction factors at the best fit \thetaot{}
 for each AD are shown in \cref{fig:prompt_eff_osc}.
+The dependence of the correction factors on the mixing parameters \thetaot{} and \dmee{}
+is shown in \cref{fig:prompt_eff_osc_contour}.
 
 \begin{figure}
-    \missingfigure{Plot showing corrections to prompt energy effiency}
-    \caption{Corrections to the prompt energy efficiency due to \nuebar{} oscillations.}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_event_selection/prompt_eff_corrs}
+    \caption{
+        Corrections to the prompt energy efficiency due to \nuebar{} oscillations.
+        The data points represent the corrections at the best-fit
+        value of \thetaot{} for each AD-reactor pair.
+        The shaded band shows the range of corrections when varying \thetaot{}
+        over the $\pm1\sigma$ range.
+    }
     \label{fig:prompt_eff_osc}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/prompt_Eff_corr_EH3_AD1_D1}
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/prompt_Eff_corr_EH3_AD1_L1}
+    \\
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/prompt_Eff_corr_EH1_AD1_D1}
+    \caption{
+        Contour maps showing the dependence of the prompt energy efficiency correction
+        on the values of the mixing parameters \thetaot{} and \dmee.
+        The range for $\sin^22\thetaot{}$ is $\pm2\sigma$ of the best-fit value;
+        for \dmee{} it is $\pm2\sigma$ of the value reported in \cite{ngd2018}.
+        Top left: EH3-AD1 from core D1;
+        top right: EH3-AD1 from core L1;
+        bottom: EH1-AD1 from core D1.
+    }
+    \label{fig:prompt_eff_osc_contour}
 \end{figure}
 
 The AD-uncorrelated uncertainty for the prompt energy lower bound
