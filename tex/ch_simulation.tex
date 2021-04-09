@@ -323,65 +323,11 @@ The mean rate over all 100 data sets
 was \SI{19.9966+-0.0022}{\Hz},
 which is a bias of \SI{0.017}{\percent} or 2 standard deviations.
 This bias was considered acceptable
-since the accidentals rate computation
-was demonstrated to be accurate to within \SI{0.04}{\percent}\todo{%
-    Reference new acc rate validation%
-}.
+since the accidentals rate uncertainty
+for the actual data set was approximately \SI{0.077}{\percent}.
 Thus the simulation was able to confirm that
 the event selection software could successfully extract
 the uncorrelated event rate with high precision and tolerable bias.
-%The mean singles rate was \SI{19.9935+-0.0013}{\Hz}
-%which is a bias of \SI{0.033}{\percent} (5 standard deviations)
-%relative to the ``true'' input rate.
-%Although the bias was small in an absolute sense,
-%it could have indicated that the rate of accidental background
-%was being systematically underestimated, which,
-%because of the different IBD-to-accidental ratio
-%at the far site compared to the near site,
-%could have biased the value of \thetaot.
-
-%The bias in the measured uncorrelated event rate,
-%if also present in the real Daya Bay data,
-%would have led to an underestimation of accidental coincidence events in each AD.
-%The final extracted IBD rate therefore would have been slightly higher
-%than the actual IBD rate in each AD,
-%by approximately the same number of IBDs per day per AD,
-%(since the singles rate and therefore accidental rate
-%is approximately the same in each AD).
-%This affine scaling would have lessened the apparent deficit of IBDs
-%between the near and far halls,
-%thus biasing the measurement of \thetaot.
-
-%It was hypothesized that the bias was due to an unintended effect
-%of the absolute fixed input event rate,
-%which does not fluctuate according to Poisson statistics in the simulation.
-%Each simulated 10-minute data file has precisely the same number of uncorrelated events,
-%which violates the assumption that the number of events follows the Poisson distribution.
-%Specifically, at an uncorrelated event rate of \SI{20}{\Hz},
-%each file contains exactly \num{12000} uncorrelated events.
-%If the occurrence of uncorrelated events were truly random,
-%then each 10-minute file should include fluctuations of approximately
-%$\sqrt{12000} = 110$~events or \SI{0.09}{\percent}.
-%The impact of the absence of these fluctuations
-%on the probability of an accidental coincidence is complex;
-%therefore, an additional simulation was performed
-%to assess the impact.
-%If individual data files were longer, then the relative size of fluctuations,
-%and therefore any impact on the measured singles rate,
-%should be suppressed.
-%A second set of 100 data sets was generated to test this hypothesis,
-%where each data set was a single 1000-minute data file.
-%The distribution of measured uncorrelated event rates from this second data set
-%is shown in \cref{fig:toymc_singles_dist}.
-%There was a larger spread due to the shorter duration of each data file,
-%but the mean over all 100 data sets was \SI{19.9966+-0.0022}{\Hz},
-%which is a bias of \SI{0.017}{\percent} or 2 standard deviations.
-%The bias decreased as the length of the simulated data file increased
-%(even as the number of events in the data set decreased),
-%suggesting that the origin of the bias was related to the length of the simulated files.
-%Thus the simulation was able to confirm that
-%the event selection software could successfully extract
-%the uncorrelated event rate with high precision and minimal bias.
 
 \begin{table}[ht]
     \centering
@@ -438,37 +384,62 @@ the uncorrelated event rate with high precision and tolerable bias.
 \label{subsec:toymc_flashers}
 
 Light emission by PMTs caused a background of single events
-known as flashers (\cref{sec:flashers}).
+known as flashers \cref{sec:flashers}.
 The vast majority of flasher events were rejected using an event-by-event veto,
 and the remaining flashers were assumed to be accounted for
 by the treatment of the accidental background (\cref{sec:acc}).
 Certain PMTs were observed to flash with a frequency
 of approximately \SI{0.1}{\Hz},
 but with the restriction that
-the same PMT never flashed twice within $\lesssim$\SI{0.7}{\s}.
+the same PMT never flashed twice within $\lesssim$\SI{0.7}{\s}
+(see \cref{fig:flasher_anticorr}).
 This pattern violated the assumption in the accidental background analysis
 that all single events were uncorrelated and governed by Poisson statistics.
 A Flasher event type was added to the simulation to test the impact of this deviation.
 
-The Flasher event type had a fixed energy
+The Flasher event type had a fixed energy and position
 and generated events were assigned fixed, deterministic timestamps \SI{1}{\s} apart
 to simulate a maximally-anticorrelated process with no possible time coincidences.
 A data sample was generated with only Single events and Flasher events,
 and was treated as if the Flasher events passed the existing flasher veto criteria.
+The Single events had the same configuration as in \cref{tab:toymc_singles_config},
+and the Flasher events were assigned a fixed energy of \SI{2.7}{\MeV}.
 The accidental background analysis was performed on this data sample;
 after subtracting the accidental background,
 the expectation was that 0 correlated events should remain.
-However, the output number of events after subtraction was negative.
-Further inspection showed that the residual flasher events,
-like all other single events,
-contributed to the synthetic accidentals sample,
-and in that sample some of the pairs
-were composed of two residual flasher events.
-In the real (simulated) data set, though,
-there were no accidental coincidences between residual flashers by construction,
-since the residual flasher events were generated with \SI{1}{\s} time gaps
-between consecutive flashers.
-\todo[inline]{Add some of Olivia's plots}
+\Cref{fig:sim_flasher_prompt_delayed} shows the result of the prompt-delayed spectrum
+after subtracting the accidental background
+for simulated samples with and without Flasher events \cite{flasher_sim}.
+The sample including the Flashers shows
+an inaccurate background-subtracted spectrum
+due to the synthetic background sample containing unphysical Flasher-Flasher pairs.
+In the ``real'' (simulated) data set,
+there were no accidental coincidences between residual Flashers by construction,
+since the residual Flasher events were generated with \SI{1}{\s} time gaps
+between consecutive Flashers.
+This simulation was intentionally an extreme configuration,
+but it led to the decision to find ways to veto the residual flasher events
+rather than attempt to correct for them in other ways.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.73\textwidth]{ch_simulation/flasher_prompt_delayed}
+    \caption{
+        Accidentals-subtracted prompt vs. delayed energy for simulated data samples
+        including only Single events (top) or Single and Flasher events (bottom).
+        The Singles-only histogram correctly shows 0 events remaining
+        after subtracting the accidental background.
+        In the with-Flashers histogram,
+        the single energy bin containing (\SI{2.7}{\MeV}, \SI{2.7}{\MeV})
+        (the energy of the simulated Flasher events)
+        has a negative bin content,
+        validating that the Flasher events
+        will contaminate the synthetic accidental background,
+        form Flasher-Flasher pairs, and cause a distortion to the subtracted spectrum.
+        Figure taken from \cite{flasher_sim}.
+    }
+    \label{fig:sim_flasher_prompt_delayed}
+\end{figure}
 
 
 %A simplified Monte Carlo simulation was developed to model the structure
@@ -596,6 +567,7 @@ uncertainties in their rates and spectra.
 Lastly, the number of events in each bin of reconstructed energy
 could optionally be fluctuated to account for statistical uncertainty.
 \Cref{fig:lbnl_toymc_flowchart} shows the above steps as a flowchart.
+\todo[inline]{Finish LBNL ToyMC section}
 
 \begin{figure}
     \includegraphics[width=0.6\textwidth]{ch_simulation/lbnl_toymc_flowchart}
