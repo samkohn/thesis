@@ -2057,10 +2057,10 @@ which, again, occasionally reached the scintillator and induced delayed signals.
 This was the only correlated background process
 which did not necessarily involve a neutron capture on H or Gd.
 
-The rate and prompt spectrum of the \amc{} background was determined
+The rate and prompt spectrum of the \amc{} background were determined
 during a special data run with an additional intense \amc{} source
 deployed on the lid of EH3-AD2 for 10 days during the summer of 2012,
-as shown in \cref{fig:amc_photo}.
+as shown in \cref{fig:amc_photo} \cite{nh2016technote}.
 The double coincidences observed in EH3-AD2 showed a clear asymmetry
 between the upper and lower halves of the AD,
 as evidenced by the distribution of reconstructed prompt positions
@@ -2088,6 +2088,7 @@ and the accidental background was subtracted.
 (The accidental background increased in EH3-AD2 due to additional singles
 from the intense \amc{} source.)
 By subtracting the prompt energy distribution for EH3-AD1 from that of EH3-AD2,
+(see \cref{fig:amc_spectrum}, left)
 the number of additional \amc{}-induced events during the intense run
 was determined to be
 \begin{equation}\label{eq:amc_intense}
@@ -2097,9 +2098,17 @@ was determined to be
 The prompt reconstructed energy spectrum, shown in \cref{fig:amc_spectrum},
 was modeled by an exponential function,
 \begin{equation}\label{eq:amc_spec_fit}
-    f(E; N_0, E_0) = N_0 e^{-E/E_0}.
+    f(E; N, E_0) = N e^{-E/E_0}.
 \end{equation}
-The best-fit values were \todo{\amc{} fitted spectrum params}.
+The best-fit values were
+\begin{align}\label{eq:amc_spec_params}
+    \begin{split}
+        N &= 139\pm40 \\
+        E_0 &= \SI{0.92\pm0.34}{\MeV}.
+    \end{split}
+\end{align}
+The fit parameter $N$ and the observed count $N_\text{int}$
+were highly consistent.
 
 The measurement from the intense run was converted
 into rates for each AD during the full data taking period
@@ -2150,8 +2159,15 @@ and a variety of simulations of the \amc{} background process.
 
 \begin{figure}
     \centering
-    \missingfigure{\amc{} subtracted spectrum}
-    \caption{Prompt reconstructed energy spectrum.}
+    \includegraphics{ch_event_selection/amc_spectrum}
+    \caption{
+        Left: Prompt reconstructed energy spectrum
+        for the intense \amc{} source run in EH3-AD2 (blue)
+        and for the normal configuration in EH3-AD1 (red).
+        Right: Difference between normal and intense prompt spectra,
+        fitted by an exponential function, $Ne^{E/E_0}$.
+        Figure taken from \cite{nh2016technote}.
+    }
     \label{fig:amc_spectrum}
 \end{figure}
 
