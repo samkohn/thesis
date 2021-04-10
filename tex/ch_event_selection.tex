@@ -2218,22 +2218,24 @@ and a variety of simulations of the \amc{} background process.
 \bottomrule
     \end{tabular}
 \end{table}
-\begin{table}[ht]
-    \caption{Summary of efficiency uncertainties}
-    \label{tab:summary_efficiencies}
-    \centering
-    \begin{tabular}[t]{rr}
-        \hline
-        & Uncertainty (\%) \\
-        \hline
-    Relative energy scale uncertainty & 0.50\\
-    Prompt energy cut eff. & 0.10\\
-    Delayed energy cut eff. & 0.20\\
-    Distance-time (DT) cut eff. & 0.50\\
-\hline
-    Combined cut eff. & 0.55\\
-    Target proton number & 0.37\\
-\hline
-    Total AD-uncorrelated uncertainty & 0.66\\
-    \end{tabular}
-\end{table}
+
+\ctable[
+cap = Summary of efficiency uncertainties (ctable),
+caption = Summary of efficiency uncertainties,
+label = tab:efficiency_summary,
+pos = ht
+]{rS}{
+    \tnote[a]{
+        Prompt energy cut eff. was treated as an effect of the
+        relative energy scale uncertainty,
+        so was not included in the total AD-uncorrelated uncertainty.
+    }
+}{\FL
+    & {Uncertainty (\%)} \ML
+    Prompt energy cut eff. & 0.10\tmark[a] \tabularnewline
+    Delayed energy cut eff. & 0.20 \NN
+    Distance-time (DT) cut eff. & 0.50 \NN
+    Target proton number & 0.37 \NN
+    \addlinespace
+    Total AD-uncorrelated uncertainty & 0.66\tmark[a] \tabularnewline\bottomrule
+}
