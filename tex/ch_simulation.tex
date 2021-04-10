@@ -532,7 +532,7 @@ backgrounds, and reactor parameters.
 This simulation was originally \cite{lbnl_toymc,p12e_fitter,p14a_fitter} used to generate covariance matrices for
 and validate the performance of
 one of the fitter programs for the nGd analysis
-\cite[Method A of][]{ngd2016}.
+(Method A of \cite{ngd2016}).
 It was used essentially unmodified to validate the fitter for this (nH) analysis
 (\cref{ch:analysis}).
 
@@ -564,12 +564,13 @@ Predicted rates and spectra for background events
 were added after the IBD prompt spectra were fully generated.
 The backgrounds could be randomly fluctuated to account for
 uncertainties in their rates and spectra.
-Lastly, the number of events in each bin of reconstructed energy
-could optionally be fluctuated to account for statistical uncertainty.
+Lastly, the number of events in each bin of prompt reconstructed energy
+could optionally be fluctuated to account for statistical uncertainty
+before being output as the results of the simulation.
 \Cref{fig:lbnl_toymc_flowchart} shows the above steps as a flowchart.
-\todo[inline]{Finish LBNL ToyMC section}
 
 \begin{figure}
+    \centering
     \includegraphics[width=0.6\textwidth]{ch_simulation/lbnl_toymc_flowchart}
     \caption{
         Steps to simulate the prompt reconstructed spectra
@@ -579,6 +580,122 @@ could optionally be fluctuated to account for statistical uncertainty.
     \label{fig:lbnl_toymc_flowchart}
 \end{figure}
 
+\subsection{Study of fitter accuracy}
+\label{subsec:fitter_validation}
+
+The fitter developed in \cref{ch:analysis} was validated
+using simulated data sets with known values of \thetaot{}.
+The degree to which the fitter could extract
+the ``correct'' (input) value of \thetaot{}
+was a measure of its accuracy
+and helped verify that there were no major software bugs
+which could have caused an incorrect measurement of \thetaot{}.
+The nH and nGd analyses were similar enough
+that the same fitter software could be used for both analyses
+simply by adjusting the values for uncertainties, efficiencies,
+target masses and backgrounds
+(and, of course, using the corresponding prompt energy spectra).
+Thus the data set toy Monte Carlo was used without modification
+to generate simulated nGd data sets,
+and the fitter was validated without relying on
+any aspects of the nH analysis.
+
+Data sets were generated under each test configuration
+for 36 pairs of (\thetaot{}, \dmee{}) mixing parameters.
+(\dmee{} was used only as an input value,
+and was converted to $\Delta m^2_{32}$ internally.)
+The values of $\sin^22\thetaot{}$ ranged from 0.065 to 0.09
+in steps of 0.005;
+those of \dmee{} ranged from
+\SI{2.3e-3}{\eV\squared} to \SI{2.7e-3}{\eV\squared}
+in steps of \SI{0.08e-3}{\eV\squared}.
+
+The fitter was tested against data sets
+which were configured to have no fluctuations,
+in order to verify the precise performance
+of the prediction algorithm and minimizer.
+Since these simulations were fully deterministic,
+only one data set was generated for each of the 36 parameter combinations.
+The fitter was also tested against data sets
+which included fluctuations, both statistical and systematic in nature.
+To thoroughly exercise the fitter's functionality
+for each configuration,
+1000 data sets were generated
+for each of the 36 parameter combinations,
+for a total of \num{36000} simulated data sets per configuration.
+
+An initial validation was performed to ensure that
+the fitter could precisely extract \thetaot{}
+from the ``nominal'' fake experiment:
+one with all parameters set to the nominal values,
+and with no statistical fluctuations or systematic uncertainties.
+Next, the statistical fluctuations at the near and far halls were enabled,
+and the resulting variation in \thetaot{} values was examined.
+A similar procedure was repeated for each source of systematic uncertainty.
+Lastly, the full set of fluctuations and uncertainties was enabled
+to ensure the fitter could still extract an unbiased value of \thetaot{}.
+This full fluctuations configuration was used to generate
+200 fake experiments for each of 36 different combinations
+of \thetaot{} and $\Delta m^2_{32}${}.
+The distribution of biases in the mean extracted value of \thetaot{}
+for each combination of parameters
+is shown in \cref{fig:final_validation}.
+The full listing of configurations tested
+is shown in \cref{tab:validation_configs}.
+
+\ctable[
+cap = Fitter validation simulation configurations,
+caption = {
+    Simulation configurations for validating the fitter performance.
+},
+label = tab:validation_configs,
+pos = ht
+]{ll}{
+    \tnote[a]{
+        Composite nonlinearity functions were generated
+        from 5 independent models
+        each contributing in random proportions to the composite.
+    }
+    \tnote[b]{
+        Uncertainties from non-equilibrium isotopes,
+        spent nuclear fuel contribution,
+        correlated and uncorrelated model uncertainties.
+    }
+}{\FL
+    & Fluctuation RMS \ML
+    Statistics (EH3) & Poisson \NN
+    Statistics (EH1 \& EH2) & Poisson \NN
+    Detection efficiency & \SI{0.3}{\percent} \NN
+    Relative energy scale & \SI{0.2}{\percent} \NN
+    Absolute energy scale & $\lesssim\SI{2}{\percent}$\tmark[a] \NN
+    Reactor power & \SI{0.8}{\percent} \NN
+    Reactor \nuebar{} spectrum & \SI{5}{\percent} fission fraction, etc.\tmark[b] \NN
+    Input mixing parameters & Values from \cite{pdg} \NN
+    Accidental background & \parbox[t]{5cm}{
+        \SI{0.13}{\percent} (EH1), \SI{0.17}{\percent} (EH2) \\
+        \SI{0.42}{\percent} (EH3)
+    } \NN
+    \li{}/\he{} background & \parbox[t]{5cm}{
+        \SI{27}{\percent} (EH1), \SI{29}{\percent} (EH2) \\
+        \SI{33}{\percent} (EH3)
+    } \NN
+    Fast neutron background & \SI{10}{\percent} (EH1 \& EH2), \SI{17}{\percent} (EH3) \NN
+    \amc{} background & \SI{50}{\percent} \NN
+    \bottomrule
+}
+
+\begin{figure}
+    \missingfigure{Final fitter validation biases}
+    \caption{
+        Distribution of biases of the extracted \thetaot{}
+        for 36 combinations of \thetaot{} and $\Delta m^2_{32}${},
+        with 200 fake experiments per combination.
+    }
+    \label{fig:final_validation}
+\end{figure}
+
+
+\todo[inline]{Finish LBNL ToyMC section}
 %Hundreds of thousands of simulated data sets were generated
 %using this simulation
 %in order to validate the fitter for this analysis.

@@ -817,56 +817,14 @@ due to the finite precision of floating-point arithmetic.
 These cases were handled by assigning the expression the value 0,
 an approximation which was accurate to better than one part in $10^{10}$.
 
-\section{Fitter validation}
-\label{sec:fitter_validation}
-
 The implementations of the model described in \cref{sec:prediction}
 and the $\chi^2$ expression described in \cref{sec:fitter}
 (collectively, the ``fitter'')
 were validated against an existing Monte Carlo simulation
 designed for the nGd analysis \cite{lbnl_toymc}.
-This simulation is described in detail in \cref{sec:lbnl_toymc}.
-Briefly, the simulation received as input
-all of the fitter inputs---efficiencies, livetimes, uncertainties, etc.---%
-except for the reconstructed prompt energy spectrum for each AD,
-and produced as output a set of plausible reconstructed prompt energy spectra
-given statistical fluctuations and systematic uncertainties.
-A given set of 8 prompt energy spectra (one for each AD)
-was termed a ``fake experiment.''
-The nH and nGd analyses were similar enough
-that the same fitter software could be used in either analysis
-simply by using the appropriate values for uncertainties, efficiencies,
-target masses and backgrounds
-(and, of course, the observed reconstructed prompt energy spectra).
-
-An initial validation was performed to ensure that
-the fitter could precisely extract \thetaot{}
-from the ``nominal'' fake experiment:
-one with all parameters set to the nominal values,
-and with no statistical fluctuations or systematic uncertainties .
-Next, the statistical fluctuations at the near and far halls were enabled,
-and the resulting variation in \thetaot{} values was examined.
-A similar procedure was repeated for each source of systematic uncertainty.
-Lastly, the full set of fluctuations and uncertainties was enabled
-to ensure the fitter could still extract an unbiased value of \thetaot{}.
-This full fluctuations configuration was used to generate
-200 fake experiments for each of 36 different combinations
-of \thetaot{} and $\Delta m^2_{32}${}.
-The distribution of biases in the mean extracted value of \thetaot{}
-for each combination of parameters
-is shown in \cref{fig:final_validation}.
+This simulation and the validation process are  described in detail in \cref{sec:lbnl_toymc}.
 On average, the fitter is able to extract \thetaot{}
 with a bias of \SI{<0.3}{\percent}.
-
-\begin{figure}
-    \missingfigure{Final fitter validation biases}
-    \caption{
-        Distribution of biases of the extracted \thetaot{}
-        for 36 combinations of \thetaot{} and $\Delta m^2_{32}${},
-        with 200 fake experiments per combination.
-    }
-    \label{fig:final_validation}
-\end{figure}
 
 \section{Results}
 \label{sec:results}
