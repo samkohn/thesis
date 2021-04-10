@@ -3,7 +3,7 @@
 
 The 3-flavor model of neutrino oscillation discussed in \cref{ch:intro}
 was tested for goodness-of-fit against the Daya Bay observations,
-and best-fit values for the oscillation parameters \thetaot{} and \dmee{}
+and best-fit values for the oscillation parameters \thetaot{} and $\Delta m^2_{32}${}
 were extracted.
 For a \nuebar{} with energy $E_\nu$,
 the probability that it will be detected as a \nuebar{}
@@ -21,17 +21,18 @@ after traveling a distance $L$ is predicted in the 3-flavor model as:
 where
 $\Delta_{ji} \simeq 1.267 \Delta m^2_{ji} (\si{\eV}^2) L(\si{\m})/E_\nu (\si{\MeV})$,
 and
-$\Delta m_{ee} \simeq \cos^2\theta_{12}\left|\Delta m^2_{31}\right| +
+$\Delta m^2_{ee} \simeq \cos^2\theta_{12}\left|\Delta m^2_{31}\right| +
 \sin^2\theta_{12}\left|\Delta m^2_{32}\right|$.
-As described in detail in \cref{ch:intro},
+As described in \cref{ch:intro},
 the use of $\Delta m^2_{ee}$ to model the Daya Bay observations
 is appropriate since the measurement is not sensitive
 to the $O(\SI{1}{\percent})$ difference between $\Delta m^2_{31}$ and $\Delta m^2_{32}$.
-Either form of \cref{eq:p_sur} can be used to compute the \nuebar{} survival probability
-from the Daya Bay reactors to the near and far halls,
-and this analysis uses the full 3-flavor form.
-%Values for the physical mass-squared differences will be computed
-%based on the extracted value of $\Delta m^2_{ee}$.
+Either form of \cref{eq:p_sur} can be used as a model
+to compute the \nuebar{} survival probability
+from the Daya Bay reactors to the near and far halls.
+This analysis used the full 3-term model
+assuming the normal mass ordering ($\Delta m^2_{32} > 0$)
+when computing oscillation probabilities during the fit procedure.
 
 To assess the validity of the 3-flavor model and extract the oscillation parameters'
 best-fit values,
@@ -198,10 +199,10 @@ of AD $i$,
 the predicted number of IBDs is
 
 \begin{equation}\label{eq:near_hall_bg_eff}
-    N_{\text{IBD},i}^{(b)}(\thetaot, \dmee) =
+    N_{\text{IBD},i}^{(b)}(\thetaot, \Delta m^2_{32}) =
     \frac{N_{\text{cand},i}^{(b)} - N_{\text{bg},i}^{(b)}}{
         \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}(1+\nu_{\varepsilon,i})
-        (1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot, \dmee))
+        (1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot, \Delta m^2_{32}))
     },
 \end{equation}
 where $\nu_{\varepsilon,i}$ is the fractional relative difference from
@@ -215,15 +216,15 @@ The relative energy scale (\cref{subsec:rel_energyscale})
 is accounted for by a separate AD-dependent parameter $\nu_{\text{relE},i}$,
 the fractional deviation of a given AD's energy scale
 from the nominal value assumed for all ADs.
-The parameter $a_{\text{relE},i}^{(b)}(\thetaot, \dmee)$
+The parameter $a_{\text{relE},i}^{(b)}(\thetaot, \Delta m^2_{32})$
 represents the fractional change to a given bin of reconstructed energy
 if the relative energy scale were to change by $1\sigma \sim \SI{+-0.5}{\percent}$.
 Its dependence on a given AD and the oscillation parameters is
 due to the baseline-dependent distortion of the IBD spectrum
 induced by neutrino oscillation.
-The values for $a_{\text{relE},i}^{(b)}(\thetaot, \dmee)$ were determined using
+The values for $a_{\text{relE},i}^{(b)}(\thetaot, \Delta m^2_{32})$ were determined using
 a simulated Monte Carlo dataset (\cref{sec:thu_toymc}).
-The factor $(1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\dmee))$
+The factor $(1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\Delta m^2_{32}))$
 therefore accounts for changes in the prompt spectrum of
 both shape and normalization (i.e.\ prompt energy cut efficiency)
 due to differences in the relative energy scale between ADs.
@@ -233,13 +234,13 @@ so they can be adjusted during fitting.
 The dependence of prompt energy efficiency on oscillation parameters
 discussed in \cref{subsec:prompt_energy}
 should be applied at this stage for consistency.
-However, the effect for a given AD, represented as $\delta_{p,ik}(\thetaot, \dmee)$,
+However, the effect for a given AD, represented as $\delta_{p,ik}(\thetaot, \Delta m^2_{32})$,
 depends on contributions from all 6 reactor cores,
 so the inclusion of these factors is postponed
 until they can be applied to each reactor core's contributions
 individually in \cref{subsec:flux_fraction}.
 
-The resulting $N_{\text{IBD},i}^{(b)}(\thetaot, \dmee)$ represents
+The resulting $N_{\text{IBD},i}^{(b)}(\thetaot, \Delta m^2_{32})$ represents
 the estimated number of IBD interactions in AD $i$,
 reconstructed energy bin $b$,
 including those which occurred during muon or multiplicity vetoes,
@@ -292,7 +293,7 @@ which described the spectrum of incident \nuebar{}'s
 attributable to the IBDs in that reconstructed energy bin,
 given the results of the simulation.
 This probability was adjusted to account for
-oscillation effects and so depended on \thetaot{} and \dmee{}
+oscillation effects and so depended on \thetaot{} and $\Delta m^2_{32}${}
 as well as the location of each AD relative to the reactor cores.
 The detector response matrix and the set of PDFs
 for both the rate-only and spectral measurements,
@@ -308,9 +309,9 @@ for each bin of reconstructed energy for each near-hall AD $i$ as
 
 \begin{equation}
     N_i^{(b)}(E_{\text{true}}) = N_{\text{IBD},i}^{(b)}
-    \cdot f_{\text{DRM},i}^{(b)}(E_{\text{true}}; \thetaot, \dmee) \delta E_{\text{true}},
+    \cdot f_{\text{DRM},i}^{(b)}(E_{\text{true}}; \thetaot, \Delta m^2_{32}) \delta E_{\text{true}},
 \end{equation}
-where $f_{\text{DRM},i}^{(b)}(E_{\text{true}}; \thetaot, \dmee)$ is the probability density
+where $f_{\text{DRM},i}^{(b)}(E_{\text{true}}; \thetaot, \Delta m^2_{32})$ is the probability density
 that an event in reconstructed energy bin $b$
 of AD $i$
 was caused by a \nuebar{} with true energy $E_{\text{true}}$.
@@ -362,10 +363,10 @@ to the total from all reactors,
 accounting for the $\nicefrac{1}{L^2}$ dependence of isotropic \nuebar{} emission
 and minor oscillation effects:
 \begin{equation}\label{eq:flux_fraction}
-    f_{ik}(E;\thetaot,\dmee) = \frac{
-        \phi_{ik}(E) P_\text{sur} (L_{ik}, E;\thetaot,\dmee)/L_{ik}^2
+    f_{ik}(E;\thetaot,\Delta m^2_{32}) = \frac{
+        \phi_{ik}(E) P_\text{sur} (L_{ik}, E;\thetaot,\Delta m^2_{32})/L_{ik}^2
     }{
-        \sum_l \phi_{il}(E)P_\text{sur}(L_{il}, E;\thetaot,\dmee)/L_{il}^2
+        \sum_l \phi_{il}(E)P_\text{sur}(L_{il}, E;\thetaot,\Delta m^2_{32})/L_{il}^2
     },
 \end{equation}
 where the sum in the denominator is over all cores.
@@ -391,7 +392,7 @@ can be computed from the flux fraction $f_{ik}$ as
     N_{ik}^{(b)}(E) = \frac{
         f_{ik}(E) \times N_i^{(b)}(E).
     }{
-        1 + \delta_{p,ik}(\thetaot, \dmee)
+        1 + \delta_{p,ik}(\thetaot, \Delta m^2_{32})
     },
 \end{equation}
 where the denominator is (belatedly) accounting for the dependence
@@ -415,9 +416,9 @@ A distinct ratio exists for each combination of a near AD, a far AD and a reacto
 for a total of $4 \times 4 \times 6 = 96$ ratios, also known as extrapolation factors
 $e_{j,ik}$:
 \begin{equation}\label{eq:extrapolation}
-    e_{j,ik}(E;\thetaot,\dmee) = \frac{
-        \phi_{jk}(E)P_\text{sur}(L_{jk}, E;\thetaot,\dmee)/L_{jk}^2}{
-        \phi_{ik}(E)P_\text{sur}(L_{ik}, E;\thetaot,\dmee)/L_{ik}^2
+    e_{j,ik}(E;\thetaot,\Delta m^2_{32}) = \frac{
+        \phi_{jk}(E)P_\text{sur}(L_{jk}, E;\thetaot,\Delta m^2_{32})/L_{jk}^2}{
+        \phi_{ik}(E)P_\text{sur}(L_{ik}, E;\thetaot,\Delta m^2_{32})/L_{ik}^2
     }.
 \end{equation}
 Like the flux fractions, the extrapolation factors
@@ -435,9 +436,9 @@ and a reactor flux which changes over time.
 The predicted count of IBDs at far AD $j$ due to \nuebar{} from core $k$
 based on the observation at near AD $i$ (all in reconstructed energy bin $b$) can be computed as
 \begin{equation}\label{eq:far_true_core_pred}
-    F_{j,ik}^{(b)}(E;\thetaot,\dmee) = e_{j,ik}(E;\thetaot,\dmee) \times
-        N_{ik}^{(b)}(E;\thetaot,\dmee) \times
-        (1 + \delta_{p,jk}(\thetaot, \dmee)).
+    F_{j,ik}^{(b)}(E;\thetaot,\Delta m^2_{32}) = e_{j,ik}(E;\thetaot,\Delta m^2_{32}) \times
+        N_{ik}^{(b)}(E;\thetaot,\Delta m^2_{32}) \times
+        (1 + \delta_{p,jk}(\thetaot, \Delta m^2_{32})).
 \end{equation}
 The prompt efficiency correction factor $\delta_{p,jk}$ is included
 to correct for oscillation effects between core $k$ and AD $j$,
@@ -447,7 +448,7 @@ The number of IBDs at a far AD including contributions from all cores,
 but still based on a single near AD observation,
 is simply the sum over all cores,
 \begin{equation}
-    F_{j,i}^{(b)}(E;\thetaot,\dmee) = \sum_k F_{j,ik}^{(b)}(E;\thetaot,\dmee).
+    F_{j,i}^{(b)}(E;\thetaot,\Delta m^2_{32}) = \sum_k F_{j,ik}^{(b)}(E;\thetaot,\Delta m^2_{32}).
 \end{equation}
 
 \subsection{Estimating the far-hall reconstructed spectrum}
@@ -476,7 +477,7 @@ $F_{j,i}^{(b)}(E)$ will all, by definition,
 manifest as IBDs in reconstructed energy bin $b$,
 and the total expected number of IBDs in bin $b$ becomes
 \begin{equation}
-    F_{j,i}^{(b)}(\thetaot,\dmee) = \sum_E F_{j,i}^{(b)}(E;\thetaot,\dmee),
+    F_{j,i}^{(b)}(\thetaot,\Delta m^2_{32}) = \sum_E F_{j,i}^{(b)}(E;\thetaot,\Delta m^2_{32}),
 \end{equation}
 with the sum taken over the finely-binned true energy values
 used in the detector response matrix and PDFs.
@@ -496,10 +497,10 @@ to make use of the statistical methods in \cref{sec:fitter}.
 To account for backgrounds and efficiencies at the far ADs,
 the reverse of \cref{eq:near_hall_bg_eff} is applied:
 \begin{equation}\label{eq:far_hall_bg_eff}
-    F_{\text{pred},j,i}^{(b)}(\thetaot,\dmee) = F_{j,i}^{(b)}(\thetaot,\dmee)
+    F_{\text{pred},j,i}^{(b)}(\thetaot,\Delta m^2_{32}) = F_{j,i}^{(b)}(\thetaot,\Delta m^2_{32})
         \varepsilon_{\mu,j}\varepsilon_{m,j}\varepsilon_{p,j}
         (1 + \nu_{\varepsilon,j})
-        (1 + \nu_{\text{relE},j}\cdot a_{\text{relE},j}^{(b)}(\thetaot,\dmee))
+        (1 + \nu_{\text{relE},j}\cdot a_{\text{relE},j}^{(b)}(\thetaot,\Delta m^2_{32}))
     + N_{\text{bg},j}^{(b)}.
 \end{equation}
 The prompt energy efficiency's dependence on oscillation parameters
@@ -518,33 +519,33 @@ The steps of the near-far projection procedure can be combined into a single for
 This formula gives the prediction for the number of observed events
 in far-hall AD $j$ based on a given near-hall AD:
 \begin{multline}\label{eq:full_prediction}
-    F_{\text{pred},j,i}^{(b)}(\thetaot,\dmee) =
+    F_{\text{pred},j,i}^{(b)}(\thetaot,\Delta m^2_{32}) =
     \Bigg(
     \left[N_{\text{cand},i}^{(b)}(1 + \eta_{N,i}^{(b)}) - N_{\text{bg},i}^{(b)}
     (1 + \eta_{B,i})\right]\bigg. \\
     \times \frac{
         \varepsilon_{\mu,j}\varepsilon_{m,j}\varepsilon_{p,j}
         (1 + \nu_{\varepsilon,j})
-        (1 + \nu_{\text{relE},j}\cdot a_{\text{relE},j}^{(b)}(\thetaot,\dmee))
+        (1 + \nu_{\text{relE},j}\cdot a_{\text{relE},j}^{(b)}(\thetaot,\Delta m^2_{32}))
     }{
         \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}
         (1+\nu_{\varepsilon,i})
-        (1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\dmee))
+        (1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\Delta m^2_{32}))
     } \\
     \bigg.
     \times \sum_{E,k} \big[
-        e_{j,ik}(E; \thetaot,\dmee) f_{ik}(E; \thetaot,\dmee)
+        e_{j,ik}(E; \thetaot,\Delta m^2_{32}) f_{ik}(E; \thetaot,\Delta m^2_{32})
         f_{\text{DRM},i}^{(b)}(E) \delta E
     \times \frac{
-        1 + \delta_{p,jk}(\thetaot, \dmee)
+        1 + \delta_{p,jk}(\thetaot, \Delta m^2_{32})
     }{
-        1 + \delta_{p,ik}(\thetaot, \dmee)
+        1 + \delta_{p,ik}(\thetaot, \Delta m^2_{32})
     } \big] \Bigg) \\
     + N_{\text{bg},j}^{(b)}(1 + \eta_{B,j})
 \end{multline}
 The expressions for $f_{ik}$ and $e_{j,ik}$ are omitted for simplicity,
 but can be found in \cref{eq:flux_fraction} and \cref{eq:extrapolation}, respectively.
-Note that the dependence on \thetaot{} and \dmee{} is contained in those two terms.
+Note that the dependence on \thetaot{} and $\Delta m^2_{32}${} is contained in those two terms.
 As mentioned in previous sections and discussed in detail in \cref{sec:fitter},
 the various $\nu$ and $\eta$ terms represent nuisance parameters
 that quantify the uncertainties on various model inputs,
@@ -689,10 +690,10 @@ The $\boldsymbol{\eta}$ vector contains the single parameter of interest:
 the neutrino mixing angle \thetaot{}.
 The observations are not binned by energy,
 thus this analysis cannot be used to extract
-a precise measurement of \dmee{}.
-An input value of $\dmee = \SI{2.522(70)e-3}{\eV\squared}$
+a precise measurement of $\Delta m^2_{32}${}.
+An input value of $\Delta m^2_{32} = \SI{2.471(70)e-3}{\eV\squared}$
 was supplied from \cite{ngd2018}.
-The uncertainty in \dmee{} was implemented
+The uncertainty in $\Delta m^2_{32}${} was implemented
 as a nuisance parameter as described below.
 
 The remaining model parameters
@@ -722,7 +723,7 @@ $\boldsymbol{\eta_N}$ represents the statistical uncertainty
 of the observed event rate at the near hall ADs,
 and $\boldsymbol{\eta_{\text{osc}}}$ represents the uncertainty
 of the externally-imposed oscillation paramters, $\theta_{12}, \Delta m^2_{21},$
-and \dmee{}.
+and $\Delta m^2_{32}${}.
 The full listing of nuisance parameters
 can be found in \cref{tab:systs}.
 
@@ -761,7 +762,7 @@ can be found in \cref{tab:systs}.
                              & 1 & \\
         Input mixing parameters &
         \SI{2.4}{\percent}, \SI{2.6}{\percent}, \SI{2.8}{\percent} for
-        $\Delta m^2_{21},\theta_{12}, \dmee$
+        $\Delta m^2_{21},\theta_{12}, \Delta m^2_{32}$
                                 & 3
                                 & \\
         \bottomrule
@@ -850,7 +851,7 @@ Lastly, the full set of fluctuations and uncertainties was enabled
 to ensure the fitter could still extract an unbiased value of \thetaot{}.
 This full fluctuations configuration was used to generate
 200 fake experiments for each of 36 different combinations
-of \thetaot{} and \dmee{}.
+of \thetaot{} and $\Delta m^2_{32}${}.
 The distribution of biases in the mean extracted value of \thetaot{}
 for each combination of parameters
 is shown in \cref{fig:final_validation}.
@@ -861,7 +862,7 @@ with a bias of \SI{<0.3}{\percent}.
     \missingfigure{Final fitter validation biases}
     \caption{
         Distribution of biases of the extracted \thetaot{}
-        for 36 combinations of \thetaot{} and \dmee{},
+        for 36 combinations of \thetaot{} and $\Delta m^2_{32}${},
         with 200 fake experiments per combination.
     }
     \label{fig:final_validation}
@@ -1016,7 +1017,7 @@ listed in \cref{tab:error_budget}.
         \amc{} background & 0.94 \\
         Radiogenic neutron background & 3.57 \\
         Reactor power & 5.72 \\
-        Input $\theta_{12},\Delta m^2_{21}$, and \dmee{} & 0.01 \\
+        Input $\theta_{12},\Delta m^2_{21}$, and $\Delta m^2_{32}${} & 0.01 \\
         \addlinespace
         Total & 106.49 \\
         \bottomrule
