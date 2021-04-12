@@ -307,7 +307,7 @@ Given the near-hall AD observations,
 a separate true \nuebar{} spectrum is computed
 for each bin of reconstructed energy for each near-hall AD $i$ as
 
-\begin{equation}
+\begin{equation}\label{eq:drm}
     N_i^{(b)}(E_{\text{true}}) = N_{\text{IBD},i}^{(b)}
     \cdot f_{\text{DRM},i}^{(b)}(E_{\text{true}}; \thetaot, \Delta m^2_{32}) \delta E_{\text{true}},
 \end{equation}
@@ -726,6 +726,16 @@ of the externally-imposed oscillation paramters, $\theta_{12}, \Delta m^2_{21},$
 and $\Delta m^2_{32}${}.
 The full listing of nuisance parameters
 can be found in \cref{tab:systs}.
+During the fitter validation procedure (\cref{subsec:fitter_validation}),
+a negligible effect on the extracted value of $\sin^22\thetaot$
+was found for each of the absolute energy scale, energy resolution,
+and reactor \nuebar{} spectrum systematic fluctuations.
+Thus these quantities were not modeled using pull parameters,
+and instead were assumed to be known to infinite precision.
+These values all contributed to the detector response functions
+(\cref{eq:drm}),
+and correlated variations in the detector response
+canceled to first order \todo{cite DRM appendix}.
 
 \begin{table}[ht]
     \centering

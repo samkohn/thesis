@@ -623,25 +623,14 @@ for each configuration,
 1000 data sets were generated
 for each of the 36 parameter combinations,
 for a total of \num{36000} simulated data sets per configuration.
-
-An initial validation was performed to ensure that
-the fitter could precisely extract \thetaot{}
-from the ``nominal'' fake experiment:
-one with all parameters set to the nominal values,
-and with no statistical fluctuations or systematic uncertainties.
-Next, the statistical fluctuations at the near and far halls were enabled,
-and the resulting variation in \thetaot{} values was examined.
-A similar procedure was repeated for each source of systematic uncertainty.
-Lastly, the full set of fluctuations and uncertainties was enabled
-to ensure the fitter could still extract an unbiased value of \thetaot{}.
-This full fluctuations configuration was used to generate
-200 fake experiments for each of 36 different combinations
-of \thetaot{} and $\Delta m^2_{32}${}.
-The distribution of biases in the mean extracted value of \thetaot{}
-for each combination of parameters
-is shown in \cref{fig:final_validation}.
 The full listing of configurations tested
 is shown in \cref{tab:validation_configs}.
+For the final validation, with all systematic and statistical fluctuations
+and all pull parameters enabled,
+a smaller sample of 190 data sets for each of 9 parameter combinations
+(total of \num{1710} data sets)
+was used since the full fitter with all pull parameters
+took substantially longer to run than it did with any subset of pull parameters.
 
 \ctable[
 cap = Fitter validation simulation configurations,
@@ -668,6 +657,7 @@ pos = ht
     Detection efficiency & \SI{0.3}{\percent} \NN
     Relative energy scale & \SI{0.2}{\percent} \NN
     Absolute energy scale & $\lesssim\SI{2}{\percent}$\tmark[a] \NN
+    Energy resolution & $\SI{0.2}{\percent}/\sqrt{E/\si{\MeV}}$ \NN
     Reactor power & \SI{0.8}{\percent} \NN
     Reactor \nuebar{} spectrum & \SI{5}{\percent} fission fraction, etc.\tmark[b] \NN
     Input mixing parameters & Values from \cite{pdg} \NN
@@ -685,17 +675,69 @@ pos = ht
 }
 
 \begin{figure}
-    \missingfigure{Final fitter validation biases}
+    \centering
+    \includegraphics{ch_simulation/validation_final_sin2_annotated}
     \caption{
-        Distribution of biases of the extracted \thetaot{}
-        for 36 combinations of \thetaot{} and $\Delta m^2_{32}${},
-        with 200 fake experiments per combination.
+        Distribution of the extracted $\sin^22\thetaot{}$
+        for 9 combinations of \thetaot{} and $\Delta m^2_{32}${},
+        with 190 fake experiments per combination,
+        with all simulated systematics and all fitter pull parameters enabled.
+        Each row shares a true (input) $\sin^22\thetaot{}$,
+        and each column shares a true $\Delta m^2_{32}$.
+        The listed $\mu$ and $\sigma$ are the sample mean and standard deviation,
+        respectively, for each 190-experiment sample.
+        The standard error of the mean is indicated in parentheses
+        as the uncertainty in the last digit.
+        The orange curves are the best-fit Gaussian distributions
+        to each sample.
     }
     \label{fig:final_validation}
 \end{figure}
 
+The distribution of extracted $\sin^22\thetaot$ values from the final validation
+is shown in \cref{fig:final_validation}.
+For 6 of the 9 parameter combinations (\SI{66}{\percent}),
+the sample mean $\sin^22\thetaot$
+was within $\pm1$ standard error of the ``true'' (simulation input) $\sin^22\thetaot$,
+demonstrating the statistical consistency of the fitter and simulation infrastructure.
+A second consistency check was the distribution of minimum $\chi^2$ values
+from the fitter,
+which should follow the $\chi^2$ distribution with 3 degrees of freedom
+(see \cref{subsec:fitter_specification}).
+When all pull parameters were disabled, the extracted $\chi^2$ values
+did indeed follow the theoretical predicted distribution.
+However, as shown in \cref{fig:validation_chi2},
+when all pull parameters were enabled,
+the $\chi^2$ values decreased to lower values than the prediction.
+This discrepancy was traced to the use of the pull parameters
+modeling the AD-to-AD variation in detection efficiency;
+when this pull parameter was disabled but all others were enabled,
+the extracted $\chi^2$ values still matched the prediction.
+In any event, the impact of the pull parameters
+on the extracted $\sin^22\thetaot{}$ was minimal.
+Over the 1710 fake experiments, the maximum discrepancy
+between a fit with no pull parameters and one with all enabled
+was \SI{0.08}{\percent}.
 
-\todo[inline]{Finish LBNL ToyMC section}
+\begin{figure}
+    \centering
+    \includegraphics{ch_simulation/validation_chi2_dist}
+    \caption{
+        Distribution of the fit minimum $\chi^2$
+        for the \num{1710} fake experiments
+        simulated with all systematics.
+        The blue histogram shows the results with all pull parameters enabled;
+        it has a lower mean than would be expected from the 3 degrees of freedom.
+        The orange histogram shows that with all pull parameters disabled,
+        the distribution of the minimum $\chi^2$ matches the theoretical prediction
+        for 3 degrees of freedom (black curve).
+        The scale on the right-hand vertical axis gives the probability density
+        for the theoretical prediction.
+    }
+    \label{fig:validation_chi2}
+\end{figure}
+
+
 %Hundreds of thousands of simulated data sets were generated
 %using this simulation
 %in order to validate the fitter for this analysis.
