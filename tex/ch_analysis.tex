@@ -53,7 +53,7 @@ between the prediction prediction and observations (\cref{sec:fitter}).
 
 The relative flux and spectrum of \nuebar{} from each reactor core was used
 to adjust the predicted IBD spectrum at the far-hall ADs
-based on how many \nuebar{} a particular near-hall AD was exposed to,
+based on how many \nuebar{}'s a particular near-hall AD was exposed to,
 as described in detail in \cref{sec:prediction}.
 The \nuebar{} production from each reactor was estimated from 3 fundamental contributions:
 emission from fission products, corrections due to non-equilibrium effects,
@@ -63,30 +63,73 @@ were combined with knowledge of reactor power, fuel composition,
 and energy released per fission
 to estimate the total emitted \nuebar{} spectrum from each core.
 
-The \nuebar{} spectrum is estimated for each of the four main fission isotopes
+The \nuebar{} spectrum was estimated for each of the four main fission isotopes
 (\isotope[235]{U}, \isotope[238]{U}, \isotope[239]{Pu}, and \isotope[241]{Pu})
-using the Huber and Muller models\todo{cite / more on reactor spectrum}.
-Weekly average fission fractions and power levels for each core
-are obtained from the power company.
-The energy emitted per fission for each isotope is estimated from
-[insert model].\todo[inline]{Decide which thermal energy per fission to use}
+using the Huber \cite{reactor_huber} and Mueller \cite{reactor_mueller} models.
+\todo{verify these are the correct citations.}
+The Huber model was based on measurements of the total $\beta^{-}$ spectrum
+for \isotope[235]{U}, \isotope[239]{Pu}, and \isotope[241]{Pu}
+at the ILL reactor in the 1980s
+\cite{ill_1,ill_2,ill_3}.
+The Mueller model for \isotope[238]{U} used an \emph{ab initio} calculation
+of the \nuebar{} spectrum
+based on individual daughter isotope spectral measurements
+accessible in the ENSDF nuclear database \cite{ensdf}.
+
+Since the original ILL measurements relied on samples
+which had been irradiated for at most 1.8~days,
+they were not able to accurately measure
+the effects of any daughter nuclides with decay times longer than a few hours.
+Such isotopes would, however, reach equilibrium on the timescale
+of a reactor fuel cycle of 12 to 18 months.
 Corrections due to nonequilibrium effects, $c^{\text{ne}}$,
-and spent nuclear fuel, $S^{\text{snf}}$
-are estimated by .\todo{include more on noneq. and snf}
+were estimated using the ``450 day'' values from \cite{reactor_mueller},
+shown in \cref{tab:noneq}.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{lSSSSS}
+        \toprule
+        & \SI{2}{\MeV} & \SI{2.5}{\MeV} & \SI{3}{\MeV} & \SI{3.5}{\MeV}
+                & \SI{4}{\MeV} \\
+        \cmidrule(lr){2-6}
+        Isotope & \multicolumn{5}{c}{Nonequilibrium correction [\%]} \\
+        \midrule
+        \isotope[235]{U} & 5.7 & 4.4 & 1.5 & 0.7 & 0.1 \\
+        \isotope[239]{Pu} & 2.1 & 1.7 & 0.5 & 0 & 0 \\
+        \isotope[241]{Pu} & 1.9 & 1.5 & 0.5 & 0 & 0 \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+        Corrections to the predicted reactor \nuebar{} spectrum
+        due to nonequilibrium nuclides
+        for the three parent isotopes which required correction.
+        The \isotope[238]{U} spectrum was computed differently
+        from the others, as described in the text.
+    }
+    \label{tab:noneq}
+\end{table}
+
+Weekly average fission fractions and power levels for each core
+were obtained from the power company.
+The \nuebar{} emission by spent nuclear fuel at the Daya Bay and Ling Ao reactor sites, $S^{\text{snf}}$,
+was estimated using data from the power company \cite{snf}.
+\todo{SNF table}
+The energy emitted per fission for each isotope was taken from
+\cite{thermal_fission}.
 Therefore, for each week, the total number of antineutrinos
-of a given energy emitted from each core can be computed,
+of a given energy emitted from each core was computed,
 given knowledge of a particular AD's livetime.
-The total livetime of each AD for each week is computed
-(ignoring the muon veto, which was corrected for in
-\cref{eq:near_hall_bg_eff}).
 The total expected number of \nuebar{}'s produced by core $k$
-during the livetime of AD $i$ is therefore
+during the livetime of AD $i$ was
 \begin{equation}\label{eq:reactor_spectrum}
     \phi_{ik}(E) = \sum_{\text{weeks }w}
         \frac{W_{\text{th},w}}{\sum_q f_{q,w} e_q}
         \sum_{\substack{\text{isotopes}\\q}}
         f_{q,w} S_q(E) c_{q,w}^{\text{ne}} + S_w^{\text{snf}}.
 \end{equation}
+\todo[inline]{Plot(s) of reactor spectra}
+\todo[inline]{Cross section discussion and plot}
 
 \section{Projection from near halls to far hall}
 \label{sec:prediction}
@@ -185,8 +228,8 @@ multiplicity efficiency $\varepsilon_m$,
 and target proton effective efficiency
 $\varepsilon_{p,i}=\nicefrac{N_{p,\text{AD }i}}{N_{p,\text{EH1-AD1}}}$,
 are directly accounted for,
-and are listed in Table X.\todo{Tables with rates \& efficiencies}
-The remaining efficiencies, listed in \cref{tab:efficiencies},
+and are listed in \cref{tab:summary_event_selection}.
+The remaining efficiencies, listed in \cref{tab:efficiency_summary},
 are estimated for a generic or average AD and assigned a relative uncertainty.
 Since the near-far projection is a relative measurement,
 only deviations of individual ADs' efficiencies from the estimated mean value
@@ -252,24 +295,6 @@ and differences in energy scale between ADs (relative energy scale).
 Its dependence on the oscillation parameters at this point in the process
 is from the prompt energy efficiency
 and the relative energy scale uncertainty.
-
-
-\begin{table}[ht]
-    \centering
-    \begin{tabular}[t]{ll}
-        \hline
-        Efficiency source &  AD-uncorrelated uncertainty\\
-        \hline
-        Delayed energy cut & 121 (TODO)\\
-        Coincidence distance-time (DT) cut & 160 \\
-        etc. & \\
-        \hline
-        Relative energy scale uncertainty & 121 \\
-        \hline
-    \end{tabular}
-    \caption{Detection efficiencies\todo[inline]{Table of detection efficiencies}}
-    \label{tab:efficiencies}
-\end{table}
 
 
 \subsection{Extracting the true \texorpdfstring{\nuebar{}}{antineutrino} spectrum}
@@ -728,6 +753,7 @@ The full listing of nuisance parameters
 can be found in \cref{tab:systs}.
 During the fitter validation procedure (\cref{subsec:fitter_validation}),
 a negligible effect on the extracted value of $\sin^22\thetaot$
+($\lesssim\SI{0.1}{\percent}$)
 was found for each of the absolute energy scale, energy resolution,
 and reactor \nuebar{} spectrum systematic fluctuations.
 Thus these quantities were not modeled using pull parameters,
