@@ -66,7 +66,6 @@ to estimate the total emitted \nuebar{} spectrum from each core.
 The \nuebar{} spectrum was estimated for each of the four main fission isotopes
 (\isotope[235]{U}, \isotope[238]{U}, \isotope[239]{Pu}, and \isotope[241]{Pu})
 using the Huber \cite{reactor_huber} and Mueller \cite{reactor_mueller} models.
-\todo{verify these are the correct citations.}
 The Huber model was based on measurements of the total $\beta^{-}$ spectrum
 for \isotope[235]{U}, \isotope[239]{Pu}, and \isotope[241]{Pu}
 at the ILL reactor in the 1980s
@@ -260,8 +259,9 @@ the near-far projection model performs the following steps,
 illustrated in \cref{fig:near_far_cartoon}:
 
 \begin{figure}
-    \missingfigure{Near-far cartoon}
-    \caption{Illustration of the near-far projection procedure.}
+    \centering
+    \includegraphics[height=0.9\textheight]{ch_analysis/near_far_cartoon}
+    \caption{Illustration of the near-far projection procedure \cite{p12e_fitter}.}
     \label{fig:near_far_cartoon}
 \end{figure}
 
@@ -385,7 +385,7 @@ and the reconstructed energy of the prompt event,
 as shown in \cref{fig:drm}.
 The simulation was configured so that the incident \nuebar{} energy
 was drawn from the expected reactor \nuebar{} spectrum,
-weighted by the IBD cross section.
+weighted by the IBD cross section \cite{ibd_xsec,ibd_xsec_note}.
 For each bin of reconstructed energy,
 a probability function was constructed
 which described the spectrum of incident \nuebar{}'s
@@ -496,12 +496,16 @@ accounting for the $\nicefrac{1}{L^2}$ dependence of isotropic \nuebar{} emissio
 and minor oscillation effects:
 \begin{equation}\label{eq:flux_fraction}
     f_{ik}(E;\thetaot,\Delta m^2_{32}) = \frac{
-        \phi_{ik}(E) P_\text{sur} (L_{ik}, E;\thetaot,\Delta m^2_{32})/L_{ik}^2
+        \phi_{ik}(E)(1+\alpha_k) P_\text{sur} (L_{ik}, E;\thetaot,\Delta m^2_{32})/L_{ik}^2
     }{
-        \sum_l \phi_{il}(E)P_\text{sur}(L_{il}, E;\thetaot,\Delta m^2_{32})/L_{il}^2
+    \sum_l \phi_{il}(E)(1+\alpha_l)P_\text{sur}(L_{il}, E;\thetaot,\Delta m^2_{32})/L_{il}^2
     },
 \end{equation}
 where the sum in the denominator is over all cores.
+The $\alpha_k$ and $\alpha_l$ parameters
+encode the fractional uncertainty of the reactor flux normalization
+(due to uncertainty in the reactor power)
+and are implemented as nuisance parameters in the fitter in \cref{sec:fitter}.
 The flux fractions depend only on true \nuebar{} energy
 and are independent of reconstructed energy.
 Note that in principle the IBD cross section $\sigma_{IBD}(E)$
@@ -509,7 +513,6 @@ should be included ($\phi \to \sigma_{IBD}\phi$),
 but this factor is common to all cores (and all ADs)
 and does not impact the ratio $f_{ik}$.
 (\cref{sec:thu_toymc,subsec:reco_to_true_energy}).
-\todo[inline]{Insert appropriate pull parameters}
 
 The flux fraction is less sensitive to reactor \nuebar{} model uncertainties and biases
 common to all cores
@@ -563,6 +566,9 @@ differences in \nuebar{} exposure and detector livetime via the $\phi$ terms.
 These differences arise due to slightly different DAQ livetimes
 between the experimental halls
 and a reactor flux which changes over time.
+Note that the uncertainty in reactor flux normalization
+($\alpha_k$ in \cref{eq:flux_fraction})
+cancels in this ratio since the numerator and denominator are from the same reactor.
 
 The predicted count of IBDs at far AD $j$ due to \nuebar{} from core $k$
 based on the observation at near AD $i$ (all in reconstructed energy bin $b$) can be computed as
@@ -676,7 +682,10 @@ in far-hall AD $j$ based on a given near-hall AD:
 \end{multline}
 The expressions for $f_{ik}$ and $e_{j,ik}$ are omitted for simplicity,
 but can be found in \cref{eq:flux_fraction} and \cref{eq:extrapolation}, respectively.
-Note that the dependence on \thetaot{} and $\Delta m^2_{32}${} is contained in those two terms.
+Note that the dependence on \thetaot{} and $\Delta m^2_{32}${}
+is contained primarily in those two terms,
+with additional minor contributions from the relative energy scale uncertainty
+$a_\text{relE}$ and prompt efficiency corrections $\delta_p$.
 As mentioned in previous sections and discussed in detail in \cref{sec:fitter},
 the various $\nu$ and $\eta$ terms represent nuisance parameters
 that quantify the uncertainties on various model inputs,
@@ -867,7 +876,7 @@ and instead were assumed to be known to infinite precision.
 These values all contributed to the detector response functions
 (\cref{eq:drm}),
 and correlated variations in the detector response
-canceled to first order \todo{cite DRM appendix}.
+canceled to first order, as discussed in \cref{ap:drm}.
 
 \begin{table}[ht]
     \centering
