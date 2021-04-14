@@ -1,0 +1,250 @@
+\chapter{Conversion between true and reconstructed energy}
+\label{ap:drm}
+
+To predict the far ADs' \nuebar{} spectra based on
+an observation at a near AD,
+the observed prompt event energy must be converted
+to a true \nuebar{} energy
+so that the oscillation probability can be computed.
+After the projection, the predicted true energy spectrum
+must be converted back into a reconstructed spectrum
+to allow for a comparison to the far AD observations.
+The relation between true \nuebar{} energy
+and reconstructed prompt energy
+is known as the detector response.
+The detector response for Daya Bay
+depended primarily on the absolute energy scale (\cref{subsec:abs_energyscale})
+and energy resolution (\cref{subsec:resolution}).
+Other effects such as positron energy loss within the acrylic vessels
+and partially-escaped $\gamma$-rays were also relevant.
+
+The traditional formalism for representing and applying
+the detector response to the model prediction will be presented
+in \cref{sec:drm_traditional},
+followed by a description in \cref{sec:drm_lbnl}
+of the formalism used in this analysis (\cref{sec:prediction}).
+A brief discussion of the relative merits of each method
+will be given in \cref{sec:drm_comparison}.
+In both formalisms, the true and reconstructed energy distributions
+of an event sample are represented by histograms,
+which themselves are represented by column vectors,
+with each component corresponding to a bin of the histogram.
+The binning of the true and reconstructed histograms
+need not be the same.
+
+\section{Matrix formalism}
+\label{sec:drm_traditional}
+
+The traditional detector response matrix formalism
+was \emph{not} used in this analysis.
+It is presented here to motivate the use of the alternate vector-based formalism
+described below.
+
+A given incident \nuebar{} with true energy $E_i$ falling in true energy bin $i$
+participating in an IBD interaction at a Daya Bay AD
+has a certain probability $M^{(b)}_i$ for being observed
+with a prompt reconstructed energy $E^{(b)}$ falling in reconstructed energy bin $b$:
+\begin{equation}\label{eq:drm_trad_prob}
+    M^{(b)}_i \equiv P(E_i \text{ observed as } E^{(b)})
+\end{equation}
+The total number of events observed in reconstructed bin $b$
+can be computed based on the probability for each true energy bin
+to be observed in bin $b$, which can be represented as a matrix equation:
+\begin{align}\label{eq:drm_trad_matrix}
+    \begin{split}
+        S^{(b)}_R &= \sum_i M^{(b)}_i S_{\nu,i} \\
+                  &\Leftrightarrow \\
+        S_R &= \mathbf{M} S_\nu,
+    \end{split}
+\end{align}
+where $S_R$ is the spectrum (histogram) of observed reconstructed energies
+and $S_\nu$ is the spectrum of true incident \nuebar{} energies.
+To obtain $S_\nu$, the inverse of $\mathbf{M}$ can be used if it exists:
+\begin{equation}
+    S_\nu = \mathbf{M}^{-1} S_R.
+\end{equation}
+
+The matrix $\mathbf{M}$ is not necessarily square,
+and even if square, there is no requirement that
+the bins of $S_R$ align with those of $S_\nu$.
+In general there is no guarantee of an inverse existing for square $\mathbf{M}$,
+or even a left or right inverse for non-square $\mathbf{M}$.
+For typical detector response matrices,
+$\mathbf{M}$ has the form of a smeared diagonal matrix
+(such as that in \cref{fig:drm}),
+where the reconstructed energy is distributed over bins near the true energy
+due to a finite energy resolution.
+Intuitively, this smearing causes a loss of information.
+Thus it should not be surprising that a typical detector response matrix
+has either no inverse or a numerically-unstable (and therefore meaningless) inverse.
+Detector response matrices do, however, have the property
+that for each true energy bin $i$,
+\begin{equation}\label{eq:drm_trad_unitarity}
+    \sum_b M^{(b)}_i = 1,
+\end{equation}
+in order to preserve probability.
+Intuitively, each incident \nuebar{} must end up \emph{somewhere}.
+
+Supposing that an inverse can be found,
+the Daya Bay near-to-far prediction process can proceed.
+The extracted true spectrum at a near AD $S_\nu^{\text{near}}$
+is converted to a true spectrum at a far AD
+based on the respective AD-reactor distances, detector and reactor livetimes,
+and the oscillation probability, here represented all as
+the transformation $g$:
+\begin{equation}\label{eq:drm_trad_transform}
+    S_\nu^{\text{far}} = g(S_\nu^{\text{near}}) = g(\mathbf{M}^{-1}S_R^{\text{near}}).
+\end{equation}
+A precise definition of $g$ can be derived based on the formulas in
+\cref{subsec:flux_fraction,subsec:extrapolation}.
+To obtain the final prediction to compare
+to the observed reconstructed spectrum at a far AD,
+the detector response for the far AD should be applied.
+In general, there is no requirement that two ADs
+have the same detector response matrix $\mathbf{M}$.
+However, the Daya Bay ADs have been constrained to have
+identical responses to the sub-percent level.
+To a good approximation, then, the same matrix can be used:
+\begin{equation}\label{eq:drm_trad_final}
+    S_R^{\text{far}} = \mathbf{M} \cdot g(\mathbf{M}^{-1}S_R^{\text{near}}).
+\end{equation}
+
+This equation hints at one of the advantages of
+performing the relative near-to-far measurement:
+if $g$ consisted only of a pure scalar multiplication ($g(S) = cS$),
+then the response matrix and its inverse could be grouped together
+and canceled.
+In practice, $g$ deviates from pure scalar multiplication
+only on the order of the disappearance probability
+(maximum \SI{\sim8}{\percent}),
+which depends on the true \nuebar{} energy and thus on the component of
+$S_\nu^{\text{near}}$.
+Thus the final result is only slightly different from
+the scenario of perfect cancelation.
+This near-insensitivity to the detector response is also present
+in the so-called vector formalism
+actually used in the oscillation analysis presented in this thesis.
+
+\section{Vector formalism}
+\label{sec:drm_lbnl}
+
+For a given event observed in reconstructed energy bin $b$,
+the probability it was caused by an \nuebar{} with true energy $E_i$
+falling in bin $i$ is $f_i^{(b)}$:
+\begin{equation}\label{eq:drm_lbnl_prob}
+    f_i^{(b)} \equiv P(E^{(b)} \text{ caused by } E_i).
+\end{equation}
+The true energy spectrum of incident \nuebar{}'s responsible for
+events in reconstructed bin $b$ can then be written as
+\begin{equation}\label{eq:drm_lbnl_spec}
+    S_{\nu,i}^{(b)} = f_i^{(b)} S_R^{(b)},
+\end{equation}
+where $S_{\nu,i}^{(b)}$ can be assembled into a vector $S_\nu^{(b)}$,
+and $S_R^{(b)}$ is the number of events in reconstructed bin $b$ (a scalar).
+A separate vector is needed for each bin of reconstructed energy.
+
+The values of $f_i^{(b)}$ can be assembled into a matrix
+similar to $\mathbf{M}$ in the matrix formalism.
+However, this matrix never acts on a vector using matrix multiplication,
+i.e.\ as a linear transformation,
+thus only the componentwise notation will be used
+to emphasize this distinction.
+Nevertheless, this new object does obey a normalization rule
+in order to conserve probability:
+\begin{equation}\label{eq:drm_lbnl_unitarity}
+    \sum_i f_i^{(b)} = 1.
+\end{equation}
+Intuitively, each observed event in reconstructed energy bin $b$
+must have come from \emph{somewhere}.
+Note that this sum is over the true energy dimension,
+whereas the corresponding sum in \cref{eq:drm_trad_unitarity}
+for the matrix formalism is over the reconstructed energy dimension.
+
+At a far AD, the expected true energy spectrum of \nuebar{}'s
+with reconstructed prompt energy in bin $b$
+is different from the near AD true spectrum
+due to different AD-reactor distances, different livetimes,
+and neutrino oscillations.
+In principle, they could also differ because of
+a different detector response between the near and far ADs,
+but the Daya Bay ADs have been demonstrated to have
+nearly-identical detector responses to the sub-percent level.
+The relationship between the near and far true energy spectra
+can be represented by a transformation $g$ which acts on the near AD spectrum:
+\begin{equation}\label{eq:drm_lbnl_transform}
+    S_\nu^{(b),\,\text{far}} = g(S_\nu^{(b),\,\text{near}})
+    = g((f_0^{(b)}S_R^{(b)}, f_1^{(b)}S_R^{(b)}, \ldots, f_n^{(b)}S_R^{(b)})).
+\end{equation}
+A precise definition of $g$ can be derived using the formulas in
+\cref{subsec:flux_fraction,subsec:extrapolation}.
+For this analysis, $g$ does not mix different components together,
+and can be written
+\begin{equation}\label{eq:drm_lbnl_g_components}
+    g((x_0, x_1, \ldots, x_n)) = (g_0(x_0), g_1(x_1), \ldots, g_n(x_n)).
+\end{equation}
+
+Each component of $S_\nu^{(b),\,\text{far}}$ (say, component $i$) represents
+a prediction of
+the number of \nuebar{} events at the far AD with true energy in bin $i$
+which were observed in reconstructed energy bin $b$.
+Thus the total predicted number of events in reconstructed energy bin $b$ is
+\begin{equation}\label{eq:drm_lbnl_final}
+    S_R^{(b),\,\text{far}} = \sum_i S_{\nu,i}^{(b),\,\text{far}}
+    = \sum_i g_i(f_i^{(b)}S_R^{(b),\,\text{near}}).
+\end{equation}
+This formula posesses a similar property to the corresponding formula
+in the traditional formalism:
+if all $g_i$'s are just multiplication by the same scalar ($g_i(x) = cx$),
+then that scalar and $S_R^{(b),\,\text{near}}$
+can be factored out of the summation,
+and the resulting sum is by construction
+equal to unity by \cref{eq:drm_lbnl_unitarity}.
+Thus the result would be independent of the detector response.
+Since for the best-fit \thetaot{}, the $g_i$'s are only different
+by at most \SI{\sim8}{\percent},
+it can be concluded that the specific detector response values used
+have only a small impact on the predicted spectrum.
+
+\section{Discussion}
+\label{sec:drm_comparison}
+
+The primary advantage of the vector formalism
+is that it does not require the ability to invert the detector response matrix,
+which is in practice usually intractable or not well-defined.
+However, there is a hidden dependence in the vector formalism
+which is not present in the matrix formalism.
+The values for $f_i^{(b)}$ depend on knowledge of
+the true incident \nuebar{} spectrum,
+while $\mathbf{M}$ can be computed without such knowledge.
+This can be seen by viewing \cref{eq:drm_trad_prob,eq:drm_lbnl_prob}
+through the lens of a Monte Carlo simulation,
+which is how the detector response was computed in this analysis.
+In the former, a fixed number of IBD interactions can be simulated
+in true \nuebar{} energy bin $i$ to determine the probability
+that such an event would be observed in reconstructed energy bin $b$.
+Thus the values of $M_i^{(b)}$ can be determined for all bins $b$
+by only simulating events with true energy in bin $i$.
+This process can be repeated indepedently for each true energy bin.
+For the latter (vector formalism) equation,
+the simulated events must have a true \nuebar{} energy distribution
+that matches the actual (real-life) \nuebar{} energy spectrum
+so that each reconstructed energy bin is populated
+by events from a realistic distribution of true energies.
+In particular, to determine even a single value of $f_i^{(b)}$,
+simulations must be performed over all the true energy bins
+in order to properly normalize the fraction of events
+which originated from true energy bin $i$.
+The dependence of $f_i^{(b)}$ on the overall true \nuebar{} spectrum
+is acceptable in this case
+due to the weak dependence of the final prediction (\cref{eq:drm_lbnl_final})
+on $f_i^{(b)}$.
+
+When making an absolute rather than relative measurement,
+e.g. to extract a measurement of the true \nuebar{} spectrum on its own
+\cite{reactorflux2017},
+it may be necessary to use the matrix formalism.
+So-called regularization techniques have been developed
+to solve this type of linear inverse problem.
+For this analysis, since the final result
+had a weak dependence on the detector response,
+the vector formalism was an adequate replacement.
