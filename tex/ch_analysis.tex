@@ -82,9 +82,15 @@ they were not able to accurately measure
 the effects of any daughter nuclides with decay times longer than a few hours.
 Such isotopes would, however, reach equilibrium on the timescale
 of a reactor fuel cycle of 12 to 18 months.
-Corrections due to nonequilibrium effects, $c^{\text{ne}}$,
+Corrections due to nonequilibrium effects, $c^{\text{ne}}_q(E)$
+for each isotope $q$
 were estimated using the ``450 day'' values from \cite{reactor_mueller},
 shown in \cref{tab:noneq}.
+For energy values between the reference energies,
+a linear interpolation was used.
+For energies below \SI{2}{\MeV}, a linear extrapolation was used
+based on the \SIlist{2;2.5}{\MeV} corrections.
+For energies above \SI{4}{\MeV}, a correction of 0 was used.
 
 \begin{table}[ht]
     \centering
@@ -93,7 +99,7 @@ shown in \cref{tab:noneq}.
         & \SI{2}{\MeV} & \SI{2.5}{\MeV} & \SI{3}{\MeV} & \SI{3.5}{\MeV}
                 & \SI{4}{\MeV} \\
         \cmidrule(lr){2-6}
-        Isotope & \multicolumn{5}{c}{Nonequilibrium correction [\%]} \\
+        Isotope $q$ & \multicolumn{5}{c}{Nonequilibrium correction $c^\text{ne}_q$ [\%]} \\
         \midrule
         \isotope[235]{U} & 5.7 & 4.4 & 1.5 & 0.7 & 0.1 \\
         \isotope[239]{Pu} & 2.1 & 1.7 & 0.5 & 0 & 0 \\
@@ -105,31 +111,98 @@ shown in \cref{tab:noneq}.
         due to nonequilibrium nuclides
         for the three parent isotopes which required correction.
         The \isotope[238]{U} spectrum was computed differently
-        from the others, as described in the text.
+        from the others, as described in the text,
+        and did not require a nonequilibrium correction.
     }
     \label{tab:noneq}
 \end{table}
 
-Weekly average fission fractions and power levels for each core
-were obtained from the power company.
 The \nuebar{} emission by spent nuclear fuel at the Daya Bay and Ling Ao reactor sites, $S^{\text{snf}}$,
 was estimated using data from the power company \cite{snf}.
-\todo{SNF table}
-The energy emitted per fission for each isotope was taken from
+This additional flux was estimated to induce \SI{0.3\pm0.3}{\percent}
+of the IBD interactions in each AD,
+and contributed negligibly to the total uncertainty on \thetaot{}.
+Given the negligible impact, a simplified model was used
+where the spent nuclear fuel \nuebar{} flux was equally divided
+among the six reactor cores and was constant over time.
+
+Weekly average fission fractions $f_{q,w}$ and power levels $W_{\text{th},w}$ for each core
+were obtained from the power company.
+The energy emitted per fission for each isotope, $e_q$, was taken from
 \cite{thermal_fission}.
 Therefore, for each week, the total number of antineutrinos
 of a given energy emitted from each core was computed,
 given knowledge of a particular AD's livetime.
-The total expected number of \nuebar{}'s produced by core $k$
-during the livetime of AD $i$ was
-\begin{equation}\label{eq:reactor_spectrum}
-    \phi_{ik}(E) = \sum_{\text{weeks }w}
-        \frac{W_{\text{th},w}}{\sum_q f_{q,w} e_q}
+This analysis used data taken only when all EHs were operational;
+thus within a given data-taking period (6-, 8-, or 7-AD period),
+the reactor \nuebar{} average emission rate and spectrum was assumed to be identical
+across all operational ADs.
+The average rate of \nuebar{}'s produced by core $k$
+during a particular data-taking period $d$ was
+\begin{equation}\label{eq:reactor_spectrum_rate}
+    \overline{\frac{d\phi_{k}^{d}}{dt}}(E) =
+    \sum_{\substack{\text{weeks}\\w\in d}}\left(
+        \frac{T_{\text{DAQ},w} W_{\text{th},w}}{\sum_q f_{q,w} e_q}
         \sum_{\substack{\text{isotopes}\\q}}
-        f_{q,w} S_q(E) c_{q,w}^{\text{ne}} + S_w^{\text{snf}}.
+    f_{q,w} S_q(E) (1+c_q^{\text{ne}}(E))\right) + S^{\text{snf}}(E).
 \end{equation}
-\todo[inline]{Plot(s) of reactor spectra}
-\todo[inline]{Cross section discussion and plot}
+To obtain the total spectrum of \nuebar{}'s produced
+during the livetime of a particular AD $i$,
+the rates were converted to counts and summed over data periods:
+\begin{equation}\label{eq:reactor_spectrum}
+    \phi_{ik}(E) =
+    T_{\text{DAQ},\,i}^{\text{6-AD}}
+    \overline{\frac{d\phi_{k}^{\text{6-AD}}}{dt}}(E)
+    + T_{\text{DAQ},\,i}^{\text{8-AD}}
+    \overline{\frac{d\phi_{k}^{\text{8-AD}}}{dt}}(E)
+    + T_{\text{DAQ},\,i}^{\text{7-AD}}
+    \overline{\frac{d\phi_{k}^{\text{7-AD}}}{dt}}(E)
+\end{equation}
+The total numbers of \nuebar{}'s emitted between \SIlist{1.8;9.95}{\MeV}
+from each core during the livetime of each AD are listed in \cref{tab:total_emitted}.
+A typical \nuebar{} spectrum and the IBD cross section are shown
+in \cref{fig:reactor_flux_xsec}.
+The IBD cross section was computed \cite{ibd_xsec_note}
+based on Eq.~12 of \cite{ibd_xsec}
+with constants from \cite{neutron_beta_theory,pdg2010}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{ch_analysis/reactor_flux_xsec}
+    \caption{
+        Total \nuebar{} flux produced by reactor core D1
+        during the livetime of EH1-AD2,
+        along with the IBD cross section.
+    }
+    \label{fig:reactor_flux_xsec}
+\end{figure}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{lSSSSSS}
+        \toprule
+        & \multicolumn{6}{c}{Total predicted \nuebar{} flux [$\times10^{28}$]} \\
+        \cmidrule(lr){2-7}
+        & {D1} & {D2} & {L1} & {L2} & {L3} & {L4} \\
+        \midrule
+        EH1-AD1 & 1.93 & 1.99 & 1.99 & 1.98 & 2.01 & 1.91 \\
+        EH1-AD2 & 2.23 & 2.28 & 2.24 & 2.27 & 2.24 & 1.18 \\
+        \addlinespace
+        EH2-AD1 & 2.23 & 2.29 & 2.25 & 2.27 & 2.24 & 1.19 \\
+        EH2-AD2 & 2.03 & 2.01 & 2.01 & 2.03 & 1.98 & 2.00 \\
+        \addlinespace
+        EH3-AD1 & 2.23 & 2.28 & 2.24 & 2.27 & 2.24 & 1.18 \\
+        EH3-AD2 & 2.23 & 2.28 & 2.24 & 2.27 & 2.24 & 1.18 \\
+        EH3-AD3 & 2.23 & 2.28 & 2.24 & 2.27 & 2.24 & 1.18 \\
+        EH3-AD4 & 2.03 & 2.01 & 2.00 & 2.03 & 1.97 & 2.00 \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+        Total predicted \nuebar{} flux emitted from each core
+        during the livetime of each AD.
+    }
+    \label{tab:total_emitted}
+\end{table}
 
 \section{Projection from near halls to far hall}
 \label{sec:prediction}
@@ -304,14 +377,15 @@ The true \nuebar{} energy spectrum observed by the near halls
 is required to compute oscillation probabilities.
 The conversion from reconstructed to true energy
 is impacted not only by the energy resolution and calibration
-but also by a set of nonlinearities described in \cref{subsec:abs_energyscale}.
+but also by the nonlinearities described in \cref{subsec:abs_energyscale}.
 A detector response matrix was created
-using the detailed Monte Carlo simulation (\cref{sec:thu_toymc})
+using the individual event Monte Carlo simulation (\cref{sec:thu_toymc})
 by binning simulated events based on the true incoming \nuebar{} energy
-and the reconstructed energy of the prompt event.
+and the reconstructed energy of the prompt event,
+as shown in \cref{fig:drm}.
 The simulation was configured so that the incident \nuebar{} energy
 was drawn from the expected reactor \nuebar{} spectrum,
-weighted by the IBD cross section \todo{cite IBD cross section?}.
+weighted by the IBD cross section.
 For each bin of reconstructed energy,
 a probability function was constructed
 which described the spectrum of incident \nuebar{}'s
@@ -320,14 +394,56 @@ given the results of the simulation.
 This probability was adjusted to account for
 oscillation effects and so depended on \thetaot{} and $\Delta m^2_{32}${}
 as well as the location of each AD relative to the reactor cores.
-The detector response matrix and the set of PDFs
-for both the rate-only and spectral measurements,
-without the oscillation corrections,
-are shown in \cref{fig:drm}.
-Although there are bins in both true and reconstructed energies,
-the true energy binning is dense enough ($\delta E_{\text{true}} = \SI{0.01}{\MeV}$)
-that the notation for continuous distributions is more convenient.
+The normalized detector response matrix
+showing probabilities for each bin of true and reconstructed energy for EH1-AD1
+is shown in \cref{fig:drm_norm}.
+A representative sample of probability functions
+for individual bins of reconstructed energy
+is shown in \cref{fig:drm_pdfs}.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_analysis/detector_response_raw}
+    \caption{
+        Detector response matrix obtained from simulation.
+        The color of each bin indicates the number of simulated IBD events
+        with true \nuebar{} energy and reconstructed prompt energy
+        corresponding to that bin.
+    }
+    \label{fig:drm}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_analysis/detector_response_norm}
+    \caption{
+        Row-normalized detector response matrix
+        showing $f^{(b)}_\text{DRM}(E_\text{true})\delta E_\text{true}$
+        for EH1-AD1 using the best-fit \thetaot{}.
+        The color of each bin indicates the probability
+        of an IBD being caused by an \nuebar{} with the corresponding true energy,
+        given that the event was observed with the corresponding prompt energy.
+        Each row sums to unity by construction.
+    }
+    \label{fig:drm_norm}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{ch_analysis/detector_response_pdfs}
+    \caption{
+        Individual rows from the normalized detector response matrix
+        showing the true \nuebar{} energy probabilities
+        ($f^{(b)}_\text{DRM}(E_\text{true})\delta E_\text{true}$)
+        for a representative sample of reconstructed prompt energy bins.
+        The bin contents for each curve sum to unity by construction.
+    }
+    \label{fig:drm_pdfs}
+\end{figure}
+
+Although there are bins in both true and reconstructed energies,
+the true energy binning is dense enough ($\delta E_{\text{true}} = \SI{0.05}{\MeV}$)
+that the notation for continuous distributions is more convenient and intuitive.
 Given the near-hall AD observations,
 a separate true \nuebar{} spectrum is computed
 for each bin of reconstructed energy for each near-hall AD $i$ as
@@ -342,7 +458,7 @@ of AD $i$
 was caused by a \nuebar{} with true energy $E_{\text{true}}$.
 
 The true-energy spectra derived from the various reconstructed energy bins
-are never combined or mixed;
+were never combined or mixed;
 thus each bin of reconstructed energy can be considered an independent measurement
 of the near-far ratio.
 \Cref{subsec:true_to_reco_farhall} describes the procedure at the far hall
@@ -352,22 +468,13 @@ in the subsequent sections,
 and all energies should be assumed to be true \nuebar{} energies;
 the prompt reconstructed energy is specified by the bin index $b$.
 
-This methodology was used instead of the more-obvious
-inverting of the detector response matrix
-because the process of inverting the matrix is numerically unstable.
-Since variations in the detector response were highly constrained,
-\todo{cite energy scale}
+This methodology was used instead of the traditional method of
+inverting the detector response matrix
+because the process of inverting the matrix was numerically unstable.
+Since variations in the detector response were highly constrained
+to \SI{0.5}{\percent} in \cref{subsec:rel_energyscale},
 the resulting true \nuebar{} spectra were meaningful when compared between ADs.
-\todo[inline]{Consider a more formal derivation of the correctness of this method}
-
-
-\begin{figure}
-    \missingfigure{Detector response matrix and normalized PDFs}
-    \caption{Detector response matrix and normalized PDFs
-    for converting to true \nuebar{} energy.}
-    \label{fig:drm}
-\end{figure}
-
+A thorough discussion of this procedure is given in \cref{ap:drm}.
 
 \subsection{Separating near-hall observation into reactor components}
 \label{subsec:flux_fraction}
@@ -401,7 +508,6 @@ Note that in principle the IBD cross section $\sigma_{IBD}(E)$
 should be included ($\phi \to \sigma_{IBD}\phi$),
 but this factor is common to all cores (and all ADs)
 and does not impact the ratio $f_{ik}$.
-The cross section was still required to determine the detector response matrix
 (\cref{sec:thu_toymc,subsec:reco_to_true_energy}).
 \todo[inline]{Insert appropriate pull parameters}
 
