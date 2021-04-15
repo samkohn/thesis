@@ -50,13 +50,77 @@ are described in \cref{sec:acc}.
 \Cref{sec:energy_cuts} details the energy cuts
 which remove additional background events
 and nGd-IBD events, where the neutron captured on Gd rather than H.
+A summary of the event selection criteria is given in \cref{tab:cut_criteria}.
 The remaining backgrounds---muon-correlated unstable isotopes,
 fast neutrons, and AmC neutrons---
 are considered irreducible and are statistically subtracted
 from the final energy spectra and rates
 in \cref{sec:correlated_bg}.
 
-\todo[inline]{Event selection cut summary table}
+\newcommand{\seltabwidth}{6.1cm}
+\ctable[
+cap = Event selection cut criteria,
+caption = {
+    Event selection cut criteria.
+    See the referred-to sections for definitions of symbols.
+    The order of items in the table corresponds
+    with the order in which the cuts are applied
+    in the final event selection.
+},
+label = tab:cut_criteria,
+doinside = \footnotesize,
+pos = ht
+]{lll}{}{\FL
+    Name & Criterion & Reference \ML
+    Post--water shield muon veto & \parbox[t]{\seltabwidth}{\strut
+        Veto \SI{400}{\us} after NHIT $> 12$ in IWS or \\
+        NHIT $> 15$ in OWS
+    \strut}
+        & \cref{sec:muonveto} \NN
+    Post--AD muon veto & Veto \SI{800}{\us} after $E > \SI{20}{\MeV}$
+        & \cref{sec:muonveto} \NN
+    Post--shower muon veto & Veto \SI{1}{\s} after $E > \SI{2.5}{\GeV}$
+        & \cref{sec:muonveto} \NN
+    Nominal flashers & Reject events with $f_\text{ID} \geq 0$
+        & \cref{subsec:flash_nominal} \NN
+    2-inch flashers
+        & Reject events with $Q_{\text{max}}^\text{2-inch} \geq \SI{100}{\pe}$
+        & \cref{subsec:flash_nominal} \NN
+    Top ring flashers & \parbox[t]{\seltabwidth}{\strut
+        Reject events with $z > \SI{2.4}{\m}$ and \\
+        $r^2 > \SI{0.25}{\m\squared}$
+    \strut}
+        & \cref{subsec:flash_resid} \NN
+    Large-$r$ flashers & Reject events with $r > \SI{2.2}{\m}$
+        & \cref{subsec:flash_resid} \NN
+    Cluster flashers & \parbox[t]{\seltabwidth}{\strut
+        Reject events with $Q_1/Q_2 > 0.6$ and \\
+        $f_\text{ID} > 0.5 \times Q_1/Q_2 - 0.8$ and \\
+        $f_\text{ID} > -0.3$
+    \strut}
+        & \cref{subsec:flash_resid} \NN
+    AD events & Accept events with $E > \SI{1.5}{\MeV}$
+        & \cref{sec:coincidence} \NN
+    Coincidence groups & \parbox[t]{\seltabwidth}{\strut
+        Include events between \SIlist{1;1500}{\us} after prompt
+    \strut}
+        & \cref{sec:coincidence} \NN
+    Multiplicity & \parbox[t]{\seltabwidth}{\strut
+        Select \fold{2} coincidence groups (multiplicity 2)
+    \strut}
+        & \cref{sec:coincidence} \NN
+    Prompt energy & Select pairs with $\SI{1.5}{\MeV} < E_p < \SI{12}{\MeV}$
+        & \cref{subsec:prompt_energy} \NN
+    Delayed energy & \parbox[t]{\seltabwidth}{\strut
+        Select pairs with $\mu-3\sigma < E_d < \mu+3\sigma$
+        based on fits; see \cref{tab:delayed_fit_params,tab:delayed_bounds}
+    \strut}
+        & \cref{subsec:delayed} \NN
+    Coincidence distance-time (DT) & Select pairs with $\text{DT} < \SI{800}{\mm}$
+        & \cref{sec:DT_cut}
+    \LL
+}
+
 
 \section{Muon veto}
 \label{sec:muonveto}
@@ -475,7 +539,7 @@ $\SI{>80}{\percent}$ of hidden flashers while incorrectly rejecting only
 $\sim\SI{0.02}{\percent}$ of true IBDs.
 Events which satisfied all of the the following three criteria were rejected:
 (1) $Q_1/Q_2 > 0.6$; (2) $f_{\text{ID}} > 0.5 \times Q_1/Q_2 - 0.8$;
-and (3) $f_{\text{ID}} > 0.3$,
+and (3) $f_{\text{ID}} > -0.3$,
 as illustrated in \cref{fig:hidden_flasher_cut}
 \cite{flashers_jinjing,beda_resid_flasher_dt}.
 
