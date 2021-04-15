@@ -331,32 +331,19 @@ the uncorrelated event rate with high precision and tolerable bias.
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}[t]{llll}
-        \hline
-        Event type & {Rate [\si{\Hz}]} & Energy [\si{\MeV}] & Coincidence time [\si{\us}]\\
-        \hline
-        Single & \num{20} & $[\num{1.5}, \num{3}]$ & -\\
-        \arrayrulecolor{lightgray}
-        \hline
-        \multirow{2}{*}{Correlated (nH)}
-               & \multirow{2}{*}{\num{0.005}}
-               & [\num{0.7}, \num{4}] (prompt)
-               & \multirow{2}{*}{\num{150}} \\
-               & & [\num{1.9}, \num{2.3}] (delayed) & \\
-        \hline
-        \multirow{2}{*}{Correlated (nGd)}
-               & \multirow{2}{*}{\num{0.0067}}
-               & [\num{0.7}, \num{4}] (prompt)
-               & \multirow{2}{*}{\num{28}} \\
-               & & [\num{7}, \num{9}] (delayed) & \\
-        \hline
-        Water Pool Muon & \num{200} & - & - \\
-        \hline
-        AD Muon & \num{39.9} & [\num{20}, \num{2000}] & -\\
-        \hline
-        Showering Muon & \num{0.1} & [\num{2500}, \num{5000}] & -\\
-        \arrayrulecolor{black}
-        \hline
+    \begin{tabular}[t]{lSlS}
+        \toprule
+        Event type & {Rate [\si{\Hz}]} & Energy [\si{\MeV}] & {Coincidence time [\si{\us}]}\\
+        \midrule
+        Single & 20. & $[\num{1.5}, \num{3}]$ & {-}\\
+        Correlated prompt (nH) & 0.005 & [0.7, 4] & {-} \\
+        Correlated delayed (nH) & {-} & [1.9, 2.3] & 150. \\
+        Correlated prompt (nGd) & 0.0067 & [0.7, 4] & {-} \\
+        Correlated delayed (nGd) & {-} & [7, 9] & 28. \\
+        Water Pool Muon & 200. & - & {-} \\
+        AD Muon & 39.9 & [\num{20}, \num{2000}] & {-}\\
+        Showering Muon & 0.1 & [\num{2500}, \num{5000}] & {-}\\
+        \bottomrule
     \end{tabular}
     \caption{
         Simulation configuration inputs for the uncorrelated event rate study.
@@ -370,7 +357,6 @@ the uncorrelated event rate with high precision and tolerable bias.
 
 \begin{figure}
     \centering
-    %\includegraphics[width=0.7\textwidth]{ch_simulation/singles_rate_dist}
     \includegraphics[width=0.7\textwidth]{ch_simulation/singles_rate_unbiased_dist}
     \caption{
         Distribution of uncorrelated event rates over 100 simulated data sets.

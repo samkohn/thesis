@@ -56,6 +56,8 @@ are considered irreducible and are statistically subtracted
 from the final energy spectra and rates
 in \cref{sec:correlated_bg}.
 
+\todo[inline]{Event selection cut summary table}
+
 \section{Muon veto}
 \label{sec:muonveto}
 
@@ -1424,22 +1426,22 @@ but can be scaled by an overall normalization $N$.
 \begin{table}[ht]
     \centering
     \begin{tabular}[t]{lllll}
-        \hline
+        \toprule
         & Peak energy [\si{\mev}]
         & Width [\si{\mev}]
         & Tail slope [\si{\per\mev}]
         & Peak fraction \\
-        \hline
+        \midrule
         EH1-AD1 & \num{2.2531} & \num{0.1365} & \num{1.6893} & \num{0.8683}\\
         EH1-AD2 & \num{2.2551} & \num{0.1380} & \num{1.6247} & \num{0.8666}\\
         EH2-AD1 & \num{2.2591} & \num{0.1351} & \num{1.7212} & \num{0.8663}\\
         EH2-AD2 & \num{2.2602} & \num{0.1348} & \num{1.7319} & \num{0.8902}\\
-        \hline
+        \addlinespace
         EH3-AD1 & \num{2.2607} & \num{0.1360} & \num{1.5812} & \num{0.8667}\\
         EH3-AD2 & \num{2.2622} & \num{0.1349} & \num{2.1516} & \num{0.8616}\\
         EH3-AD3 & \num{2.2563} & \num{0.1366} & \num{1.3432} & \num{0.8507}\\
         EH3-AD4 & \num{2.2682} & \num{0.1362} & \num{2.5653} & \num{0.8617}\\
-        \hline
+        \bottomrule
     \end{tabular}
     \caption{Delayed energy fit parameters}
     \label{tab:delayed_fit_params}
@@ -1448,20 +1450,20 @@ but can be scaled by an overall normalization $N$.
 \begin{table}[ht]
     \centering
     \begin{tabular}[t]{lll}
-        \hline
+        \toprule
         & Lower bound [\si{\mev}]
         & Upper bound [\si{\mev}] \\
-        \hline
+        \midrule
         EH1-AD1 & \num{1.8435} & \num{2.6628}\\
         EH1-AD2 & \num{1.8412} & \num{2.6690}\\
         EH2-AD1 & \num{1.8537} & \num{2.6645}\\
         EH2-AD2 & \num{1.8558} & \num{2.6646}\\
-        \hline
+        \addlinespace
         EH3-AD1 & \num{1.8527} & \num{2.6686}\\
         EH3-AD2 & \num{1.8575} & \num{2.6669}\\
         EH3-AD3 & \num{1.8467} & \num{2.6660}\\
         EH3-AD4 & \num{1.8597} & \num{2.6768}\\
-        \hline
+        \bottomrule
     \end{tabular}
     \caption{Delayed energy cut bounds derived as $\mu \pm 3\sigma$}
     \label{tab:delayed_bounds}
@@ -1746,18 +1748,16 @@ for the muon-correlated isotope.
     \caption{Modified event selection for \li{} analysis.}
     \label{tab:li9}
     \begin{tabular}[t]{rl}
-        \hline
+        \toprule
         Post-muon veto & XYZ \si{\us} \\
         Prompt energy cut & \SI{3.5}{\MeV} \\
         Delayed energy cut & see \cref{tab:delayed_bounds} \\
-        \hline
         Low-energy muon range & \SIrange{0.02}{1}{\GeV} \\
         Mid-energy muon range & \SIrange{1}{2.5}{\GeV} \\
         High-energy muon range & \SI{>2.5}{\GeV} \\
-        \hline
         Neutron tag event time & \SIrange{20}{200}{\us} after muon \\
         Neutron tag event energy & \SIrange{1.8}{12}{\MeV} \\
-        \hline
+        \bottomrule
     \end{tabular}
 \end{table}
 
