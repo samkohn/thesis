@@ -1,2 +1,84 @@
 \chapter{Conclusions}
 \label{ch:conclusions}
+
+This thesis presented a measurement of
+the neutrino mixing angle \thetaot{}
+using observation of reactor \nuebar{} disappearance
+via the IBD reaction and neutron capture on hydrogen (nH)
+at the Daya Bay experiment.
+After introducing the history and theory of neutrino oscillations,
+the Daya Bay experimental apparatus was described.
+Precise characterization of the detector response
+via a thorough calibration regime
+constrained the possible variations between antineutrino detectors (ADs)
+to the sub-percent level for most quantities.
+The event-by-event position and energy reconstruction were used
+to extract physically-meaningful quantities from the raw electronics data.
+Event selection cuts were introduced to select an IBD-enriched sample
+based on the double coincidence of positron annihilation and nH capture,
+and the irreducible backgrounds were characterized via dedicated studies.
+The selected events were used as input to a model
+built on the premise of near-to-far projection,
+where the observations at the near halls
+were propagated to the far hall ADs
+to determine the predicted event count based on an assumed value of \thetaot{}.
+The model was fit to the observations using a $\chi^2$ expression
+based on the Poisson maximum likelihood estimator
+with nuisance parameters representing systematic uncertainties
+as well as the statisital fluctuations at the near hall ADs.
+The best-fit value of \thetaot{} was obtained by minimizing the $\chi^2$ expression
+with respect to \thetaot{} and all pull parameters,
+and the uncertainty and error budget were determined
+using standard statistical techniques.
+The result of $\sin^22\thetaot = 0.0731^{+0.0087}_{-0.0089}$
+will be discussed in \cref{sec:discussion}.
+Future prospects will be presented in \cref{sec:future}.
+
+\section{Discussion}
+\label{sec:discussion}
+
+As shown in \cref{fig:theta13_vs_t}, the nH-based measurements for $\sin^22\thetaot{}$,
+including the result from this thesis, are approximately 0.01
+less than the nGd-based measurements.
+A variety of potential resolutions to this discrepancy have been proposed
+based on mis-characterizations of detection efficiencies, backgrounds,
+or systematic biases present in the nH analysis but not in the nGd analysis.
+
+The first avenue of investiation was the accidental background,
+which had a rate at the far hall ADs greater than the signal IBD rate,
+and at least 2 orders of magnitude greater than the rate
+of any other irreducible background (see \cref{tab:summary_event_selection}).
+This background was described in \cref{sec:acc}.
+The method for determining the uncorrelated event rate
+was validated using simulation in \cref{subsec:sim_singles}
+to within \SI{0.017}{\percent}.
+Accounting for the coincidence distance distribution of the accidental background
+was more difficult.
+\Cref{sec:DT_cut} describes studies made using double coincidences
+rejected for having a DT value larger than \SI{800}{\mm},
+which were assumed to be mostly accidentals.
+A minimum DT value of \SI{3}{\m} was used to ensure no residual correlated events
+were selected.
+Based on the uncorrelated event rate and the synthetic accidentals sample,
+the predicted number of these high-DT events matched the observation
+to at worst \SI{0.04}{\percent}.
+Due to the true correlated events at low DT, such a correspondence
+was impossible to establish at lower DT values;
+however, only in pathological situations
+would the DT distribution of synthetic accidentals match the true distribution
+at high DT values but diverge for lower DT values.
+Thus the rate of accidental events in the final sample
+was validated with a systematic uncertainty of \SI{0.04}{\percent},
+just half of the statistical uncertainty of \SI{0.08}{\percent}.
+
+The second potential source of major systematic bias for the nH analysis
+was the efficiency of the DT cut, defined in \cref{eq:DT}.
+While the coincidence time $\Delta t$ was measured precisely
+using the \SI{\sim1}{\ns} precision of the readout electronics,
+the coincidence distance $\Delta r$ was much less precise,
+since it depended on the reconstructed positions of the prompt and delayed event
+
+
+
+\section{Future prospects}
+\label{sec:future}
