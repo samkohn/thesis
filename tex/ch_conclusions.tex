@@ -75,10 +75,94 @@ The second potential source of major systematic bias for the nH analysis
 was the efficiency of the DT cut, defined in \cref{eq:DT}.
 While the coincidence time $\Delta t$ was measured precisely
 using the \SI{\sim1}{\ns} precision of the readout electronics,
-the coincidence distance $\Delta r$ was much less precise,
-since it depended on the reconstructed positions of the prompt and delayed event
+the coincidence distance $\Delta r$ was much less precise.
+The reconstructed position had a resolution
+of $\SI{\sim200}{\mm}$ for neutron captures
+and \SI{\sim150}{\mm} for positrons \cite{adsimple1},
+both of which were substantial fractions of the DT cut value of \SI{800}{\mm}.
+Potential variations in the DT cut efficiency
+were analyzed in \cref{sec:DT_cut}.
+Although extracting the absolute DT cut efficiency
+for the entire IBD data set proved difficult
+due to presumed residual effects from subtracting the accidental background,
+various subsets of events were successfully characterized,
+all having AD-to-AD variations with a half-range smaller than
+the \SI{0.5}{\percent} used in this analysis.
+One potential remaining cross-check to ensure the DT cut is treated correctly
+is to search for a dependence of \thetaot{} on the value of the DT cut;
+obviously, if the extracted value \thetaot{} changes
+based on the value of this cut,
+then there is a hidden bias that must be corrected.
 
-
+A third category of potential biases
+was the potential for un-accounted-for irredicuble backgrounds,
+which in general change the apparent ratio of IBD event rates
+between the near and far ADs and thus bias \thetaot{}.
+The residual flasher events discussed in \cref{subsec:flash_resid}
+were one such background which was discovered, characterized,
+and rejected from the data sample using additional event selection cuts.
+Ignoring this background would lead to an extracted value of $\sin^22\thetaot$
+too large by approximately \num{0.003} (\SI{4}{\percent}).
+Radiogenic neutrons due to radiocontaminants in the PMTs,
+discussed in \cref{subsec:radn},
+formed another background which was, until this analysis, neglected.
+Although the characterization of the radiogenic neutron background rate
+remains limited to Monte Carlo simulation studies \cite{rad_n},
+neglecting this background with rate \num{0.2\pm0.1} per day
+resulted in a lower extracted value of $\sin^22\thetaot$
+by almost \num{0.005} (\SI{7}{\percent}).
 
 \section{Future prospects}
 \label{sec:future}
+
+The measurement of \thetaot{} by observation of neutron capture on hydrogen (nH)
+is an important cross-check to the standard nGd measurement
+since they are statistically-independent measurements and
+have different contributions of backgrounds and systematic uncertainties.
+Resolving the tension between the nH and nGd measurements of \thetaot{}
+would build confidence in the final result.
+Additional analysis work is also needed to measure $\Delta m^2_{32}$
+based on the spectral shape of the nH data set.
+
+\subsection{Resolving the nH-nGd tension}
+\label{subsec:tension}
+
+Additional investigation is planned to explain the discrepancy
+of $\sim0.01$ between the nH and nGd extracted values of $\sin^22\thetaot$.
+Potential cross-checks include:
+\begin{itemize}
+    \item Does the value of the DT cut threshold affect the extracted value of
+        \thetaot{}?
+    \item Are the extracted values of \thetaot{} consistent when
+        based only on data from a single run period (6-AD, 8-AD or 7-AD)?
+    \item Does changing the position reconstruction algorithm
+        change the extracted value of \thetaot{}?
+    \item Does the extracted value of \thetaot{} depend on
+        the value of the prompt energy cut lower bound?
+\end{itemize}
+These tests may help to identify an erroneous assumption
+or AD-to-AD variation that has not previously been identified,
+and eventually lead to an updated measurement of \thetaot{}.
+
+
+\subsection{Measuring \texorpdfstring{$\Delta m^2_{32}$}{the 3,2 mass splitting}}
+\label{subsec:rateplusshape}
+
+The near-to-far projection model described in \cref{sec:prediction}
+already predicts both the rate and spectral shape
+of the far hall AD observations,
+and the fitter software has been validated using simulations
+described in \cref{subsec:fitter_validation}
+to ensure an accurate and unbiased value of $\Delta m^2_{32}$.
+Remaining prerequisites for a successful rate plus shape analysis
+include resolution of the above tension based solely on the IBD rates,
+as well as an improved characterization of the ADs' energy response.
+Specifically, while the uniformity of the energy response
+as a function of event position
+has been thoroughly measured and constrained within the GdLS volume,
+the observed nonuniformity in the LS region
+has much larger variations across ADs
+and is not stable when measured using different methodologies \cite{beda_nonuniformity}.
+Without a better constraint on the energy response,
+the spectral shape could be distorted in poorly-understood ways,
+leading to an incorrect measurement of $\Delta m^2_{32}$.
