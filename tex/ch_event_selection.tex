@@ -2112,7 +2112,7 @@ However, the emitted neutrons were still able to generate
 correlated signals as follows.
 The prompt event consisted of an emitted neutron colliding inelastically
 with a nucleus (Fe, Cr, Mn or Ni) in the stainless steel surrounding the AD and ACU,
-producing $\gamma$-rays which occasionally was able to penetrate
+producing $\gamma$-rays one of which occasionally was able to penetrate
 into the AD, where it interacted in the liquid scintillator.
 The neutron could subsequently capture on a (different) nucleus
 in the stainless steel or within the scintillating region,
@@ -2235,6 +2235,76 @@ and a variety of simulations of the \amc{} background process.
     \label{fig:amc_spectrum}
 \end{figure}
 
+\subsection{Radiogenic neutron background}
+\label{subsec:radn}
+\todo[inline]{Radiogenic neutron background section}
+
+The materials used to construct the ADs were
+assayed to ensure they emitted only minimal levels of natural radioactivity
+\cite{sidebyside}.
+However, some residual radioactivity was present,
+with dominant contributions from the borosilicate glass comprising the PMT apertures
+and the fluorocarbon paint \cite{fluorocarbon_paint} used on the inside of the SSV
+to improve the detector uniformity.
+Two mechanisms were uncovered which led to to a correlated background
+due to radiogenic neutrons\cite{rad_n_intro}.
+The first was spontaneous fission of \isotope[238]{U},
+which could release $\gamma$-rays and/or an energetic neutron,
+creating a prompt signal.
+Additional neutrons or the same energetic neutron
+could subsequently thermalize and capture on Gd or H,
+causing the correlated delayed signal.
+The second mechanism was the $\text{X}(\alpha, n)\text{Y}$ reaction,
+where an $\alpha$ particle emitted from the decay of
+either \isotope[238]{U} or \isotope[232]{Th}
+would capture on a nearby nucleus
+and release an energetic neutron and also potentially a prompt $\gamma$-ray.
+The neutron would thermalize and capture on Gd or H, providing a delayed signal.
+\Cref{tab:rad_n_sources} lists the \isotope[238]{U} and \isotope[232]{Th}
+contaminations of the PMT glass and fluorocarbon paint,
+the relevant target nuclei for the $(\alpha,n)$ interaction,
+and the estimated rates of neutrons emitted per AD per day.
+
+
+\ctable[
+cap = Radiogenic neutron sources,
+caption = {
+    Radiogenic neutron sources, broken down by isotope and process
+    \cite{rad_n_intro}.
+    All values are per AD.
+},
+label = tab:rad_n_sources,
+pos = ht
+]{lSS}{}{\FL
+    & {Borosilicate glass (PMTs)} & {Fluorocarbon paint} \ML
+    Mass [\si{kg}] & 150 & 35 \NN
+    \isotope[238]{U} [ppb by mass] & 150 & 35\pm15 \NN
+    \isotope[232]{Th} [ppb by mass] & 350 & 175\pm25 \NN
+    \addlinespace
+    \isotope[238]{U} fission neutrons [\si{\per\day}] & 12 & 0.56 \NN
+    $(\alpha, n)$ rate [\si{\per\day}] & 700 & 90 \NN
+    \addlinespace
+    $(\alpha, n)$ targets & \parbox[t]{3cm}{\strut
+    \isotope[10]{B}, \isotope[11]{B},\\ \isotope[17]{O}, \isotope[18]{O},\\
+    \isotope[29]{Si}, \isotope[39]{Si}
+    \strut} &
+    {\isotope[19]{F}} \LL
+}
+
+The rate of correlated background events due to radiogenic neutrons
+was estimated using a full detailed Monte Carlo simulation \cite{rad_n}.
+The LS volume provided significant shielding to the inner GdLS volume,
+thus the estimated rate of background events involving nGd capture
+was negligible (\SI{0.02}{\per\day}).
+However, the rate of nH capture backgrounds was \SI{0.2\pm0.1}{\per\day},
+with the uncertainty assigned as a systematic uncertainty
+due to the Monte Carlo simulation.
+
+The radiogenic neutron background has not been characterized
+using directly-observed data
+due to the difficulties in isolating a background with such a small rate
+in an environment with a much higher rate of neutrons from other sources
+such as muon-induced fast neutrons, \li{}/\he{} decays, and of course IBDs.
 
 \section{Event selection summary}
 \begin{table}[ht]
