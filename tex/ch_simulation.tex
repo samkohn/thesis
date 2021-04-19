@@ -90,7 +90,7 @@ were used.
     \includegraphics[width=0.49\textwidth]{%
         ch_event_selection/delayed_energy_mc%
     }
-    \caption{Spectrum of reconstructed energy for simulated IBD prompt (left)
+    \caption[Simulated prompt and delayed spectra]{Spectrum of reconstructed energy for simulated IBD prompt (left)
         and delayed (right) events
         in the Monte Carlo study used to compute the prompt and delayed
         energy cut absolute efficiencies.
@@ -212,7 +212,7 @@ are described below.
 \begin{figure}
     \includegraphics[width=0.49\textwidth]{ch_simulation/singles_flow}
     \includegraphics[width=0.49\textwidth]{ch_simulation/correlated_flow}
-    \caption{
+    \caption[Data stream simulation diagram]{
         Diagram depicting the data stream simulation steps
         for Single events (left) and Correlated events (right).
         The steps are event count and timestamps (top),
@@ -346,7 +346,7 @@ the uncorrelated event rate with high precision and tolerable bias.
         Showering Muon & 0.1 & [\num{2500}, \num{5000}] & {-}\\
         \bottomrule
     \end{tabular}
-    \caption{
+    \caption[Uncorrelated event simulation inputs]{
         Simulation configuration inputs for the uncorrelated event rate study.
         The rates, energies and coincidence times were simplified
         to allow for faster simulation,
@@ -359,7 +359,7 @@ the uncorrelated event rate with high precision and tolerable bias.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{ch_simulation/singles_rate_unbiased_dist}
-    \caption{
+    \caption[Extracted simulated uncorrelated event rates]{
         Distribution of uncorrelated event rates over 100 simulated data sets.
         The simulation configuration (``truth'') specified a rate of \SI{20}{\Hz}.
         Each data set consists of a single 1000-minute data file.
@@ -411,7 +411,7 @@ rather than attempt to correct for them in other ways.
 \begin{figure}
     \centering
     \includegraphics[width=0.73\textwidth]{ch_simulation/flasher_prompt_delayed}
-    \caption{
+    \caption[Simulated residual flashers impact]{
         Accidentals-subtracted prompt vs. delayed energy for simulated data samples
         including only Single events (top) or Single and Flasher events (bottom).
         The Singles-only histogram correctly shows 0 events remaining
@@ -559,7 +559,7 @@ before being output as the results of the simulation.
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{ch_simulation/lbnl_toymc_flowchart}
-    \caption{
+    \caption[Flowchart of data set toy Monte Carlo]{
         Steps to simulate the prompt reconstructed spectra
         at each AD.
         Figure taken from \cite{lbnl_toymc}.
@@ -664,7 +664,7 @@ pos = ht
 \begin{figure}
     \centering
     \includegraphics{ch_simulation/validation_final_sin2_annotated}
-    \caption{
+    \caption[Fitter validation results]{
         Distribution of the extracted $\sin^22\thetaot{}$
         for 9 combinations of \thetaot{} and $\Delta m^2_{32}${},
         with 190 fake experiments per combination,
@@ -709,7 +709,7 @@ was \SI{0.08}{\percent}.
 \begin{figure}
     \centering
     \includegraphics{ch_simulation/validation_chi2_dist}
-    \caption{
+    \caption[Fitter validation $\chi^2$ distribution]{
         Distribution of the fit minimum $\chi^2$
         for the \num{1710} fake experiments
         simulated with all systematics.

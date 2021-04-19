@@ -105,7 +105,7 @@ For energies above \SI{4}{\MeV}, a correction of 0 was used.
         \isotope[241]{Pu} & 1.9 & 1.5 & 0.5 & 0 & 0 \\
         \bottomrule
     \end{tabular}
-    \caption{
+    \caption[Nonequilibrium nuclide corrections]{
         Corrections to the predicted reactor \nuebar{} spectrum
         due to nonequilibrium nuclides
         for the three parent isotopes which required correction.
@@ -168,7 +168,7 @@ with constants from \cite{neutron_beta_theory,pdg2010}.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{ch_analysis/reactor_flux_xsec}
-    \caption{
+    \caption[Total reactor \nuebar{} flux and IBD cross section]{
         Total \nuebar{} flux produced by reactor core D1
         during the livetime of EH1-AD2,
         along with the IBD cross section.
@@ -196,7 +196,7 @@ with constants from \cite{neutron_beta_theory,pdg2010}.
         EH3-AD4 & 2.03 & 2.01 & 2.00 & 2.03 & 1.97 & 2.00 \\
         \bottomrule
     \end{tabular}
-    \caption{
+    \caption[Total reactor \nuebar{} flux]{
         Total predicted \nuebar{} flux emitted from each core
         during the livetime of each AD.
     }
@@ -261,7 +261,7 @@ illustrated in \cref{fig:near_far_cartoon}:
 \begin{figure}
     \centering
     \includegraphics[height=0.9\textheight]{ch_analysis/near_far_cartoon}
-    \caption{Illustration of the near-far projection procedure \cite{p12e_fitter}.}
+    \caption[Diagram of near-to-far projection]{Illustration of the near-far projection procedure \cite{p12e_fitter}.}
     \label{fig:near_far_cartoon}
 \end{figure}
 
@@ -404,7 +404,7 @@ is shown in \cref{fig:drm_pdfs}.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{ch_analysis/detector_response_raw}
-    \caption{
+    \caption[Detector response matrix]{
         Detector response matrix obtained from simulation.
         The color of each bin indicates the number of simulated IBD events
         with true \nuebar{} energy and reconstructed prompt energy
@@ -416,7 +416,7 @@ is shown in \cref{fig:drm_pdfs}.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{ch_analysis/detector_response_norm}
-    \caption{
+    \caption[Detector response matrix, row-normalized]{
         Row-normalized detector response matrix
         showing $f^{(b)}_\text{DRM}(E_\text{true})\delta E_\text{true}$
         for EH1-AD1 using the best-fit \thetaot{}.
@@ -431,7 +431,7 @@ is shown in \cref{fig:drm_pdfs}.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{ch_analysis/detector_response_pdfs}
-    \caption{
+    \caption[Individual rows of normalized detector response matrix]{
         Individual rows from the normalized detector response matrix
         showing the true \nuebar{} energy probabilities
         ($f^{(b)}_\text{DRM}(E_\text{true})\delta E_\text{true}$)
@@ -911,6 +911,8 @@ canceled to first order, as discussed in \cref{ap:drm}.
                                      & 3 (1 per EH) & \\
         \amc{} background rate & \SI{50}{\percent}
                              & 1 & \\
+        Radiogenic neutron bkg. rate & \SI{50}{\percent}
+                                           & 8 (1 per AD) & \\
         Input mixing parameters &
         \SI{2.4}{\percent}, \SI{2.6}{\percent}, \SI{2.8}{\percent} for
         $\Delta m^2_{21},\theta_{12}, \Delta m^2_{32}$
@@ -918,7 +920,7 @@ canceled to first order, as discussed in \cref{ap:drm}.
                                 & \\
         \bottomrule
     \end{tabular}
-    \caption{Systematic uncertainties and associated nuisance parameters.}
+    \caption[Systematics summary]{Systematic uncertainties and associated nuisance parameters.}
     \label{tab:systs}
 \end{table}
 
@@ -1010,7 +1012,7 @@ is equivalent to performing the full N-dimensional $\chi^2$ scan \cite{pdg}.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{ch_analysis/min_chi2_final}
-    \caption{
+    \caption[Minimum $\chi^2$ comparison]{
         Probability distribution function for the $\chi^2$ distribution
         with 3 degrees of freedom.
         The minimum $\chi^2$ extracted from the fitter
@@ -1025,7 +1027,7 @@ is equivalent to performing the full N-dimensional $\chi^2$ scan \cite{pdg}.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{ch_analysis/chi2_scan_nominal}
-    \caption{
+    \caption[$\chi^2$ scan]{
         Extracted minimum $\chi^2$ as a function of $\sin^22\thetaot$.
         For each point on the curve, the value of \thetaot{} was fixed
         and the fitter minimized $\chi^2$
@@ -1077,20 +1079,15 @@ Each source of uncertainty was converted into a relative contribution,
 The sum of the contributions does not equal unity
 due to correlations between the effects of the uncertainties
 on \thetaot{}.
-Thus a second version, the fractional contribution, was computed as
-\begin{equation}\label{eq:syst_error_frac}
-    \tilde{f}_u = \frac{\sigma^2_u}{\sum_v \sigma^2_v},
-\end{equation}
-with the sum taken over all sources of systematic and statistical uncertainty.
-The results for both $f_u$ and $\tilde{f}_u$ are
+The error budget is
 listed in \cref{tab:error_budget}.
 
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{ch_analysis/error_budget_chi2_scans}
-    \caption{
-        Scans of $\chi^2$ vs. $\sin^22\thetaot$ with various pull parameters disabled
+    \caption[$\chi^2$ scans with disabled nuisance parameters]{
+        Scans of $\chi^2$ vs. $\sin^22\thetaot$ with various nuisance parameters disabled
         in order to determine the contribution of each uncertainty
         to the total uncertainty. (See text for details.)
         The curves labeled ``All'' and ``Stat. only''
@@ -1131,7 +1128,7 @@ listed in \cref{tab:error_budget}.
         Total & 106.49 \\
         \bottomrule
     \end{tabular}
-    \caption{
+    \caption[Error budget]{
         Contribution of each source of uncertainty to the overall uncertainty
         of \thetaot{}.
         Listed values do not sum to \SI{100}{\percent}
@@ -1140,8 +1137,29 @@ listed in \cref{tab:error_budget}.
     \label{tab:error_budget}
 \end{table}
 
+To fully characterize the point in phase space
+corresponding to the minimum $\chi^2$,
+the best-fit values of all 184 nuisance parameters must be specified.
+For convenience, the parameters are divided into
+the 136 representing near site statistical uncertainties
+and the 48 others, which represent the traditional systematic uncertainties.
+The contribution of each pull parameter $\nu_i$ to the $\chi^2$ total
+is defined (using the notation from \cref{eq:chisquare_generic}) as
+\begin{equation}\label{eq:pull_contrib}
+    \delta\chi^2 = \frac{\nu_i^2}{\tilde{\sigma}_i^2}.
+\end{equation}
+The contributions of the 48 systematics nuisance parameters
+to the total $\chi^2$
+are shown in \cref{fig:syst_pulls_plot}.
+16 parameters contributed more than $10^{-6}$ to the total;
+those parameters are listed with additional details
+in \todo{Table of best fit pulls}.%\cref{tab:syst_best_fits}.
 
-
+\begin{figure}
+    \missingfigure{Best fit pull parameters}
+    \caption{Best fit pull parameters}
+    \label{fig:syst_pulls_plot}
+\end{figure}
 
 
 %If the predictions based on different near-hall AD observations agree,

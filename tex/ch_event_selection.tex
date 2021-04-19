@@ -268,7 +268,7 @@ The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}
 \begin{figure}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_eff_near_bydate}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_eff_far_bydate}
-    \caption{
+    \caption[Muon veto efficiency over time]{
         Muon veto efficiency $\varepsilon_\mu$ over time for
         the near halls (left) and far hall (right).
         Each data point represents one data run.
@@ -279,7 +279,7 @@ The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}
 \begin{figure}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_rate_near_bydate}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_rate_far_bydate}
-    \caption{
+    \caption[Effective muon rate over time]{
         Effective muon rate $R_\mu$ over time for the near halls and far hall.
         Each data point represents one data run.
         ADs in the same hall have nearly identical muon rates.
@@ -408,7 +408,7 @@ The remaining flasher cuts are described in \cref{subsec:flash_resid}.
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{ch_event_selection/flasher_photo}
-    \caption{
+    \caption[Photograph of flashing PMT]{
         Observation of electrostatic breakdown at the base of a Daya Bay PMT
         \cite{flasherphotos_docdb}
     }
@@ -420,7 +420,7 @@ The remaining flasher cuts are described in \cref{subsec:flash_resid}.
     \includegraphics[width=0.48\textwidth]{%
         ch_event_selection/resid_flasher_dt_zoomed_EH3_AD1%
     }
-    \caption{
+    \caption[Residual flasher $\Delta t$ distribution]{
         Left: The distribution of time delays
         of a subset of residual flashers in EH3-AD1.
         Right: The same distribution, zoomed in to shorter delays.
@@ -478,7 +478,7 @@ and were excluded from the coincidence selection.
 \begin{figure}
     \centering
     \includegraphics{ch_event_selection/nominal_flashers}
-    \caption{
+    \caption[Nominal flasher cut variables]{
         Nominal flasher cut variables for events in EH1-AD1 and EH1-AD2
         from data taken during detector commissioning in 2011.
         The ``Quadrant'' (vertical) axes show $f_\text{Quad}$,
@@ -549,7 +549,7 @@ as illustrated in \cref{fig:hidden_flasher_cut}
     \includegraphics[width=0.49\textwidth]{ch_event_selection/flashers_top_ring_EH3_AD1}
     \includegraphics[width=0.49\textwidth]{ch_event_selection/flashers_outside_EH3_AD1}\\
     \includegraphics[width=0.5\textwidth]{ch_event_selection/flashers_hidden_EH3_AD1_arrows}
-    \caption{
+    \caption[Residual flasher position distributions]{
         Position distribution of events in EH3-AD1
         which pass the nominal and 2-inch flasher cuts,
         have $E > \SI{1.5}{\MeV}$, pass the usual muon vetos,
@@ -568,10 +568,10 @@ as illustrated in \cref{fig:hidden_flasher_cut}
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{ch_event_selection/hidden_flasher_post_cut}
-    \caption{
+    \caption[Cluster flasher variables]{
         Distribution of IBD candidate events in $Q_1/Q_2$-$f_{\text{ID}}$ space.
         The events within the black outline were vetoed as
-        hidden flashers.
+        cluster flashers.
         Events above $f_{\text{ID}}=0$ were already vetoed as nominal flashers.
         Figure taken from \cite{flasher_plots}.
     }
@@ -610,7 +610,7 @@ Coincidence groups are constructed by repeating the following steps
 
 \begin{figure}
     \includegraphics{ch_event_selection/timeline_examples}
-    \caption{
+    \caption[Coincidence groups diagram]{
         An example timeline showing how coincidence groups are created,
         and how they interact with muons and muon veto windows.
         This illustration does not show the \SI{1}{\micro\second} gap
@@ -693,7 +693,7 @@ delayed energies of \SIlist{1.5;3.25}{\mev}.
 \begin{figure}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/mult_eff_near_bydate}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/mult_eff_far_bydate}
-    \caption{
+    \caption[Multiplicity veto efficiency over time]{
         Multiplicity veto efficiency $\varepsilon_m$ over time for
         the near halls (top) and far hall (bottom).
         Each data point represents one data run.
@@ -925,7 +925,7 @@ used as the AD-uncorrelated uncertainty of the DT cut efficiency.
     \includegraphics[width=0.49\textwidth, trim={0 0 0 1cm}, clip]{%
         ch_event_selection/ed_DT_sub_EH3_AD1_normalized%
     }
-    \caption{
+    \caption[Delayed energy vs. DT without accidentals]{
         Accidentals-subtracted distribution of
         delayed energy and DT value, used to compute $\varepsilon_{\text{DT}}$.
         The green (solid) box shows the events included in the DT cut.
@@ -943,7 +943,7 @@ used as the AD-uncorrelated uncertainty of the DT cut efficiency.
     \includegraphics[width=0.49\textwidth]{ch_event_selection/DT_eff_normalized} \\
     \includegraphics[width=0.49\textwidth]{ch_event_selection/DT_eff_nGd}
     \includegraphics[width=0.49\textwidth]{{ch_event_selection/DT_eff_Ep_3.5MeV}}
-    \caption{
+    \caption[DT cut efficiency study]{
         The DT cut efficiency for each AD using the four methodologies
         described in the text.
         Top left: singles rate--based subtraction;
@@ -1044,7 +1044,7 @@ and have a negligible impact on the probability of a \fold{1} coincidence.
 \begin{figure}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/singles_near_bydate}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/singles_far_bydate}
-    \caption{
+    \caption[Singles rate over time]{
         Singles rate $R_s$ over time for
         the near halls (top) and far hall (bottom).
         Each data point represents one data run.
@@ -1335,7 +1335,7 @@ is shown in \cref{fig:prompt_eff_osc_contour}.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{ch_event_selection/prompt_eff_corrs}
-    \caption{
+    \caption[Prompt efficiency corrections due to oscillation effects]{
         Corrections to the prompt energy efficiency due to \nuebar{} oscillations.
         The data points represent the corrections at the best-fit
         value of \thetaot{} for each AD-reactor pair.
@@ -1351,7 +1351,7 @@ is shown in \cref{fig:prompt_eff_osc_contour}.
     \includegraphics[width=0.49\textwidth]{ch_event_selection/prompt_Eff_corr_EH3_AD1_L1}
     \\
     \includegraphics[width=0.49\textwidth]{ch_event_selection/prompt_Eff_corr_EH1_AD1_D1}
-    \caption{
+    \caption[Prompt efficiency correction contour maps]{
         Contour maps showing the dependence of the prompt energy efficiency correction
         on the values of the mixing parameters \thetaot{} and $\Delta m^2_{32}$.
         The range for $\sin^22\thetaot{}$ is $\pm2\sigma$ of the best-fit value;
@@ -1477,7 +1477,7 @@ but can be scaled by an overall normalization $N$.
     \includegraphics[height=0.33\textheight]{plot_diagnostics/delayed_energy_expo_scale.pdf}
     \hspace{0.5cm}
     \includegraphics[height=0.33\textheight]{plot_diagnostics/delayed_energy_peak_frac.pdf}\\
-    \caption{
+    \caption[Delayed energy fit parameters]{
         Fit parameters for each AD.
         Error bars represent fit errors.
         The smaller plots show the relative deviation of each AD's value
@@ -1489,54 +1489,54 @@ but can be scaled by an overall normalization $N$.
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}[t]{lllll}
+    \begin{tabular}[t]{lSSSS}
         \toprule
-        & Peak energy [\si{\mev}]
-        & Width [\si{\mev}]
-        & Tail slope [\si{\per\mev}]
-        & Peak fraction \\
+        & {Peak energy [\si{\mev}]}
+        & {Width [\si{\mev}]}
+        & {Tail slope [\si{\per\mev}]}
+        & {Peak fraction} \\
         \midrule
-        EH1-AD1 & \num{2.2531} & \num{0.1365} & \num{1.6893} & \num{0.8683}\\
-        EH1-AD2 & \num{2.2551} & \num{0.1380} & \num{1.6247} & \num{0.8666}\\
-        EH2-AD1 & \num{2.2591} & \num{0.1351} & \num{1.7212} & \num{0.8663}\\
-        EH2-AD2 & \num{2.2602} & \num{0.1348} & \num{1.7319} & \num{0.8902}\\
+        EH1-AD1 & 2.2531 & 0.1365 & 1.6893 & 0.8683\\
+        EH1-AD2 & 2.2551 & 0.1380 & 1.6247 & 0.8666\\
+        EH2-AD1 & 2.2591 & 0.1351 & 1.7212 & 0.8663\\
+        EH2-AD2 & 2.2602 & 0.1348 & 1.7319 & 0.8902\\
         \addlinespace
-        EH3-AD1 & \num{2.2607} & \num{0.1360} & \num{1.5812} & \num{0.8667}\\
-        EH3-AD2 & \num{2.2622} & \num{0.1349} & \num{2.1516} & \num{0.8616}\\
-        EH3-AD3 & \num{2.2563} & \num{0.1366} & \num{1.3432} & \num{0.8507}\\
-        EH3-AD4 & \num{2.2682} & \num{0.1362} & \num{2.5653} & \num{0.8617}\\
+        EH3-AD1 & 2.2607 & 0.1360 & 1.5812 & 0.8667\\
+        EH3-AD2 & 2.2622 & 0.1349 & 2.1516 & 0.8616\\
+        EH3-AD3 & 2.2563 & 0.1366 & 1.3432 & 0.8507\\
+        EH3-AD4 & 2.2682 & 0.1362 & 2.5653 & 0.8617\\
         \bottomrule
     \end{tabular}
-    \caption{Delayed energy fit parameters}
+    \caption[Delayed energy fit parameters]{Delayed energy fit parameters}
     \label{tab:delayed_fit_params}
 \end{table}
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}[t]{lll}
+    \begin{tabular}[t]{lSS}
         \toprule
-        & Lower bound [\si{\mev}]
-        & Upper bound [\si{\mev}] \\
+        & {Lower bound [\si{\mev}]}
+        & {Upper bound [\si{\mev}]} \\
         \midrule
-        EH1-AD1 & \num{1.8435} & \num{2.6628}\\
-        EH1-AD2 & \num{1.8412} & \num{2.6690}\\
-        EH2-AD1 & \num{1.8537} & \num{2.6645}\\
-        EH2-AD2 & \num{1.8558} & \num{2.6646}\\
+        EH1-AD1 & 1.8435 & 2.6628\\
+        EH1-AD2 & 1.8412 & 2.6690\\
+        EH2-AD1 & 1.8537 & 2.6645\\
+        EH2-AD2 & 1.8558 & 2.6646\\
         \addlinespace
-        EH3-AD1 & \num{1.8527} & \num{2.6686}\\
-        EH3-AD2 & \num{1.8575} & \num{2.6669}\\
-        EH3-AD3 & \num{1.8467} & \num{2.6660}\\
-        EH3-AD4 & \num{1.8597} & \num{2.6768}\\
+        EH3-AD1 & 1.8527 & 2.6686\\
+        EH3-AD2 & 1.8575 & 2.6669\\
+        EH3-AD3 & 1.8467 & 2.6660\\
+        EH3-AD4 & 1.8597 & 2.6768\\
         \bottomrule
     \end{tabular}
-    \caption{Delayed energy cut bounds derived as $\mu \pm 3\sigma$}
+    \caption[Delayed energy cut bounds]{Delayed energy cut bounds derived as $\mu \pm 3\sigma$}
     \label{tab:delayed_bounds}
 \end{table}
 
 \begin{figure}
     \centering
     \includegraphics[height=0.40\textheight]{plot_diagnostics/delayed_energy_bounds.pdf}
-    \caption{
+    \caption[Delayed energy cut bounds]{
         Delayed energy cut bounds computed as $\mu\pm 3\sigma$
         from the fitted histograms
     }
@@ -1590,8 +1590,8 @@ a more precise value for the efficiency was not studied for this thesis.
 \begin{figure}
     \centering
     \includegraphics[height=0.4\textheight]{ch_event_selection/delayed_eff_uncertainty_cartoon}
-    \caption{
-        Intuition for how differences in the relative size
+    \caption[Delayed energy efficiency diagram]{
+        Depiction of how differences in the relative size
         of the nominal (peak) versus extended ranges
         are a proxy for differences in cut efficiency.
     }
@@ -1633,7 +1633,7 @@ or the fraction of $\gamma$'s that (partially) escape from the AD.
     \centering
     \includegraphics[height=0.4\textheight]{ch_event_selection/delayed_uncertainty_fit}\\
     \includegraphics[height=0.4\textheight]{plot_diagnostics/delayed_energy_uncertainty_method1}
-    \caption{
+    \caption[Delayed energy efficiency uncertainty]{
         (Top) Data points and (affine) linear fit
         to the number of events in the nominal (peak)
         and extended ranges of delayed energy.
@@ -1776,7 +1776,7 @@ is shown in \cref{fig:li9_timeline}.
 
 \begin{figure}
     \includegraphics{ch_event_selection/timeline_li9}
-    \caption{
+    \caption[\li{}/\he{} event selection]{
         Event selection procedure for \li{} events.
         Neutron tags were identified within a short time window
         immediately following the muon.
@@ -1809,7 +1809,7 @@ for the muon-correlated isotope.
 
 \begin{table}
     \centering
-    \caption{Modified event selection for \li{} analysis.}
+    \caption[\li{}/\he{} event selection]{Modified event selection for \li{} analysis.}
     \label{tab:li9}
     \begin{tabular}[t]{rl}
         \toprule
@@ -2036,7 +2036,7 @@ over the nominal prompt energy range of \SIrange{1.5}{12}{\MeV}:
 
 \begin{table}
     \centering
-    \caption{
+    \caption[OWS tag criteria]{
         Modified event selection criteria for the OWS-tagged
         double coincidence sample.
     }
@@ -2056,7 +2056,7 @@ over the nominal prompt energy range of \SIrange{1.5}{12}{\MeV}:
 \begin{figure}
     \centering
     \includegraphics{ch_event_selection/fast_neutron_spectra}
-    \caption{
+    \caption[Fast neutron spectrum]{
         Prompt energy spectra for each hall
         showing the extended double coincidences (``IBD candidates'')
         and the OWS-tagged sample.
@@ -2138,7 +2138,7 @@ were attributed to the intense \amc{} source creating additional background.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{ch_event_selection/amc_photo_circled}
-    \caption{
+    \caption[Intense \amc{} source photograph]{
         Photograph of the intense \amc{} source (circled in red)
         on the lid of EH3-AD2 between ACU-B and ACU-C \cite{amc_photo}.
     }
@@ -2210,7 +2210,7 @@ and a variety of simulations of the \amc{} background process.
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{ch_event_selection/amc_position_asymmetry}
-    \caption{
+    \caption[Intense \amc{} run vertical positions]{
         Distributions of the reconstructed vertical ($z$) position
         of prompt (left) and delayed (right) signals of nH IBD candidates
         during the special \amc{} run period.
@@ -2224,7 +2224,7 @@ and a variety of simulations of the \amc{} background process.
 \begin{figure}
     \centering
     \includegraphics{ch_event_selection/amc_spectrum}
-    \caption{
+    \caption[\amc{} prompt spectrum]{
         Left: Prompt reconstructed energy spectrum
         for the intense \amc{} source run in EH3-AD2 (blue)
         and for the normal configuration in EH3-AD1 (red).
@@ -2335,7 +2335,7 @@ The components of the detection efficiency uncertainty
 are listed in \cref{tab:efficiency_summary}.
 
 \begin{table}[ht]
-    \caption{
+    \caption[Event selection summary]{
         Summary of the \nuebar{} event selection results.
         The background and IBD rates are adjusted for
         $\varepsilon_\mu$ and $\varepsilon_m$.
