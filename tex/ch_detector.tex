@@ -211,6 +211,122 @@ as described in \cref{sec:flashers}.
     \label{fig:ad_cutaway}
 \end{figure}
 
+\subsection{Target protons}
+\label{subsec:target_mass}
+
+The number of target protons in each AD must be measured precisely;
+a mis-characterization would lead to an unexplained excess or deficit
+in event counts which could bias the measurement of \thetaot{}
+in the same manner as a variation in detection efficiency.
+Thus the number of target protons was treated as an effective efficiency
+\begin{equation}\label{eq:target_protons_eff}
+    \varepsilon_\text{p} = \frac{N_{\text{p,\,AD }i}}{N_\text{p,\,EH1-AD1}}.
+\end{equation}
+When measurements from different ADs were compared,
+the event rates were corrected by $\varepsilon_\text{p}$,
+which had the effect of standardizing to the number of target protons in EH1-AD1.
+
+The number of target protons for each AD was computed from the measured masses
+of each target volume
+and chemical analyses of the proton mass fractions
+of the materials in each volume.
+The volumes were divided into GdLS, LS, and other,
+which was dominated by the acrylic vessels (IAV and OAV)
+but also included the reflector, hold-downs and radial shield \cite{acrylic_mass}.
+Target masses for each AD are listed in \cref{tab:target_masses}.
+The proton density in each detector volume
+was computed based on the analytically-computed
+hydrogen mass fractions of LS, GdLS and acrylic \cite{target_protons_technote}.
+The final number of target protons was
+simply the product of the target mass and the proton density,
+summed over detector volumes:
+\begin{equation}\label{eq:target_protons}
+    N_\text{p} = m_\text{GdLS} n_\text{p,\,GdLS}
+    + m_\text{LS} n_\text{p,\,LS}
+    + m_\text{other} n_\text{p,\,other}.
+\end{equation}
+The number of target protons for each AD
+is listed in \cref{tab:target_protons}.
+The uncertainty is dominated by the uncertainty of the LS mass;
+the relative uncertainty of \SI{0.37}{\percent}
+is a sub-dominant contribution to the AD-uncorrelated
+relative efficiency uncertainty
+as listed in \cref{tab:efficiency_summary}.
+
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{
+        l
+        S[
+            table-number-alignment=center,
+            table-figures-integer=5,
+            table-figures-decimal=0,
+            separate-uncertainty,
+            table-figures-uncertainty=2]
+        S[
+            table-number-alignment=center,
+            table-figures-integer=5,
+            table-figures-decimal=1,
+            separate-uncertainty,
+            table-figures-uncertainty=3
+        ]
+        S[
+            table-number-alignment=center,
+            table-figures-integer=4,
+            table-figures-decimal=0,
+            separate-uncertainty,
+            table-figures-uncertainty=2
+        ]
+    }
+        \toprule
+         & {GdLS [\si{\kg}]} & {LS [\si{\kg}]} & {Other [\si{\kg}]}\\
+        \midrule
+        EH1-AD1 & 19941\pm5 & 21573.5\pm28 & 3697\pm18 \\
+        EH1-AD2 & 19967\pm5 & 21519.6\pm28 & 3731\pm19 \\
+        EH2-AD1 & 19891\pm5 & 21587.2\pm28 & 3664\pm18 \\
+        EH2-AD2 & 19944\pm5 & 21449.9\pm28 & 3749\pm19 \\
+        EH3-AD1 & 19917\pm5 & 21566.2\pm28 & 3744\pm19 \\
+        EH3-AD2 & 19989\pm5 & 21408.8\pm28 & 3864\pm19 \\
+        EH3-AD3 & 19892\pm5 & 21652.6\pm28 & 3844\pm19 \\
+        EH3-AD4 & 19931\pm5 & 21474.5\pm28 & 3794\pm19 \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+        Target masses for each AD volume from
+        \cite{liquid_target_mass,nh2016technote,detector_system}.
+    }
+    \label{tab:target_masses}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{
+            l
+            S[
+                table-number-alignment=center,
+                table-figures-integer=3,
+                table-figures-decimal=2,
+                separate-uncertainty,
+                table-figures-uncertainty=3
+            ]
+        }
+        \toprule
+        & {$N_\text{p}$ [$\times10^{28}$]} \ML
+        EH1-AD1 & 314.14(117) \NN
+        EH1-AD2 & 314.11(117) \NN
+        EH2-AD1 & 313.72(117) \NN
+        EH2-AD2 & 313.53(117) \NN
+        EH3-AD1 & 314.15(117) \NN
+        EH3-AD2 & 314.12(117) \NN
+        EH3-AD3 & 315.10(117) \NN
+        EH3-AD4 & 313.83(117)
+        \LL
+    \end{tabular}
+    \caption{Number of target protons for each AD.}
+    \label{tab:target_protons}
+\end{table}
+
 \subsection{Observing Inverse Beta Decay}
 \label{subsec:ibd_intro}
 
