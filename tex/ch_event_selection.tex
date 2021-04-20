@@ -266,6 +266,7 @@ The following scenarios can lead to overlapping muon veto windows:
 The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}
 
 \begin{figure}
+    \centering
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_eff_near_bydate}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_eff_far_bydate}
     \caption[Muon veto efficiency over time]{
@@ -277,6 +278,7 @@ The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}
 \end{figure}
 
 \begin{figure}
+    \centering
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_rate_near_bydate}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_rate_far_bydate}
     \caption[Effective muon rate over time]{
@@ -416,6 +418,7 @@ The remaining flasher cuts are described in \cref{subsec:flash_resid}.
 \end{figure}
 
 \begin{figure}
+    \centering
     \includegraphics[width=0.48\textwidth]{ch_event_selection/resid_flasher_dt_EH3_AD1}
     \includegraphics[width=0.48\textwidth]{%
         ch_event_selection/resid_flasher_dt_zoomed_EH3_AD1%
@@ -609,6 +612,7 @@ Coincidence groups are constructed by repeating the following steps
 \end{enumerate}
 
 \begin{figure}
+    \centering
     \includegraphics{ch_event_selection/timeline_examples}
     \caption[Coincidence groups diagram]{
         An example timeline showing how coincidence groups are created,
@@ -668,7 +672,11 @@ of single events.
 This probability is derived in \cref{ap:singlesformula} as $P_b$.
 
 
-\adgrid{All double coincidences found using $\tc=\SI{1.5}{\milli\second}$}{fig:double_coinc_raw}{ch_event_selection/double_coincs}
+\adgrid{
+    All double coincidences found using $\tc=\SI{1.5}{\milli\second}$
+}{fig:double_coinc_raw}{ch_event_selection/double_coincs}{
+    Prompt-delayed spectrum: all double coincidences
+}
 
 Once the coincidence groups have been constructed,
 the set of \fold{2} coincidences
@@ -691,6 +699,7 @@ which is characterized in these plots by the 4-point square at both prompt and
 delayed energies of \SIlist{1.5;3.25}{\mev}.
 
 \begin{figure}
+    \centering
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/mult_eff_near_bydate}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/mult_eff_far_bydate}
     \caption[Multiplicity veto efficiency over time]{
@@ -757,8 +766,11 @@ the length scale of the AD, approximately \SI{3000}{\milli\meter},
 and the characteristic time based on the \fold{1} event rate
 is $\sim\SI{50000}{\us}$.
 
-\adgrid{Distribution of coincidence distance and coincidence
-time}{fig:dr_vs_dt}{ch_event_selection/dr_vs_dt}
+\adgrid{
+    Distribution of coincidence distance and coincidence time
+}{fig:dr_vs_dt}{ch_event_selection/dr_vs_dt}{
+    Coincidence distance vs. time
+}
 
 \Cref{fig:dr_vs_dt} shows the distribution of
 coincidence distance and coincidence time
@@ -790,8 +802,11 @@ in the low-prompt-energy and low-delayed-energy corner has been reduced.
 The neutron capture on hydrogen events now stand out much better
 against the accidental background.
 
-\adgrid{Prompt-delayed energy spectra after applying
-the DT cut}{fig:after_DT_cut}{ch_event_selection/post_DT_cut}
+\adgrid{
+    Prompt-delayed energy spectra after applying the DT cut
+}{fig:after_DT_cut}{ch_event_selection/post_DT_cut}{
+    Prompt-delayed spectrum: after DT cut
+}
 
 Applying the DT cut rejected the vast majority of accidental events
 at a loss of approximately \SI{30}{\percent} of real IBDs.
@@ -1042,6 +1057,7 @@ have a rate much smaller than the uncorrelated event rate
 and have a negligible impact on the probability of a \fold{1} coincidence.
 
 \begin{figure}
+    \centering
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/singles_near_bydate}
     \includegraphics[width=0.48\textwidth]{plot_diagnostics/singles_far_bydate}
     \caption[Singles rate over time]{
@@ -1115,8 +1131,10 @@ The spectrum of these (now truly) single events is shown in \cref{fig:singlespec
 obtained by summing the individual spectra from each data run.
 These spectra were used as the prompt energy spectra for the accidental background.
 
-\adgrid{Spectra of isolated single events in each AD.}{fig:singlespectra}{%
-    ch_background/singles%
+\adgrid{
+    Spectra of isolated single events in each AD.
+}{fig:singlespectra}{ch_background/singles}{
+    Single events spectrum
 }
 
 Uncorrelated events are not uniformly distributed
@@ -1162,7 +1180,9 @@ as shown in \cref{fig:acc_sample}.
     by construction, since each synthetic pair is added to the histogram twice.
     The plots may not appear to be perfectly symmetrical
     due to artifacts of the plotting software.
-}{fig:acc_sample}{ch_background/acc}
+}{fig:acc_sample}{ch_background/acc}{
+    Prompt-delayed spectrum: synthetic accidentals
+}
 
 The resulting prompt-delayed energy spectrum of synthetic accidental events
 can then be subtracted
@@ -1189,7 +1209,9 @@ are used in \cref{subsec:delayed} to determine the delayed energy cut bounds.
     The projections of these plots onto the delayed energy axis
     are used to determine the delayed energy cut bounds
     and are shown in \cref{fig:delayed_fits}.
-}{fig:acc_sub_spectra}{ch_background/sub_energy}
+}{fig:acc_sub_spectra}{ch_background/sub_energy}{
+    Prompt-delayed spectrum: after subtracting accidentals
+}
 
 The scale factor for the accidentals spectrum histogram,
 $\frac{N_{\text{acc,\,loose}}}{N_{\text{isolated}}/2}$,
@@ -1465,8 +1487,10 @@ of width $\sigma$.
 The entire result is normalized to unity
 but can be scaled by an overall normalization $N$.
 
-\adgrid{Delayed energy fits using the calorimeter function}{fig:delayed_fits}{%
-    ch_event_selection/delayed_fit%
+\adgrid{
+    Delayed energy fits using the calorimeter function
+}{fig:delayed_fits}{ch_event_selection/delayed_fit}{
+    nH capture delayed energy spectrum
 }
 
 \begin{figure}
@@ -1775,6 +1799,7 @@ A visualization of the alternate event selection
 is shown in \cref{fig:li9_timeline}.
 
 \begin{figure}
+    \centering
     \includegraphics{ch_event_selection/timeline_li9}
     \caption[\li{}/\he{} event selection]{
         Event selection procedure for \li{} events.
@@ -1864,6 +1889,7 @@ in \cref{fig:li9_fits}.
 The histograms for EH2 are qualitatively the same as those for EH1.
 
 \begin{figure}
+    \centering
     \missingfigure{\li{} fit plots}
     \caption{
         Histograms of time since the preceding muon
@@ -1951,6 +1977,7 @@ The fit result $N_\text{bkg}$ was associated with a statistical uncertainty
 from the fit.
 
 \begin{figure}
+    \centering
     \missingfigure{\li{} prompt spectrum}
     \caption{
         Prompt spectrum for \li{} background events.
