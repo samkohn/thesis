@@ -15,12 +15,14 @@ and compiled into meaningful inputs by Daya Bay collaborators.
     \item The reactor power levels were compiled directly from
         the supplied data.
     \item The reactor \nuebar{} emitted spectra and rates
-        were computed using the Huber-Mueller model,
+        were computed using the Huber \cite{reactor_huber}
+        and Mueller \cite{reactor_mueller} models,
         fission fractions provided by the power plant,
-        and energy per fission from XYZ.\todo{citations for reactor spectra}
+        and energy per fission from \cite{thermal_fission}.
 \end{itemize}
 These quantities were combined to produce the total reactor flux
 as a function of energy used in \cref{subsec:flux_fraction,subsec:extrapolation}.
+The total reactor flux summed over energy is listed in \cref{tab:total_emitted}.
 
 \section{Antineutrino Detectors}
 \label{sec:summary_ads}
@@ -31,20 +33,22 @@ The major systematic uncertainties of the analysis derive from
 the degree to which the ADs deviate from being exactly identical.
 
 \begin{itemize}
-    \item The detector response matrix was estimated using the toy Monte Carlo
-        described in \todo{cref section on LBNL ToyMC} \cite{lbnl_toymc}.
+    \item The detector response matrix was estimated using the
+        individual event toy Monte Carlo described in \cref{sec:thu_toymc}.
         The simulation included effects from
-        the absolute energy nonlinearity (\cref{subsec:abs_energyscale}),
-        with a particular focus on correcting for energy loss inside the
-        inner acrylic vessel (``IAV effect'').
-        Using an independently-generated detector response matrix
-        had a negligible effect on the final measurement.
+        the absolute energy nonlinearity (\cref{subsec:abs_energyscale})
+        and the energy resolution (\cref{subsec:resolution}).
+        During the validation of the fitter on simulated nGd data sets
+        in \cref{subsec:fitter_validation},
+        the results using the nominal detector response
+        and an independently-generated detector response from \cite{lbnl_toymc}
+        were compared, and a negligible impact was observed.
     \item The expected true IBD spectrum was computed from
         the predicted reactor spectrum,
-        the IBD cross section,\todo{cite IBD cross section}
+        the IBD cross section \cite{ibd_xsec},
         and oscillation effects (adjusted during fitting).
         Since the cross section is identical at all ADs,
-        there was no uncertainty due to the cross section.
+        there was negligible uncertainty due to the cross section.
     \item The relative energy scale uncertainty was measured
         by fitting the nH capture delayed energy peaks
         using the calorimeter function (\cref{subsec:delayed}).
@@ -59,7 +63,7 @@ the degree to which the ADs deviate from being exactly identical.
         %was used to adjust the event counts in each bin
         %based on the pre-computed fractional changes.
     \item The prompt energy cut efficiency uncertainty
-        was estimated using a toy Monte Carlo event sample \cref{sec:thu_toymc}.
+        was estimated using a toy Monte Carlo event sample (\cref{sec:thu_toymc}).
         By shifting the reconstructed energies according to the
         \SI{0.5}{\percent} relative energy scale uncertainty,
         the change in efficiency could be measured to be \SI{0.1}{\percent}.
@@ -92,11 +96,10 @@ the degree to which the ADs deviate from being exactly identical.
         of the two samples.
     \item The number of target protons was computed using measured values
         of the masses of the GdLS, LS and acrylic detector volumes
-        and the proton densities of each substance \cite{nh2016technote}.
+        and the proton densities of each substance (\cref{subsec:target_mass}).
         The AD-uncorrelated uncertainty was computed
         using the uncertainties for the mass and proton density.
-        A single relative uncertainty was used for all ADs
-        with a negligible impact on the final measurement.
+        A single relative uncertainty of \SI{0.37}{\percent} was used for all ADs.
     \item The muon veto efficiency ($\varepsilon_\mu$) was computed from data
         as the fraction of DAQ livetime that did not lie within a muon veto window
         (\cref{sec:muonveto}).
@@ -162,4 +165,9 @@ The characterization of correlated backgrounds was performed by Daya Bay collabo
         examining the top-bottom asymetry in each AD.
         The spectral shape was measured during a special data run
         using a high-intensity \amc{} source.
+    \item The radiogenic neutron background (\cref{subsec:radn})
+        was estimated using a Monte Carlo simulation
+        based on the measured masses and estimated
+        radiocontamination of the PMTs and fluorocarbon paint.
+        The spectrum was estimated as part of the simulation output.
 \end{itemize}
