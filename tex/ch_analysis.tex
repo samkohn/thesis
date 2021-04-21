@@ -926,7 +926,7 @@ canceled to first order, as discussed in \cref{ap:drm}.
 
 The full \chisquare{} expression used in this analysis is:
 
-\begin{align}
+\begin{align}\label{eq:chisquare_full}
     \begin{split}
         \chisquare(\thetaot;\boldsymbol{\nu}) &=
             2\sum_{\substack{j \in \\\text{far ADs}}}
@@ -1144,23 +1144,86 @@ For convenience, the parameters are divided into
 the 136 representing near site statistical uncertainties
 and the 48 others, which represent the traditional systematic uncertainties.
 The contribution of each pull parameter $\nu_i$ to the $\chi^2$ total
-is defined (using the notation from \cref{eq:chisquare_generic}) as
+was defined (using the notation from \cref{eq:chisquare_generic}) as
 \begin{equation}\label{eq:pull_contrib}
     \delta\chi^2 = \frac{\nu_i^2}{\tilde{\sigma}_i^2}.
 \end{equation}
-The contributions of the 48 systematics nuisance parameters
+Since there were 136 nuisance parameters representing
+the statistical fluctuations of each bin of prompt energy
+in each near hall AD,
+their contributions were summed over each AD:
+\begin{equation}\label{eq:pull_near_contrib}
+    \delta\chi^2_\text{near AD} = \sum_b \frac{\nu^2_{(b)}}{\tilde{\sigma}^2_{(b)}}.
+\end{equation}
+The contributions of the data-to-model comparison
+(first line of \cref{eq:chisquare_full})
+along with each nuisance parameter
 to the total $\chi^2$
 are shown in \cref{fig:syst_pulls_plot}.
-16 parameters contributed more than $10^{-6}$ to the total;
+16 parameters plus the 4 data-to-model comparison terms
+contributed more than $10^{-6}$ to the total;
 those parameters are listed with additional details
-in \todo{Table of best fit pulls}.%\cref{tab:syst_best_fits}.
+in \cref{tab:pull_details}.
 
 \begin{figure}
-    \missingfigure{Best fit pull parameters}
-    \caption{Best fit pull parameters}
+    \centering
+    \includegraphics[height=0.9\textheight]{ch_analysis/pulls_chi2_contrib}
+    \caption[Contributions to minimum $\chi^2$]{
+        Contribution of each systematics nuisance parameter (blue),
+        the near hall statistics nuisance parameters,
+        aggregated by AD (orange),
+        and the data-to-model comparison (green)
+        to the total value of the minimum $\chi^2$.
+    }
     \label{fig:syst_pulls_plot}
 \end{figure}
 
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{
+        r
+        c
+        S[fixed-exponent = 0, table-omit-exponent]
+        S[fixed-exponent = 0, table-omit-exponent]
+        S[fixed-exponent = 0, table-omit-exponent]
+    }
+        \toprule
+         & AD & {Best fit value} & {Constraint} & {$\delta\chi^2$} \\
+        \midrule
+        Data-to-model & EH3-AD1 & 161929.4 & 162005 & 0.0353 \\
+        Data-to-model & EH3-AD2 & 164317.8 & 164187 & 0.104 \\
+        Data-to-model & EH3-AD3 & 166349.4 & 166372 & 0.00306 \\
+        Data-to-model & EH3-AD4 & 144721.5 & 144752 & 0.00642 \\
+        Accidentals & EH3-AD1 & 2.41e-5 & 8.06e-4 & 8.97e-4 \\
+        Accidentals & EH3-AD2 & -4.23e-5 & 7.99e-4 & 2.8e-3 \\
+        Accidentals & EH3-AD3 & 7.17e-6 & 7.90e-4 & 8.23e-5 \\
+        Accidentals & EH3-AD4 & 1.12e-5 & 8.57e-4 & 1.69e-4 \\
+        \amc{} & Common & 0.00176 & 0.500 & 1.24e-5 \\
+        Rad. neutrons & EH3-AD1 & 0.0362 & 0.5 & 0.00525 \\
+        Rad. neutrons & EH3-AD2 & -0.0598 & 0.5 & 0.0143 \\
+        Rad. neutrons & EH3-AD3 & 0.00961 & 0.5 & 0.000370 \\
+        Rad. neutrons & EH3-AD4 & 0.0139 & 0.5 & 0.000773 \\
+        Efficiency & EH3-AD1 & 0.00162 & 0.0066 & 0.0601 \\
+        Efficiency & EH3-AD2 & -0.00271 & 0.0066 & 0.169 \\
+        Efficiency & EH3-AD3 & 0.000445 & 0.0066 & 0.00454 \\
+        Efficiency & EH3-AD4 & 0.000629 & 0.0066 & 0.00908 \\
+        Rel. E scale & EH3-AD1 & 0.000403 & 0.005 & 0.00650 \\
+        Rel. E scale & EH3-AD3 & 0.000112 & 0.005 & 5.01e-4 \\
+        Rel. E scale & EH3-AD4 & 0.000157 & 0.005 & 9.90e-4 \\
+        \bottomrule
+    \end{tabular}
+    \caption[Significant contributions to final $\chi^2$]{
+        Details of the terms which contributed the most ($>10^{-6}$)
+        to the final $\chi^2$ value of \num{0.42446}.
+        For the data-to-model rows,
+        the best fit value is the model prediction for number of counts
+        (including background events)
+        and the constraint is the actual number of observed counts.
+        The terms listed here contributed a total of \num{0.42414},
+        or \SI{99.93}{\percent} of the total value of the minimum $\chi^2$.
+    }
+    \label{tab:pull_details}
+\end{table}
 
 %If the predictions based on different near-hall AD observations agree,
 %it can be concluded that the effects due to reactor modeling
