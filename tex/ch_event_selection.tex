@@ -1734,18 +1734,12 @@ but it was not sensitive to physical processes that produced
 correlated prompt-delayed pairs.
 These correlated backgrounds included muon-induced unstable isotopes (\cref{subsec:li9}),
 muon-induced fast neutrons (\cref{subsec:fastn}),
-and $\gamma$-rays from the \amc{} calibration source (\cref{subsec:amc}).
-
-The muon-induced backgrounds were particularly pernicious
-because the near halls had higher muon rates than the far hall,
-and thus an intrinsically higher rate of these backgrounds.
-If the backgrounds were not correctly characterized,
-they would change the near-far ratio in a way that mimicked the effects of \thetaot.
+$\gamma$-rays from the \amc{} calibration source (\cref{subsec:amc}),
+and radiogenic neutrons (\cref{subsec:radn}).
 
 \subsection{Muon-induced unstable isotopes}
 \label{subsec:li9}
 
-\todo[inline]{Good DocDB source for THU Li9}
 Muon interactions with nuclei (primarily \isotope[12]{C}) in the AD
 produced the unstable exotic isotopes \li{} and \he{}.
 These isotopes $\beta$-decayed to neutron-unstable excited states
@@ -1753,8 +1747,8 @@ of \isotope[9]{Be} and \isotope[8]{Li}, respectively,
 leading to a nonzero probability of a $\beta^{-}$-n coincidence \cite{kamland_li9}.
 Unfortunately, the range of $\beta^-$ energies overlapped substantially
 with the range of IBD prompt ($e^+$) energies,
-and the neutron from a $\beta^-$-n decay behaved
-exactly the same as a neutron from an IBD interaction.
+and neutrons from $\beta^-$-n decays behaved
+exactly the same as neutrons from IBD interactions.
 Thus the \li{} and \he{} decays had the same signature as true IBDs.
 Further, the lifetimes for \li{} and \he{} were
 \SI{257.23}{\ms} and \SI{171.60}{\ms}, respectively,
@@ -1768,7 +1762,7 @@ In the following, unless otherwise stated,
 
 The number of \li{} events contaminating the double coincidence sample
 was determined by exploiting those events' time correlation
-with the muon event which created the parent \li{} nucleus.
+with the muon event which created the parent \li{} nucleus \cite{jinjing_2020may}.
 An alternate event selection with no post-muon veto
 was performed to increase the contribution of \li{} events
 in the resulting data sample.
@@ -1796,7 +1790,8 @@ Since the \li{} process was common to all of the ADs within a given hall,
 the events from ADs in the same hall were combined
 to improve the statistical uncertainty of the rate estimation.
 A visualization of the alternate event selection
-is shown in \cref{fig:li9_timeline}.
+is shown in \cref{fig:li9_timeline};
+a summary of the selection criteria is listed in \cref{tab:li9}.
 
 \begin{figure}
     \centering
@@ -1818,7 +1813,7 @@ was different from the distribution for events uncorrelated with muons
 (such as IBDs or accidental backgrounds).
 In particular, for muon-uncorrelated events,
 the probability density for time since the preceding muon
-being between $t$ and $t + dt$ was
+being between $t$ and $t + dt$ was \cite{chris_li9}
 \begin{equation}\label{eq:li9_muon_uncorr}
     p_\text{uncorr}(t) = R_\mu e^{-R_\mu t}dt,
 \end{equation}
@@ -1881,37 +1876,45 @@ number of muon-uncorrelated events (IBDs and other backgrounds),
 and \boron{}-\boron{} coincidences, respectively.
 The fits were not sensitive enough to extract $r$,
 the fraction of the background due to \li{} rather than \he{},
-so the value was fixed during the fits at \todo{Specific $r$ treatment by THU}.
+so the value was fixed at 0.9 during the fit procedure.
 A systematic uncertainty was assessed by manually varying $r$
-and observing the impact on $N_\text{bkg}$.
+between 0.85 and 1.0
+and observing the impact on $N_\text{bkg}$ \cite{li9_details}.
 The histograms and best-fit curves for EH1 and EH3 are shown
-in \cref{fig:li9_fits}.
+in \cref{fig:li9_fits_EH1,fig:li9_fits_EH3} \cite{jinjing_2020may}.
 The histograms for EH2 are qualitatively the same as those for EH1.
 
 \begin{figure}
     \centering
-    \missingfigure{\li{} fit plots}
+    \includegraphics{ch_event_selection/li9_fit_plots_EH1}
     \caption{
-        Histograms of time since the preceding muon
-        at EH1 and EH3.
+        Histograms of time since the preceding muon at EH1.
         The histograms for EH2 are qualitatively the same as for EH1.
+        Taken from \cite{jinjing_2020may}.
     }
-    \label{fig:li9_fits}
+    \label{fig:li9_fits_EH1}
 \end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics{ch_event_selection/li9_fit_plots_EH3}
+    \caption{
+        Histograms of time since the preceding muon at EH3.
+        Taken from \cite{jinjing_2020may}.
+    }
+    \label{fig:li9_fits_EH3}
+\end{figure}
 For the lowest energy class (\SIrange{0.02}{1}{\GeV}),
 production of \li{} was so rare that the fitter
 could not effectively discriminate the \li{} events
 on top of the muon-uncorrelated events (i.e. IBDs and accidentals).
 Thus only the neutron-tagged sample was used to characterize this muon sample.
-A systematic uncertainty was assessed on the neutron tag efficiency,
+A systematic uncertainty of \SI{100}{\percent} was assessed
+on the neutron tag efficiency,
 the estimated fraction of \li{} events produced by neutron-tagged muons.
 The value of this efficiency was estimated by examining
-the corresponding efficiency with higher-energy muons,
-where it has a value of \SI{\sim60}{\percent}.
-The systematic uncertainty on the neutron tag efficiency of \SI{45}{\percent}
-is estimated \todo{confirm uncertainty in THU} based on the variation of the efficiency
-among the higher-energy muon classes at the different experimental halls.
+the corresponding efficiency for the middle energy class of muons,
+where it had a value of \SI{\sim60}{\percent}.
 
 The extracted values for $N_\text{bkg}$ for each class of muons
 were converted into the number of \li{} events
@@ -1947,13 +1950,6 @@ and $V_{E3} = \SI{1}{\s}$.
 
 The spectrum of \li{} events was computed
 by comparing a \li{}-rich sample to a pure-IBD sample of events.
-The \li{}-rich sample was selected as events
-where the time to the preceding ``shower muon'' ($E_\mu > \SI{2.5}{\GeV}$)
-was less than \SI{0.2}{\s}.
-The pure-IBD sample consisted of events
-where the time to the preceding muon ($E_\mu \gtrsim \SI{1.3}{\GeV}$)
-was greater than \SI{1.5}{\s},
-thus rejecting \SI{>99.8}{\percent} of \li{} events.
 The prompt spectrum from the pure-IBD sample
 was normalized to the fitted value for $N_\text{uncorr}$
 and subtracted from the prompt spectrom of the \li{}-rich sample.
@@ -1978,18 +1974,12 @@ from the fit.
 
 \begin{figure}
     \centering
-    \missingfigure{\li{} prompt spectrum}
+    \includegraphics[width=0.8\textwidth]{ch_event_selection/li9_spectrum}
     \caption{
         Prompt spectrum for \li{} background events.
     }
     \label{fig:li9_spec}
 \end{figure}
-
-The nH and nGd analyses used slightly different selection criteria
-to measure the \li{} rate;
-a detailed description of the nGd procedure can be found in \cite{chris_li9},
-while the specific values used in this analysis can be found in \cite{jinjing_2020may}.
-
 
 \subsection{Muon-induced fast neutrons}
 \label{subsec:fastn}
