@@ -4,7 +4,7 @@
 The formulas used for computing the rate of uncorrelated events
 and the rate of accidental coincidences
 are based on the statistical interpretation
-of the coincidence grouping algorithm.
+of the coincidence grouping algorithm \cite{thucoinc2015}.
 As mentioned in \cref{sec:coincidence}
 and illustrated by \cref{fig:timeline_examples},
 coincidence groups are formed by repeating the following steps:
@@ -168,20 +168,13 @@ The three situations are:
 
 \begin{figure}
     \centering
-    \begin{subfigure}{\textwidth}
-        \includegraphics{ap_acc_derivation/timeline_a}
-        \caption{Scenario (a)}
-    \end{subfigure} \\
-    \begin{subfigure}{\textwidth}
-        \includegraphics{ap_acc_derivation/timeline_b}
-        \caption{Scenario (b)}
-    \end{subfigure} \\
-    \begin{subfigure}{\textwidth}
-        \includegraphics{ap_acc_derivation/timeline_c}
-        \caption{Scenario (c)}
-    \end{subfigure}
-    \caption[Diagrams for computing coincidence probabilities]{The three scenarios used to compute $P_{\text{start}}$
-    \todo[inline]{Align ``time'' labels}}
+    \includegraphics[width=\textwidth]{ap_acc_derivation/timeline_a} \\
+    \includegraphics[width=\textwidth]{ap_acc_derivation/timeline_b} \\
+    \includegraphics[width=\textwidth]{ap_acc_derivation/timeline_c}
+    \caption[Diagrams for computing coincidence probabilities]{
+        The three scenarios used to compute $P_{\text{start}}$.
+        From top to bottom they represent terms (a), (b), and (c).
+    }
     \label{fig:ap_scenarios}
 \end{figure}
 The final formula used for the probability of starting a coincidence window
