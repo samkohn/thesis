@@ -8,20 +8,23 @@ The TDC values represent hit times of PMTs,
 and the ADCs represent the charge collected by the PMTs,
 which ultimately must be traced back to the energy deposited
 in the liquid scintillator of the ADs.
-The conversion factors for these quantities are determined
+The conversion factors for these quantities were determined
 through the calibration process.
 
-Calibration ensures that the eventual energies, times, and positions
-reported by the ADs are accurate,
-which allows for an unbiased and precise measurement
+Calibration ensured that the energies, times, and positions
+reported by the ADs were accurate,
+allowing for an unbiased and precise measurement
 of the oscillation parameters.
 The \thetaot{} measurement depends on well-understood detection efficiencies.
 Since the IBD selection involves cuts on both energy and position,
 the AD-to-AD variation in these efficiencies can be minimized
 by an effective calibration.
-The energy calibration is more directly critical to the measurement
+The energy calibration was more directly critical to the measurement
 of \dmsquared{}, as evidenced by the appearance of $\nicefrac{\dmsquared}{E}$
-in the survival probability formula, \cref{eq:p_sur_ee}.
+in the survival probability formula, \cref{eq:p_sur_ee},
+but a consistent energy response across ADs
+was also important for ensuring similar selection efficiencies
+in the \thetaot{} analysis.
 
 Multiple sources were used to calibrate the ADs.
 Automated calibration units were designed to deploy radioactive sources
@@ -38,26 +41,25 @@ which were used to calibrate the energy response at a wide range of energies.
 The energy calibration consisted of multiple sub-calibrations,
 described in \cref{sec:gain,sec:light_yield_calib}.
 The timing calibration is described in \cref{sec:time_calib}.
-Assessments of the channel quality are discussed in \cref{sec:channel_quality}.
 Special calibration runs were performed in addition to
 the weekly and continuous calibrations;
 those special calibrations are described in \cref{sec:special_calib}.
+Assessments of the channel quality are discussed in \cref{sec:channel_quality}.
 
 \section{Automated calibration units}
 \label{sec:acus}
 
 The calibration system for the Daya Bay ADs
-allows for automated deployment of a variety of calibration sources.
-Each AD is outfitted with three automated calibration units (ACUs)
-which can position a calibration source at arbitrary locations
+allowed for automated deployment of a variety of calibration sources.
+Each AD was outfitted with three automated calibration units (ACUs)
+which could position a calibration source at arbitrary locations
 along the vertical axis extending underneath the each ACU.
-The ACUs can deploy any of the sources to a given vertical position
-with a precision of \SI{5}{\mm},
-the same precision as the positions of the PMTs.
-In practice, a fixed set of vertical positions is used.
-ACU-A deploys sources along the central axis of the AD at $r=0$,
-ACU-B probes the edge of the GdLS region just inside the IAV at $r=\SI{1350}{\mm}$,
-and ACU-C can access the LS region between the IAV and OAV,
+The ACUs could deploy any of the sources to a given vertical position
+with a precision of \SI{5}{\mm}.
+In practice, a fixed set of vertical positions was used.
+ACU-A deployed sources along the central axis of the AD at $r=0$,
+ACU-B probed the edge of the GdLS region just inside the IAV at $r=\SI{1350}{\mm}$,
+and ACU-C accessed the LS region between the IAV and OAV,
 near the periphery of the AD at $r=\SI{1772.5}{\mm}$.
 The layout of the ACUs is shown in \cref{fig:ad_cutaway},
 and the construction and function of the ACUs
@@ -76,9 +78,9 @@ the \amc{} source could be deployed independently from the \isotope[60]{Co} sour
 accompanied only by the weak remant of the \isotope[68]{Ge} source.
 The \isotope[68]{Ge} sources were deployed as late as 2017
 before being taken off the calibration schedule.
-Sources were deployed weekly during calibration data runs.
-The specific calibration schedule changed over the course of the experiment.
-The schedule for the final run period is shown in \cref{tab:calib_sched}.
+Sources were deployed weekly during calibration data runs,
+though the specific calibration schedule changed over the course of the experiment.
+The schedule for the final run period is listed in \cref{tab:calib_sched}.
 
 \begin{table}[ht]
     \centering
@@ -154,24 +156,25 @@ measured in ADC counts per photoelectron (\si{\adc\per\pe}),
 and depends on the individual PMT, the input voltage,
 and environmental factors such as the temperature
 and the ambient magnetic field.
-Although the PMTs are shielded from ambient fields,
-and the temperature within each AD is relatively (but not entirely) stable,
-the gain for individual PMTs does drift over time.
+Although the PMTs were shielded from ambient fields,
+and the temperature within each AD was relatively (but not entirely) stable,
+the gain for individual PMTs did drift over time.
 To properly account for these changes,
-the PMT gain is measured continuously during data-taking
+the PMT gain was measured continuously during data-taking
 through a process called ``rolling gain.''
 
-Rolling gain is possible because of PMT dark noise,
-which consists almost exclusively of single photoelectron (SPE) signals.
-The readout window buffer for each trigger actually extends $\sim\SI{320}{\ns}$
-before the trigger criterion is met,
-so that every triggered readout contains a few hundred \si{\ns}
-of data where there were no physics events in the AD, known as the noise window.
-Dark noise recorded during the noise window is the most reliable source
+Rolling gain was possible because of PMT dark noise,
+which consisted almost exclusively of single photoelectron (SPE) signals.
+The readout window buffer for each trigger actually extended $\sim\SI{320}{\ns}$
+before the trigger criterion was met,
+so that every triggered readout contained a few hundred \si{\ns}
+of data where there were no physics events in the AD;
+this period was known as the noise window.
+Dark noise recorded during the noise window was a reliable source
 of SPE signals.
 For each PMT, the ADC values of signals obtained during the noise window
-are accumulated and fit to obtain the mean ADC counts per SPE,
-which is then interpreted as the gain for that PMT channel.
+were accumulated and fit to obtain the mean ADC counts per SPE,
+which was then interpreted as the gain for that PMT channel.
 The model for the fit is at its core a convolution of
 a Poisson distribution counting the number of PEs
 with a Gaussian distribution modeling the resolution of
@@ -190,23 +193,25 @@ $Q_i$ is the ADC value from a noise window,
 $\mu_i$ is the mean number of dark noise PEs per noise window for PMT $i$,
 $\overline{Q}_i^{\text{SPE}}$ is the mean \si{\adc\per\pe} (i.e.\ the gain),
 and $\sigma_{\text{SPE},i}$ is the resolution of the PMT-ADC system.
-$n$ is the number of PEs contributing to $Q_i$.
+The index $n$ is the number of PEs contributing to $Q_i$.
 The sum nominally runs from $0$ to $\infty$ but
-excludes $n=0$ because in that case there is no readout signal,
-and is truncated at $n=2$ because there are negligibly few dark noise events
+excludes $n=0$ because in that case there was no readout signal,
+and is truncated at $n=2$ because there were negligibly few dark noise events
 with more than \SI{1}{\pe}.
-For each PMT $i$, the values $\mu,\overline{Q}^{SPE}\text{, and }\sigma_{SPE}$ are fit
-to the dark noise distribution.
-The actual fit must account for the ADC pedestal (baseline),
+For each PMT $i$, the values $\mu,\overline{Q}^{SPE}\text{, and }\sigma_{SPE}$ were fit
+to the observed dark noise distribution.
+The actual fit must also account for the ADC pedestal (baseline),
 which is simply the value of the ADC output when there is no signal on the PMT.
-In order for the fit to be meaningful, dark noise hits must be accumulated
+In order for the fit to be statistically meaningful, dark noise hits must be accumulated
 for approximately six hours.
-The rolling gain is therefore sensitive to almost any conceivable
+The rolling gain was therefore sensitive to almost any conceivable
 environmental change that could substantially change the gain of any PMT.
 The average gain for the PMTs in each AD (measured in \si{\adc\per\pe})
 over time is shown in \cref{fig:gain}.
-The rolling gain is independently cross-checked during the weekly calibration runs
-using the LED source from the ACU to generate SPE samples.
+The rolling gain was independently cross-checked during the weekly
+(or, later in the experiment, monthly) calibration runs
+using the LED source from the ACU to generate SPE samples,
+as shown in the first ``monthly'' row of \cref{tab:calib_sched}.
 
 \begin{figure}
     \centering
@@ -219,28 +224,28 @@ using the LED source from the ACU to generate SPE samples.
 \section{Light yield calibration}
 \label{sec:light_yield_calib}
 
-The light yield characterizes the average
+The light yield characterized the average
 number of photoelectrons (PEs) observed by PMTs
 per energy deposited in the liquid scintillator
 by a physics event.
-It is measured both by deploying the \isotope[60]{Co} calibration source
+It was measured both by deploying the \isotope[60]{Co} calibration source
 during weekly calibrations
 and using a rolling method based on muon-induced spallation neutron
-captures on Gd (nGd), which accumulates sufficient statistics
-approximately once per day.
+captures on Gd (nGd), which accumulated sufficient statistics
+approximately once per day at the near halls and once per week at the far hall.
 
-Spallation neutrons are produced by muon interactions in the rock,
+Spallation neutrons were produced by muon interactions in the rock,
 water, and steel surrounding the ADs.
-When these neutrons penetrate into the GdLS,
-they will capture on a Gd nucleus, leading to the emission of $\gamma$-rays
+When these neutrons penetrated into the GdLS,
+they captured on a Gd nucleus, leading to the emission of $\gamma$-rays
 with energy totalling either \SI{7.95}{\MeV} or \SI{8.54}{\MeV},
 depending on the specific isotope of Gd.
-Spallation neutrons are identified by searching for events
+Spallation neutrons were identified by searching for events
 with energy between \SIlist{6;12}{\MeV} shortly after muon signals.
-A background dataset is obtained with an offset time window
+A background dataset was obtained with an offset time window
 and subtracted from the energy distribution of the spallation neutron dataset.
-The peaks from the two different isotopes overlap,
-so the distribution is then fit with a double Crystal Ball function.
+The peaks from the two different isotopes overlapped,
+so the distribution was then fit with a double Crystal Ball function.
 The (single) Crystal Ball function has the form
 \begin{equation}\label{eq:crystal_ball}
     f_\text{CB}(E;\alpha, n, E_0, \sigma) = N \times \begin{cases}
@@ -295,15 +300,15 @@ for all reconstructed energy values.
 The times returned by the TDC for each AD must be corrected
 to account for differences in cable length as well as
 manufacturing differences that could affect the PMT and TDC response times.
-Calibration corrections are determined using the LED source.
-Each pulse of the LED leads to a calibration trigger so that all PMTs are read out.
-The TDC value from each PMT is then converted to time using the
-time step value of \SI{1.5625}{\ns} and adjusted
+Calibration corrections were determined using the LED source.
+Each pulse of the LED was synchronized with a calibration trigger so that all PMTs were read out.
+The TDC value from each PMT was then converted to time using the
+TDC time step value of \SI{1.5625}{\ns} and adjusted
 to account for the expected time of flight
-of a photon produced in the center of the AD (where the LED is located)
+of a photon produced in the center of the AD (where the LED was located)
 to the given PMT.
 After this adjustment, all PMTs should agree on the time of the LED pulse.
-The time calibration correction is then computed
+The time calibration correction was then computed
 as the difference between an individual PMT's hit time
 (adjusted for time of flight)
 and the known pulse time of the LED.
@@ -368,18 +373,18 @@ will be left to \cite{reactor_flux2019}.
 \label{sec:channel_quality}
 
 Occasionally one or more components of the PMT high voltage power supply
-or data readout will malfunction or degrade,
+or data readout malfunctioned or produced degraded signals,
 leading to a substantial change in measured PMT gain.
-Anomalous gain readings are flagged during weekly data quality checks,
-and any problematic PMTs are disabled.
-Usually at most one PMT at a time is affected in any AD.
-The most common problem is a degraded high voltage supply,
-and is fixed by replacing the high voltage module.
-When any of the PMTs is disabled, the calorimetric response of the ADs
-is slightly altered.
+Anomalous gain readings were flagged during weekly data quality checks,
+and any problematic PMTs were disabled.
+Usually at most one PMT at a time was affected in any AD.
+The most common problem was a degraded high voltage supply,
+and was fixed by replacing the high voltage module.
+When any of the PMTs was disabled, the calorimetric response of the ADs
+was slightly altered.
 In particular, the number of photoelectrons collected
-will decrease by $\nicefrac{n}{192}$ (on average),
+decreased by $\nicefrac{n}{192}$ (on average),
 relative to a configuration with \num{192} functioning PMTs,
 with $n$ representing the number of disabled PMTs.
-A correction is applied to the light yield to compensate for this average behavior.
+A correction was applied to the light yield to compensate for this average behavior.
 
