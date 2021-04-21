@@ -1,19 +1,19 @@
 \chapter{Reconstruction}
 \label{ch:reconstruction}
 
-Each event within an AD is assigned a reconstructed position and energy
-that take into account the pattern of PMT hits, the total light emitted,
+Each event within an AD was assigned a reconstructed position and energy
+that accounted for the pattern of PMT hits, the total light emitted,
 scintillator and mineral oil optical characteristics,
-spatial nonuniformity, and scintillator and electronics nonlinearity.
-The reconstructed positions are used to compute the distance-time cut
+spatial nonuniformity, and electronics nonlinearity.
+The reconstructed positions were used to compute the distance-time cut
 to select IBD events as described in \cref{sec:DT_cut},
-and are also used as inputs to the energy reconstruction
+and were also used as inputs to the energy reconstruction
 to help correct for nonuniformities in the ADs' light collection
 as a function of position.
-The reconstructed energy is a critical input to the \thetaot{} analysis
+The reconstructed energy was a critical input to the \thetaot{} analysis
 due to the heavy reliance on energy cuts to select IBDs and reject background.
 The relative performance of ADs in reconstructing energy
-is particularly important, since inconsistencies in energy reconstruction
+was particularly important, since inconsistencies in energy reconstruction
 could lead to unaccounted-for differences in efficiency,
 which would bias the measurement of \thetaot.
 The position reconstruction procedure will be detailed in \cref{sec:reco_position}.
@@ -24,27 +24,27 @@ will be described in \cref{sec:reco_energy}.
 \section{Position}
 \label{sec:reco_position}
 
-Daya Bay uses two independent position reconstruction algorithms,
-both of which rely on the pattern of charge measurements across all PMTs in an AD.
+Daya Bay used two independent position reconstruction algorithms,
+both of which relied on the pattern of charge measurements across all PMTs in an AD.
 The reconstruction used in this \thetaot{} analysis is known as ``AdSimple;''
 the name was inherited from a predecessor algorithm \cite{adsimple1}.
 The other reconstruction is called ``AdScaled.''
 
-In AdScaled, a center-of-charge position is computed,
+In AdScaled, a center-of-charge position was computed,
 averaging over each PMT position weighted by the charge on the PMT,
 and a parametrized correction derived from simulation
-is applied to determine the reconstructed position \cite{ngd2016}.
-However, AdSimple was determined to be the best for use in the nH analysis.
+was applied to determine the reconstructed position \cite{ngd2016}.
+However, AdSimple was determined to be the better algorithm for use in the nH analysis
+\cite{adsimple_vs_adscaled_nh}.
 
 In AdSimple,
-each event's PMT charge pattern is compared to a library of \num{9600} templates
+each event's PMT charge pattern was compared to a library of \num{9600} templates
 generated using a Monte Carlo simulation.
-Each template represents one position on an $(r, \phi, z)$ grid
+Each template represented one position on an $(r, \phi, z)$ grid
 with \num{20} $r$ positions, \num{24} $\phi$ positions,
 and \num{20} $z$ positions.
-A $\chi^2$ is constructed to quantify the agreement between the measured charge pattern
+A $\chi^2$ was constructed to quantify the agreement between the measured charge pattern
 and each of the templates:
-
 \begin{equation}
     \chi^2(\textbf{r}_{\text{rec}}) = \sum_{i=1}^{192} -2\ln\frac{
         \text{Poisson}(N_i^{\text{obs}} \vert N_i^{\text{template}}(\textbf{r}_{\text{rec}}))
@@ -59,13 +59,13 @@ $N_{i}^{\text{template}}(\textbf{r}_{\text{rec}})$ is the prediction
 for PMT $i$ of the template for reconstructed position $\textbf{r}_{\text{rec}}$,
 and $\text{Poisson}(n\vert\mu)$ is the Poisson probability
 to observe $n$ counts given an expected value of $\mu$.
-Once the lattice point with the least $\chi^2$ is found,
-an interpolation is performed along each coordinate dimension $(r, \phi, z)$
+Once the lattice point with the least $\chi^2$ was found,
+an interpolation was performed along each coordinate dimension $(r, \phi, z)$
 as depicted in \cref{fig:interpolation}
 to extend the domain of the $\chi^2$ function to all positions within the AD,
 not just the lattice points.
-The value of $\textbf{r}_{\text{rec}}$ which minimizes $\chi^2$
-is used as the reconstructed position.
+The value of $\textbf{r}_{\text{rec}}$ which minimized $\chi^2$
+was used as the reconstructed position.
 The distribution of reconstructed positions
 for all single and double coincidences in EH1-AD1
 is shown in \cref{fig:position_map};
@@ -100,16 +100,15 @@ due to the flasher cuts described in \cref{sec:flashers}.
 \section{Energy}
 \label{sec:reco_energy}
 
-The reconstructed energy for an event is built up from the previously-described
+The reconstructed energy for an event was built up from the previously-described
 calibration values and the observed signals in each PMT.
-PMT observed ADC values are converted into charges using the gain
-and corrected for the single-channel nonlinearity.
-The total charge on all PMTs is converted into an energy value
+PMT observed ADC values were converted into charges using the gain
+and corrected for the single-channel nonlinearity (\cref{subsec:scnl}).
+The total charge on all PMTs was converted into an energy value
 using the light yield measured during calibration,
 and then corrected to account for any disabled PMTs
 and for variations in the detector response as a function of position and time.
 This process can be represented by the following formula:
-
 \begin{equation}
     E_{\text{rec}} = \left(
         \sum_i f_{\text{SCNL}}\left(\frac{Q_i}{\overline{Q}_i^{\text{SPE}}(t)}\right)
@@ -127,15 +126,14 @@ and $f_{\text{act}}(t)$ and $f_{\text{pos}}(\textbf{r}_{\text{rec}},t)$
 are the active PMT correction and nonuniformity correction,
 described below.
 
-The active PMT correction compensates for the loss in collected light
-when a PMT must be disabled during operation \cite{ngd2016}.
-On average, each PMT contributes $\nicefrac{1}{192}$ of the charge to each event.
-Thus if $n$ PMTs are disabled, the measured total charge must be increased by a factor
-
+The active PMT correction compensated for the loss in collected light
+when a PMT was disabled during operation \cite{ngd2016}.
+On average, each PMT contributed $\nicefrac{1}{192}$ of the charge to each event.
+Thus if $n$ PMTs were disabled, the apparent measured total charge must be increased by a factor
 \begin{equation}
     f_{\text{act}}(n) = \frac{192}{n}.
 \end{equation}
-The correction is time-dependent since the number of disabled PMTs changes with time.
+The correction was time-dependent since the number of disabled PMTs changes with time.
 
 The rest of this chapter will describe the
 nonuniformity correction $f_{\text{pos}}(\textbf{r}_{\text{rec}},t)$
@@ -148,16 +146,15 @@ and absolute energy scale (\cref{subsec:abs_energyscale}).
 \subsection{Nonuniformity correction}
 \label{subsec:nonuniformity}
 
-The nonuniformity correction ensures that events of a given physical energy
+The nonuniformity correction ensured that events of a given physical energy
 occurring in different regions of the AD
-are assigned the same reconstructed energy.
-Nonuniformities in reconstructed energy arise due to a variety of factors
+were assigned the same reconstructed energy.
+Nonuniformities in reconstructed energy arose due to a variety of factors
 including PMT light acceptance as a function of incident angle;
 optical properties of the scintillator, mineral oil, and acrylic vessels;
 and the orientation of PMTs with respect to the Earth's magnetic field.
-The nonuniformity correction is factored into corrections based on
-$r$ and $z$ position, azimuthal angle $\phi$, and time
-(which also has a radial dependence):
+The nonuniformity correction was factored into corrections based on
+$r$ and $z$ position, azimuthal angle $\phi$, and time:
 \begin{equation}
     f_{\text{pos}}(\textbf{r}_{\text{rec}},t) =
     f_{\text{pos}}(r, z)f_{\text{pos}}(\phi)f_{\text{pos}}(r, t).
@@ -176,13 +173,18 @@ and those with energy near \SI{2.2}{\MeV} were assumed to be nH.
 The peak value was extracted from a fit of the respective distributions
 for each pixel and for the entire sample.
 The nGd peak was fit with a double-Crystal Ball function \cite{cbfunction}
-(described in \cref{sec:light_yield_calib}),
-and the nH peak was fit with a calorimeter function \cite{calorimeter2016}
-(described in \cref{subsec:delayed}).
-A correction was then applied to each event's energy based on its position:
+(described in \cref{sec:light_yield_calib})
+and used to characterize pixels within the GdLS volume.
+The nH peak was fit with a calorimeter function \cite{calorimeter2016}
+(described in \cref{subsec:delayed})
+and used for the pixels within the LS volume.
+A correction was then constructed to apply to each event's energy based on its position:
 \begin{equation}
-    f_{\text{pos}}(r, z) = \frac{E_{\text{avg}}}{E_{\text{pixel}}(r,z)}.
+    f_{\text{pos}}(r, z) = \frac{E_{\text{avg}}}{E_{\text{pixel}}(r,z)},
 \end{equation}
+where $E_\text{avg}$ is the average fitted peak energy over all pixels,
+and $E_\text{pixel}(r, z)$ is the fitted peak energy for the pixel
+containing the point $(r, z)$.
 \Cref{fig:nonuniformity_map} shows the corrections $f_{\text{pos}}$ for EH1-AD1.
 All ADs had similar nonuniformities, but separate corrections were still computed
 for each AD.
@@ -293,21 +295,21 @@ The values for the resolution parameters are \cite{ngd2016}
 \subsection{Relative energy scale}
 \label{subsec:rel_energyscale}
 
-It is critical that all ADs measure the same energy when observing the same process.
-If an AD is biased and returns a higher or lower energy than the others,
+It was critical that all ADs measured the same energy when observing the same process.
+If an AD had been biased and returned a higher or lower energy than the others,
 then the IBD selection efficiency and spectral shape for that AD
-may be different than at the other ADs,
+could be different than at the other ADs,
 which would bias the measurement of \thetaot{} and $\Delta m^2_{32}$.
 The identicalness of the energy measurements is known as the relative energy scale,
-and it is determined by measuring the same process in all ADs and comparing
+and it was determined by measuring the same process in all ADs and comparing
 the reconstructed energy.
-The energy scale of the GdLS region is extremely well-constrained
+The energy scale of the GdLS region was extremely well-constrained
 by a thorough review of 13 calibration and intrinsic sources:
 $\gamma$-rays from \isotope[68]{Ge} and \isotope[60]{Co} calibration sources;
 neutron captures on Gd and H from both IBD and muon spallation;
 $\alpha$ decays of naturally-occuring \isotope[212]{Po},
 \isotope[214]{Po}, \isotope[215]{Po}, and \isotope[219]{Po};
-and $\gamma$-rays from \isotope[40]{K} and \isotope{208}[Tl].
+and $\gamma$-rays from \isotope[40]{K} and \isotope[208]{Tl}.
 \Cref{fig:gdls_rel_energyscale} shows the relative variations
 for all of these sources among the 8 ADs.
 The variations are all within \SI{+-0.2}{\percent}.
@@ -323,33 +325,33 @@ The variations are all within \SI{+-0.2}{\percent}.
     \label{fig:gdls_rel_energyscale}
 \end{figure}
 
-To include the LS region, the relative energy scale is studied
+To include the LS region, the relative energy scale was studied
 by comparing the energy of the neutron capture on H (nH)
 among the ADs.
 This technique is described in detail in \cref{subsec:delayed}
-and results in a less-constrained relative energy scale variation
+and resulted in a less-constrained relative energy scale variation
 of \SI{+-0.5}{\percent}, which is conservatively adopted
 as the energy scale uncertainty over the entire AD.
 The impact of this variation on the prompt energy cut efficiency
 and the prompt spectrum shape
-is studied using simulation
+was studied using simulation
 as described in \cref{sec:thu_toymc}.
 
 \subsection{Absolute energy scale}
 \label{subsec:abs_energyscale}
 
 The calibration and reconstruction procedures discussed so far
-only ensure that the ADs have nearly-identical energy responses,
-and that they all assign the lower-energy $\gamma$-ray peak from nGd capture
+only ensured that the ADs have nearly-identical energy responses,
+and that they all assigned the lower-energy $\gamma$-ray peak from nGd capture
 to have energy \SI{7.95}{\MeV}.
 Missing from the characterization is whether any other physical process
-is assigned an accurate energy by the ADs.
+was assigned an accurate energy by the ADs.
 That is, even if all ADs observing the same process
-measure the same value $E_{\text{rec}}$
-when the process has true energy $E_{\text{true}}$,
+measured the same value $E_{\text{rec}}$
+when the process had true energy $E_{\text{true}}$,
 how close is $E_{\text{rec}}$ to $E_{\text{true}}$?
 This question is particularly important when measuring the IBD prompt event energy,
-which is used to determine the original \nuebar{} energy $E_\nu$
+which was used to determine the original \nuebar{} energy $E_\nu$
 used to compute the survival probability (\cref{eq:p_sur_ee}).
 The deviation as a function of $E_{\text{true}}$ is known as
 the absolute energy scale or the absolute energy nonlinearity.
@@ -435,7 +437,7 @@ which were used to produce effective nonlinearity models for $\gamma$-rays.
 \subsection{Single channel non-linearity correction}
 \label{subsec:scnl}
 
-The electronics used to digitize the PMT signals have intrinsic non-linearities,
+The electronics used to digitize the PMT signals had intrinsic non-linearities,
 dominated by the summing circuit's performance
 when faced with multiple overlapping PMT signals.
 To precisely characterize the performance of the electronics,
@@ -482,20 +484,20 @@ to reduce the effect of the saturated channels \cite{scnl_slides}.
 
 The two nonlinearity curves (high-gain and low-gain) were used
 to construct a table of corrections
-that convert the measured FEE charge on each channel
+that converted the measured FEE charge on each channel
 to the average charge measured for similar events by the FADC.
 This correction was applied independently to each channel
 and was known as the ``single-channel nonlinearity correction'' or SCNL.
 The correction values are displayed as a curve in \cref{fig:scnl_correction};
 the correction was applied as
 \begin{equation}\label{eq:scnl}
-    f_\text{SCNL}(N_\text{PE}) = \frac{N_\text{obs,\,FEE}}{\text{FEE/FADC}},
+    f_\text{SCNL}(N_\text{obs,\,FEE}) = \frac{N_\text{obs,\,FEE}}{\text{FEE/FADC}},
 \end{equation}
 where FEE/FADC is the correction value from \cref{fig:scnl_correction}.
 A residual nonlinearity of \SI{0.5}{\percent}
 was attributed to the large event-by-event variations
 from the average (correction) value,
-especially when the charge on a channel is $\lesssim\SI{1}{\pe}$.
+especially when the charge on a channel was $\lesssim\SI{1}{\pe}$.
 The residual nonlinearity for a single channel is shown in \cref{fig:scnl_residual}.
 
 \begin{figure}
