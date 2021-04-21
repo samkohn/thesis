@@ -1,24 +1,25 @@
 \chapter{Event selection and backgrounds}
 \label{ch:event_selection}
 
-Data-taking at Daya Bay is broken into data runs
+Data-taking at Daya Bay was divided into data runs
 lasting approximately 1 day.
-The precise start and end times are arbitrary
-and are determined by the individual collaborator
+The precise start and end times were arbitrary
+and were determined by the individual collaborator
 on shift duty each day.
-Each experimental hall (EH) saves data into independent runs.
-Within each run, data files are saved containing 10 minutes' worth of data.
-Approximately twice per year, new data is processed
+Each experimental hall (EH) saved data into independent runs.
+Within each run, data files were saved containing 10 minutes' worth of data
+at the near halls and 25 minutes' worth at the far hall.
+Approximately twice per year, new data was processed
 using the calibration and reconstruction algorithms from
 \cref{ch:calibration,ch:reconstruction}.
 This data processing procedure is known as production, and the resulting datasets
 are known as production datasets.
-If the calibration or reconstruction algorithms are altered in any way,
-the next production will re-process all of the historical data,
+If the calibration or reconstruction algorithms were altered in any way,
+the next production re-processed all of the historical data,
 so that within a production dataset, all of the data was processed
 with exactly the same software.
 Since 2018, the calibration and reconstruction algorithms used in production have been
-frozen so that new productions only need to process new data.
+frozen so that new productions only needed to process new data.
 New algorithms are being developed that may be used
 in a final data production over the experiment's entire data sample
 from 24 December 2011 through 12 December 2020.
@@ -27,10 +28,10 @@ that is, the second production in 2017,
 contsisting of data runs between 24 December 2011
 and 30 August 2017.
 
-The event selection procedure applies a series of cuts to the data stream
+The event selection procedure applied a series of cuts to the data stream
 to steadily increase the purity of nH-IBDs in the remaining data.
-At each step of the event selection, it is critical that
-differences in cut efficiency between the ADs are
+At each step of the event selection, it was critical that
+differences in cut efficiency between the ADs were
 minimized and quantified so that any observed near-far difference
 can be attributed to \nuebar{} oscillations.
 The removal of muons from the data sample, and the additional veto window
@@ -44,18 +45,17 @@ the time separation of nearby events,
 and the double-coincidence dataset is identified.
 \Cref{sec:DT_cut} describes the cuts on coincidence distance and coincidence time
 between the prompt and delayed sub-events that form each coincidence.
-The characterization and statistical subtraction of
+The characterization of
 accidental coincidences of uncorrelated events
-are described in \cref{sec:acc}.
+is described in \cref{sec:acc}.
 \Cref{sec:energy_cuts} details the energy cuts
 which remove additional background events
 and nGd-IBD events, where the neutron captured on Gd rather than H.
 A summary of the event selection criteria is given in \cref{tab:cut_criteria}.
 The remaining backgrounds---muon-correlated unstable isotopes,
-fast neutrons, and AmC neutrons---
-are considered irreducible and are statistically subtracted
-from the final energy spectra and rates
-in \cref{sec:correlated_bg}.
+fast neutrons, \amc{} correlated events, and radiogenic neutrons---%
+were considered irreducible;
+they are characterized in \cref{sec:correlated_bg}.
 
 \newcommand{\seltabwidth}{6.1cm}
 \ctable[
@@ -125,51 +125,51 @@ pos = ht
 \section{Muon veto}
 \label{sec:muonveto}
 
-The Daya Bay experimental halls are located underground
+The Daya Bay experimental halls were located underground
 to help shield the ADs from muons produced in the upper atmosphere by cosmic rays.
 However, the overburdens of \SIlist{250;265;860}{\mwe}
-for EH1, EH2, and EH3, respectively, do not block all of the muons.
-When a cosmic-ray muon enters the LS or GdLS volume of the AD,
-it creates a scintillation signal (and a smaller Cherenkov radiation signal)
-that is proportional to the distance traveled
+for EH1, EH2, and EH3, respectively, did not block all of the muons.
+When a cosmic-ray muon entered the LS or GdLS volume of the AD,
+it created a scintillation signal (and a smaller Cherenkov radiation signal)
+that was proportional to the distance traveled
 through the AD.
 Given that in LS and GdLS, $\nicefrac{dE}{dx} \approx \SI{2}{\mev\per\cm}$,
-even a muon that only traverses a small distance across the corner of an AD could easily deposit
+even a muon that only traversed a small distance across the corner of an AD could easily deposit
 more energy than the most energetic IBD interaction from a reactor \nuebar,
 thus motivating event energy as a convenient discriminant for identifying muon interactions.
-Additional muon tagging is provided by the water pool
+Additional muon tagging was provided by the water pool
 surrounding the ADs in each EH (\cref{sec:wp}).
-These pools are divided by opaque Tyvek sheets into inner and outer regions
-which are monitored by PMTs for Cherenkov radiation from muons.
+These pools were divided by opaque Tyvek sheets into inner and outer regions
+which were monitored by PMTs for Cherenkov radiation from muons.
 
 In addition to themselves creating background signals in the ADs
 from their own energy deposits,
-muons also create other sources of background.
-A muon which enters an AD can produce
+muons also created other sources of background.
+A muon which entered an AD could produce
 the rare unstable isotopes \li{} and \he{} (\cref{subsec:li9}).
-These isotopes can decay through processes that exactly mimic the IBD signature.
-A muon can instead interact with the rock surrounding the EHs
+These isotopes could decay through processes that exactly mimic the IBD signature.
+A muon could instead interact with the rock surrounding the EHs
 and generate energetic ``fast'' neutrons,
-which can penetrate the water shield and stainless steel vessel surrounding the ADs
+which could penetrate the water shield and stainless steel vessel surrounding the ADs
 (\cref{subsec:fastn}).
-If the fast neutron collides with a nucleus (particularly \isotope[1]{H})
+If the fast neutron were to collide with a nucleus (particularly \isotope[1]{H})
 inside the LS or GdLS,
 the recoil could produce a prompt signal,
-and the subsequent capture on H or Gd would produce
+and the subsequent neutron capture on H or Gd would produce
 a delayed signal, again mimicking the IBD double coincidence signature.
-Since these processes are highly correlated with muons,
-an appropriate set of veto windows can greatly reduce their contamination of the data.
+Since these processes were highly correlated with muons,
+an appropriate set of veto windows greatly reduced their contamination of the data.
 
-The muon veto window procedure consists of four independent criteria
+The muon veto window procedure consisted of four criteria
 for classifying muons.
-Most muons reaching the ADs cause significant PMT signals in the inner and outer water shields.
+Most muons reaching the ADs caused significant PMT signals in the inner and outer water shields.
 Any event that triggered $>12$ PMTs in the inner water shield
-is an inner water shield muon,
+was an inner water shield muon,
 and any event triggering $>15$ PMTs in the outer wanter shield
-is classified as an outer water shield muon.
-A veto of \SI{400}{\micro\second} is applied to the data following
+was classified as an outer water shield muon.
+A veto of \SI{400}{\micro\second} was applied to the data following
 both types of water shield muons.
-This veto is long enough to allow most (all but $\sim e^{-2}$)
+This veto was long enough to allow most (all but $\sim e^{-2}$)
 fast neutrons that penetrate into an AD to be captured by H or Gd
 before the end of the veto window.
 Since the characteristic time between water shield muons at the near halls
@@ -179,30 +179,30 @@ loss of data efficiency.
 Both of these criteria have essentially \SI{100}{\percent} efficiency
 in detecting muons.
 
-Since muons deposit much more energy in ADs than most other processes,
-a simple energy cut is used to identify so-called AD muons.
-Any AD signal with a reconstructed energy of \SI{>20}{\mev}
-is considered to be an AD muon, and is followed by a veto window
+Since muons deposited much more energy in ADs than most other processes,
+a simple energy cut was used to identify so-called AD muons.
+Any AD signal with a reconstructed energy greater than \SI{20}{\mev}
+was considered to be an AD muon, and was followed by a veto window
 of \SI{800}{\micro\second}.
-Some muons deposit significantly more energy than
+Some muons deposited significantly more energy than
 even the maximum expected for a minimum-ionizing particle in LS
 traversing the entire AD, approximately
 $\SI{6}{\meter}\times\SI{2}{\mev\per\cm}=\SI{1200}{\mev}$.
-These events are assumed to be caused by muons which create particle showers,
+These events were assumed to be caused by muons which created particle showers,
 explaining the additional energy deposits.
-These particle showers produce a much higher rate of
+These particle showers produced a much higher rate of
 \li{} and \he{}.
 Because \li{} in particular has a long lifetime of \SI{257.2}{\milli\second},
-the veto window for showering muons is extended to \SI{1}{\second}
+the veto window for showering muons was extended to \SI{1}{\second}
 to allow all but $\sim e^{-4}$ of the \li{} to decay before the veto window ends.
 The residual \li{} and \he{} events in the dataset are characterized
-and subtracted in \cref{subsec:li9}.
+in \cref{subsec:li9}.
 
-The muon veto also affects the coincidence selection
+The muon veto also affected the coincidence selection
 described in \cref{sec:coincidence}.
-Briefly, if a candidate prompt event is followed
+Briefly, if a candidate prompt event was followed
 by both a candidate delayed event and a muon event,
-then the coincidence pair is rejected as being too close to a muon event.
+then the coincidence pair was rejected as being too close to a muon event.
 This avoids an unwanted correlation between muon rate
 and coincidence distance-time (DT) efficiency (\cref{sec:DT_cut}).
 Because of this implicit pre-muon veto window,
@@ -214,14 +214,14 @@ and a showering muon vetoes $\SI{1}{\second}+\tc$
 (\SI{1900}{\us}, \SI{2300}{\us}, and \SI{1.0015}{\s}, respectively,
 for $\tc=\SI{1500}{\us}$).
 
-When performing the coincidence selection, no events which are vetoed by muons
-are considered.
+When performing the coincidence selection, no events which were vetoed by muons
+were considered.
 Therefore, the measured rate of IBD events
 must be corrected by an effective efficiency $\varepsilon_\mu$
 accounting for the IBD events which were rejected along with the muon veto.
 $\varepsilon_\mu$ is simply the fraction of DAQ time
-that is not vetoed by any muon veto windows (including the pre-muon veto).
-It is computed for each run as
+that was not vetoed by any muon veto windows (including the pre-muon veto).
+It was computed for each run as
 \begin{equation}
     \varepsilon_\mu = \frac{\sum_i \Delta t_i}{t_{\text{DAQ}}},
 \end{equation}
@@ -230,36 +230,36 @@ between the first and last event in a run,
 $i$ runs over all time intervals \textit{not} vetoed by a muon,
 and $\Delta t_i$ is the length of interval $i$.
 $\varepsilon_\mu$ should not be confused
-with the fraction of muons which are identified by the muon criteria,
+with the fraction of muons which were identified by the muon criteria,
 which is \SI{100}{\percent} \cite{muonsystem2015}.
 The muon veto efficiency over time for the near and far halls
 is shown in \cref{fig:veto_eff} for each data run.
 
-The effective muon rate $R_\mu$ is computed for each run
+The effective muon rate $R_\mu$ was computed for each run
 by counting the number of muon veto windows
 after combining overlapping windows, and dividing by the muon-corrected
 livetime $\varepsilon_\mu t_{\text{DAQ}}$.
-Overlapping windows are combined and counted as a single ``muon event.''
-This effective quantity is useful
+Overlapping windows were combined and counted as a single ``muon event.''
+This effective quantity was useful
 because when computing the counting statistics of single and coincident events
 (\cref{sec:acc}),
 the relevant metrics are the time until the next veto window begins
 and the time since the last veto window ended,
 neither of which depends on the length of a veto window
 or the number of overlapping muon vetos.
-The following scenarios can lead to overlapping muon veto windows:
+The following scenarios could lead to overlapping muon veto windows:
 \begin{itemize}
-    \item A single physical muon can create multiple muon events
+    \item A single physical muon could create multiple muon events
         that satisfy up to three of the four muon criteria,
-        if that muon creates signals in the inner and outer water shields,
-        and also enters an AD and deposits at least \SI{20}{\mev} worth of scintillation light.
+        if that muon created signals in the inner and outer water shields,
+        and also entered an AD and deposits at least \SI{20}{\mev} worth of scintillation light.
         Such a muon would be an inner water shield muon,
         an outer water shield muon, and an AD
         (or showering) muon.
-    \item Multiple muons can randomly occur in quick succession,
-        such that the second muon occurs within the veto window of the first.
+    \item Multiple muons could randomly occur in quick succession,
+        such that the second muon occurred within the veto window of the first.
     \item One muon could occur shortly after the end of a previous veto window,
-        so that the pre-muon veto of the later muon overlaps with the
+        so that the pre-muon veto of the later muon overlapped with the
         post-muon veto of the earlier one.
         Any candidate event occuring between the two muons would be vetoed.
 \end{itemize}
@@ -355,26 +355,23 @@ Five distinct signatures were observed for flasher events.
     \item ``Nominal flashers.'' Photons activated the flashing PMT's own photocathode,
         creating a large signal.
         Other photons traversed the scintillating region and were incident
-        on the PMT's directly across the AD, creating additional large signals.
+        on the PMTs directly across the AD, creating additional large signals.
         Other PMTs observed only small signals.
         Additionally, the shape of the voltage (charge) pulse from the
         flashing PMT was broader than an ordinary signal.
     \item ``2-inch flashers.'' The three 2-inch PMTs in each AD
-        used to monitor the scintillators also caused flasher events.
+        used to monitor the scintillator and mineral oil quality also caused flasher events.
         The signature was a large signal in one of those PMTs.
     \item ``Top-ring flashers.'' Groups of signals were observed
         with reconstructed positions far above the top ring of PMTs
         and outside the scintillating region.
         The physical origin of these flashers is not well understood,
         but one possibility is that light from a flashing PMT
-        escapes the base of the PMT
-        and passes through a small gap between the radial shield
+        could escape the base of the PMT
+        and pass through a small gap between the radial shield
         and the reflector at the top of the ADs.
-        The gap is much smaller at the bottom of the ADs,
+        The corresponding gap at the bottom of the ADs was much smaller,
         explaining the absence of bottom-ring flashers.
-        Another possibility is that these events
-        were 2-inch PMTs flashing at a lower energy,
-        thus evading the cut used to reject 2-inch flashers.
     \item ``Large-$R$ flashers.'' Groups of signals were observed
         with reconstructed positions far outside the scintillating region.
         The physical origin of these flashers is not well understood.
@@ -385,7 +382,7 @@ Five distinct signatures were observed for flasher events.
         Their physical origin is poorly understood.
 \end{itemize}
 
-Flasher events occasionally generated enough light to be categorized as muon-like.
+Flasher events occasionally generated enough light to be categorized as muon-like events.
 Events which satisfied both a muon criterion and a flasher criterion
 were conservatively treated as muons.
 
@@ -395,13 +392,13 @@ because the latter three types were accounted for
 as part of the uncorrelated background (\cref{sec:acc}).
 Additional efforts within the Daya Bay collaboration
 to characterize the remaining so-called residual flashers
-revealed that these events are not purely uncorrelated,
+revealed that these events were not purely uncorrelated,
 and so could not be fully accounted for as part of the uncorrelated background.
 In particular, the distribution of time delays
 between consecutive residual flashers
-shows that they are anti-correlated in time:
+showed that they were anti-correlated in time:
 as shown in \cref{fig:flasher_anticorr},
-a residual flasher never flashes twice within $\lesssim \SI{0.7}{\s}$.
+a residual flasher never flashed twice within $\lesssim \SI{0.7}{\s}$.
 The energy distribution of the residual flasher events
 limited their relevance to only the nH analysis; the nGd analysis was not affected.
 The nominal and 2-inch flasher cuts are described in \cref{subsec:flash_nominal}.
@@ -427,7 +424,7 @@ The remaining flasher cuts are described in \cref{subsec:flash_resid}.
         Left: The distribution of time delays
         of a subset of residual flashers in EH3-AD1.
         Right: The same distribution, zoomed in to shorter delays.
-        The minimum coincidence time of a residual flasher pair is always
+        The minimum coincidence time of a residual flasher pair was always
         $\gtrsim \SI{0.7}{\s}$.
         Plots taken from \cite{beda_resid_flasher_dt}.
     }
@@ -585,19 +582,20 @@ as illustrated in \cref{fig:hidden_flasher_cut}
 \section{Coincidence selection}
 \label{sec:coincidence}
 
-Events are grouped based on the number of other events
+Events were grouped based on the number of other events
 occuring within a given coincidence time \tc.
 Each event with reconstructed energy above \SI{1.5}{\mega\electronvolt}
-is identified as an ``AD event''
-and is a potential coincidence candidate.
+was identified as an ``AD event''
+and was a potential coincidence candidate.
 Because of the nonzero length of the DAQ readout window,
 AD events occurring closer together than \SI{1}{\micro\second}
-are not necessarily distinct physical events (see \cref{sec:daq}).
+were not necessarily distinct physical events (see \cref{sec:daq}).
 Consequently, during the coincidence grouping process,
 the coincidence search window begins \SI{1}{\micro\second}
 after the initial AD event.
-Coincidence groups are constructed by repeating the following steps
-(illustrated in \cref{fig:timeline_examples}) until the data file is exhausted \cite{thucoinc2015}:
+Coincidence groups were constructed by repeating the following steps
+(illustrated in \cref{fig:timeline_examples})
+for all the data in a given data file \cite{thucoinc2015}:
 
 \begin{enumerate}
     \item Find the next AD event.
@@ -626,7 +624,7 @@ Coincidence groups are constructed by repeating the following steps
 \end{figure}
 
 Because of the initial \SI{1}{\micro\second} gap,
-the actual time interval covered by any given coincidence window is
+the actual time interval covered by any given coincidence window was
 $\tc - \SI{1}{\micro\second}$.
 This analysis uses a coincidence search window of $\tc = \SI{1.5}{\milli\second}$.
 
@@ -639,35 +637,35 @@ the first AD event starts a new coincidence window
 that includes three other AD events,
 resulting in a coincidence group of multiplicity 4, or a \fold{4} coincidence.
 
-If a muon event occurs within a coincidence window,
-then that coincidence window is vetoed.
-Therefore every muon has an implicit veto window
-that excludes prompt events within \tc{} of the muon.
+If a muon event occurred within a coincidence window,
+then that coincidence window was vetoed.
+Therefore every muon had an implicit veto window
+that excluded prompt events within \tc{} of the muon.
 This is demonstrated by Window 2 of \cref{fig:timeline_examples}.
-Note that if the prompt event occurs earlier than \tc{} before a muon,
+Note that if the prompt event occurred earlier than \tc{} before a muon,
 then subsequent events within the coincidence window
-are allowed to occur inside of the implicit muon veto window.
-Only prompt events are vetoed by the implicit veto window.
+were allowed to occur inside of the implicit muon veto window.
+Only prompt events were vetoed by the implicit veto window.
 
-The veto window after a muon also impacts the coincidence selection process.
+The veto window after a muon also impacted the coincidence selection process.
 Window 3 of \cref{fig:timeline_examples} shows a coincidence window
 whose prompt event is preceded by other recent AD events.
 However, those AD events fall within the previous muon veto window,
 so they are ignored for the purposes of forming coincidence groups.
 
-If a prompt event has no subsequent AD events within \tc, it is
+If a prompt event had no subsequent AD events within \tc, it was
 still a valid group, and is referred to as a \fold{1} coincidence.
 Note that \fold{1} coincidences are somewhat but not strictly isolated
 from other AD events.
-Certainly there are no other AD events
+Certainly there were no other AD events
 within \tc{} \textit{after} the prompt event,
-but there may be a \textit{preceding} AD event within \tc{}
-if that event is part of a coincidence window
-which ends before the prompt event in question.
+but there may have been a \textit{preceding} AD event within \tc{}
+if that event was part of a coincidence window
+which ended before the prompt event in question.
 Window 4 of \cref{fig:timeline_examples} demonstrates this property:
 there are no other AD events within Window 4,
 but there is a previous AD event within \tc{} of the start of Window 4.
-Given the event rates at Daya Bay, this only happens in $\sim10^{-4}$
+Given the event rates at Daya Bay, this only happened in $\sim10^{-4}$
 of single events.
 This probability is derived in \cref{ap:singlesformula} as $P_b$.
 
