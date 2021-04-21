@@ -7,7 +7,8 @@ Standard Model of particle physics and beyond.
 Neutrinos are currently the only particles exhibiting properties
 not explained by the Standard Model
 which can be studied---not just searched for---on Earth in a laboratory setting.
-This chapter will introduce the history of neutrinos (\cref{sec:history});
+This chapter will introduce the history of neutrinos
+up to the discovery of neutrino oscillation (\cref{sec:history});
 describe the modern theoretical understanding of neutrino oscillation
 (\cref{sec:osc_intro});
 and present the experimental techniques used to study neutrino oscillation,
@@ -26,10 +27,11 @@ of a nucleus $N$ with charge $Z$ and atomic mass $A$:
 \begin{equation}\label{eq:old_beta}
     N(A, Z) \to N(A, Z+1) + \beta^-
 \end{equation}
-Conservation of energy uniquely determines the energy
+Conservation of energy should have uniquely determined the energy
 of the outgoing $\beta$ particles for a given decay,
 thus producing a monoenergetic spectrum,
 as had been observed for $\alpha$ and $\gamma$ decays.
+The observed continuous spectrum conflicted with this prediction.
 In 1931, rather than sacrifice the principle of conservation of energy,
 Pauli proposed the introduction of a light neutral particle
 produced during $\beta$ decay that escaped detection
@@ -52,10 +54,15 @@ is actually the electron antineutrino (\nuebar).
 Additionally, the discoveries of the proton and neutron
 led to the conclusion that $\beta$ decay was the result of
 the decay of a single neutron rather than of the nucleus as a whole.
+Much later, the discovery of quarks and electroweak vector bosons
+further refined the $\beta$ decay process.
 The modern understanding of $\beta$ decay is therefore
-\begin{equation}\label{eq:beta_modern}
-    n \to p + e^- + \nuebar.
-\end{equation}
+\begin{align}\label{eq:beta_modern}
+    \begin{split}
+        n &\to p + e^- + \nuebar \text{ (nucleon level)} \\
+        udd &\to uud + W^- \to uud + e^- + \nuebar \text{ (parton level)}.
+    \end{split}
+\end{align}
 This process and its equivalents for $\mu$ and $\tau$
 provide the vast majority of opportunities for
 experimental investigation of the neutrino to this day.
@@ -81,10 +88,10 @@ and eventually capture on a Cd nucleus,
 triggering the emission of several $\gamma$ rays totalling \SI{9}{\MeV},
 detected as a delayed event by the liquid scintillator.
 IBD events were identified by the coincidence of a prompt and delayed event
-at a rate of \SI[per-mode=reciprocal]{2.88\pm0.22}{\per\hour},
+at a rate of \num{2.88\pm0.22} per hour,
 only present when the reactor was powered on.
 This experiment was the earliest progenitor of the Daya Bay experiment,
-which also observes reactor \nuebar{} using a liquid scintillator detector
+which also observed reactor \nuebar{} using a liquid scintillator detector
 and the principle of the prompt-delayed coincidence for IBD events.
 
 \subsection{Difference between \texorpdfstring{$\nu$ and $\bar{\nu}$}{nu and nu-bar}}
@@ -110,7 +117,7 @@ Thus it was concluded that $\nu\neq\bar{\nu}$.
 Davis noted in the conclusion of his report that the same experimental setup
 could be used to detect neutrinos produced by the sun.
 This experiment will be discussed later as the earliest evidence
-for neutrino oscillations.
+for neutrino mixing.
 
 \subsection{Helicity of the neutrino}
 \label{subsec:helicity}
@@ -125,11 +132,11 @@ The kinematics of the reaction chain
           & \isotope[152]{Sm}^*(1^-) \to \isotope[152]{Sm}(0^+) + \gamma
     \end{split}
 \end{align}
-ensure that if the final $\gamma$-ray is emitted
+ensured that if the final $\gamma$-ray was emitted
 in exactly the opposite direction as the emitted $\nu_e$,
-then they will have the same helicity.
+then they would have the same helicity.
 Since those $\gamma$-rays of interest
-are also maximally Doppler boosted by the recoil of the $\isotope[152]{Sm}^*(1^-)$,
+were also maximally Doppler-boosted by the recoil of the $\isotope[152]{Sm}^*(1^-)$,
 a system was devised to only accept the highest-energy $\gamma$-rays.
 Specifically, only the $\gamma$-rays which had been Doppler boosted
 would be able to excite the same nuclear state in a separate sample of
@@ -145,8 +152,8 @@ would be detected (\cref{fig:lampshade}).
 The helicity of the emitted $\gamma$ rays was measured
 using an electromagnet surrounding the \isotope[152m]{Eu} source.
 When the electrons in the magnet were polarized in a particular direction,
-only $\gamma$ rays with the opposite polarization (spin)
-would Compton scatter off them.
+only $\gamma$ rays with the opposite polarization
+would Compton-scatter off them.
 By comparing the number of resonant scatters $N_\uparrow$
 using an upward-pointing magnetic field
 with the number $N_\downarrow$ from a downward-pointing field,
@@ -155,9 +162,9 @@ With the field pointing up, the polarized electron spins point down,
 and therefore a downward-traveling $\gamma$ ray
 would only scatter if it had a upward-pointing spin, i.e. helicity $-1$.
 Conversely, downward-traveling $\gamma$ rays
-with helicity $-1$ are preferentially transmitted
-when the field is pointing down.
-Only the transmitted $\gamma$ rays have the opportunity to
+with helicity $-1$ were preferentially transmitted
+when the field was pointing down.
+Only the transmitted $\gamma$ rays had the opportunity to
 resonantly scatter off the $\text{Sm}_2\text{O}_3$
 and be detected by the NaI counter.
 A measured excess of
@@ -262,7 +269,7 @@ with the non-neutrino beam products attenuated
 by \SI{13.5}{\m} of steel shielding.
 In a universe with only one type of neutrino (and one type of antineutrino),
 the neutrino beam would have produced equal quantities
-of electrons and muons.
+of electrons and muons upon interaction with the target.
 After an exposure of \num{3.48e17}~protons ($\sim300$~hours),
 a total of 113 events were observed,
 of which 56 were identified as muon-like single-track or vertex events
@@ -288,8 +295,9 @@ predicted the existence of a weak neutral current (NC)
 carried by a massive boson named the Z,
 which would not change neutrinos into charged leptons and vice versa.
 Thus a signature of a neutral current interaction involving neutrinos
-would be a single visible interaction product (e.g. an electron or nucleon),
-with no visible incoming particle and no additional visible interactin products.
+would be the detection only of the particle off which the neutrino scattered,
+without any visible incoming particle,
+and without an additional charged lepton of the same flavor as the neutrino.
 
 In 1973, the Gargamelle neutrino experiment at CERN
 published observations of neutrino interactions
@@ -305,8 +313,8 @@ to identify events of the form
 \begin{equation}\label{eq:leptonic_neutral_current}
     \nu_\mu(\bar{\nu}_\mu) + e^- \to \nu_\mu(\bar{\nu}_\mu) + e^-.
 \end{equation}
-After scanning \num{375000} $\nu$-mode interaction images
-and \num{360000} $\bar{\nu}$-mode images,
+After \num{375000} $\nu$-mode interaction images
+and \num{360000} $\bar{\nu}$-mode images were scanned,
 one NC event was found in a $\bar{\nu}$-mode image,
 shown in \cref{fig:gargamelle}.
 
@@ -357,8 +365,7 @@ This would provide experimental validation of the Standard Solar Model (SSM),
 which describes the nuclear fusion processes
 that are the source of the sun's energy.
 The SSM predictions for neutrino fluxes (\cref{fig:solarflux})
-were computed by Bahcall,
-who worked closely with Davis \cite{bahcall2004}.
+were computed by Bahcall \cite{bahcall2004}.
 A tank of \SI{610}{\tonne} of $\text{CCl}_4$
 located in the Homestake gold mine in South Dakota
 was used as a target for the reaction
@@ -404,7 +411,7 @@ the prediction and observation had evolved to \SI{5.8\pm2.2}{\SNU}
 and \SI{2.1\pm0.3}{\SNU}, respectively,
 and the discrepancy had become known as the ``solar neutrino problem.''
 The two remaining routes for resolving the discrepancy were
-(1) errors in the SSM, and (2) that neutrinos ``oscillate or decay''
+(1) errors in the SSM, or (2) that neutrinos oscillate or decay
 between their production in the sun and their detection on Earth \cite{davis1985}.
 
 \begin{figure}
@@ -436,7 +443,7 @@ but using the reaction
     \isotope[71]{Ga} + \nu_e \to \isotope[71]{Ge} + \beta^-,
 \end{equation}
 which has a substantially lower threshold
-of \SI{0.233}{\MeV} (cf. \SI{0.814}{\MeV} for \isotope[37]{Cl})
+of \SI{0.233}{\MeV} (cf.\ \SI{0.814}{\MeV} for \isotope[37]{Cl})
 and thus is sensitive not just to \isotope[8]{B} neutrinos
 but also those from \isotope[7]{Be} and the $pp$ and $pep$ fusion cycles in the sun.
 The SAGE and GALLEX/GNO experiments observed deficits of approximately \SI{50}{\percent}
@@ -486,7 +493,7 @@ The three interaction categories for SNO were
                                \text{ (Phase II), or} \\
                                & n + \isotope[3]{He} \to
                                \isotope[3]{H} + p \text{ (Phase III)}\\
-        \nu_x + e^- & \to \nu_x + e^- \text{ (elastic scatter (ES))}
+        \nu_x + e^- & \to \nu_x + e^- \text{ (elastic scatter (ES))}.
     \end{split}
 \end{align}
 In these reactions $\nu_x$ means any flavor of neutrino ($x = e,\mu,\tau$).
@@ -539,7 +546,7 @@ described in \cref{subsec:theory}.
 \subsection{The atmospheric neutrino anomaly}
 \label{subsec:atmospheric_anomaly}
 
-Though the earliest signs of neutrino disappearance and oscillations
+Though the earliest signs of neutrino disappearance and oscillation
 were discovered in the solar neutrino sector,
 a parallel history exists in observations of atmospheric neutrinos.
 Atmospheric neutrinos are secondary decay products of
@@ -635,7 +642,8 @@ respectively.
 each oscillation parameter
 except for \thetaot{}, which is the focus of \cref{sec:experiment_intro}.
 When describing the phenomenology of Majorana neutrinos
-as well as the matter effect that governs solar neutrino behavior,
+as well as the matter effect that governs solar neutrino behavior
+(\cref{subsec:solar_parameters}),
 the more general phrase ``neutrino mixing''
 is often used instead of ``neutrino oscillation''
 since in both of these systems
@@ -748,7 +756,7 @@ A more general wave-packet formalism avoids these concerns
 at the expense of additional mathematical machinery,
 and reaches the same conclusions for all current experiments.
 For a detailed discussion of the wave-packet formalism see
-\cite[Ch.~8 of][]{neutrino_textbook}.
+Ch.~8 of \cite{neutrino_textbook}.
 
 Continuing on by applying \cref{eq:msq_approx} to \cref{eq:oscprob_general}
 with the ultrarelativistic approximation $t \approx L$
@@ -890,13 +898,13 @@ The probability of a neutrino produced in the $\ket{\nu_\alpha}$ state
 being observed as $\nu_\beta$ is then
 \begin{equation}\label{eq:2d_osc}
     P_{\alpha\to\beta} = 4\cos^2\theta\sin^2\theta
-    \sin^2\left(\Delta m^2_{ij}\frac{L}{4E}\right)
-    = \sin^22\theta \sin^2\left(\Delta m^2_{ij}\frac{L}{4E}\right),
+    \sin^2\left(\Delta m^2\frac{L}{4E}\right)
+    = \sin^22\theta \sin^2\left(\Delta m^2\frac{L}{4E}\right),
 \end{equation}
 and the survival probability is
 \begin{equation}\label{eq:2d_p_sur}
     P_{\alpha\to\alpha} = 1 -
-    \sin^22\theta \sin^2\left(\Delta m^2_{ij}\frac{L}{4E}\right),
+    \sin^22\theta \sin^2\left(\Delta m^2\frac{L}{4E}\right),
 \end{equation}
 satisfying $P_{\alpha\to\beta} + P_{\alpha\to\alpha} = 1$ as expected.
 These equations provide an intuitive meaning to the paramter $\theta$:
@@ -940,7 +948,8 @@ but the one most convenient in describing neutrino oscillation is
         0 & 0 & 1
     \end{pmatrix}
 \end{equation}
-where $s_{ij} = \sin\theta_{ij}$ for the three real mixing angles
+where $s_{ij} = \sin\theta_{ij}$ and $c_{ij} = \cos\theta_{ij}$
+for the three real mixing angles
 $\theta_{12},\theta_{23}$, and $\theta_{13}$.
 The complex phase $\delta$ is also known as $\delta_{CP}$
 since CP violation is only possible if the PMNS matrix is complex,
@@ -957,10 +966,10 @@ with both baselines and energies $\sim1000$ times higher.
 The third term is dominant for solar neutrinos
 and for reactor neutrinos at baselines of \SI{\sim100}{\km}.
 
-The neutrino may be a Majorana particle.
-If so, an additional two parameters %$\alpha_1$ and $\alpha_2$, the Majorana phases,
+The neutrino may be a Majorana fermion.
+If so, an additional two parameters, $\alpha_1$ and $\alpha_2$,
 would govern the mixing between states.
-They would appear as an additional factor in \cref{eq:pmns}
+They would appear as an additional matrix factor in \cref{eq:pmns}
 of the form $\text{diag}(e^{i\alpha_1}, e^{i\alpha_2}, 1)$.
 These additional parameters cancel
 during the derivation in \cref{subsec:theory}
@@ -1039,6 +1048,7 @@ a best-fit value for $\Delta m^2_{21}$ of \SI{7.53e-5}{\eV\squared}.
 \label{subsec:osc_param_exp}
 
 \subsubsection{Solar parameters}
+\label{subsec:solar_parameters}
 The solar parameters $\theta_{12}$ and $\Delta m^2_{21}$
 were first measured using data from the aforementioned
 Homestake/\isotope[37]{Cl}, SAGE, GALLEX/GNO, and SNO experiments.
@@ -1047,7 +1057,7 @@ through the Mikheyev-Smirnov-Wolfenstein (MSW) matter effect;
 the so-called ``vacuum oscillation'' model described above
 was not the dominant mechanism governing solar neutrinos,
 though the two mechanisms share the same fundamental PMNS (mixing) matrix.
-A detailed description of the measurements of $\theta_{12}$ and $\Delta m^2_21$ and the MSW effect
+A detailed description of the measurements of $\theta_{12}$ and $\Delta m^2_{21}$ and the MSW effect
 will be left to \cite{neutrino_textbook}.
 Modern values for the solar parameters rely
 on measurements from the Super-Kamiokande experiment.
@@ -1090,19 +1100,19 @@ dependence when comparing the observed muon-type events
 to a Monte Carlo prediction,
 with the distance traveled inferred from the zenith angle
 (see \cref{fig:superk_l_over_e}).
-The events used in the analysis had a reconstructed $\nicefrac{L}{E}$
+The events used in the analysis had $\nicefrac{L}{E}$ values reconstructed
 with a resolution of \SI{<70}{\percent},
 thus the characteristic shape of the $\nicefrac{L}{E}$ curve
-was mostly washed out.
+was largely smeared out.
 However, the location of the oscillation maximum
 can be seen in \cref{fig:superk_l_over_e}
-(where it appears as a minimum of surviving $\nu_\mu$),
+(where it takes the form of a survival minimum),
 providing the first measurement of $\Delta m^2_{32} = \SI{2.4e-3}{\eV\squared}$
 Equally importantly, the asymptotic behavior
-at large $\nicefrac{L}{E}$ reveals
+at large $\nicefrac{L}{E}$ revealed
 the average value for the oscillation probability.
-Since the average value is $\sim\nicefrac{1}{2}$,
-the observation favored a value of $\sin^22\theta_{12} = 1$,
+Since the average value was $\sim\nicefrac{1}{2}$,
+the observation favored a value of $\sin^22\theta_{23} = 1$,
 corresponding to maximal mixing.
 
 \begin{figure}
@@ -1165,7 +1175,7 @@ $\Delta m^2_{32}$ and $\Delta m^2_{31}$
 will cause different effects depending
 on which mass splitting is larger.
 Current observations from accelerator experiments
-agree better with normal ordering (NO)
+have better agreement with normal ordering (NO)
 predictions than with IO at the level of $2\sigma$ to $3\sigma$.
 
 \section{Reactor neutrino experiments and \texorpdfstring{\thetaot}{theta13}}
@@ -1226,14 +1236,14 @@ which is defined as the value which provides the best fit
 of \cref{eq:p_sur_dmee} to observations.
 This approximate model has been used to provide
 model-independent measurements of the mass splittings
-without relying on an assumption for the neutrino mass ordering
+without relying on an assumption of the neutrino mass ordering
 \cite{ngd2014,ngd2015,ngd2016,ngd2018}.
 This thesis uses the exact three-flavor formula in \cref{eq:p_sur_ee}
 assuming the normal ordering (NO),
 so a detailed description of $\Delta m^2_{ee}$
 will be left to the supplemental material of \cite{ngd2015}.
 Given current measurements of the neutrino masses and mixing parameters,
-$\Delta m^2_{ee}$ can be related to $\Delta m^2_{31}$ and $\Delta m^2_{32}$
+$\Delta m^2_{ee}$ can be converted to $\Delta m^2_{31}$ and $\Delta m^2_{32}$
 using the following relation:
 \begin{align}\label{eq:dmee_conversion}
     \begin{split}
@@ -1249,7 +1259,7 @@ Given that atmospheric neutrino observations were consistent
 with a two-flavor oscillation model which only included $\nu_\mu\leftrightarrow\nu_\tau$,
 it was inferred that any $\nu_\mu\leftrightarrow\nu_e$ transitions
 at the atmospheric oscillation scale
-must occur with a low or zero probability.
+must occur with low or zero probability.
 The Chooz and Palo Verde reactor \nuebar{} experiments
 attempted to observe the disappearance of \nuebar{} in the 1990s
 \cite{chooz1999,paloverde2001};
@@ -1313,25 +1323,26 @@ Unlike in that earlier experiment, though,
 modern experiments use liquid scintillator as the antineutrino target itself,
 using organic scintillators with a large number of free protons
 in the form of \isotope[1]{H}.
-Systematic uncertainties arise in constraining the reactor \nuebar{} flux
+Systematic uncertainties arise in constraining the reactor \nuebar{} flux,
+characterizing the detector response,
 and in accumulating sufficient statistics
 so that any observed deficit of \nuebar{}
-can be attributed to \thetaot{} rather than mis-modeling of the reactor
-or a statistical fluctuation.
+can be attributed to \thetaot{} rather than to mis-modeling of the reactor
+or detector or to a statistical fluctuation.
 
 A new generation of reactor experiments
 was designed to remedy the issue of reactor systematics
 by constructing antineutrino detectors at both near and far sites
 with respect to the reactor cores,
 with the near detectors constraining the \nuebar{} flux prediction
-and decreasing the systematic uncertainty.
+and decreasing the systematic uncertainty \cite{near_far_proposal}.
 The value of $\theta_{13}$ was first measured
 with a significance of $\geq 5\sigma$
-by the Daya Bay experiment in 2012 \cite{ngd2012},
+by the Daya Bay experiment in April 2012 \cite{ngd2012},
 followed closely by the RENO \cite{reno2012}
 and Double Chooz \cite{doublechooz2012} experiments.
 Accelerator experiments T2K and MINOS
-searched for $\nu_\mu\to\nu_e$ (``$\nu_e$ appearance'')
+searched for $\nu_\mu\to\nu_e$ ($\nu_e$ appearance)
 and observed evidence for a nonzero \thetaot{}
 as early as 2011 \cite{t2k2011,minos2011},
 but only at a significance of $2\sigma$ to $3\sigma$.
@@ -1345,10 +1356,7 @@ the Daya Bay Reactor Neutrino Experiment has produced numerous measurements of
 and the reactor \nuebar{} flux and spectrum \cite{dyb_spec_decomp2019},
 and has also investigated
 a variety of other physical phenomena (e.g. \cite{dyb_cpt2018}).
-The Daya Bay measurement of \thetaot{} in April 2012
-was the first nonzero measurement of that quantity
-at a $5\sigma$ significance.
-This measurement used 55 days of \nuebar{} data
+The April 2012 measurement of \thetaot{} used 55 days of \nuebar{} data
 and only six of the eight planned antineutrino detectors.
 Since then, Daya Bay has published updated results using IBDs detected by
 either neutron capture on gadolinium (nGd)
