@@ -1,13 +1,16 @@
-\documentclass{ucbthesis}
+\documentclass[final]{ucbthesis}
 \usepackage[table]{xcolor}
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage[obeyFinal]{todonotes}
 \graphicspath{{img/}}
 
+\usepackage{silence}
+\WarningFilter{ctable}{Transparency}
 \usepackage{samstyle}
 
-\includeonly{./tex/ch_detector,./tex/ch_event_selection,./tex/ch_calibration}
+%\includeonly{./tex/ch_simulation}
+%\includeonly{./tex/ap_inputs_summary,./tex/ch_analysis}
 \bibliography{bib}
 
 \begin{document}
@@ -31,12 +34,19 @@
 
 %\listoftodos
 
-%\maketitle
-%\begin{frontmatter}
-    %\tableofcontents
-    %\clearpage
-%\end{frontmatter}
+\todo[inline]{Add analytic estimate \& side-by-side table to summary appendix}
+\todo[inline]{Fix bibliography formatting}
+\todo[inline]{nicefrac vs plain /}
 
+\maketitle
+\begin{frontmatter}
+    \tableofcontents
+    \clearpage
+    \listoffigures
+    \clearpage
+    \listoftables
+    \clearpage
+\end{frontmatter}
 \include{./tex/ch_intro}
 
 \include{./tex/ch_detector}
