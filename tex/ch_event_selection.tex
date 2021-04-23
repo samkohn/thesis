@@ -840,6 +840,18 @@ A back-of-the-envelope estimate of the rate of accidental coincidences gives
 $\SI{17.5}{\hertz}\times\SI{2.56}{\percent}=\SI{0.45}{\hertz}$
 before applying the distance-time (DT) cut (\cref{sec:DT_cut}).
 
+Because the selection criteria for delayed energy
+were derived from the accidentals-subtracted delayed energy spectrum for each AD,
+the accidentals analysis will be presented first,
+followed by the specification of the energy cuts in \cref{sec:energy_cuts}.
+The actual implementation of the event selection
+first characterized the singles and \fold{2} rates
+and created the synthetic accidentals sample
+(\cref{subsec:singles,subsec:2fold,subsec:synthetic}).
+Then the delayed energy cuts were extracted (\cref{subsec:delayed}),
+and finally, the number of accidental coincidences
+contaminating the final IBD sample was computed (\cref{subsec:acc_count}).
+
 \subsection{Uncorrelated events}
 \label{subsec:singles}
 
@@ -849,7 +861,7 @@ as the ``singles rate,'' for each individual data run.
 The singles rate was computed by first measuring the rate of
 \fold{1} coincidences in each run
 (with the prompt energy bound of \SIrange{1.5}{12}{\mev} from \cref{subsec:prompt_energy}).
-Given that rate, the true underlying rate of uncorrelated events was
+Given $R_\text{\fold{1}}$, the true underlying rate of uncorrelated events was
 computed by numerically solving the following formula
 (derived in \cref{ap:singlesformula}) for $R_s$:
 \begin{align}
@@ -915,16 +927,16 @@ most of the radiocontaminants decayed.
 \subsection{Accidental coincidence rate}
 \label{subsec:2fold}
 
-Once $R_s$ was obtained, the rate of accidental coincidences $R_{\text{\fold{2}}}$
-(before applying the delayed energy and DT cuts)
-was computed for each run
-by simply adjusting the Poisson probability in \cref{eq:rsingles}
+Once $R_s$ was obtained, $R_{\text{\fold{2}}}$ was computed for each run
+as the rate of accidental coincidences of two uncorrelated events within \tc{},
+with energies between \SIlist{1.5;12}{\MeV}, and with no DT restriction.
+This value was derived by adjusting the Poisson probability in \cref{eq:rsingles}
 from the probability of $0$ other events within \tc{}
 to the probability of $1$ other event, namely the delayed event:
 \begin{align}
     \label{eq:racc}
     \begin{split}
-        R_{\text{\fold{2}}} &= R_s\tc R_{\text{\fold{1}}} \\
+        R_{\text{\fold{2}}}
                    &= R_s \left(R_s\tc e^{-R_s\tc}\right)
           \left(
               e^{-(R_s + R_\mu)\tc} +
@@ -942,14 +954,15 @@ to the probability of $1$ other event, namely the delayed event:
               \left(
                   1 - e^{-(R_s + R_\mu)\tc}
               \right)
-          \right)
+          \right) \\
+          &= R_s\tc R_{\text{\fold{1}}}
     \end{split}
 \end{align}
 The rate $R_{\text{\fold{2}}}$ obtained from this formula
 could not simply be subtracted from the measured \fold{2} rate
 to obtain $R_{\text{IBD}}$,
 since this rate was computed without accounting
-for the delayed energy cut or DT cut.
+for the delayed energy cut or the DT cut.
 
 \subsection{Synthetic accidentals}
 \label{subsec:synthetic}
@@ -958,7 +971,7 @@ Characterization of the delayed energy and DT properties
 of the accidental background
 was performed in a data-driven manner using
 a synthetic sample of accidental events.
-The synthetic events were constructed out of a sample of isolated single events,
+The synthetic coincidences were constructed out of a sample of isolated single events,
 similar to the sample used in the computation of $R_\text{\fold{2}}$.
 However, a stricter isolation cut was used for this part of the study
 to increase the purity of the sample.
@@ -969,7 +982,8 @@ A symmetrical cut of \SI{1.5}{\ms} was used
 to ensure isolation before and after each candidate event.
 The spectrum of these (now truly) single events is shown in \cref{fig:singlespectra},
 obtained by summing the individual spectra from each data run for each AD.
-These spectra were used as the prompt energy spectra for the accidental background.
+These spectra were saved for use as the prompt energy spectra
+of the accidental background events contaminating the final IBD sample.
 
 \adgrid{
     Spectra of isolated single events in each AD.
@@ -981,74 +995,144 @@ A synthetic accidentals sample was created for each run
 by pairing up the isolated events.
 In particular, each event was assigned an index in time order,
 from $0$ to $N_{\text{isolated}}$.
-Then each event $i$ from the first half was paired with
+Then each event $i$ from the first half of the run was paired with
 the corresponding event from the second half, $i + \nicefrac{N_{\text{isolated}}}{2}$.
 The large time separation between the two events
 ensured that they were truly uncorrelated.
 The synthetic coincidence distance was taken to be the actual distance
 between the reconstructed positions of the two events.
-The synthetic coincidence time was chosen at random
-to match the coincidence time distribution
+The synthetic coincidence time was drawn at random
+from the coincidence time distribution
 expected from true accidental coincidences.
 
-After the delayed energy cut was eventually extracted, $\varepsilon_{\text{total,\,acc}}$,
-the fraction of accidental \fold{2} coincidences
-which pass the full IBD selection including energy cuts,
-was computed as
+\subsection{Contamination of IBD sample}
+\label{subsec:acc_count}
+
+The total accidentals efficiency $\varepsilon_\text{total,\,acc}$
+was defined as the fraction of accidental \fold{2} coincidences
+which passed the full IBD selection including energy cuts and DT cuts,
+estimated from the synthetic accidentals sample as
 \begin{equation}\label{eq:eps_total_acc}
     \varepsilon_{\text{total,\,acc}} =
-    \frac{N_\text{acc}[E_p \wedge E_d \wedge \text{DT}]}{N_\text{acc}[E_p]}.
+    \frac{N_\text{acc}'[E_p \wedge E_d \wedge \text{DT}]}{N_\text{acc}'[E_p]}.
 \end{equation}
+The total expected number of accidental coincidence events
+that passed the full IBD selection was then computed
+separately for each run, and the counts for all the runs for each AD were combined:
+\begin{align}\label{eq:nacc}
+    \begin{split}
+        N_{\text{acc},r} &= R_{\text{\fold{2}},r}
+            \times T_{\text{DAQ},r}\varepsilon_{\mu,r}
+            \times \varepsilon_{\text{total,\,acc},r}\\
+        N_\text{acc} &= \sum_r N_{\text{acc},r}
+    \end{split}
+\end{align}
+where $r$ indexes over all runs for a given AD.
+Note that the multiplicity veto efficiency $\varepsilon_m$,
+which must be explicitly included in all other rate-to-counts conversions,
+is implicitly present in the computation of $R_\text{\fold{2}}$.
+After all, any accidental coincidence which were multiplicity-vetoed
+by another uncorrelated event were really \fold{3} accidental coincidences,
+and thus were already excluded from $R_\text{\fold{2}}$.
 
+\subsection{Accidentals rate uncertainty}
+\label{subsec:acc_err}
 
-The scale factor for the accidentals spectrum histogram,
-$\frac{N_{\text{acc,\,loose}}}{N_{\text{isolated}}/2}$,
-can be used to create histograms for other accidentals-subtracted quantities,
-such as coincidence distance and DT, as well as 2D histograms of
-those quantities' distributions with respect to prompt and delayed energy.
-The accidentals-subtracted histogram of DT versus delayed energy
-was used to compute the efficiency of the DT cut for IBDs in \cref{sec:DT_cut}.
+The uncertainty assigned to the accidentals contamination $N_\text{acc}$
+was dominated by the statistical uncertainty in the subtraction procedure.
+A thorough characterization of the systematic uncertainty
+was also undertaken.
 
-The total expected number of accidental events
-that pass the full IBD selection is computed in a similar manner:
-\begin{equation}
-    N_{\text{acc}} = R_{\text{\fold{2}}} \times t_{\text{muon-corrected}}
-        \times \varepsilon_{\text{total,\,acc}}.
-    \label{eq:nacc}
+\subsubsection{Statistical uncertainty}
+
+The uncertainty of $N_{\text{acc}}$ due to the finite statistics
+of the synthetic accidentals sample
+and in counting $N_{\text{\fold{1}}}$ (to extract $R_s$)
+was computed for each run based on \cref{eq:nacc}
+and the standard propagation of errors,
+and the results from each run were combined in quadrature.
+The \fold{2} coincidence rate, $R_\text{\fold{2}}$,
+was derived from a counting measurement of $N_\text{\fold{1}}$,
+whose relative uncertainty was
+\begin{equation}\label{eq:sigma_1fold}
+    \frac{\sigma_\text{\fold{1}}}{N_\text{\fold{1}}} =
+    \frac{1}{\sqrt{N_\text{\fold{1}}}}.
 \end{equation}
+Note that the relative uncertainty on the rate
+$R_\text{\fold{1}} = N_\text{\fold{1}}/(T_\text{DAQ}\varepsilon_\mu)$ was identical.
+The uncertainty on $R_s$ was computed numerically
+based on \cref{eq:rsingles} to be
+\begin{equation}\label{eq:sigma_rs}
+    \frac{\sigma_s}{R_s} \approx 1.1\times\sigma_\text{\fold{1}}.
+\end{equation}
+To obtain the uncertainty on $R_\text{\fold{2}}$ based on \cref{eq:racc},
+the uncertainties on $R_\text{\fold{1}}$ and $R_s$ were combined linearly
+since the two values were highly correlated; thus
+\begin{equation}\label{eq:sigma_2fold}
+    \frac{\sigma_\text{\fold{2}}}{R_\text{\fold{2}}} \approx
+    \frac{2.1}{\sqrt{N_\text{\fold{1}}}}.
+\end{equation}
+Finally, the uncertainty on the efficiency $\varepsilon_\text{total,\,acc}$
+was computed using the binomial distribution to be
+\begin{equation}\label{eq:sigma_eps_acc}
+    \sigma_{\varepsilon_\text{total,\,acc}} =
+    \sqrt{
+        \frac{
+            \varepsilon_\text{total,\,acc} (1 - \varepsilon_\text{total,\,acc})
+        }{N_\text{acc}'}
+    },
+\end{equation}
+where $N\text{acc}'$ is the number of synthetic accidental pairs
+used to compute $\varepsilon_\text{total,\,acc}$.
+Thus the total uncertainty on the number of accidental events
+for a given run based on \cref{eq:nacc} was
+\begin{equation}\label{eq:sigma_acc}
+    \frac{\sigma_\text{acc}^2}{N_\text{acc}^2} \approx
+    \frac{2.1^2}{N_\text{\fold{1}}}
+    + \frac{1-\varepsilon_\text{total,\,acc}}{
+        \varepsilon_\text{total,\,acc} N_\text{acc}'
+    }.
+\end{equation}
+For a typical 24-hour run at any of the ADs,
+the overall statistical uncertainty was approximately \SI{\sim3}{\percent}
+These statistics were uncorrelated between runs,
+so the total relative uncertainty was suppressed
+when the runs were combined according to \cref{eq:nacc},
+and are listed in \cref{tab:summary_event_selection}
+with values of \SI{\sim0.08}{\percent} for each AD.
 
-The uncertainty assigned for the accidentals subtraction
-is dominated by the systematic uncertainty in the subtraction procedure.
+\subsubsection{Systematic uncertainty}
+
 Studies were performed to constrain the possible deviation
 of the true accidentals rate
-from the rate produced by the above procedure.
-Such an error would affect the IBD rates at the near and far ADs differently,
+from the rate extracted using the above procedure.
+Such an error would affect the IBD rates at the near and far ADs in different proportions,
 leading to a bias in \thetaot{}.
 In fact, using the accidental and IBD event counts in \cref{tab:summary_event_selection},
 it can be shown that a bias of $b\si{\percent}$ in $N_{\text{acc}}$
-yields a bias in $N_{\text{IBD}}$ of $-1.2b\si{\percent}$ at the far site
+would yield a bias in $N_{\text{IBD}}$ of $-1.2b\si{\percent}$ at the far site
 but only $-0.14b\si{\percent}$ at the near sites.
 
 The accuracy of the method used to compute $R_{s}$,
 the primary input to $R_{\text{\fold{2}}}$,
-was examined using the Toy Monte Carlo described in \cref{sec:toymc}.
+was examined using the data stream Monte Carlo described in \cref{sec:toymc}.
 The results of the simulation study verified that
-the method extracts $R_s$ with high accuracy, at worst \SI{0.02}{\percent}.
+the above method extracts $R_s$ with high accuracy, at worst biased by \SI{0.02}{\percent}.
 In particular, the treatment of the small correlated event rate as negligible
 is validated as an appropriate approximation.
 
-The assumption of a constant $R_s$ within a given run was also tested.
-The validity of this assumption is enhanced by the near-linearity of
+The implicit assumption of a constant $R_s$ within a given run was also tested.
+The validity of this assumption was enhanced by the near-linearity of
 the dependence of $R_{\text{\fold{2}}}$ on $R_s$;
 if the relation were purely linear,
-then the average of $R_s$ within a run could be used to compute
+then the average of $R_s$ within a run could be used to exactly compute
 the average $R_{\text{\fold{2}}}$ since averaging is a linear transformation.
 Hourly singles rates were computed, and deviations of up to \SI{4}{\percent}
 were found within runs.
 For a typical value of $R_s$ of \SI{18}{\Hz},
 and the worst-case scenario of half the run at a \SI{4}{\percent} excess
 and half the run at a \SI{4}{\percent} deficit,
-the impact on $R_{\text{\fold{2}}}$ is \SI{\sim0.04}{\percent}.
+the impact on $R_{\text{\fold{2}}}$ would be \SI{\sim0.04}{\percent}.
 
 The method of generating a synthetic accidentals sample
 by pairing up isolated single events was examined using actual data.
@@ -1059,40 +1143,38 @@ if the properties of uncorrelated events changed significantly during a run.
 An alternate pairing algorithm was designed to pair isolated events
 chosen at random (without replacement) from the set of singles from a given run.
 Values of $\varepsilon_{\text{DT,\,acc}}$ were extracted from each pairing algorithm.
-The average deviation between the two algorithms' values was within \SI{0.15}{\percent}.
-
-Based on these studies, the run-correlated, AD-correlated systematic uncertainty
-due to the procedure for determining the number of accidental events $N_{\text{acc}}$
-was taken to be \SI{0.15}{\percent}.
-The dominant source of uncertainty was the use of the pairing algorithm
-to determine $\varepsilon_{\text{DT,\,acc}}$ and $\varepsilon_{\text{total,\,acc}}$.
-
-The uncertainty for $N_{\text{acc}}$ due to the finite statistics
+The average deviation between the two algorithms' values was within \SI{0.15}{\percent};
+however, this was partially attributed to the finite statistics
 of the synthetic accidentals sample
-and the Poisson fluctuations in counting $N_{\text{\fold{1}}}$
-(to extract $R_s$)
-was estimated based on a typical 24-hour run.
-For such a run, the uncertainty of $R_s$ was \SI{0.09}{\percent},
-and the statistical uncertainty of $\varepsilon_{\text{total,\,acc}}$
-was \SI{2.4}{\percent}.
-These relative uncertainties are combined to obtain
-the relative uncertainty on $N_{\text{acc}}$ for a given run of \SI{2.6}{\percent}.
-When combining runs over the data-taking period,
-the uncertainties are combined in quadrature,
-equivalent to suppressing the relative uncertainty by a factor of
-$\frac{1}{\sqrt{N_{\text{days}}}} \sim 40$.
-Thus the final statistical uncertainty on $N_{\text{acc}}$ is \SI{0.07}{\percent}.
-The correlated systematic uncertainty and the uncorrelated statistical uncertainty
-were implemented separately during the fit procedure described in \cref{ch:analysis}.
+and so was not necessarily indicative of a major source of systematic uncertainty.
 
-The events represented in the accidentals-subtracted histograms
-are all correlated pairs
-of a prompt event followed by neutron capture.
-And if the delayed energy cuts from \cref{subsec:delayed} are applied,
-then the remaining events represent correlated events
-where the neutron capture was on hydrogen.
-The total number of correlated events in each AD
-along with the uncertainty, is listed in \cref{tab:summary_event_selection}.
+A final study was inadvertently performed
+during the characterization of the DT cut efficiency.
+This study predicted the number of accidental coincidences
+which passed the energy cuts but failed the DT cut,
+a sample which can be cleanly isolated
+by selecting events with $DT > \SI{3000}{\mm}$
+rather than the nominal IBD criterion of $DT < \SI{800}{\mm}$.
+In all ADs, the number of such events
+predicted using the above methodology
+agreed with the observed number of events
+to within \SI{0.04}{\percent}.
+This agreement tightly constrained possible systematic biases
+in the computation of the accidental background
+since it was a high-statistics sample.
+The only assumption underlying this constraint on the systematic uncertainty
+was the synthetic accidentals sample
+predicted the true accidentals' DT distribution as well at $DT < \SI{800}{\mm}$
+as it did over the broad range $\SI{3000}{\mm} < DT < \SI{10000}{\mm}$.
+The full details of this study are presented in \cref{subsec:eff_DT}.
+
+Based on these studies, the systematic uncertainty
+due to the procedure for determining the number of accidental events $N_{\text{acc}}$
+was taken to be \SI{0.04}{\percent},
+which was sub-dominant compared to the statistical uncertainty of \SI{0.08}{\percent},
+and negligible when considered along with
+the uncertainties on the other irredicible backgrounds
+as described in \cref{sec:correlated_bg}.
 
 \section{Energy cuts}
 \label{sec:energy_cuts}
@@ -1105,7 +1187,8 @@ of the low-energy uncorrelated events from radioactive decays.
 In particular, the electron capture process
 ${}^{40}\text{K} \to {}^{40}\text{Ar} + \nu_e + \gamma$
 released a $\gamma$ ray with energy \SI{1.46}{\mev}.
-The high-energy tail of this interaction is visible in the prompt-delayed spectra
+Despite the \SI{1.5}{\MeV} cut,
+the high-energy tail of this interaction is nevertheless visible in the prompt-delayed spectra
 (\cref{fig:double_coinc_raw}) as an elevated bin content
 along both the horizontal and vertical axes from \SIrange{1.5}{3}{\mev}.
 An upper bound of \SI{12}{\MeV} was used for the prompt energy.
@@ -1116,42 +1199,42 @@ so this cut accepted higher-energy IBDs with negligible inefficiency.
 \subsection{Delayed energy}
 \label{subsec:delayed}
 
-Neutron capture on hydrogen (nH) releases a
+Neutron capture on hydrogen (nH) released a single
 \SI{2.22}{\mev} $\gamma$-ray,
-which means the delayed energy cut bounds can be tuned to a narrow energy region
+which allowed the delayed energy cut bounds to be tuned to a narrow energy region
 around that value.
-However emitted $\gamma$'s occasionally
-deposit less than their full energy in the liquid scintillator,
+However, emitted $\gamma$-rays occasionally
+deposited less than their full energy in the liquid scintillator,
 as shown in \cref{fig:prompt_eff_mc} by the extended low-energy tail
-below \SI{2.22}{\MeV} and by the peak at \num{0} energy,
+below \SI{2.22}{\MeV} and by the peak at 0 energy,
 representing events where the $\gamma$-ray escaped entirely.
 Both the tuning of the energy cut
-and the fraction of escaping $\gamma$'s are sensitive to
+and the fraction of escaping $\gamma$-rays were sensitive to
 small variations in the geometry of the AD, energy reconstruction,
-and scattering properties of $\gamma$'s in
+and scattering properties of $\gamma$-rays in
 both liquid scintillator and in acrylic.
 
-The delayed energy cut bounds are identified based on
-functional fits to each AD's delayed energy spectrum.
-The measured delayed energy spectrum is obtained by first applying
+The delayed energy cut bounds were identified based on
+functions fitted to each AD's delayed energy spectrum.
+The measured delayed energy spectrum was obtained by first applying
 the prompt energy cut and DT cut,
 then statistically subtracting the accidental background
 using the same synthetic accidental coincidence sample
 discussed in \cref{sec:acc}.
 From this synthetic accidental coincidence sample, $\varepsilon_{\text{DT,\,acc}}$,
-the fraction of accidental \fold{2} coincidences which passed the distance-time (DT) cut,
-was computed:
+the fraction of accidental \fold{2} coincidences which passed the distance-time (DT) cut
+and prompt energy cut, was computed:
 \begin{equation}\label{eq:eps_DT_acc}
     \varepsilon_{\text{DT,\,acc}} =
     \frac{N_\text{acc}'[E_p \wedge \text{DT}]}{N_\text{acc}'[E_p]}.
 \end{equation}
-\todo[inline]{Finish merging this section}
-A prompt-delayed energy spectrum was computed that only includes
+A prompt-delayed energy spectrum was generated that only included
 synthetic accidental events which passed the DT cut,
 as shown in \cref{fig:acc_sample}.
-Each event pair generated two synthetic accidental events:
+Each event in the synthetic sample generated two entries to this histogram:
 one with the event from the first half of the run as the prompt event,
-and one with that event as the delayed event.
+and one with that event as the delayed event,
+to increase the statistical precision of the spectrum.
 \adgrid[0.22\textheight]{
     Prompt-delayed spectra of the synthetic accidentals sample
     after applying the DT cut.
@@ -1164,54 +1247,54 @@ and one with that event as the delayed event.
 }
 
 The resulting prompt-delayed energy spectrum of synthetic accidental events
-can then be subtracted
-from the prompt-delayed spectrum measured from real data.
+for each run was then subtracted
+from the prompt-delayed spectrum measured from real data
+after also applying the DT cut, as shown in \cref{fig:after_DT_cut}.
 For each run, the expected number of accidental coincidences
 with prompt and delayed energies between \SIlist{1.5;12}{\MeV}
-that pass the DT cut is
-
+that passed the DT cut was
 \begin{equation}
-    N_{\text{acc,\,loose}} = R_{\text{\fold{2}}} \times t_{\text{muon-corrected}}
+    N_{\text{acc,\,loose}} = R_{\text{\fold{2}}}
+        \times T_\text{DAQ}\varepsilon_\mu
         \times \varepsilon_{\text{DT,\,acc}}
     \label{eq:nacc_loose}
 \end{equation}
 The synthetic accidentals prompt-delayed spectrum, represented as a histogram,
-is scaled so that the integral is $N_{\text{acc,\,loose}}$.
-Then the histogram can be subtracted bin-by-bin from the corresponding histogram
-representing the actual \fold{2} coincidence data sample.
+was normalized so that the integral was $N_{\text{acc,\,loose}}$.
+Then the histogram was subtracted bin-by-bin from the corresponding histogram
+representing the actual double coincidence data sample.
 The subtracted histograms are shown in \cref{fig:acc_sub_spectra}.
-These distributions, projected onto the delayed energy axis,
-are used in \cref{subsec:delayed} to determine the delayed energy cut bounds.
 
 \adgrid[0.22\textheight]{
     Prompt-delayed spectra after subtracting the accidental background.
     The projections of these plots onto the delayed energy axis
-    are used to determine the delayed energy cut bounds
+    were used to determine the delayed energy cut bounds
     and are shown in \cref{fig:delayed_fits}.
 }{fig:acc_sub_spectra}{ch_background/sub_energy}{
     Prompt-delayed spectrum: after subtracting accidentals
 }
 
-Although the accidentals-subtracted spectrum is still not pure IBDs,
-the only remaining background consists of correlated processes
+Although the accidentals-subtracted spectrum was still not pure IBDs,
+the only remaining backgrounds were due to correlated processes
 where the delayed event is still
-neutron capture on hydrogen, and thus does not distort
-the delayed energy spectrum.
+neutron capture on hydrogen, and thus
+the delayed energy spectrum at this point
+consisted solely of nH captures.
 
-Each spectrum is fit with the calorimeter function, which models
+The projections of these 2D spectra onto the delayed energy axis
+wes fit with the calorimeter function, which models
 a calorimetric response to a monoenergetic process with ``true''
 energy $\mu$ \cite{calorimeter2016}.
-The modeled detector has an intrinsic energy resolution $\sigma$
-which applies a Gaussian smearing to the deposited energy.
-($\sigma$ itself is independent of energy.)
-The model accounts for some fraction $\alpha$ (the peak fraction)
+The modeled detector had an intrinsic energy resolution $\sigma$
+which applied a Gaussian smearing to the deposited energy.
+($\sigma$ itself is independent of energy in this model.)
+The model accounted for some fraction $\alpha$ (the peak fraction)
 of events being fully contained,
 with the remainder of the events partially or fully escaping from the detector.
-The energy leakage is modeled as an exponential distribution
+The energy leakage was modeled as an exponential distribution
 with characteristic energy scale (or ``tail slope'') $\lambda$.
-The fit function itself is derived by starting with
+The fit function itself was derived starting with
 the unsmeared model:
-
 \begin{equation}
     f_{unsmeared}(E;\mu,\lambda,\alpha) =
     \begin{cases}
@@ -1220,9 +1303,8 @@ the unsmeared model:
         0 & E > \mu
     \end{cases}
 \end{equation}
-This function is then convolved with a Gaussian
-of width $\sigma$.
-
+This function was then convolved with a Gaussian
+of width $\sigma$:
 \begin{align}
     \begin{split}
     f_{cal}    &= f_{unsmeared} \otimes \text{Gaussian} \\
@@ -1248,11 +1330,12 @@ of width $\sigma$.
                    \left(
                        \frac{E + \sigma^2\lambda}{\sigma\sqrt{2}}
                    \right)
-               \right]
+               \right].
     \end{split}
 \end{align}
-The entire result is normalized to unity
-but can be scaled by an overall normalization $N$.
+The entire result could then be scaled
+by an additonal normalization parameter $N$
+to match the normalization of the data being fitted.
 
 \adgrid{
     Delayed energy fits using the calorimeter function
@@ -1335,31 +1418,29 @@ but can be scaled by an overall normalization $N$.
 \end{figure}
 
 The eight delayed energy spectra with their fits are shown in \cref{fig:delayed_fits}.
-Comparing the fitted parameters across ADs can be used
-to measure the identicalness of the ADs.
-Their values and relative differences are plotted in \cref{fig:delayed_fit_parameters}
-and listed in \cref{tab:delayed_fit_params}.
+The values and relative differences of the fitted parameters
+are plotted in \cref{fig:delayed_fit_parameters},
+and the values are listed in \cref{tab:delayed_fit_params}.
 In particular, the top-left plot shows the relative difference
-in the fitted peak $\mu$ across the ADs,
+in the fitted peak energy $\mu$ across the ADs,
 which is a measure of the energy scale variation (\cref{subsec:rel_energyscale}).
 The relative variation of \SI{+-0.5}{\percent}
-is used to compute the AD-uncorrelated uncertainty
-on the prompt energy cut efficiency.
+was interpreted as the relative energy scale uncertainty
+(discussed in \cref{subsec:rel_energyscale}).
 
-The bounds for the delayed energy cut are computed
+The bounds for the delayed energy cut were computed
 based on the fitted peak value and energy resolution
-from the calorimter model. The energy criterion is
-
+from the calorimter model.
+The energy criterion was
 \begin{equation}
     \mu - 3\sigma < E < \mu + 3\sigma.
 \end{equation}
 This form was decided on even though the calorimeter function
 is not symmetric, and even though in reality
-the detector resolution changes with energy
-(and therefore is not precisely modeled in the fit).
-The values used for the energy bounds are listed in \cref{tab:delayed_bounds}
+the detector resolution changed with energy
+(and therefore was not precisely modeled in the fit).
+The values used for the delayed energy cut bounds are listed in \cref{tab:delayed_bounds}
 and plotted in \cref{fig:delayed_bounds}.
-
 
 \section{Selection efficiencies}
 \label{sec:efficiencies}
