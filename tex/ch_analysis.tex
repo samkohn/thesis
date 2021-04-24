@@ -225,7 +225,7 @@ are predicted based on a model of reactor \nuebar{} emission
 in addition to oscillation effects,
 has been used for both nH and nGd analyses \cite{nh2016, ngd2016}.
 In this thesis, the near-far projection model is used for the first time
-to extract \thetaot{} from observations of neutron capture on Hydrogen.
+to extract \thetaot{} from observations of neutron capture on hydrogen.
 
 
 In the simplest configuration, with a single near observation,
@@ -281,7 +281,7 @@ illustrated in \cref{fig:near_far_cartoon}:
 \end{enumerate}
 The predicted spectrum at each far-hall AD can be compared
 with the observed spectrum, as described in \cref{sec:fitter}.
-For the rate-only analysis, a single bin of reconstructed energy is used.
+For the rate-only analysis,\todo{Fix intro of rate-only} a single bin of reconstructed energy is used.
 
 In the following, the indices $i$ and $j$ refer to individual ADs,
 $k$ and $l$ refer to reactor cores,
@@ -293,7 +293,7 @@ and $b$ refers to bins of reconstructed energy.
 The observed number of IBD candidates must be adjusted
 to account for the backgrounds and efficiencies described in \cref{ch:event_selection}.
 The backgrounds this analysis accounts for are
-accidentals, \li{}/\he{}, fast neutrons, and \amc{}.
+accidentals, \li{}/\he{}, fast neutrons, \amc{}, and radiogenic neutrons.
 Efficiencies that can be measured precisely for each AD,
 namely
 the muon-veto livetime efficiency $\varepsilon_\mu$
@@ -361,7 +361,7 @@ the estimated number of IBD interactions in AD $i$,
 reconstructed energy bin $b$,
 including those which occurred during muon or multiplicity vetoes,
 but not those which failed the prompt and delayed energy cuts
-or the coincidence distanct-time (DT) cut,
+or the coincidence distance-time (DT) cut,
 corrected for AD-to-AD differences in all cut efficiencies
 and for differences in number of target protons (target mass)
 and differences in energy scale between ADs (relative energy scale).
@@ -711,7 +711,7 @@ The fit procedure compared the observed number of \nuebar{} candidates
 in the 4 ADs at the far site to the prediction
 given the near sites' observations, a particular value of \thetaot{},
 and values for all nuisance parameters.
-Since the observed values represent counts,
+Since the observed values represent event counts,
 a \chisquare{} expression using the maximum likelihood expression
 for Poisson-distributed data was used.
 The generic structure of such \chisquare{} expressions
@@ -719,21 +719,21 @@ can be derived from Eqs.~(39.16) and (39.17) of \cite{pdg} as:
 
 \begin{equation}
     \label{eq:chisquare_generic}
-    \chisquare(\boldsymbol{\eta};\boldsymbol{\nu}) = 2\sum_{i=1}^{n} \left(
-        F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu}) - F_{\text{obs},i}
+    \chisquare(\boldsymbol{\theta};\boldsymbol{\eta}) = 2\sum_{i=1}^{n_\text{obs}} \left(
+        F_{\text{pred},i}(\boldsymbol{\theta};\boldsymbol{\eta}) - F_{\text{obs},i}
         + F_{\text{obs},i}\ln
-        \frac{F_{\text{obs},i}}{F_{\text{pred},i}(\boldsymbol{\eta};\boldsymbol{\nu})}
+        \frac{F_{\text{obs},i}}{F_{\text{pred},i}(\boldsymbol{\theta};\boldsymbol{\eta})}
         \right)
         +
-        \sum_j \frac{\nu_j^2}{\tilde{\sigma}_{\nu,j}^2},
+        \sum_j \frac{\eta_j^2}{\tilde{\sigma}_{\eta,j}^2},
 \end{equation}
 where $F_{\text{obs},i}$ is the observed value for data point $i$;
 $F_{\text{pred},i}$
 is the model prediction for data point $i$
-which depends on $\boldsymbol{\eta}$, the model parameters of interest,
-and $\boldsymbol{\nu}=(\nu_1, \ldots, \nu_m)$,
-the model nuisance parameters;
-and there are $n$ total observations.
+which depends on $\boldsymbol{\theta}$ (the model parameters of interest)
+and $\boldsymbol{\eta}$
+(the model nuisance parameters);
+and there are $n_\text{obs}$ total data points.
 
 In this formulation, the nuisance parameters are dimensionless,
 and in the model they each multiply a paired quantity $A_j$,
@@ -741,26 +741,25 @@ which intuitively represents the physically-relevant quantity
 (such as a detection efficiency or background rate)
 that the nuisance parameter introduces uncertainty for:
 \begin{equation}
-    A_j \to (1+\nu_j)A_j.
+    A_j \to (1+\eta_j)A_j.
 \end{equation}
-Thus the $\nu_j$ can be interpreted as the deviation of $A_j$
+Thus the $\eta_j$ can be interpreted as the relative deviation of $A_j$
 from an expected or constrained value,
-and the $\tilde{\sigma}_{\nu,j}$ are the (independently-determined)
+and the $\tilde{\sigma}_{\eta,j}$ are the (independently-determined)
 \emph{relative} uncertainties of $A_j$
-which set the scale for allowable values of $\nu_j$.
+which set the scale for allowable values of $\eta_j$.
 The values of $A_j$ remain fixed during the minimization procedure;
-only the values of $\nu_j$ are allowed to be altered by the fitter.
+only the values of $\eta_j$ are tunable parameters in the fit.
 
-The values of $\boldsymbol{\eta}$ and $\boldsymbol{\nu}$
+The values of $\boldsymbol{\theta}$ and $\boldsymbol{\eta}$
 which minimize \cref{eq:chisquare_generic}
-provide the best-fit parameters of interest $\eta_i$,
-while ensuring that the nuisance parameters $\nu_j$
+provide the best-fit parameters of interest $\theta_i$,
+while ensuring that the nuisance parameters $\eta_j$
 remain small compared to their uncertainties.
-Intuitively, a value of $\nu_j \neq 0$ represents
-a deviation of the physical parameter $A_j$ from its estimated value;
+Intuitively, when the best-fit value of $\eta_j$ is nonzero,
+the model has preferred a deviation of the physical parameter $A_j$ from its estimated value;
 large deviations penalize the \chisquare{} and so are discouraged.
 If the model is a good description of the data,
-and if all observations are independent,
 then the distribution of the best-fit (minimum) $\chi^2$
 (over repeated hypothetical experiments)
 follows a $\chi^2$ distribution with
@@ -771,7 +770,7 @@ degrees of freedom,
 where $\text{len}(\boldsymbol{\eta})$ is the number of components of $\boldsymbol{\eta}$,
 that is, the number of free parameters in the fit.
 Note that introducing additional nuisance parameters
-paired with penalty terms (the second summation term in \cref{eq:chisquare_generic})
+paired with penalty terms (i.e.\ the second summation in \cref{eq:chisquare_generic})
 does not change the number of degrees of freedom.
 
 \subsection{Fitter specification}
@@ -780,7 +779,7 @@ does not change the number of degrees of freedom.
 For this analysis, each data point $F_{\text{obs},i}$
 was the number of observed events passing all event selection criteria
 (\cref{ch:event_selection})
-in a particular far-hall antineutrino detector $d$ (in EH3).
+in a particular far-hall antineutrino detector (in EH3).
 There are thus 4 observed data points:
 \begin{equation}
     \mathbf{F}_{\text{obs}} =
@@ -790,34 +789,34 @@ There are thus 4 observed data points:
     F^{\text{obs}}_{\text{EH3-AD4}})
 \end{equation}
 The model prediction
-$\mathbf{F}_{\text{pred}}(\boldsymbol{\eta};\boldsymbol{\nu})$
+$\mathbf{F}_{\text{pred}}(\boldsymbol{\theta};\boldsymbol{\eta})$
 of the event counts for the far-hall ADs
 is described in \cref{sec:prediction}.
-Energy bins of size \SI{0.2}{\MeV} were used from \SIrange{1.5}{8.1}{\MeV},
+Reconstructed prompt energy bins of size \SI{0.2}{\MeV} were used from \SIrange{1.5}{8.1}{\MeV},
 and a single bin of size \SI{3.9}{\MeV} was used from \SIrange{8.1}{12}{\MeV}.
 To obtain the total number of predicted events at a given far AD $j$
 based on measurements at a given near AD $i$,
 the individual bin predictions from \cref{eq:full_prediction} were summed:
 \begin{equation}\label{eq:hybrid_rate_shape}
-    F_{\text{pred},j,i}(\boldsymbol{\eta};\boldsymbol{\nu}) =
-    \sum_b F_{\text{pred},j,i}^{(b)}(\boldsymbol{\eta};\boldsymbol{\nu})
+    F_{\text{pred},j,i}(\boldsymbol{\theta};\boldsymbol{\eta}) =
+    \sum_b F_{\text{pred},j,i}^{(b)}(\boldsymbol{\theta};\boldsymbol{\eta})
 \end{equation}
 To obtain a single value for the prediction at a given far AD $j$
 based on all of the near AD measurements,
 the individual predictions were averaged together:
 \begin{equation}\label{eq:average_near}
-    F_{\text{pred},j}(\boldsymbol{\eta};\boldsymbol{\nu}) =
+    F_{\text{pred},j}(\boldsymbol{\theta};\boldsymbol{\eta}) =
     \frac{1}{4} \sum_i
-    F_{\text{pred},j,i}(\boldsymbol{\eta};\boldsymbol{\nu})
+    F_{\text{pred},j,i}(\boldsymbol{\theta};\boldsymbol{\eta})
 \end{equation}
 The vector of predictions contains one component for each far site AD:
 \begin{equation}\label{eq:f_pred_vector}
-    \mathbf{F}_\text{pred}(\boldsymbol{\eta};\boldsymbol{\nu}) =
+    \mathbf{F}_\text{pred}(\boldsymbol{\theta};\boldsymbol{\eta}) =
     (
-    F^{\text{pred}}_{\text{EH3-AD1}}(\boldsymbol{\eta};\boldsymbol{\nu}),
-    F^{\text{pred}}_{\text{EH3-AD2}}(\boldsymbol{\eta};\boldsymbol{\nu}),
-    F^{\text{pred}}_{\text{EH3-AD3}}(\boldsymbol{\eta};\boldsymbol{\nu}),
-    F^{\text{pred}}_{\text{EH3-AD4}}(\boldsymbol{\eta};\boldsymbol{\nu})
+    F^{\text{pred}}_{\text{EH3-AD1}}(\boldsymbol{\theta};\boldsymbol{\eta}),
+    F^{\text{pred}}_{\text{EH3-AD2}}(\boldsymbol{\theta};\boldsymbol{\eta}),
+    F^{\text{pred}}_{\text{EH3-AD3}}(\boldsymbol{\theta};\boldsymbol{\eta}),
+    F^{\text{pred}}_{\text{EH3-AD4}}(\boldsymbol{\theta};\boldsymbol{\eta})
     )
 \end{equation}
 This prediction vector depends on the observed event rates at the near halls (EH1 and EH2),
@@ -826,30 +825,16 @@ differing background rates for each AD,
 conversion between reconstructed prompt energy and true \nuebar{} energy,
 detection efficiencies,
 and, of course, neutrino oscillation parameters.
-The $\boldsymbol{\eta}$ vector contains the single parameter of interest:
-the neutrino mixing angle \thetaot{}.
-The observations are not binned by energy,
-thus this analysis cannot be used to extract
-a precise measurement of $\Delta m^2_{32}${}.
-An input value of $\Delta m^2_{32} = \SI{2.471(70)e-3}{\eV\squared}$
-was supplied from \cite{ngd2018}.
-The uncertainty in $\Delta m^2_{32}${} was implemented
-as a nuisance parameter as described below.
-
-The remaining model parameters
-are assigned to nuisance parameters
-to account for uncertainties in the values used in the prediction.
-In particular,
-
+The parameters of interest and nuisance parameters were defined as follows:
 \begin{align}
     \begin{split}
-        \boldsymbol{\eta} &= (\thetaot) \\
-        \boldsymbol{\nu} &= (
+        \boldsymbol{\theta} &= (\thetaot) \\
+        \boldsymbol{\eta} &= (
             \boldsymbol{\alpha},
             \boldsymbol{\epsilon},
             \boldsymbol{\eta_{\text{relE}}},
-            \boldsymbol{\eta_B},
-            \boldsymbol{\eta_N},
+            \boldsymbol{\eta}_B,
+            \boldsymbol{\eta}_N,
             \boldsymbol{\eta_{\text{osc}}}),
     \end{split}
 \end{align}
@@ -858,12 +843,21 @@ The vector $\boldsymbol{\alpha}$ represents reactor flux uncertainties,
 $\boldsymbol{\epsilon}$ represents detection efficiency uncertainties
 (except for those induced by the relative energy scale uncertainty),
 $\boldsymbol{\eta_{\text{relE}}}$ represents the relative energy scale uncertainty,
-$\boldsymbol{\eta_B}$ represents background rate uncertainties,
+$\boldsymbol{\eta_B}$ represents background rate uncertainties for each background source,
 $\boldsymbol{\eta_N}$ represents the statistical uncertainty
 of the observed event rate at the near hall ADs,
 and $\boldsymbol{\eta_{\text{osc}}}$ represents the uncertainty
 of the externally-imposed oscillation paramters, $\theta_{12}, \Delta m^2_{21},$
 and $\Delta m^2_{32}${}.
+The observations are not binned by energy,
+thus this analysis cannot be used to extract
+a precise measurement of $\Delta m^2_{32}${}.
+An input value of $\Delta m^2_{32} = \SI{2.471(70)e-3}{\eV\squared}$
+was supplied from \cite{ngd2018}, and
+the uncertainty in $\Delta m^2_{32}${} was implemented as a nuisance parameter.
+The input values for $\theta_{12}$ and $\Delta m^2_{21}$
+were taken from \cref{eq:current_values} \cite{pdg}.
+
 The full listing of nuisance parameters
 can be found in \cref{tab:systs}.
 During the fitter validation procedure (\cref{subsec:fitter_validation}),
@@ -875,7 +869,7 @@ Thus these quantities were not modeled using pull parameters,
 and instead were assumed to be known to infinite precision.
 These values all contributed to the detector response functions
 (\cref{eq:drm}),
-and correlated variations in the detector response
+and correlated variations of the detector response
 canceled to first order, as discussed in \cref{ap:drm}.
 
 \begin{table}[ht]
@@ -928,12 +922,12 @@ The full \chisquare{} expression used in this analysis is:
 
 \begin{align}\label{eq:chisquare_full}
     \begin{split}
-        \chisquare(\thetaot;\boldsymbol{\nu}) &=
+        \chisquare(\thetaot;\boldsymbol{\eta}) &=
             2\sum_{\substack{j \in \\\text{far ADs}}}
         \left(
-            F_{\text{pred},j}(\thetaot;\boldsymbol{\nu}) - F_{\text{obs},j}
+            F_{\text{pred},j}(\thetaot;\boldsymbol{\eta}) - F_{\text{obs},j}
             + F_{\text{obs},j}\ln
-            \frac{F_{\text{obs},j}}{F_{\text{pred},j}(\thetaot;\boldsymbol{\nu})}
+            \frac{F_{\text{obs},j}}{F_{\text{pred},j}(\thetaot;\boldsymbol{\eta})}
         \right) \\
             &+ \sum_{\substack{r \in \\\text{reactors}}}
                 \frac{\alpha_r^2}{\tilde{\sigma}_R^2}
@@ -941,11 +935,14 @@ The full \chisquare{} expression used in this analysis is:
             \left(
                 \frac{\epsilon_d^2}{\tilde{\sigma}_D^2}
                 + \frac{\nu_{\text{relE},d}^2}{\tilde{\sigma}_{\text{relE}}^2}
-                + \frac{\eta_{B,d}^2}{\tilde{\sigma}_{B,d}^2}
-            \right)
-            + \sum_{\substack{d \in \\\text{near ADs}}}
-            \frac{\eta_{N,d}^2}{\tilde{\sigma}^2_{\text{obs},d}} \\
-            &+ \frac{\nu_{\theta_{12}}^2}{\tilde{\sigma}_{12}^2}
+                + \sum_{\substack{u \in \text{bkg.}\\\text{sources}}}
+                \frac{\eta_{B,d,u}^2}{\tilde{\sigma}_{B,d,u}^2}
+            \right) \\
+            &+ \sum_{\substack{d \in \\\text{near ADs}}}
+            \sum_{b \in \text{bins}}
+            \left(\frac{\eta_{N,d}^{(b)}}{\tilde{\sigma}_{\text{obs},d}^{(b)}}
+            \right)^2
+            + \frac{\nu_{\theta_{12}}^2}{\tilde{\sigma}_{12}^2}
             + \frac{\nu_{\Delta m^2_{21}}^2}{\tilde{\sigma}_{21}^2}
             + \frac{\nu_{\Delta m^2_{ee}}^2}{\tilde{\sigma}_{ee}^2}
     \end{split}
@@ -1143,24 +1140,27 @@ the best-fit values of all 184 nuisance parameters must be specified.
 For convenience, the parameters are divided into
 the 136 representing near site statistical uncertainties
 and the 48 others, which represent the traditional systematic uncertainties.
-The contribution of each pull parameter $\nu_i$ to the $\chi^2$ total
+The contribution of each pull parameter $\eta_i$ to the $\chi^2$ total
 was defined (using the notation from \cref{eq:chisquare_generic}) as
 \begin{equation}\label{eq:pull_contrib}
-    \delta\chi^2 = \frac{\nu_i^2}{\tilde{\sigma}_i^2}.
+    \delta\chi^2 = \frac{\eta_i^2}{\tilde{\sigma}_{\eta,i}^2}.
 \end{equation}
 Since there were 136 nuisance parameters representing
 the statistical fluctuations of each bin of prompt energy
 in each near hall AD,
-their contributions were summed over each AD:
+their contributions were summarized by combining the contributions
+of all bins for each AD:
 \begin{equation}\label{eq:pull_near_contrib}
-    \delta\chi^2_\text{near AD} = \sum_b \frac{\nu^2_{(b)}}{\tilde{\sigma}^2_{(b)}}.
+    \delta\chi^2_{\text{near AD }i} = \sum_b \left(
+        \frac{\eta_{N,i}^{(b)}}{\tilde{\sigma}_{N,i}^{(b)}}
+    \right)^2.
 \end{equation}
 The contributions of the data-to-model comparison
 (first line of \cref{eq:chisquare_full})
 along with each nuisance parameter
 to the total $\chi^2$
 are shown in \cref{fig:syst_pulls_plot}.
-16 parameters plus the 4 data-to-model comparison terms
+16 nuisance parameters plus the 4 data-to-model comparison terms
 contributed more than $10^{-6}$ to the total;
 those parameters are listed with additional details
 in \cref{tab:pull_details}.
@@ -1220,7 +1220,7 @@ in \cref{tab:pull_details}.
         (including background events)
         and the constraint is the actual number of observed counts.
         The terms listed here contributed a total of \num{0.42414},
-        or \SI{99.93}{\percent} of the total value of the minimum $\chi^2$.
+        or \SI{99.93}{\percent} of the total, to the minimum $\chi^2$.
     }
     \label{tab:pull_details}
 \end{table}
