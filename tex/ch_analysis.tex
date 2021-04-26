@@ -281,7 +281,6 @@ illustrated in \cref{fig:near_far_cartoon}:
 \end{enumerate}
 The predicted spectrum at each far-hall AD can be compared
 with the observed spectrum, as described in \cref{sec:fitter}.
-For the rate-only analysis,\todo{Fix intro of rate-only} a single bin of reconstructed energy is used.
 
 In the following, the indices $i$ and $j$ refer to individual ADs,
 $k$ and $l$ refer to reactor cores,
@@ -789,8 +788,13 @@ There are thus 4 observed data points:
     (F^{\text{obs}}_{\text{EH3-AD1}},
     F^{\text{obs}}_{\text{EH3-AD2}},
     F^{\text{obs}}_{\text{EH3-AD3}},
-    F^{\text{obs}}_{\text{EH3-AD4}})
+    F^{\text{obs}}_{\text{EH3-AD4}}).
 \end{equation}
+The use of the total number of events as the observation data points
+is known as a rate-only analysis,
+in contrast to the rate-plus-shape analysis, which would use
+the count of events in each bin of reconstructed energy
+as its observation data points.
 The model prediction
 $\mathbf{F}_{\text{pred}}(\boldsymbol{\theta};\boldsymbol{\eta})$
 of the event counts for the far-hall ADs
