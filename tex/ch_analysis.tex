@@ -309,47 +309,51 @@ only deviations of individual ADs' efficiencies from the estimated mean value
 impact the final prediction.
 Therefore the remaining efficiencies are accounted for
 by terms which quantify that potential difference.
+
 Given a near-hall observation of $N_{\text{cand},i}^{(b)}$ IBD candidates
 and $N_{\text{bg},i}^{(b)}$ estimated backgrounds in reconstructed energy bin $b$
 of AD $i$,
 the predicted number of IBDs is
-
 \begin{equation}\label{eq:near_hall_bg_eff}
     N_{\text{IBD},i}^{(b)}(\thetaot, \Delta m^2_{32}) =
-    \frac{N_{\text{cand},i}^{(b)} - N_{\text{bg},i}^{(b)}}{
-        \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}(1+\nu_{\varepsilon,i})
-        (1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot, \Delta m^2_{32}))
+    \frac{N_{\text{cand},i}^{(b)}(1+\eta_{N,i}^{(b)})
+        - \sum_u N_{\text{bg},i,u}^{(b)}(1+\eta_{B,i,u}^{(b)})}{
+        \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}(1+\epsilon_i)
+        (1 + \eta_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot, \Delta m^2_{32}))
     },
 \end{equation}
-where $\nu_{\varepsilon,i}$ is the fractional relative difference from
-the estimated average value determined in \cref{ch:event_selection}
-for the detection efficiency from all sources except the prompt energy cut.
-The AD-to-AD differences in prompt energy cut efficiency arise from two effects:
-the distortion of the spectrum from oscillations,
-and the distortion of the spectrum from differences
-in relative energy scale.
+where $\eta_{N,i}^{(b)}$ is the relative difference
+of the best-fit number of candidates in bin $b$ of AD $i$
+compared to the observed number,
+$\eta_{B,i,u}^{(b)}$ is the relative difference
+of the best-fit number of background events of type $u$ in bin $b$ of AD $i$
+compared to the contamination estimated in \cref{sec:acc,sec:correlated_bg},
+and $\epsilon_i$ is the relative difference of the best-fit detection efficiency
+from the estimated average value determined in \cref{sec:efficiencies}.
 The relative energy scale (\cref{subsec:rel_energyscale})
-is accounted for by a separate AD-dependent parameter $\nu_{\text{relE},i}$,
+is accounted for by a separate AD-dependent parameter $\eta_{\text{relE},i}$,
 the fractional deviation of a given AD's energy scale
-from the nominal value assumed for all ADs.
+from the average for all ADs.
 The parameter $a_{\text{relE},i}^{(b)}(\thetaot, \Delta m^2_{32})$
 represents the fractional change to a given bin of reconstructed energy
-if the relative energy scale were to change by $1\sigma \sim \SI{+-0.5}{\percent}$.
+due to the relative energy scale changing by $1\sigma \sim \SI{0.5}{\percent}$.
 Its dependence on a given AD and the oscillation parameters is
 due to the baseline-dependent distortion of the IBD spectrum
 induced by neutrino oscillation.
 The values for $a_{\text{relE},i}^{(b)}(\thetaot, \Delta m^2_{32})$ were determined using
-a simulated Monte Carlo dataset (\cref{sec:thu_toymc}).
-The factor $(1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\Delta m^2_{32}))$
-therefore accounts for changes in the prompt spectrum of
+the individual event Monte Carlo dataset (\cref{sec:thu_toymc}).
+The factor $(1 + \eta_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\Delta m^2_{32}))$
+accounts for changes of
 both shape and normalization (i.e.\ prompt energy cut efficiency)
+in the prompt spectrum
 due to differences in the relative energy scale between ADs.
-In practice $\nu_{\varepsilon,i}$ and $\nu_{\text{relE},i}$
+In practice $\eta_{N,i}^{(b)},\epsilon_i$ and $\eta_{\text{relE},i}$
 are implemented as nuisance or pull parameters
 so they can be adjusted during fitting.
+
 The dependence of prompt energy efficiency on oscillation parameters
 discussed in \cref{subsec:prompt_energy}
-should be applied at this stage for consistency.
+should be applied at this stage for conceptual consistency.
 However, the effect for a given AD, represented as $\delta_{p,ik}(\thetaot, \Delta m^2_{32})$,
 depends on contributions from all 6 reactor cores,
 so the inclusion of these factors is postponed
@@ -363,11 +367,10 @@ including those which occurred during muon or multiplicity vetoes,
 but not those which failed the prompt and delayed energy cuts
 or the coincidence distance-time (DT) cut,
 corrected for AD-to-AD differences in all cut efficiencies
-and for differences in number of target protons (target mass)
-and differences in energy scale between ADs (relative energy scale).
-Its dependence on the oscillation parameters at this point in the process
-is from the prompt energy efficiency
-and the relative energy scale uncertainty.
+number of target protons (target mass),
+and energy scale.
+Its dependence on the oscillation parameters
+is very weak and is due to the relative energy scale uncertainty.
 
 
 \subsection{Extracting the true \texorpdfstring{\nuebar{}}{antineutrino} spectrum}
