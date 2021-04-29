@@ -487,6 +487,17 @@ that reach the ADs using the trigger thresholds described in \cref{tab:trigger}.
 \section{Triggers and data acquisition}
 \label{sec:daq}
 
+Data-taking at Daya Bay was divided into data runs
+lasting approximately an integer number of days,
+usually 1, 2, or 3 days.
+The precise start and end times were arbitrary
+and were determined by the individual collaborator
+on shift duty each day.
+Each experimental hall (EH) saved data into independent runs.
+Within each run, raw data files were saved containing 10 minutes' worth of data
+at the near halls and 25 minutes' worth at the far hall.
+The raw data was recorded from PMTs using a front-end electronics system.
+
 Each Daya Bay AD PMT had a dedicated high-voltage (HV) coaxial cable
 that supplied power to the PMT and returned the PMT signal to the
 front-end electronics.
@@ -511,8 +522,9 @@ The NHIT trigger was based on the number of PMTs simultaneously over threshold,
 and the ESUM trigger was based on a simple sum of the photoelectrons
 from each PMT.
 The efficienies of the NHIT and ESUM triggers are shown in \cref{fig:trig_eff}.
-Note that the trigger criteria are lower than the event selection
+Note that the trigger criteria are lower (weaker) than the event selection
 criteria used for the \thetaot{} analysis and described in \cref{ch:event_selection}.
+The trigger rates for a typical run are listed in \cref{tab:trigger_rates}.
 Each channel's TDC was sent a ``stop'' signal when it received a trigger signal
 from the master trigger board.
 For every channel with a TDC reading of \SI{<1.2}{\us},
@@ -521,8 +533,7 @@ the corresponding TDC reading, peak ADC value and the pedestal ADC value
 were recorded into the offline storage system.
 The absolute timestamp of the event was determined by a GPS-based clock
 with \SI{25}{\ns} resolution and was also stored.
-The resulting data files comprise the raw data from Daya Bay.
-
+The resulting data files comprised the raw data from Daya Bay.
 
 \begin{table}[ht]
     \centering
@@ -551,6 +562,29 @@ The resulting data files comprise the raw data from Daya Bay.
         during offline data processing.
     }
     \label{tab:trigger}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \sisetup{
+        table-figures-decimal = 0,
+        table-number-alignment = center
+    }
+    \begin{tabular}[t]{lcSSSSSSS}
+        \toprule
+        Hall & {Run no.} & {AD1} & {AD2} & {AD3} & {AD4} & {IWS} & {OWS} & {RPC} \\
+             & & \multicolumn{7}{c}{All rates in \si{\Hz}} \\
+        \midrule
+        EH1 & 63068 & 286 & 243 & {-} & {-} & 214 & 300 & 236 \\
+        EH2 & 63063 & 207 & 216 & {-} & {-} & 188 & 249 & 105 \\
+        EH3 & 63060 & 134 & 120 & 136 & 129 & 41 & 55 & 32 \\
+        \bottomrule
+    \end{tabular}
+    \caption[Trigger rates]{
+        Trigger rates for each detector subsystem during typical runs
+        between 4 July 2016 and 6 July 2016.
+    }
+    \label{tab:trigger_rates}
 \end{table}
 
 \begin{figure}
