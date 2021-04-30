@@ -322,10 +322,38 @@ During the Summer 2012 shutdown for the installation of EH2-AD2 and EH3-AD4,
 a special calibration was performed to characterize the correlated background
 due to the \amc{} calibration sources.
 The \amc{} background and the special calibration are described in \cref{subsec:amc}.
+Separately, a special calibration system was temporarily installed in EH1-AD1.
+within the AD.
 During the December 2016/January 2017 shutdown for the decommissioning of EH1-AD1,
 two special calibrations were performed in that AD \cite{calib_proposal2017}.
 
-The first such study examined the impact of optical shadowing,
+The special calibration system installed in EH1-AD1 during the Summer 2012 shutdown
+allowed calibration sources to be deployed to arbitrary positions,
+and was known as the manual calibration system (MCS) \cite{mcs}.
+This system consisted of a central rod which could be raised, lowered and rotated,
+and a perpendicular arm at the bottom, along which the calibration source
+could be moved to reach different radial positions,
+as shown in \cref{fig:mcs}.
+The MCS was deployed with two calibration sources:
+\isotope[60]{Co}, to provide a reference for comparisons with the ACU measurements,
+and \isotope[238]{Pu}-\isotope[13]{C} to produce neutrons
+and \SI{6.13}{\MeV} $\gamma$-rays.
+Results from deploying the MCS at over 1700 positions were used
+to measure the detector uniformity \cite{mcs_uniformity}
+and neutron capture efficiency \cite{mcs_eff}
+and to characterize the position reconstruction (described in \cref{sec:reco_position}).
+
+\begin{figure}
+    \centering
+    \includegraphics[height=0.34\textheight]{ch_calibration/mcs}
+    \caption[Manual calibration system]{
+        Schematic diagram of the manual calibration system (MCS) during deployment.
+    }
+    \label{fig:mcs}
+\end{figure}
+
+The first special calibration of the Winter 2016-2017 shutdown
+examined the impact of optical shadowing,
 when the calibration source enclosures and cable weights
 absorbed a small fraction of the scintillation light
 produced during calibration-related events,
@@ -356,8 +384,8 @@ This correction was included in the light yield computations.
     \label{fig:optical_shadowing}
 \end{figure}
 
-The second special calibration run performed in winter of 2016-2017
-was a calibration of the absolute efficiency for neutron capture on Gd.
+The second Winter 2016-2017 special calibration run
+was a measurement of the absolute efficiency for neutron capture on Gd.
 Additional neutron emitters
 (higher-activity \amc{} as well as \isotope[241]{Am}-\isotope[9]{Be})
 were deployed along all three ACU axes,

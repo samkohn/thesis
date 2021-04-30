@@ -74,6 +74,29 @@ The grid pattern in the distribution is an artifact of the interpolation process
 The maximum reconstructed radius displayed is \SI{2.2}{\m}
 due to the flasher cuts described in \cref{sec:flashers}.
 
+The position resolution and bias of this algorithm were measured
+using calibration sources.
+The manual calibration system (MCS) described in \cref{sec:special_calib}
+provided a particularly thorough characterization of EH1-AD1
+at over 1700 positions within the GdLS region.
+Data from the MCS deployment was divided into bins in $z$ and $r$ coordinates
+based on the true position of the MCS.
+Within each bin, events with an energy of \SI{2.3\pm0.2}{\MeV} were selected
+to include both the nH capture peak from the \isotope[238]{Pu}-\isotope[13]{C} source
+and the $\gamma$-ray peak from the \isotope[60]{Co} source.
+The resolution and bias of the reconstructed position of these events
+relative to the true MCS position
+are shown in \cref{fig:position_bias_reso}
+to be $\lesssim\SI{0.4}{\m}$ and $\lesssim\SI{0.2}{\m}$, respectively,
+for events within the IAV (GdLS region).
+The true MCS position was accurate to within \SI{2.5}{\cm} \cite{mcs}.
+Separately, calibration data using the usual ACUs' \isotope[60]{Co} source
+along fixed vertical axes
+constrained the resolution and bias in both the GdLS and LS regions
+to be $\lesssim\SI{0.4}{\m}$ and $\lesssim\SI{0.12}{\m}$, respectively,
+demonstrating that the reconstruction algorithm performs comparably
+in both regions \cite{adtime_performance}.
+
 \begin{figure}
     \centering
     \includegraphics[width=0.4\textwidth]{ch_reconstruction/interpolation}
@@ -81,7 +104,7 @@ due to the flasher cuts described in \cref{sec:flashers}.
         Interpolation between grid points to obtain a more-precise position
         that minimizes the $\chi^2$ function.
         The process is repeated with $s$ representing each of the coordinates
-        $r, \phi, z$.
+        $(r, \phi, z)$.
         Figure taken from \cite{adsimple1}.
     }
     \label{fig:interpolation}
@@ -95,6 +118,25 @@ due to the flasher cuts described in \cref{sec:flashers}.
         with energy within \SIrange{1.5}{12}{\MeV} in EH1-AD1.
     }
     \label{fig:position_map}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.49\textwidth]{ch_reconstruction/adsimple_pos_bias}
+    \includegraphics[width=0.49\textwidth]{ch_reconstruction/adsimple_pos_resolution} \\
+    \includegraphics[width=0.49\textwidth]{ch_reconstruction/adsimple_pos_ACU}
+    \caption[Bias and resolution of position reconstruction]{
+        Top: Bias and resolution of the reconstructed position
+        of \SI{2.506}{\MeV} $\gamma$-rays from \isotope[60]{Co} and
+        of neutron captures on hydrogen (nH) from \isotope[238]{Pu}-\isotope[13]{C},
+        with the absolute positions provided by the MCS \cite{adtime_performance}.\\
+        Bottom: Bias and resolution of the reconstructed position
+        of the \isotope[60]{Co} $\gamma$-rays from the ACUs in EH1-AD2.
+        The labels within each square are of the form $\mu\pm\sigma$
+        with bias $\mu$ and resolution $\sigma$, both in meters.
+        Note the horizontal axis is the squared radius for the bottom plot.
+    }
+    \label{fig:position_bias_reso}
 \end{figure}
 
 \section{Energy}
