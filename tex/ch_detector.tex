@@ -252,7 +252,7 @@ and chemical analyses of the proton mass fractions
 of the materials in each volume.
 The volumes were divided into GdLS, LS, and other,
 which was dominated by the acrylic vessels (IAV and OAV)
-but also included the reflector, hold-downs and radial shield \cite{acrylic_mass}.
+but also included the reflectors, hold-downs and radial shield \cite{acrylic_mass}.
 Target masses for each AD are listed in \cref{tab:target_masses}.
 The proton density in each detector volume
 was computed based on the analytically-computed
@@ -281,40 +281,39 @@ as listed in \cref{tab:efficiency_summary}.
         S[
             table-number-alignment=center,
             table-figures-integer=5,
-            table-figures-decimal=0,
-            separate-uncertainty,
-            table-figures-uncertainty=2]
+            table-figures-decimal=0
+        ]
         S[
             table-number-alignment=center,
             table-figures-integer=5,
-            table-figures-decimal=1,
-            separate-uncertainty,
-            table-figures-uncertainty=3
+            table-figures-decimal=1
         ]
         S[
             table-number-alignment=center,
             table-figures-integer=4,
-            table-figures-decimal=0,
-            separate-uncertainty,
-            table-figures-uncertainty=2
+            table-figures-decimal=0
         ]
     }
         \toprule
          & {GdLS [\si{\kg}]} & {LS [\si{\kg}]} & {Other [\si{\kg}]}\\
         \midrule
-        EH1-AD1 & 19941\pm5 & 21573.5\pm28 & 3697\pm18 \\
-        EH1-AD2 & 19967\pm5 & 21519.6\pm28 & 3731\pm19 \\
-        EH2-AD1 & 19891\pm5 & 21587.2\pm28 & 3664\pm18 \\
-        EH2-AD2 & 19944\pm5 & 21449.9\pm28 & 3749\pm19 \\
-        EH3-AD1 & 19917\pm5 & 21566.2\pm28 & 3744\pm19 \\
-        EH3-AD2 & 19989\pm5 & 21408.8\pm28 & 3864\pm19 \\
-        EH3-AD3 & 19892\pm5 & 21652.6\pm28 & 3844\pm19 \\
-        EH3-AD4 & 19931\pm5 & 21474.5\pm28 & 3794\pm19 \\
+        EH1-AD1 & 19941 & 21573.5 & 3697 \\
+        EH1-AD2 & 19967 & 21519.6 & 3731 \\
+        EH2-AD1 & 19891 & 21587.2 & 3664 \\
+        EH2-AD2 & 19944 & 21449.9 & 3749 \\
+        EH3-AD1 & 19917 & 21566.2 & 3744 \\
+        EH3-AD2 & 19989 & 21408.8 & 3864 \\
+        EH3-AD3 & 19892 & 21652.6 & 3844 \\
+        EH3-AD4 & 19931 & 21474.5 & 3794 \\
         \bottomrule
     \end{tabular}
     \caption[Target masses for each AD volume]{
         Target masses for each AD volume from
         \cite{liquid_target_mass,nh2016technote,detector_system}.
+        Uncertainties of \SI{5}{\kg} and \SI{28}{\kg} were used
+        for the GdLS and LS masses, respectively,
+        and a relative uncertainty of \SI{0.5}{\percent} (\SI{\sim19}{\kg})
+        was used for the remaining ``other'' mass.
     }
     \label{tab:target_masses}
 \end{table}
