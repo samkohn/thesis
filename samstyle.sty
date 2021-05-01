@@ -32,7 +32,15 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage[sorting=none,backref=true]{biblatex}
+\usepackage[%
+    style=phys,%
+    articletitle=false,biblabel=brackets,%
+    chaptertitle=false,pageranges=false,%
+    maxnames=3,%
+]{biblatex}
+\DefineBibliographyStrings{english}{
+  andothers = {\mkbibemph{et\addabbrvspace al\adddot}}
+}
 \usepackage{hyperref}
 \usepackage[capitalize]{cleveref}
 %\usepackage[style=phys,hyperref=true]{biblatex}
