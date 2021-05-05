@@ -129,12 +129,13 @@ in both regions \cite{adtime_performance}.
         Top: Bias and resolution of the reconstructed position
         of \SI{2.506}{\MeV} $\gamma$-rays from \isotope[60]{Co} and
         of neutron captures on hydrogen (nH) from \isotope[238]{Pu}-\isotope[13]{C},
-        with the absolute positions provided by the MCS \cite{adtime_performance}.\\
+        with the absolute positions provided by the MCS.\\
         Bottom: Bias and resolution of the reconstructed position
         of the \isotope[60]{Co} $\gamma$-rays from the ACUs in EH1-AD2.
         The labels within each square are of the form $\mu\pm\sigma$
         with bias $\mu$ and resolution $\sigma$, both in meters.
         Note the horizontal axis is the squared radius for the bottom plot.
+        All plots taken from \cite{adtime_performance}.
     }
     \label{fig:position_bias_reso}
 \end{figure}
@@ -161,25 +162,25 @@ This process can be represented by the following formula:
 where $Q_i$ is the ADC value for PMT $i$,
 $\overline{Q}_i^{\text{SPE}}(t)$ and $N^{\text{PE}}(t)$
 are the gain for PMT $i$ and the light yield, respectively
-(\cref{sec:gain,sec:light_yield_calib}),
-$f_{\text{SCNL}}$ is the single-channel nonlinearity correction
-(\cref{subsec:scnl}),
-and $f_{\text{act}}(t)$ and $f_{\text{pos}}(\textbf{r}_{\text{rec}},t)$
-are the active PMT correction and nonuniformity correction,
+(\cref{sec:gain,sec:light_yield_calib}), and
+$f_{\text{SCNL}}$, $f_{\text{act}}(t)$ and $f_{\text{pos}}(\textbf{r}_{\text{rec}},t)$
+are the single-channel nonlinearity correction,
+active PMT correction and nonuniformity correction,
 described below.
 
 The active PMT correction compensated for the loss in collected light
 when a PMT was disabled during operation \cite{ngd2016}.
 On average, each PMT contributed $\nicefrac{1}{192}$ of the charge to each event.
-Thus if $n$ PMTs were disabled, the apparent measured total charge must be increased by a factor
+Thus if $n(t)$ PMTs were disabled at time $t$, the apparent measured total charge must be increased by a factor
 \begin{equation}
-    f_{\text{act}}(n) = \frac{192}{n}.
+    f_{\text{act}}(t) = f_{\text{act}}(n(t)) = \frac{192}{n(t)}.
 \end{equation}
-The correction was time-dependent since the number of disabled PMTs changes with time.
+The correction was time-dependent since the number of disabled PMTs changed with time.
 
 The rest of this chapter will describe the
 nonuniformity correction $f_{\text{pos}}(\textbf{r}_{\text{rec}},t)$
-(\cref{subsec:nonuniformity})
+(\cref{subsec:nonuniformity}),
+single-channel nonlinearity correction (\cref{subsec:scnl}),
 as well as characterizations of the detector energy response:
 the energy resolution (\cref{subsec:resolution}),
 relative energy scale (\cref{subsec:rel_energyscale}),
@@ -244,16 +245,40 @@ at the outer edge of the OAV (LS region).
     \label{fig:nonuniformity_map}
 \end{figure}
 
-The Earth's magnetic field caused a nonuniformity
+A nonuniformity was observed
 as a function of azimuthal angle $\phi$ of approximately \SI{1}{\percent}.
 This effect was correlated with the orientation of the PMTs with respect
 to the geomagnetic field.
 A model was constructed to account for this effect:
-\begin{equation}
+\begin{equation}\label{eq:azim_nonunif}
     f_{\text{pos}}(\phi) = 1 + \alpha\sin(\phi-\phi_0),
 \end{equation}
 where $\alpha$ and $\phi_0$ were determined from fitting to spallation neutron captures
 in a similar fashion as with the $r$--$z$ nonuniformity.
+The values for $\alpha$ and $\phi_0$ are listed in \cref{tab:azimuthal}.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{lSS}
+        \toprule
+        & {$\alpha$} & {$\phi_0$ [\si{\radian}]} \\
+        \midrule
+        EH1-AD1 & -0.0035 & 0.73 \\
+        EH1-AD2 & -0.0066 & 0.67 \\
+        EH2-AD1 & 0.0067 & 0.09 \\
+        EH2-AD2 & 0.0042 & -0.13 \\
+        EH3-AD1 & 0.0042 & -1.19 \\
+        EH3-AD2 & 0.0111 & -1.05 \\
+        EH3-AD3 & 0.0067 & -0.61 \\
+        EH3-AD4 & 0.0100 & -0.83 \\
+        \bottomrule
+    \end{tabular}
+    \caption[Azimuthal nonuniformity values]{
+        Parameters for the azimuthal nonuniformity correction,
+        \cref{eq:azim_nonunif}.
+    }
+    \label{tab:azimuthal}
+\end{table}
 
 Over time, the nonuniformity evolved in different regions of the ADs,
 attributable mostly to a slight degradation in the attenuation length of the LS
@@ -287,193 +312,6 @@ corresponding to rates of change between
         Figure taken from \cite{nonuniformity4}.
     }
     \label{fig:time_dep_nonunif}
-\end{figure}
-
-\subsection{Energy resolution}
-\label{subsec:resolution}
-
-The detector energy resolution for a scintillating detector can be modeled as
-\cite{energy_resolution}
-\begin{equation}
-    \frac{\sigma_E}{E} = \sqrt{a^2 + \frac{b^2}{E} + \frac{c^2}{E^2}},
-\end{equation}
-where $E$ is the reconstructed energy.
-The parameters $a,b,$ and $c$ represent contributions to the resolution
-from different sources.
-Parameter $a$ quantifies the impact due to the non-pointlike nature
-of the energy depositions in the scintillator,
-since events with larger energy deposit their energy over a larger spatial extent
-in the AD.
-This could also be understood as a consequence of residual nonuniformity.
-Parameter $b$ describes the size of the $\nicefrac{1}{\sqrt{E}}$ contribution,
-which corresponds to the combined counting statistics of
-the production, detection and digitization of photons.
-Lastly, $c$ is a constant contribution to $\sigma_E$
-representing the dark noise intrinsic to the PMTs.
-The resolution parameters can be extracted from a fit
-to the energy resolutions of a wide variety of calibration and intrinsic sources,
-as shown in \cref{fig:resolution}.
-The values for the resolution parameters are \cite{ngd2016}
-\begin{align}\label{eq:resolution_params}
-    \begin{split}
-        a &= 0.016 \\
-        b &= \SI{0.081}{\MeV\tothe{1/2}} \\
-        c &= \SI{0.026}{\MeV}.
-    \end{split}
-\end{align}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{ch_reconstruction/energy_resolution}
-    \caption[Energy resolution]{Energy resolutions for calibration sources, neutron captures,
-        and natural $\alpha$'s present in the ADs \cite{ngd2016}.
-        The dashed orange line shows the simulated impact
-        of optical shadowing (\cref{sec:special_calib}).
-    }
-    \label{fig:resolution}
-\end{figure}
-
-
-\subsection{Relative energy scale}
-\label{subsec:rel_energyscale}
-
-It was critical that all ADs measured the same energy when observing the same process.
-If an AD had been biased and returned a higher or lower energy than the others,
-then the IBD selection efficiency and spectral shape for that AD
-could be different than at the other ADs,
-which would bias the measurement of \thetaot{} and $\Delta m^2_{32}$.
-The identicalness of the energy measurements is known as the relative energy scale,
-and it was determined by measuring the same process in all ADs and comparing
-the reconstructed energy.
-The energy scale of the GdLS region was extremely well-constrained
-by a thorough review of 13 calibration and intrinsic sources:
-$\gamma$-rays from \isotope[68]{Ge} and \isotope[60]{Co} calibration sources;
-neutron captures on Gd and H from both IBD and muon spallation;
-$\alpha$ decays of naturally-occuring \isotope[212]{Po},
-\isotope[214]{Po}, \isotope[215]{Po}, and \isotope[219]{Po};
-and $\gamma$-rays from \isotope[40]{K} and \isotope[208]{Tl}.
-\Cref{fig:gdls_rel_energyscale} shows the relative variations
-for all of these sources among the 8 ADs.
-The variations are all within \SI{+-0.2}{\percent}.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\textwidth]{ch_reconstruction/relative_energyscale}
-    \caption[Relative energy scale for GdLS volume]{
-        Comparison of 13 calibration and intrinsic source energies
-        among the 8 ADs, showing the \SI{+-0.2}{\percent}
-        relative energy scale variation in the GdLS region.
-    }
-    \label{fig:gdls_rel_energyscale}
-\end{figure}
-
-To include the LS region, the relative energy scale was studied
-by comparing the energy of the neutron capture on H (nH)
-among the ADs.
-This technique is described in detail in \cref{subsec:delayed}
-and resulted in a less-constrained relative energy scale variation
-of \SI{+-0.5}{\percent}, which is conservatively adopted
-as the energy scale uncertainty over the entire AD.
-The impact of this variation on the prompt energy cut efficiency
-and the prompt spectrum shape
-was studied using simulation
-as described in \cref{sec:thu_toymc}.
-
-\subsection{Absolute energy scale}
-\label{subsec:abs_energyscale}
-
-The calibration and reconstruction procedures discussed so far
-only ensured that the ADs have nearly-identical energy responses,
-and that they all assigned the lower-energy $\gamma$-ray peak from nGd capture
-to have energy \SI{7.95}{\MeV}.
-Missing from the characterization is whether any other physical process
-was assigned an accurate energy by the ADs.
-That is, even if all ADs observing the same process
-measured the same value $E_{\text{rec}}$
-when the process had true energy $E_{\text{true}}$,
-how close is $E_{\text{rec}}$ to $E_{\text{true}}$?
-This question is particularly important when measuring the IBD prompt event energy,
-which was used to determine the original \nuebar{} energy $E_\nu$
-used to compute the survival probability (\cref{eq:p_sur_ee}).
-The deviation as a function of $E_{\text{true}}$ is known as
-the absolute energy scale or the absolute energy nonlinearity.
-
-The absolute energy scale deviated from unity due to four main effects:
-the IBD neutron recoil kinetic energy, scintillator quenching,
-Cherenkov radiation, and electronics nonlinearity \cite{ngd2016}.
-The effects were factored into electronics nonlinearities
-and nonlinearities in generating detectable light signals
-(i.e. visible energy, $E_{\text{vis}}$):
-\begin{align}
-    \begin{split}
-        \frac{E_{\text{rec}}}{E_{\text{true}}}
-        &=
-        \frac{E_{\text{rec}}}{E_{\text{vis}}}
-        \frac{E_{\text{vis}}}{E_{\text{true}}} \\
-        &= \beta f_{\text{electronics}}(E_{\text{vis}})
-        f_{\text{scintillator}}(E_{\text{true}}),
-    \end{split}
-\end{align}
-with neutrons, quenching, and Cherenkov radiation contributing to
-$f_{\text{scintillator}}(E_{\text{true}})$,
-and the arbitrary normalization $\beta$ defined so that
-$E_{\text{rec}} = E_{\text{true}}$
-at the nGd capture peak reference energy of \SI{7.95}{\MeV}.
-The electronics nonlinearity was applied on an event-by-event basis
-through the single channel nonlinearity correction (see \cref{subsec:scnl}).
-The scintillator nonlinearity was not applied to individual events;
-instead, it was factored into the interaction and detector response model
-applied to the binned data during the \thetaot{} fit procedure,
-as described in \cref{ch:analysis}.
-
-The neutron recoil energy was correlated with the \nuebar{} energy,
-but did not result in any scintillation or Cherenkov light.
-Fortunately, the energy lost was on the order of a few \si{\keV}
-so was accepted as a slight broadening of the energy resolution.
-
-The remaining scintillator effects were modeled for electrons as
-\begin{equation}
-    f_{\text{scintillator}}(E_{\text{true}}) =
-    f_q(E_{\text{true}};k_B) + k_Cf_C(E_{\text{true}}),
-\end{equation}
-where $f_q$ describes the scintillation light including the quenching effect,
-$k_B$ is Birks's constant which characterizes the medium (LS)
-and particle type (electron),
-$k_C$ is a normalization constant,
-and $f_C$ is the Cherenkov light contribution.
-For an electron which deposits all of its energy into the scintillator
-with energy loss per unit length $\nicefrac{dE}{dx}$,
-Birks's law determines the produced scintillation light up to normalization \cite{birks}:
-\begin{equation}
-    f_q(E_{\text{true}});k_B) = \frac{1}{E_{\text{true}}} \int_0^{E_{\text{true}}}
-    \frac{dE}{1+k_B\frac{dE}{dx}}.
-\end{equation}
-The Cherenkov contribution $f_C$ was determined using a Monte Carlo simulation,
-and $k_C$ was chosen so that the proportion of scintillation to Cherenkov photons
-was correct at $E_{\text{true}} = \SI{1}{\MeV}$.
-These results were then converted for use by positrons under the assumption that
-(a) electrons and positrons have identical scintillation and Cherenkov properties;
-and (b) on annihilation, two additional \SI{0.511}{\MeV} $\gamma$-rays are emitted.
-These $\gamma$'s as well as $\gamma$'s produced by nH, nGd and other processes
-can be treated recursively
-since they lose energy in the scintillator
-by Compton scattering, the photoelectric effect, and pair-conversion,
-and the $e^{\pm}$ generated from these processes
-are described by $f_{\text{scintillator}}$.
-\Cref{fig:gamma_conversion} shows the probability distributions
-of the energy of $e^{\pm}$ generated by a $\gamma$-ray
-and subsequent electromagnetic shower for various $\gamma$ energies,
-which were used to produce effective nonlinearity models for $\gamma$-rays.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\textwidth]{ch_reconstruction/gamma_conversion_energy}
-    \caption[$e^{\pm}$ spectrum from $\gamma$-rays]{
-        Probability for a $\gamma$-ray of a given energy to produce
-        an $e^{\pm}$ with a given energy in Daya Bay liquid scintillator.
-        This plot was produced using Monte Carlo and is taken from \cite{nonlinearity1}.
-    }
-    \label{fig:gamma_conversion}
 \end{figure}
 
 \subsection{Single channel non-linearity correction}
@@ -600,3 +438,197 @@ The residual nonlinearity for a single channel is shown in \cref{fig:scnl_residu
     }
     \label{fig:scnl_residual}
 \end{figure}
+
+\subsection{Energy resolution}
+\label{subsec:resolution}
+
+The detector energy resolution for a scintillating detector can be modeled as
+\cite{energy_resolution}
+\begin{equation}
+    \frac{\sigma_E}{E} = \sqrt{a^2 + \frac{b^2}{E} + \frac{c^2}{E^2}},
+\end{equation}
+where $E$ is the reconstructed energy.
+The parameters $a,b,$ and $c$ represent contributions to the resolution
+from different sources.
+Parameter $a$ quantifies the impact due to the non-pointlike nature
+of the energy depositions in the scintillator,
+since events with larger energy deposit their energy over a larger spatial extent
+in the AD.
+This could also be understood as a consequence of residual nonuniformity.
+Parameter $b$ describes the size of the $\nicefrac{1}{\sqrt{E}}$ contribution,
+which corresponds to the combined counting statistics of
+the production, detection and digitization of photons.
+Lastly, $c$ is a constant contribution to $\sigma_E$
+representing the dark noise intrinsic to the PMTs.
+The resolution parameters can be extracted from a fit
+to the energy resolutions of a wide variety of calibration and intrinsic sources,
+as shown in \cref{fig:resolution}.
+The values for the resolution parameters are \cite{ngd2016}
+\begin{align}\label{eq:resolution_params}
+    \begin{split}
+        a &= 0.016 \\
+        b &= \SI{0.081}{\MeV\tothe{1/2}} \\
+        c &= \SI{0.026}{\MeV}.
+    \end{split}
+\end{align}
+This model is used in the \thetaot{} analysis
+as an input to the detector response model,
+discussed in \cref{subsec:reco_to_true_energy}.
+The impact of uncertainties in the parameters
+were studied as part of the validation of the fitter,
+described in \cref{subsec:fitter_validation}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{ch_reconstruction/energy_resolution}
+    \caption[Energy resolution]{Energy resolutions for calibration sources, neutron captures,
+        and natural $\alpha$'s present in the ADs \cite{ngd2016}.
+        The dashed orange line shows the simulated impact
+        of optical shadowing (\cref{sec:special_calib}).
+    }
+    \label{fig:resolution}
+\end{figure}
+
+
+\subsection{Relative energy scale}
+\label{subsec:rel_energyscale}
+
+It was critical that all ADs measured the same energy when observing the same process.
+If an AD had been biased and returned a higher or lower energy than the others,
+then the IBD selection efficiency and spectral shape for that AD
+could be different than at the other ADs,
+which would bias the measurement of \thetaot{} and $\Delta m^2_{32}$.
+The identicalness of the energy measurements is known as the relative energy scale,
+and it was determined by measuring the same process in all ADs and comparing
+the reconstructed energy.
+The energy scale of the GdLS region was extremely well-constrained
+by a thorough review of 13 calibration and intrinsic sources:
+$\gamma$-rays from \isotope[68]{Ge} and \isotope[60]{Co} calibration sources;
+neutron captures on Gd and H from both IBD and muon spallation;
+$\alpha$ decays of naturally-occuring \isotope[212]{Po},
+\isotope[214]{Po}, \isotope[215]{Po}, and \isotope[219]{Po};
+and $\gamma$-rays from \isotope[40]{K} and \isotope[208]{Tl} \cite{ngd2016}.
+\Cref{fig:gdls_rel_energyscale} shows the relative variations
+for all of these sources among the 8 ADs.
+The variations are all within \SI{+-0.2}{\percent}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{ch_reconstruction/relative_energyscale}
+    \caption[Relative energy scale for GdLS volume]{
+        Comparison of 13 calibration and intrinsic source energies
+        among the 8 ADs, showing the \SI{+-0.2}{\percent}
+        relative energy scale variation in the GdLS region
+        \cite{ngd2016}.
+    }
+    \label{fig:gdls_rel_energyscale}
+\end{figure}
+
+To include the LS region, the relative energy scale was studied
+by comparing the energy of nH capture among the ADs.
+This technique is described in detail in \cref{subsec:delayed}
+and resulted in a less-constrained relative energy scale variation
+of \SI{+-0.5}{\percent}, which is conservatively adopted
+as the energy scale uncertainty over the entire AD.
+The impact of this variation on the prompt energy cut efficiency
+and the prompt spectrum shape
+was studied using simulation
+as described in \cref{sec:thu_toymc}.
+
+\subsection{Absolute energy scale}
+\label{subsec:abs_energyscale}
+
+The calibration and reconstruction procedures discussed so far
+only ensured that the ADs have nearly-identical energy responses,
+and that they all assigned the lower-energy $\gamma$-ray peak from nGd capture
+to have energy \SI{7.95}{\MeV}.
+Missing from the characterization is whether any other physical process
+was assigned an accurate energy by the ADs.
+That is, even if all ADs observing the same process
+measured the same value $E_{\text{rec}}$
+when the process had true energy $E_{\text{true}}$,
+how close is $E_{\text{rec}}$ to $E_{\text{true}}$?
+This question is particularly important when measuring the IBD prompt event energy,
+which was used to determine the original \nuebar{} energy $E_\nu$
+used to compute the survival probability (\cref{eq:p_sur_ee}).
+The deviation as a function of $E_{\text{true}}$ is known as
+the absolute energy scale or the absolute energy nonlinearity.
+
+The absolute energy scale deviated from unity due to four main effects:
+the IBD neutron recoil kinetic energy, scintillator quenching,
+Cherenkov radiation, and electronics nonlinearity \cite{ngd2016}.
+The effects were factored into electronics nonlinearities
+and nonlinearities in generating detectable light signals
+(i.e. visible energy, $E_{\text{vis}}$):
+\begin{align}
+    \begin{split}
+        \frac{E_{\text{rec}}}{E_{\text{true}}}
+        &=
+        \frac{E_{\text{rec}}}{E_{\text{vis}}}
+        \frac{E_{\text{vis}}}{E_{\text{true}}} \\
+        &= \beta f_{\text{electronics}}(E_{\text{vis}})
+        f_{\text{scintillator}}(E_{\text{true}}),
+    \end{split}
+\end{align}
+with neutrons, quenching, and Cherenkov radiation contributing to
+$f_{\text{scintillator}}(E_{\text{true}})$,
+and the arbitrary normalization $\beta$ defined so that
+$E_{\text{rec}} = E_{\text{true}}$
+at the nGd capture peak reference energy of \SI{7.95}{\MeV}.
+The electronics nonlinearity was applied on an event-by-event basis
+through the single channel nonlinearity correction (see \cref{subsec:scnl}).
+The scintillator nonlinearity was not applied to individual events;
+instead, it was factored into the interaction and detector response model
+applied to the binned data during the \thetaot{} fit procedure,
+as described in \cref{ch:analysis}.
+
+The neutron recoil energy was correlated with the \nuebar{} energy,
+but did not result in any scintillation or Cherenkov light.
+Fortunately, the energy lost was on the order of a few \si{\keV}
+so was accepted as a slight broadening of the energy resolution.
+
+The remaining scintillator effects were modeled for electrons as
+\begin{equation}
+    f_{\text{scintillator}}(E_{\text{true}}) =
+    f_q(E_{\text{true}};k_B) + k_Cf_C(E_{\text{true}}),
+\end{equation}
+where $f_q$ describes the scintillation light including the quenching effect,
+$k_B$ is Birks's constant which characterizes the medium (LS)
+and particle type (electron),
+$k_C$ is a normalization constant,
+and $f_C$ is the Cherenkov light contribution.
+For an electron which deposits all of its energy into the scintillator
+with energy loss per unit length $\nicefrac{dE}{dx}$,
+Birks's law determines the produced scintillation light up to normalization \cite{birks}:
+\begin{equation}
+    f_q(E_{\text{true}});k_B) = \frac{1}{E_{\text{true}}} \int_0^{E_{\text{true}}}
+    \frac{dE}{1+k_B\frac{dE}{dx}}.
+\end{equation}
+The Cherenkov contribution $f_C$ was determined using a Monte Carlo simulation,
+and $k_C$ was chosen so that the proportion of scintillation to Cherenkov photons
+was correct at $E_{\text{true}} = \SI{1}{\MeV}$.
+These results were then converted for use by positrons under the assumption that
+(a) electrons and positrons have identical scintillation and Cherenkov properties;
+and (b) on annihilation, two additional \SI{0.511}{\MeV} $\gamma$-rays are emitted.
+These $\gamma$'s as well as $\gamma$'s produced by nH, nGd and other processes
+can be treated recursively
+since they lose energy in the scintillator
+by Compton scattering, the photoelectric effect, and pair-conversion,
+and the $e^{\pm}$ generated from these processes
+are described by $f_{\text{scintillator}}$.
+\Cref{fig:gamma_conversion} shows the probability distributions
+of the energy of $e^{\pm}$ generated by a $\gamma$-ray
+and subsequent electromagnetic shower for various $\gamma$ energies,
+which were used to produce effective nonlinearity models for $\gamma$-rays.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{ch_reconstruction/gamma_conversion_energy}
+    \caption[$e^{\pm}$ spectrum from $\gamma$-rays]{
+        Probability for a $\gamma$-ray of a given energy to produce
+        an $e^{\pm}$ with a given energy in Daya Bay liquid scintillator.
+        This plot was produced using Monte Carlo and is taken from \cite{nonlinearity1}.
+    }
+    \label{fig:gamma_conversion}
+\end{figure}
+
