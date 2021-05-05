@@ -501,7 +501,7 @@ Each Daya Bay AD PMT had a dedicated high-voltage (HV) coaxial cable
 that supplied power to the PMT and returned the PMT signal to the
 front-end electronics.
 Upon receipt of an above-threshold PMT signal, these electronics immediately
-issued a ``start'' signal to a TDC with \SI{1.6}{\ns} resolution,
+issued a ``start'' signal to a time-to-digital converter (TDC) with \SI{1.6}{\ns} resolution,
 and also measured the charge using a \SI{40}{\MHz} \num{12}-bit ADC
 providing better than \num{0.1}-photoelectron (PE) resolution.
 A \SI{50}{\percent} attenuated copy of the signal was passed to a copy
@@ -603,3 +603,21 @@ The resulting data files comprised the raw data from Daya Bay.
     \label{fig:trig_eff}
 \end{figure}
 
+Approximately twice per year, raw data was processed
+using the calibration and reconstruction algorithms described in
+\cref{ch:calibration,ch:reconstruction}.
+This data processing procedure is known as production, and the resulting datasets
+are known as production datasets.
+If the calibration or reconstruction algorithms were altered in any way,
+the next production re-processed all of the historical data,
+so that within a production dataset, all of the data was processed
+with exactly the same software.
+Since 2018, the calibration and reconstruction algorithms used in production have been
+frozen so that new productions only needed to process new data.
+New algorithms are being developed that may be used
+in a final data production over the experiment's entire data sample
+from 24 December 2011 through 12 December 2020.
+The production dataset used in this \thetaot{} analysis is known as P17B,
+that is, the second production of 2017,
+contsisting of data runs between 24 December 2011
+and 30 August 2017.

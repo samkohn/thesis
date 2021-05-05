@@ -1,31 +1,37 @@
 \chapter{Event selection and backgrounds}
 \label{ch:event_selection}
 
-Approximately twice per year, new data was processed
-using the calibration and reconstruction algorithms from
-\cref{ch:calibration,ch:reconstruction}.
-This data processing procedure is known as production, and the resulting datasets
-are known as production datasets.
-If the calibration or reconstruction algorithms were altered in any way,
-the next production re-processed all of the historical data,
-so that within a production dataset, all of the data was processed
-with exactly the same software.
-Since 2018, the calibration and reconstruction algorithms used in production have been
-frozen so that new productions only needed to process new data.
-New algorithms are being developed that may be used
-in a final data production over the experiment's entire data sample
-from 24 December 2011 through 12 December 2020.
-The production dataset used in the \thetaot{} analysis in \cref{ch:analysis} is known as P17B,
-that is, the second production in 2017,
-contsisting of data runs between 24 December 2011
-and 30 August 2017.
-
+The overwhelming majority of triggers (raw data events) collected by the ADs
+were not IBD prompt or delayed events.
+As listed in \cref{tab:trigger_rates}, all ADs observed trigger rates
+of at least \SI{100}{\Hz},
+while expected IBD rates ranged from $\sim50$ per AD per day in EH3
+to $\sim450$ per AD per day in EH1.
+Thus the signal-to-noise ratio in raw data was approximately $10^{-5}$.
+Most non-IBD triggers were caused by low-energy (\SI{<1.5}{\MeV}) radiation
+produced by decays of radiocontaminants within the ADs.
+Muons traversing the scintillating volume and their interaction products,
+PMT light emission,
+and decays of radiocontaminants
+were the dominant sources of non-IBD triggers above \SI{1.5}{\MeV}.
 The event selection procedure applied a series of cuts to the data stream
-to steadily increase the purity of nH-IBDs in the remaining data.
+to steadily increase the purity of nH-IBDs
+to approximately \SI{90}{\percent} at EH1 and EH2
+and \SI{50}{\percent} at EH3.
 At each step of the event selection, it was critical that
 differences in cut efficiency between the ADs were
 minimized and quantified so that any observed near-far difference
-can be attributed to \nuebar{} oscillations.
+could be attributed to \nuebar{} oscillations.
+
+After the event selection cuts were applied,
+the surviving events were labeled ``IBD candidates.''
+The backgrounds contaminating the IBD candidate sample
+were considered irreducible and were not vetoed on an event-by-event basis.
+Instead, the rate and spectrum of these backgrounds were characterized
+through dedicated studies
+and used to convert the IBD candidate count and spectrum
+into a final IBD count and spectrum for each AD.
+
 The removal of muons from the data sample, and the additional veto window
 to suppress the rate of muon-correlated backgrounds,
 are introduced in \cref{sec:muonveto}.
