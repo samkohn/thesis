@@ -42,13 +42,13 @@
 \DefineBibliographyStrings{english}{
   andothers = {\mkbibemph{et\addabbrvspace al\adddot}}
 }
-\usepackage{hyperref}
+\definecolor{linkblue}{RGB}{32, 61, 142}
+\usepackage[
+linktocpage,
+colorlinks,
+allcolors=linkblue,
+]{hyperref}
 \usepackage[capitalize]{cleveref}
-%\usepackage[style=phys,hyperref=true]{biblatex}
-%articletitle=false,%
-%biblabel=brackets,%
-%chaptertitle=false,%
-%pageranges=false%
 
 \newcommand{\nuebar}{\ensuremath{\bar{\nu}_e}}
 \newcommand{\thetaot}{\ensuremath{\theta_{13}}}
