@@ -793,6 +793,12 @@ and accepted events which satisfied the inequality
 where $v_0 = \frac{\SI{1000}{\milli\meter}}{\SI{600}{\micro\second}}$.
 Note that the quantity DT is not D$\times$T,
 nor should it be confused with the differential $dt$.
+The DT parameter distributions of the double coincidence events
+for each AD are shown in \cref{fig:DT_data}.
+The figure makes clear that applying a DT cut of \SI{800}{\mm}
+would reject the vast majority of accidental coincidences
+with what appears to be a tolerable inefficiency in IBDs.
+The actual inefficiency is discussed in \cref{subsec:eff_DT}.
 \Cref{fig:after_DT_cut} shows the individual AD spectra
 after applying the DT cut.
 As expected, the accidental background present
@@ -800,6 +806,14 @@ in the low-prompt-energy and low-delayed-energy corner was reduced.
 The nH capture events now stand out much better
 against the accidental background.
 
+\adgrid{
+    Distribution of the DT parameter for all double coincidence events.
+    The large peak consists of accidental coincidences.
+    The contribution from IBDs is clearly visible
+    at DT values of less than \SI{1}{\m} in EH1 and EH2.
+    In EH3, the contribution from IBDs is visible
+    on close inspection but is much smaller relative to the number of accidentals.
+}{fig:DT_data}{ch_event_selection/DT_data}{DT parameter distribution}
 \adgrid{
     Prompt-delayed energy spectra after applying the DT cut
 }{fig:after_DT_cut}{ch_event_selection/post_DT_cut}{
