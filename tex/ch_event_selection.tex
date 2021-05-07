@@ -793,8 +793,8 @@ and accepted events which satisfied the inequality
 where $v_0 = \frac{\SI{1000}{\milli\meter}}{\SI{600}{\micro\second}}$.
 Note that the quantity DT is not D$\times$T,
 nor should it be confused with the differential $dt$.
-The DT parameter distributions of the double coincidence events
-for each AD are shown in \cref{fig:DT_data}.
+The DT parameter distribution for the double coincidence events
+in each AD is shown in \cref{fig:DT_data}.
 The figure makes clear that applying a DT cut of \SI{800}{\mm}
 would reject the vast majority of accidental coincidences
 with what appears to be a tolerable inefficiency in IBDs.
@@ -806,7 +806,7 @@ in the low-prompt-energy and low-delayed-energy corner was reduced.
 The nH capture events now stand out much better
 against the accidental background.
 
-\adgrid{
+\adgrid[0.22\textheight]{
     Distribution of the DT parameter for all double coincidence events.
     The large peak consists of accidental coincidences.
     The contribution from IBDs is clearly visible
@@ -1043,8 +1043,8 @@ where $r$ indexes over all runs for a given AD.
 Note that the multiplicity veto efficiency $\varepsilon_m$,
 which must be explicitly included in all other rate-to-counts conversions,
 is implicitly present in the computation of $R_\text{\fold{2}}$.
-After all, any accidental coincidence which were multiplicity-vetoed
-by another uncorrelated event were really \fold{3} accidental coincidences,
+After all, any accidental coincidences which were multiplicity-vetoed
+by another uncorrelated event were actually \fold{3} accidental coincidences,
 and thus were already excluded from $R_\text{\fold{2}}$.
 
 \subsection{Accidentals rate uncertainty}
@@ -1075,7 +1075,7 @@ $R_\text{\fold{1}} = N_\text{\fold{1}}/(T_\text{DAQ}\varepsilon_\mu)$ was identi
 The uncertainty on $R_s$ was computed numerically
 based on \cref{eq:rsingles} to be
 \begin{equation}\label{eq:sigma_rs}
-    \frac{\sigma_s}{R_s} \approx 1.1\times\sigma_\text{\fold{1}}.
+    \sigma_s \approx 1.1\times\sigma_\text{\fold{1}}.
 \end{equation}
 To obtain the uncertainty on $R_\text{\fold{2}}$ based on \cref{eq:racc},
 the uncertainties on $R_\text{\fold{1}}$ and $R_s$ were combined linearly
@@ -1094,7 +1094,7 @@ was computed using the binomial distribution to be
         }{N_\text{acc}'}
     },
 \end{equation}
-where $N\text{acc}'$ is the number of synthetic accidental pairs
+where $N_\text{acc}'$ is the number of synthetic accidental pairs
 used to compute $\varepsilon_\text{total,\,acc}$.
 Thus the total uncertainty on the number of accidental events
 for a given run based on \cref{eq:nacc} was
@@ -1106,7 +1106,7 @@ for a given run based on \cref{eq:nacc} was
     }.
 \end{equation}
 For a typical 24-hour run at any of the ADs,
-the overall statistical uncertainty was approximately \SI{\sim3}{\percent}
+the overall statistical uncertainty was approximately \SI{3}{\percent}
 These statistics were uncorrelated between runs,
 so the total relative uncertainty was suppressed
 when the runs were combined according to \cref{eq:nacc},
@@ -1154,31 +1154,113 @@ could create a synthetic sample not representative of true accidentals
 if the properties of uncorrelated events changed significantly during a run.
 An alternate pairing algorithm was designed to pair isolated events
 chosen at random (without replacement) from the set of singles from a given run.
-Values of $\varepsilon_{\text{DT,\,acc}}$ were extracted from each pairing algorithm.
+Values of $\varepsilon_{\text{DT,\,acc}}$ (defined in \cref{subsec:delayed}) were extracted from each pairing algorithm.
 The average deviation between the two algorithms' values was within \SI{0.15}{\percent};
 however, this was partially attributed to the finite statistics
 of the synthetic accidentals sample
 and so was not necessarily indicative of a major source of systematic uncertainty.
 
-A final study was inadvertently performed
-during the characterization of the DT cut efficiency.
-This study predicted the number of accidental coincidences
-which passed the energy cuts but failed the DT cut,
-a sample which can be cleanly isolated
-by selecting events with $DT > \SI{3000}{\mm}$
-rather than the nominal IBD criterion of $DT < \SI{800}{\mm}$.
+A final study was performed to test the full procedure
+for extracting the accidental background contamination.
+Rather than predicting the number of accidental coincidences
+contaminating the IBD sample,
+the procedure was adapted to predict the number of accidental coincidences
+which failed the DT cut.
+This sample was cleanly isolated from IBDs and correlated backgrounds
+by selecting double coincidence events with $\text{DT} > \SI{3000}{\mm}$,
+and with prompt and delayed energy between \SIlist{1.5;12}{\MeV}.
+The same selection cuts were applied to the synthetic accidental sample,
+replacing $\varepsilon_\text{total,\,acc}$ with $\varepsilon_\text{DT,\,acc}$
+to account for the weaker constraint on the delayed energy.
+The results for the synthetic sample were input into \cref{eq:nacc} to obtain
+the predicted number of accidentals with $\text{DT} > \SI{3000}{\mm}$.
 In all ADs, the number of such events
-predicted using the above methodology
 agreed with the observed number of events
-to within \SI{0.04}{\percent}.
+to within \SI{0.04}{\percent};
+\cref{tab:acc_validation} lists the observed and predicted values
+for each AD.
+\Cref{fig:DT_sub} shows the DT parameter distributions in EH3-AD4
+for the data sample, the synthetic accidentals sample,
+and the difference between them
+showing the close agreement for DT values above a few meters.
 This agreement tightly constrained possible systematic biases
-in the computation of the accidental background
-since it was a high-statistics sample.
+in the computation of the accidental background.
 The only assumption underlying this constraint on the systematic uncertainty
-was the synthetic accidentals sample
-predicted the true accidentals' DT distribution as well at $DT < \SI{800}{\mm}$
-as it did over the broad range $\SI{3000}{\mm} < DT < \SI{10000}{\mm}$.
-The full details of this study are presented in \cref{subsec:eff_DT}.
+was that the synthetic accidentals sample
+predicted the true accidentals' DT distribution as well at $\text{DT} < \SI{800}{\mm}$
+as it did over the broad range $\SI{3000}{\mm} < \text{DT} < \SI{10000}{\mm}$.
+
+\begin{table}[ht]
+    \centering
+    \caption[Validation of accidentals rate]{
+        Comparison between actual and predicted
+        accidental coincidences whose DT parameters
+        fall between \SIlist{3;10}{\m}.
+        The tilde ($\tilde{N}$) indicates that these are not counts of IBD candidates.
+        See the text for a detailed description.
+    }
+    \label{tab:acc_validation}
+    \begin{tabular}[t]{
+        l
+        S[
+            table-number-alignment = center,
+            table-figures-decimal = 0,
+            table-figures-integer = 8
+        ]
+        S[
+            table-number-alignment = center,
+            table-figures-decimal = 0,
+            table-figures-integer = 8
+        ]
+        S[
+            table-number-alignment = center,
+            table-figures-decimal = 0,
+            table-figures-integer = 5,
+            table-sign-mantissa = true,
+        ]
+        S[
+            table-number-alignment = center,
+            table-figures-decimal = 3,
+            table-figures-integer = 1,
+            table-sign-mantissa = true,
+        ]
+    }
+        \toprule
+        & {$\tilde{N}_\text{obs}$}
+        & {$\tilde{N}_\text{acc}'$}
+        & {$\tilde{N}_\text{acc}' - \tilde{N}_\text{obs}$}
+        & {$\frac{\tilde{N}_\text{acc}' - \tilde{N}_\text{obs}}{\tilde{N}_\text{obs}}$}
+        [\%]\\
+        \midrule
+        EH1-AD1 & 30992521 & 30999739 & 7218 & 0.023 \\
+        EH1-AD2 & 34532571 & 34533421 & 850 & 0.003 \\
+        EH2-AD1 & 36780355 & 36775698 & -4656 & -0.013 \\
+        EH2-AD2 & 32326145 & 32313935 & -12209 & -0.038 \\
+        EH3-AD1 & 47984334 & 47982715 & -1618 & -0.003 \\
+        EH3-AD2 & 50072382 & 50069291 & -3090 & -0.006 \\
+        EH3-AD3 & 50089966 & 50086848 & -3117 & -0.006 \\
+        EH3-AD4 & 43983829 & 43966224 & -17604 & -0.040 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/DT_data_EH3_AD4}
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/DT_bg_EH3_AD4} \\
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/DT_sub_EH3_AD4}
+    \caption[Validation of accidentals rate]{
+        Distribution of the DT parameter used to constrain
+        the systematic uncertainty in the accidental background rate in EH3-AD4
+        (similar in all ADs).
+        Top left: double coincidences (data), identical to \cref{fig:DT_data}.
+        Top right: synthetic accidentals (prediction).
+        Bottom: difference between the double coincidences and synthetic accidentals.
+        The data and prediction differ by only \SI{0.04}{\percent}
+        between \SIlist{3;10}{\m}.
+    }
+    \label{fig:DT_sub}
+\end{figure}
 
 Based on these studies, the systematic uncertainty
 due to the procedure for determining the number of accidental events $N_{\text{acc}}$
@@ -1198,7 +1280,7 @@ was chosen to exclude a substantial fraction
 of the low-energy uncorrelated events from radioactive decays.
 In particular, the electron capture process
 ${}^{40}\text{K} \to {}^{40}\text{Ar} + \nu_e + \gamma$
-released a $\gamma$ ray with energy \SI{1.46}{\mev}.
+released a $\gamma$-ray with energy \SI{1.46}{\mev}.
 Despite the \SI{1.5}{\MeV} cut,
 the high-energy tail of this interaction is nevertheless visible in the prompt-delayed spectra
 (\cref{fig:double_coinc_raw}) as an elevated bin content
