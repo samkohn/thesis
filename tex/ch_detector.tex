@@ -75,16 +75,18 @@ was assessed to have negligible impact on the oscillation measurement
 \end{figure}
 
 The EHs were located underneath a mountain, which provided a substantial
-overburden to protect against cosmic-ray muons:
-\SIlist{250;265;860}{\mwe} (meters of water equivalent),
-respectively, for EH1, EH2 and EH3.
+overburden to protect against cosmic-ray muons;
+the overburdens and simulated muon flux characteristics
+are listed in \cref{tab:overburden}.
 
 \begin{table}[ht]
     \centering
+    \caption[Reactor-AD baselines]{Reactor-to-AD baselines \cite{ngd2016}.}
+    \label{tab:baselines}
     \begin{tabular}[t]{lSSSSSSS}
         \toprule
-        & {D1} & {D2} & {L1} & {L2} & {L3} & {L4} \\
-        Detector & \multicolumn{6}{c}{Baseline [m]} \\
+        Detector & {D1} & {D2} & {L1} & {L2} & {L3} & {L4} \\
+        & \multicolumn{6}{c}{Baseline [m]} \\
         \midrule
         EH1-AD1 & 362.38 & 371.76 & 903.47 & 817.16 & 1353.62 & 1265.32 \\
         EH1-AD2 & 357.94 & 368.41 & 903.35 & 816.90 & 1354.23 & 1265.89 \\
@@ -96,8 +98,49 @@ respectively, for EH1, EH2 and EH3.
         EH3-AD4 & 1923.15 & 1897.51 & 1540.67 & 1540.87 & 1559.72 & 1533.18 \\
         \bottomrule
     \end{tabular}
-    \caption[Reactor-AD baselines]{Reactor-to-AD baselines \cite{ngd2016}.}
-    \label{tab:baselines}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \caption{
+        Overburden, simulated muon flux and average energy
+        for each experimental hall.
+        The uncertainty in the simulated flux is approximately \SI{10}{\percent}.
+        Table taken from \cite{muonsystem2015}.
+    }
+    \label{tab:overburden}
+    \begin{tabular}[t]{
+        l
+        S[
+            table-number-alignment = center,
+            table-figures-integer = 3,
+            table-figures-decimal = 0,
+        ]
+        S[
+            table-number-alignment = center,
+            table-figures-integer = 3,
+            table-figures-decimal = 0,
+        ]
+        S[
+            table-number-alignment = center,
+            table-figures-integer = 1,
+            table-figures-decimal = 3,
+        ]
+        S[
+            table-number-alignment = center,
+            table-figures-integer = 3,
+            table-figures-decimal = 0,
+        ]
+    }
+        \toprule
+        Hall & \multicolumn{2}{c}{Overburden} & {Muon flux} & {Average energy} \\
+             & {[\si{\m}]} & {[\si{\mwe}]} & {[\si{\Hz\per\square\m}]} & {[\si{\GeV}]} \\
+        \midrule
+        EH1 & 93 & 250 & 1.27 & 57 \\
+        EH2 & 100 & 265 & 0.95 & 58 \\
+        EH3 & 324 & 860 & 0.056 & 137 \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
 To accelerate the experiment startup timeline,
