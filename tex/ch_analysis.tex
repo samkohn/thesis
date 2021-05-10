@@ -37,18 +37,18 @@ when computing oscillation probabilities during the fit procedure.
 To assess the validity of the 3-flavor model and extract the oscillation parameters'
 best-fit values,
 a comparison was made between the observed near-site and far-site \nuebar{} spectra.
-The comparison relies on the number of observed events at the near halls (EH1 and EH2)
+The comparison relied on the number of observed events at the near halls (EH1 and EH2)
 and $P_\text{sur}$ from the 3-flavor oscillation model
 to predict the far-hall (EH3) observations
 with minimal reliance on the intricacies of reactor operation modeling
-and antineutrino production (\cref{sec:prediction}).
-Reactor models were used in the prediction
+and \nuebar{} production (\cref{sec:prediction}).
+Reactor \nuebar{} models were used in the prediction
 to determine the relative \nuebar{} flux
 observed by each AD from each reactor core (\cref{sec:reactor}).
 A \chisquare{} expression was created to quantify the agreement
 between the prediction prediction and observations (\cref{sec:fitter}).
 
-\section{Reactor model}
+\section{Reactor \texorpdfstring{\nuebar{}}{antineutrino} model}
 \label{sec:reactor}
 
 The relative flux and spectrum of \nuebar{} from each reactor core was used
@@ -108,7 +108,7 @@ For energies above \SI{4}{\MeV}, a correction of 0 was used.
     \caption[Nonequilibrium nuclide corrections]{
         Corrections to the predicted reactor \nuebar{} spectrum
         due to nonequilibrium nuclides
-        for the three parent isotopes which required correction.
+        for the three parent isotopes that required correction.
         The \isotope[238]{U} spectrum was computed differently
         from the others, as described in the text,
         and did not require a nonequilibrium correction.
@@ -140,10 +140,10 @@ The average rate of \nuebar{}'s produced by core $k$
 during a particular data-taking period $d$ was
 \begin{equation}\label{eq:reactor_spectrum_rate}
     \overline{\frac{d\phi_{k}^{d}}{dt}}(E) =
-    \sum_{\substack{\text{weeks}\\w\in d}}\left(
+    \sum_{\substack{\text{weeks}\\w\in d}}\left\{
         \frac{T_{\text{DAQ},w} W_{\text{th},w}}{\sum_q f_{q,w} e_q}
         \sum_{\substack{\text{isotopes}\\q}}
-    f_{q,w} S_q(E) (1+c_q^{\text{ne}}(E))\right) + S^{\text{snf}}(E).
+    f_{q,w} S_q(E) \left[1+c_q^{\text{ne}}(E)\right]\right\} + S^{\text{snf}}(E).
 \end{equation}
 To obtain the total spectrum of \nuebar{}'s produced
 during the livetime of a particular AD $i$,
@@ -162,7 +162,7 @@ from each core during the livetime of each AD are listed in \cref{tab:total_emit
 A typical \nuebar{} spectrum and the IBD cross section are shown
 in \cref{fig:reactor_flux_xsec}.
 The IBD cross section was computed \cite{ibd_xsec_note}
-based on Eq.~12 of \cite{ibd_xsec}
+based on Eq.~(12) of \cite{ibd_xsec}
 with constants from \cite{neutron_beta_theory,pdg2010}.
 
 \begin{figure}
@@ -316,7 +316,7 @@ the predicted number of IBDs is
 \begin{equation}\label{eq:near_hall_bg_eff}
     N_{\text{IBD},i}^{(b)}(\thetaot, \Delta m^2_{32}) =
     \frac{N_{\text{cand},i}^{(b)}(1+\eta_{N,i}^{(b)})
-        - \sum_u N_{\text{bg},i,u}^{(b)}(1+\eta_{B,i,u}^{(b)})}{
+        - \sum_u N_{\text{bg},i,u}^{(b)}(1+\eta_{B,i,u})}{
         \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}(1+\epsilon_i)
         (1 + \eta_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot, \Delta m^2_{32}))
     },
@@ -381,7 +381,7 @@ The conversion from reconstructed to true energy
 is impacted not only by the energy resolution and calibration
 but also by the nonlinearities described in \cref{subsec:abs_energyscale}.
 A detector response matrix was created
-using the individual event Monte Carlo simulation (\cref{sec:thu_toymc})
+using the Individual Event Simulation (\cref{sec:thu_toymc})
 by binning simulated events based on the true incoming \nuebar{} energy
 and the reconstructed energy of the prompt event,
 as shown in \cref{fig:drm}.
@@ -402,6 +402,10 @@ is shown in \cref{fig:drm_norm}.
 A representative sample of probability functions
 for individual bins of reconstructed energy
 is shown in \cref{fig:drm_pdfs}.
+The bins of true \nuebar{} energy had widths of \SI{0.05}{\MeV},
+so for convenience, the true energy bins will be referred to
+using function notation: $f(E_\text{true})$
+refers to the value of $f$ in the bin containing true energy $E_\text{true}$.
 
 \begin{figure}
     \centering
@@ -420,7 +424,7 @@ is shown in \cref{fig:drm_pdfs}.
     \includegraphics[width=0.5\textwidth]{ch_analysis/detector_response_norm}
     \caption[Detector response matrix, row-normalized]{
         Row-normalized detector response matrix
-        showing $f^{(b)}_\text{DRM}(E_\text{true})\delta E_\text{true}$
+        showing $f^{(b)}_\text{DRM}(E_\text{true})$
         for EH1-AD1 using the best-fit \thetaot{}.
         The color of each bin indicates the probability
         of an IBD being caused by an \nuebar{} with the corresponding true energy,
@@ -436,32 +440,29 @@ is shown in \cref{fig:drm_pdfs}.
     \caption[Individual rows of normalized detector response matrix]{
         Individual rows from the normalized detector response matrix
         showing the true \nuebar{} energy probabilities
-        ($f^{(b)}_\text{DRM}(E_\text{true})\delta E_\text{true}$)
+        ($f^{(b)}_\text{DRM}(E_\text{true})$)
         for a representative sample of reconstructed prompt energy bins.
         The bin contents for each curve sum to unity by construction.
     }
     \label{fig:drm_pdfs}
 \end{figure}
 
-Although there are bins in both true and reconstructed energies,
-the true energy binning is dense enough ($\delta E_{\text{true}} = \SI{0.05}{\MeV}$)
-that the notation for continuous distributions is more convenient and intuitive.
 Given the near-hall AD observations,
-a separate true \nuebar{} spectrum is computed
+a separate true \nuebar{} spectrum was computed
 for each bin of reconstructed energy for each near-hall AD $i$ as
-
 \begin{equation}\label{eq:drm}
     N_i^{(b)}(E_{\text{true}}) = N_{\text{IBD},i}^{(b)}
-    \cdot f_{\text{DRM},i}^{(b)}(E_{\text{true}}; \thetaot, \Delta m^2_{32}) \delta E_{\text{true}},
+    \cdot f_{\text{DRM},i}^{(b)}(E_{\text{true}}; \thetaot, \Delta m^2_{32}),
 \end{equation}
-where $f_{\text{DRM},i}^{(b)}(E_{\text{true}}; \thetaot, \Delta m^2_{32})$ is the probability density
+where $f_{\text{DRM},i}^{(b)}(E_{\text{true}}; \thetaot, \Delta m^2_{32})$ is the probability
 that an event in reconstructed energy bin $b$
 of AD $i$
-was caused by a \nuebar{} with true energy $E_{\text{true}}$.
+was caused by a \nuebar{} with true energy in the same \SI{0.05}{\MeV}
+energy bin as $E_{\text{true}}$.
 
 The true-energy spectra derived from the various reconstructed energy bins
 were never combined or mixed;
-thus each bin of reconstructed energy can be considered an independent measurement
+thus each reconstructed energy bin can be considered as an independent measurement
 of the near-far ratio.
 \Cref{subsec:true_to_reco_farhall} describes the procedure at the far hall
 for converting from the true \nuebar{} energy back into reconstructed prompt positron energy.
@@ -487,13 +488,13 @@ of true \nuebar{} spectra $N_i^{(b)}(E)$
 (from reconstructed energy bin $b$ of AD $i$)
 into IBD contributions $N_{ik}^{(b)}(E)$ from each reactor core $k$,
 where $\sum_k N_{ik}^{(b)}(E) = N_i^{(b)}(E)$.
-The fraction $f_{ik}^{(b)}$ of IBDs in near-hall AD $i$
+The fraction of IBDs in near-hall AD $i$
 (reconstructed energy bin $b$)
 due to \nuebar{}'s from core $k$ is known as the flux fraction.
 
 The flux fractions can be determined
 by comparing each core's \nuebar{} flux $\phi_{ik}$ (\cref{eq:reactor_spectrum})
-to the total from all reactors,
+to the total from all reactors and
 accounting for the $\nicefrac{1}{L^2}$ dependence of isotropic \nuebar{} emission
 and minor oscillation effects:
 \begin{equation}\label{eq:flux_fraction}
@@ -517,9 +518,8 @@ and does not impact the ratio $f_{ik}$.
 (\cref{sec:thu_toymc,subsec:reco_to_true_energy}).
 
 The flux fraction is less sensitive to reactor \nuebar{} model uncertainties and biases
-common to all cores
-because of the ratio $\nicefrac{\phi_{ik}}{\sum_l\phi_{il}}$.
-Only uncertainties which are uncorrelated between cores
+common to all cores.
+Only uncertainties that are uncorrelated between cores
 impact the prediction.
 
 The number of IBDs observed at a given AD $i$ due to \nuebar{}'s from core $k$
@@ -559,7 +559,7 @@ $e_{j,ik}$:
 \end{equation}
 Like the flux fractions, the extrapolation factors
 do not depend on reconstructed energy.
-Comparing \cref{eq:extrapolation} to \cref{eq:near_far}, the extrapolation factors
+Comparing \cref{eq:extrapolation} to the basic near-to-far ratio \cref{eq:near_far}, the extrapolation factors
 do not account for differences in efficiency and number of target protons,
 since those corrections are made in other steps of the near-far projection process
 (\cref{subsec:near_bg_eff,subsec:far_bg_eff}).
@@ -570,16 +570,16 @@ between the experimental halls
 and a reactor flux which changes over time.
 Note that the uncertainty in reactor flux normalization
 ($\alpha_k$ in \cref{eq:flux_fraction})
-cancels in this ratio since the numerator and denominator are from the same reactor.
+cancels in this ratio since the numerator and denominator represent the same reactor.
 
 The predicted count of IBDs at far AD $j$ due to \nuebar{} from core $k$
 based on the observation at near AD $i$ (all in reconstructed energy bin $b$) can be computed as
 \begin{equation}\label{eq:far_true_core_pred}
     F_{j,ik}^{(b)}(E;\thetaot,\Delta m^2_{32}) = e_{j,ik}(E;\thetaot,\Delta m^2_{32}) \times
         N_{ik}^{(b)}(E;\thetaot,\Delta m^2_{32}) \times
-        (1 + \delta_{p,jk}(\thetaot, \Delta m^2_{32})).
+        \left[1 + \delta_{p,jk}(\thetaot, \Delta m^2_{32})\right].
 \end{equation}
-The prompt efficiency correction factor $\delta_{p,jk}$ is included
+The correction factor for the prompt-energy efficiency, $\delta_{p,jk}$, is included
 to correct for oscillation effects between core $k$ and AD $j$,
 and is described in detail in \cref{subsec:prompt_energy}.
 
@@ -635,13 +635,18 @@ to make use of the statistical methods in \cref{sec:fitter}.
 
 To account for backgrounds and efficiencies at the far ADs,
 the reverse of \cref{eq:near_hall_bg_eff} is applied:
-\begin{equation}\label{eq:far_hall_bg_eff}
-    F_{\text{pred},j,i}^{(b)}(\thetaot,\Delta m^2_{32}) = F_{j,i}^{(b)}(\thetaot,\Delta m^2_{32})
-        \varepsilon_{\mu,j}\varepsilon_{m,j}\varepsilon_{p,j}
-        (1 + \nu_{\varepsilon,j})
-        (1 + \nu_{\text{relE},j}\cdot a_{\text{relE},j}^{(b)}(\thetaot,\Delta m^2_{32}))
-    + N_{\text{bg},j}^{(b)}.
-\end{equation}
+\begin{align}\label{eq:far_hall_bg_eff}
+    \begin{split}
+        F_{\text{pred},j,i}^{(b)}(\thetaot,\Delta m^2_{32})
+        = &F_{j,i}^{(b)}(\thetaot,\Delta m^2_{32})
+            \varepsilon_{\mu,j}\varepsilon_{m,j}\varepsilon_{p,j}
+            (1 + \epsilon_j)
+            \left[1 + \eta_{\text{relE},j}\cdot
+            a_{\text{relE},j}^{(b)}(\thetaot,\Delta m^2_{32})\right] \\
+          &+ \sum_{\substack{u \in \text{bkg.}\\\text{sources}}}
+        N_{\text{bg},j,u}^{(b)}(1 + \eta_{B,j,u}).
+    \end{split}
+\end{align}
 The prompt energy efficiency's dependence on oscillation parameters
 was accounted for in \cref{eq:far_true_core_pred},
 and the remainder of the prompt energy efficiency difference between ADs
@@ -659,47 +664,66 @@ This formula gives the prediction for the number of observed events
 in far-hall AD $j$ based on a given near-hall AD:
 \begin{multline}\label{eq:full_prediction}
     F_{\text{pred},j,i}^{(b)}(\thetaot,\Delta m^2_{32}) =
-    \Bigg(
-    \left[N_{\text{cand},i}^{(b)}(1 + \eta_{N,i}^{(b)}) - N_{\text{bg},i}^{(b)}
-    (1 + \eta_{B,i})\right]\bigg. \\
+    \Bigg\{
+    \Big[N_{\text{cand},i}^{(b)}(1 + \eta_{N,i}^{(b)}) - N_{\text{bg},i}^{(b)}
+          + \sum_{\substack{u \in \text{bkg.}\\\text{sources}}}
+      N_{\text{bg},i,u}^{(b)}(1 + \eta_{B,i,u})\Big]\bigg. \\
     \times \frac{
         \varepsilon_{\mu,j}\varepsilon_{m,j}\varepsilon_{p,j}
-        (1 + \nu_{\varepsilon,j})
-        (1 + \nu_{\text{relE},j}\cdot a_{\text{relE},j}^{(b)}(\thetaot,\Delta m^2_{32}))
+        (1 + \epsilon_j)
+        \left[1 + \eta_{\text{relE},j}\cdot a_{\text{relE},j}^{(b)}
+            (\thetaot,\Delta m^2_{32})\right]
     }{
         \varepsilon_{\mu,i}\varepsilon_{m,i}\varepsilon_{p,i}
-        (1+\nu_{\varepsilon,i})
-        (1 + \nu_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\Delta m^2_{32}))
+        (1+\epsilon_i)
+        \left[1 + \eta_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}
+        (\thetaot,\Delta m^2_{32})\right]
     } \\
     \bigg.
-    \times \sum_{E,k} \big[
-        e_{j,ik}(E; \thetaot,\Delta m^2_{32}) f_{ik}(E; \thetaot,\Delta m^2_{32})
-        f_{\text{DRM},i}^{(b)}(E) \delta E
+    \times \sum_{E,k} \left[
+        %e_{j,ik}(E; \thetaot,\Delta m^2_{32}) f_{ik}(E; \thetaot,\Delta m^2_{32})
+    \frac{
+        \phi_{ik}(E)(1+\alpha_k) P_\text{sur} (L_{ik}, E;\thetaot,\Delta m^2_{32})/L_{ik}^2
+    }{
+    \sum_l \phi_{il}(E)(1+\alpha_l)P_\text{sur}(L_{il}, E;\thetaot,\Delta m^2_{32})/L_{il}^2
+    } \right. \\
+    \times \frac{
+        \phi_{jk}(E)P_\text{sur}(L_{jk}, E;\thetaot,\Delta m^2_{32})/L_{jk}^2}{
+        \phi_{ik}(E)P_\text{sur}(L_{ik}, E;\thetaot,\Delta m^2_{32})/L_{ik}^2
+    } \\
+        \left.\times f_{\text{DRM},i}^{(b)}(E)
     \times \frac{
         1 + \delta_{p,jk}(\thetaot, \Delta m^2_{32})
     }{
         1 + \delta_{p,ik}(\thetaot, \Delta m^2_{32})
-    } \big] \Bigg) \\
-    + N_{\text{bg},j}^{(b)}(1 + \eta_{B,j})
+    } \right] \Bigg\} \\
+          + \sum_{\substack{u \in \text{bkg.}\\\text{sources}}}
+        N_{\text{bg},j,u}^{(b)}(1 + \eta_{B,j,u}).
 \end{multline}
-The expressions for $f_{ik}$ and $e_{j,ik}$ are omitted for simplicity,
-but can be found in \cref{eq:flux_fraction} and \cref{eq:extrapolation}, respectively.
-Note that the dependence on \thetaot{} and $\Delta m^2_{32}${}
-is contained primarily in those two terms,
-with additional minor contributions from the relative energy scale uncertainty
-$a_\text{relE}$ and prompt efficiency corrections $\delta_p$.
+The dependence on \thetaot{} and $\Delta m^2_{32}${}
+is contained primarily in the flux fraction and extrapolation factors via $P_\text{sur}$.
+Additional minor oscillation effects come from the relative energy scale uncertainty
+$a_\text{relE}$ and prompt-energy efficiency corrections $\delta_p$.
 As mentioned in previous sections and discussed in detail in \cref{sec:fitter},
-the various $\nu$ and $\eta$ terms represent nuisance parameters
+the $\eta,\,\alpha$ and $\epsilon$ variables represent nuisance parameters
 that quantify the uncertainties on various model inputs,
 including efficiencies, background estimates,
 and the statistical uncertainty of the near-hall AD observations.
-Additional reactor-related nuisance parameters in $f_{ik}$ and $e_{j,ik}$ are omitted
-for notational simplicity but are included in the actual prediction.
+
+Some quantities present in \cref{eq:full_prediction}
+appear in both the numerator and denominator of the reactor flux terms,
+and thus do not impact the final prediction value.
+Specifically, the numerator of the flux fraction term
+is nearly equal to the denominator of the extrapolation factor term;
+only the reactor power uncertainty $(1 + \alpha_k)$ does not cancel.
+This is another manifestation of the weak dependence of the
+relative near-to-far prediction
+on the intricacies of the reactor \nuebar{} model.
 
 \section{Statistical methods}
 \label{sec:fitter}
 
-Standard frequentist techniques were used to determine best-fit parameters
+Standard frequentist techniques were used to determine the best-fit parameters
 and goodness-of-fit between the 3-flavor neutrino oscillation model
 and the data observed by Daya Bay.
 A \chisquare{} expression with nuisance parameters
@@ -707,7 +731,7 @@ was the primary tool for this analysis.
 Variants of this technique have been used both in previous Daya Bay nH analyses
 and in other Daya Bay results including nGd \thetaot{} analyses
 and absolute reactor \nuebar{} flux and spectral measurements
-\cite{nh2016,ngd2016,reactorflux2017,extractionreactorflux2019}.
+\cite{ngd2016,nh2016,reactorflux2017,extractionreactorflux2019}.
 
 The fit procedure compared the observed number of \nuebar{} candidates
 in the 4 ADs at the far site to the prediction
@@ -721,7 +745,7 @@ can be derived from Eqs.~(39.16) and (39.17) of \cite{pdg} as:
 
 \begin{equation}
     \label{eq:chisquare_generic}
-    \chisquare(\boldsymbol{\theta};\boldsymbol{\eta}) = 2\sum_{i=1}^{n_\text{obs}} \left(
+    \chisquare(\boldsymbol{\theta};\boldsymbol{\eta}) = 2\sum_{i=1}^{n} \left(
         F_{\text{pred},i}(\boldsymbol{\theta};\boldsymbol{\eta}) - F_{\text{obs},i}
         + F_{\text{obs},i}\ln
         \frac{F_{\text{obs},i}}{F_{\text{pred},i}(\boldsymbol{\theta};\boldsymbol{\eta})}
@@ -734,8 +758,8 @@ $F_{\text{pred},i}$
 is the model prediction for data point $i$
 which depends on $\boldsymbol{\theta}$ (the model parameters of interest)
 and $\boldsymbol{\eta}$
-(the model nuisance parameters);
-and there are $n_\text{obs}$ total data points.
+(the nuisance parameters);
+and there are $n$ data points.
 
 In this formulation, the nuisance parameters are dimensionless,
 and in the model they each multiply a paired quantity $A_j$,
@@ -749,12 +773,12 @@ Thus the $\eta_j$ can be interpreted as the relative deviation of $A_j$
 from an expected or constrained value,
 and the $\tilde{\sigma}_{\eta,j}$ are the (independently-determined)
 \emph{relative} uncertainties of $A_j$
-which set the scale for allowable values of $\eta_j$.
+that set the scale for allowable values of $\eta_j$.
 The values of $A_j$ remain fixed during the minimization procedure;
 only the values of $\eta_j$ are tunable parameters in the fit.
 
 The values of $\boldsymbol{\theta}$ and $\boldsymbol{\eta}$
-which minimize \cref{eq:chisquare_generic}
+that minimize \cref{eq:chisquare_generic}
 provide the best-fit parameters of interest $\theta_i$,
 while ensuring that the nuisance parameters $\eta_j$
 remain small compared to their uncertainties.
@@ -763,25 +787,25 @@ the model has preferred a deviation of the physical parameter $A_j$ from its est
 large deviations penalize the \chisquare{} and so are discouraged.
 If the model is a good description of the data,
 then the distribution of the best-fit (minimum) $\chi^2$
-(over repeated hypothetical experiments)
+over repeated hypothetical experiments
 follows a $\chi^2$ distribution with
 \begin{equation}\label{eq:ndf_def}
-    \text{NDF} = n_\text{obs} - \text{len}(\boldsymbol{\eta})
+    \text{NDF} = n - \text{len}(\boldsymbol{\theta})
 \end{equation}
 degrees of freedom,
-where $\text{len}(\boldsymbol{\eta})$ is the number of components of $\boldsymbol{\eta}$,
+where $\text{len}(\boldsymbol{\theta})$ is the number of components of $\boldsymbol{\theta}$,
 that is, the number of free parameters in the fit.
 Note that introducing additional nuisance parameters
 paired with penalty terms (i.e.\ the second summation in \cref{eq:chisquare_generic})
-does not change the number of degrees of freedom.
+does not in general change the number of degrees of freedom.
 
 \subsection{Fitter specification}
 \label{subsec:fitter_specification}
 
-For this analysis, each data point $F_{\text{obs},i}$
+For this analysis, each data point $F_{\text{obs},j}$
 was the number of observed events passing all event selection criteria
 (\cref{ch:event_selection})
-in a particular far-hall antineutrino detector (in EH3).
+in a particular far-hall AD $j$.
 There are thus 4 observed data points:
 \begin{equation}
     \mathbf{F}_{\text{obs}} =
@@ -846,43 +870,45 @@ The parameters of interest and nuisance parameters were defined as follows:
     \end{split}
 \end{align}
 where the nuisance parameters are collected into smaller vectors.
-The vector $\boldsymbol{\alpha}$ represents reactor flux uncertainties,
+The vector $\boldsymbol{\alpha}$ represents reactor \nuebar{} flux uncertainties,
 $\boldsymbol{\epsilon}$ represents detection efficiency uncertainties
 (except for those induced by the relative energy scale uncertainty),
-$\boldsymbol{\eta_{\text{relE}}}$ represents the relative energy scale uncertainty,
+$\boldsymbol{\eta_{\text{relE}}}$ represents the relative energy scale uncertainty
+and associated efficiency uncertainty,
 $\boldsymbol{\eta_B}$ represents background rate uncertainties for each background source,
 $\boldsymbol{\eta_N}$ represents the statistical uncertainty
-of the observed event rate at the near hall ADs,
+of the observed event rates at the near hall ADs,
 and $\boldsymbol{\eta_{\text{osc}}}$ represents the uncertainty
-of the externally-imposed oscillation paramters, $\theta_{12}, \Delta m^2_{21},$
+of the externally-imposed oscillation paramters, $\theta_{12},\,\Delta m^2_{21},$
 and $\Delta m^2_{32}${}.
-The observations are not binned by energy,
-thus this analysis cannot be used to extract
-a precise measurement of $\Delta m^2_{32}${}.
+The observations were not binned by energy,
+thus this analysis could not extract
+a precise measurement of $\Delta m^2_{32}$.
 An input value of $\Delta m^2_{32} = \SI{2.471(70)e-3}{\eV\squared}$
 was supplied from \cite{ngd2018}, and
 the uncertainty in $\Delta m^2_{32}${} was implemented as a nuisance parameter.
-The input values for $\theta_{12}$ and $\Delta m^2_{21}$
+The input values and uncertainties for $\theta_{12}$ and $\Delta m^2_{21}$
 were taken from \cref{eq:current_values} \cite{pdg}.
 
 The full listing of nuisance parameters
 can be found in \cref{tab:systs}.
-During the fitter validation procedure (\cref{subsec:fitter_validation}),
+During the fitter validation study (\cref{subsec:fitter_validation}),
 a negligible effect on the extracted value of $\sin^22\thetaot$
 ($\lesssim\SI{0.1}{\percent}$)
-was found for each of the absolute energy scale, energy resolution,
-and reactor \nuebar{} spectrum systematic fluctuations.
+was found as a result of the systematic uncertainty
+of the absolute energy scale, energy resolution,
+and reactor \nuebar{} spectral shape.
 Thus these quantities were not modeled using pull parameters,
 and instead were assumed to be known to infinite precision.
 These values all contributed to the detector response functions
-(\cref{eq:drm}),
-and correlated variations of the detector response
+(\cref{eq:drm});
+correlated variations of the detector response
 canceled to first order, as discussed in \cref{ap:drm}.
 
 \begin{table}[ht]
     \centering
     \footnotesize
-    \begin{tabular}[t]{lp{3.3cm}lp{3.8cm}}
+    \begin{tabular}[t]{lp{3.3cm}p{2.5cm}p{3.8cm}}
         \toprule
         Systematics source & Relative uncertainty
                           & Pull parameters
@@ -919,6 +945,8 @@ canceled to first order, as discussed in \cref{ap:drm}.
         $\Delta m^2_{21},\theta_{12}, \Delta m^2_{32}$
                                 & 3
                                 & \\
+        Near AD statistical uncertainty & $1/\sqrt{N_{\text{cand},i}^{(b)}}$
+                                        & 136 (1 per bin per near AD)&\\
         \bottomrule
     \end{tabular}
     \caption[Systematics summary]{Systematic uncertainties and associated nuisance parameters.}
@@ -972,7 +1000,7 @@ is always greater than or equal to 0.
 On occasion, this expression evaluated to a slightly-negative value
 due to the finite precision of floating-point arithmetic.
 These cases were handled by assigning the expression the value 0,
-an approximation which was accurate to better than one part in $10^{10}$.
+an approximation that was accurate to better than one part in $10^{10}$.
 
 The implementations of the model described in \cref{sec:prediction}
 and the $\chi^2$ expression described in \cref{sec:fitter}
@@ -993,17 +1021,18 @@ The best-fit value of \thetaot{} corresponds to
 \begin{align}\label{eq:result}
     \begin{split}
         \sin^22\thetaot &= 0.0731^{+0.0087}_{-0.0089}\\
-        \thetaot &= 0.1369^{+0.0082}_{-0.0088}.
+        \thetaot &= 0.1369^{+0.0082}_{-0.0088}\ \si{\radian}.
     \end{split}
 \end{align}
-The minimum $\chi^2$ from the fit was 0.42 with 3 degrees of freedom.
+The minimum $\chi^2$ from the fit was 0.42, and there were 3 degrees of freedom.
 This $\chi^2$ value was low enough to raise concerns
-about the treatment of uncertainties and constraints in the fitter.
+about the treatment of the uncertainties and constraints in the fitter.
 However, on further inspection, a $\chi^2$ value near 0.42
 was actually more likely than the intuitively ``ideal'' value of 3,
 given the highly asymmetrical shape
 of the $\chi^2$ distribution with 3 degrees of freedom,
 shown in \cref{fig:chi2_pdf}.
+
 A scan of $\chi^2$ as a function of $\sin^22\thetaot$
 was performed to determine the uncertainty of the measurement;
 the results of the scan are shown in \cref{fig:chi2_scan}.
@@ -1032,7 +1061,7 @@ is equivalent to performing the full N-dimensional $\chi^2$ scan \cite{pdg}.
     \centering
     \includegraphics[width=0.5\textwidth]{ch_analysis/chi2_scan_nominal}
     \caption[$\chi^2$ scan]{
-        Extracted minimum $\chi^2$ as a function of $\sin^22\thetaot$.
+        Minimum value of $\chi^2$ as a function of $\sin^22\thetaot$.
         For each point on the curve, the value of \thetaot{} was fixed
         and the fitter minimized $\chi^2$
         using only nuisance parameters.
@@ -1128,7 +1157,7 @@ listed in \cref{tab:error_budget}.
         Radiogenic neutron background & 3.57 \\
         Reactor power & 5.72 \\
         Input $\theta_{12},\Delta m^2_{21}$, and $\Delta m^2_{32}${} & 0.01 \\
-        \addlinespace
+        \midrule
         Total & 106.49 \\
         \bottomrule
     \end{tabular}
@@ -1220,10 +1249,10 @@ in \cref{tab:pull_details}.
         \bottomrule
     \end{tabular}
     \caption[Significant contributions to final $\chi^2$]{
-        Details of the terms which contributed the most ($>10^{-6}$)
+        Details of the terms that contributed the most ($>10^{-6}$)
         to the final $\chi^2$ value of \num{0.42446}.
         For the data-to-model rows,
-        the best fit value is the model prediction for number of counts
+        the best-fit value is the model prediction for number of counts
         (including background events)
         and the constraint is the actual number of observed counts.
         The terms listed here contributed a total of \num{0.42414},
