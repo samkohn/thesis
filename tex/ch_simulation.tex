@@ -37,7 +37,7 @@ and entire experiments' worth of data (\cref{sec:lbnl_toymc}).
 
 The Individual Event Simulation (IES) was designed
 to study detection efficiencies and the detector energy response \cite{nh2016technote}.
-This simulation was composed of a full particle-level Monte Carlo simulation
+This simulation was composed of a full, particle-level Monte Carlo simulation
 and a toy detector response model.
 Each event began as a \nuebar{} of a given energy interacting via IBD
 with an atom in a given region of the Daya Bay AD
@@ -48,8 +48,8 @@ The full simulation included
 the positron's energy depositions into the scintillator
 and its annihilation,
 the neutron's thermalization, scattering, and capture on a nucleus (or escape),
-and the resulting $\gamma$ rays' propagation and interactions.
-The resulting electrons and positrons from the $\gamma$ ray interactions
+and the resulting $\gamma$-rays' propagation and interactions.
+The resulting electrons and positrons from the $\gamma$-ray interactions
 were also simulated.
 During propagation, an electron could
 ``deposit'' energy in the liquid scintillator,
@@ -81,8 +81,7 @@ In other analyses (e.g.\ \cite{nh2016}), the MC estimates
 for absolute efficiencies of the prompt and delayed energy cuts
 were computed from this simulation.
 In this analysis, the absolute efficiencies were not used.
-However, other quantities based on the simulated quantities
-were used.
+However, the IES was used to estimate other quantities.
 
 \begin{figure}
     \centering
@@ -104,30 +103,30 @@ were used.
 
 \subsubsection{Study of prompt energy cut efficiency}
 
-The first quantity was the correction to the prompt energy cut efficiency
-based on the baseline dependence of the oscillation probability
+The prompt energy cut efficiency for each AD depended on
+the oscillation parameters due to the energy dependence of \nuebar{} oscillation
 (see \cref{subsec:prompt_energy}).
 This correction was computed at a given point in parameter space
 (value of \thetaot{}, $\Delta m^2_{32}$, and AD-reactor pair)
 by creating a histogram of reconstructed prompt energy
 where each entry was weighted by the oscillation probabilty
 at the ``true'' \nuebar{} energy saved by the simulation.
-The resulting efficiency could be compared
-with the nominal efficiency assuming no oscillations.
+The resulting efficiency was compared
+with the nominal efficiency assuming no oscillation.
 The relative difference was applied as a correction
 during the near-far projection procedure in \cref{subsec:flux_fraction}.
 
 \subsubsection{Study of relative energy scale}
 
-The second quantity produced by the simulation
-was the dependence of the prompt energy spectrum and cut efficiency
-on changes to the relative energy scale between ADs (see \cref{subsec:rel_energyscale}).
-A shift in energy scale was modeled by
+The prompt-energy spectrum and cut efficiency
+both depended on the relative energy scale between ADs
+(see \cref{subsec:rel_energyscale}).
+A shift in the energy scale was modeled by
 creating a histogram of reconstructed prompt energy,
 but where the value of the energy was scaled
 by the uncertainty of the relative energy scale, \SI{\pm0.5}{\percent}.
 The resulting change to the prompt energy cut efficiency, \SI{\pm0.1}{\percent},
-is the AD-uncorrelated uncertainty for that efficiency.
+was the AD-uncorrelated uncertainty for that efficiency.
 Shifting the energy scale also changed the shape of the spectrum,
 which was quantified by comparing the change in number of events
 in each bin of the histogram with and without the re-scaled energy values.
@@ -146,29 +145,29 @@ divided by the bin content without the shift:
 where the $+$ refers to scaling the energy by \SI[retain-explicit-plus]{+0.5}{\percent}
 and the $-$ refers to scaling by \SI{-0.5}{\percent}.
 During the fit procedure to extract \thetaot{} in \cref{ch:analysis}, the impact of this correction
-was controlled by a pull parameter.
+was controlled by a nuisance parameter.
 The fitter automatically switched between the $+$ and $-$ values
-depending on the sign of the pull parameter.
+depending on the sign of the nuisance parameter.
 
 This correction was intentionally not normalized;
-the application of $a_{\text{relE},i}^{\pm,(b)}$ to all bins
+the consistent application of $a_{\text{relE},i}^{\pm,(b)}$ to all bins
 could change the total number of events.
 The impact of the change in total number of events
-is equivalent to the previously-mentioned change
+was equivalent to the previously-mentioned change
 to the prompt energy cut efficiency induced by the relative energy scale shift.
 To avoid double-counting the change in number of events
 due to a shift in relative energy scale,
-the prompt energy cut efficiency is omitted
+the prompt energy cut efficiency was omitted
 from the fit model and from the constraint
-on the pull parameter representing the overall detection efficiency uncertainty.
+on the nuisance parameter representing the overall detection efficiency uncertainty.
 
 \section{Data file simulation}
 \label{sec:toymc}
 
 The Daya Bay event selection process (\cref{ch:event_selection})
-depended on more than just the properties of a single AD event;
-there were anti-correlation requirements such as the muon veto,
-and correlation requirements to select only double coincidences.
+depended on more than just the properties of each AD event in isolation;
+there were anti-coincidence requirements such as the muon veto,
+and of course double-coincidence requirements to select IBDs.
 Additionally, the basis for the determination of the accidental background rate
 relied heavily on the accurate extraction of
 the rate of uncorrelated ``single'' events.
@@ -215,8 +214,8 @@ Simulated events were saved to disk in the same ROOT file data format
 used by the Daya Bay data production.
 An additional ROOT TTree structure containing the ``truth information''
 for each event was included in the output data file.
-For this simulation, the truth information for an event consisted of
-the event type that the given data entry represented.
+For this simulation, the truth information for an event consisted simply of
+the event type.
 A flowchart describing the steps in the simulation
 is provided in \cref{fig:my_toymc_flowchart}.
 The characteristics associated with the different event types
@@ -227,7 +226,7 @@ are described below.
     \includegraphics[width=0.49\textwidth]{ch_simulation/singles_flow}
     \includegraphics[width=0.49\textwidth]{ch_simulation/correlated_flow}
     \caption[Data stream simulation diagram]{
-        Diagram depicting the data stream simulation steps
+        The data stream simulation steps
         for Single events (left) and Correlated events (right).
         The steps are event count and timestamps (top),
         energy and position (middle), and serialization (bottom).
@@ -242,11 +241,11 @@ are described below.
 \end{figure}
 
 
-The simulation is based on a core set of event types:
+The RDFS was based on a core set of event types:
 Single, Correlated, and Muon.
 Additional event types such as Flasher were added to support specific studies
 (see \cref{subsec:toymc_flashers}).
-The simulation's configuration allows for customization of the event rate
+The simulation's configuration allowed for customization of the event rate
 for each different event type,
 and also for multiple variants of the event type.
 For example, one type of Correlated event could be configured to represent nH IBDs,
@@ -258,66 +257,65 @@ and with the delayed event's position limited to the GdLS (IAV) region of the AD
 
 \subsubsection{Single events}
 
-Single events represent uncorrelated signals,
+Single events represented uncorrelated signals,
 which in Daya Bay were primarily caused by natural radioactive decays in the AD
 (\cref{subsec:singles}).
-In the simulation, Single events are assigned timestamps
-drawn uniformly at random between the time limits given in the configuration,
+In the simulation, Single events were assigned timestamps
+drawn uniformly at random between the runtime limits given in the configuration,
 representing their uncorrelated nature.
-The event energies are also drawn uniformly at random
+The event energies were also drawn uniformly at random
 between \SIlist{1;3.5}{\MeV},
-and the positions are similarly randomly assigned
+and the positions were randomly assigned
 within the scintillating volume.
-(The energy and position distributions can both be customized
+(The energy and position distributions can both be customized through plug-ins
 but were left at their defaults for the studies described here.)
 
 \subsubsection{Correlated events}
 
-Correlated events represent pairs of signals
+Correlated events represented pairs of signals
 with a common physical origin, both in position and in time.
 IBDs and correlated backgrounds (\cref{sec:correlated_bg})
-satisfy these criteria for being modeled by the Correlated event type.
+satisfied these criteria and could be modeled by the Correlated event type.
 To create the time correlation between prompt and delayed events,
 modeled as an exponential distribution,
-the simulation first determines the timestamp for a prompt event at random.
-Then the coincidence time delay between prompt and delayed events is generated
+the simulation first determined the timestamp for a prompt event at random.
+Then the coincidence time delay between prompt and delayed events was generated
 from an exponential distribution
-whose time constant is specified in the simulation configuration.
-The prompt and delayed energies are determined independently at random
-using uniform distributions specified by the simulation configuration.
-The position of the prompt event is chosen at random
+whose time constant was specified in the simulation configuration.
+The prompt and delayed energies were determined independently at random
+using distributions specified by the simulation configuration.
+The position of the prompt event was chosen at random
 within the GdLS or LS volumes (again, as specified by the configuration),
-and the delayed position is chosen to be correlated with the prompt position.
-Since exact modeling of the position correlations is not crucial,
-a simple exponential distribution is used to determine the displacement
+and the delayed position was chosen to be correlated with the prompt position.
+Since exact modeling of the position correlations was not crucial for the studies
+performed with the RDFS,
+a simple exponential distribution was used to determine the displacement
 in each direction ($x,y,$ and $z$) for these Correlated events.
 In the recorded truth information,
 prompt and delayed events are assigned separate labels.
 
 \subsubsection{Muon events}
 
-Muon events represent signals created by muons traversing
+Muon events represented signals created by muons traversing
 the water pools and ADs (\cref{sec:muonveto}).
-For simplicity, each muon is assumed to create a signal
+For simplicity, each muon was assumed to create a signal
 in the inner water pool with a probability of \SI{100}{\percent}.
 The rates and energies were chosen to approximately model
 the true distributions and rates of muon signals in the near halls (EH1 and EH2).
 A portion of the muon signals, \SI{19.95}{\percent},
-traverse the AD, depositing an energy chosen at random between
+were assumed to traverse the AD, depositing an energy chosen at random between
 \SIlist{20;2000}{\MeV}.
 A smaller subset of the muon signals, \SI{0.05}{\percent},
 were simulated as showering muons and deposited an energy chosen at random between
 \SIlist{2500;5000}{\MeV}.
-The time delay between WP and AD muons is assigned to be \SI{50}{\ns},
-chosen since in real data there is a nonzero time offset between WP and AD muons,
-but the distribution of time offsets
-is not a critical feature of the event selection.
-All of the choices of energies and rates are approximations
+The time delay between WP and AD muons was assigned to be \SI{50}{\ns},
+chosen since in real data there was a nonzero time offset between WP and AD muons;
+however, the precise distribution of time offsets between WP and AD muon readout signals
+was not a critical feature of the event selection.
+All of the choices of energies and rates were approximations
 designed to capture the general behavior of muons at Daya Bay
 without adding excessive complexity to the simulation.
 
-%\section{Studies with the simplified Monte Carlo}
-%\label{sec:toymc_studies}
 \subsection{Study of uncorrelated event rate}
 \label{subsec:sim_singles}
 
@@ -327,12 +325,9 @@ This process, both the abstract algorithm and the actual software implementation
 was validated using simulated datasets.
 The RDFS was configured to generate Single (uncorrelated) events
 with a rate of \SI{20}{\Hz}
-in data files also containing Muon and Correlated events.
+in data files also containing Muon and Correlated events
+representing both nH and nGd IBDs.
 The full configuration is listed in \cref{tab:toymc_singles_config}.
-%100 simulated data sets were generated,
-%each consisting of 300 files containing 10 minutes' worth of data,
-%for a total of 50 hours of data per data set.
-%This 10-minute structure approximated the file length for near hall data files.
 100 simulated data files were generated,
 each containing 1000 minutes' worth of data.
 The data files were processed using the event selection software
@@ -448,87 +443,6 @@ rather than attempt to correct for them in other ways.
     }
     \label{fig:sim_flasher_prompt_delayed}
 \end{figure}
-
-
-%A simplified Monte Carlo simulation was developed to model the structure
-%of the Daya Bay data stream \cite{dyb_toymc, dyb_toymc_docdb}.
-%Rather than simulating the details of physical processes such as scintillation,
-%neutron capture, and electronics response,
-%the simplified Monte Carlo used parametrized distributions
-%to determine the most relevant AD-level observables including the event timestamp
-%and reconstructed energy and position.
-%This simulation was configured to match various assumptions
-%about the Daya Bay data model,
-%such as a particular rate of uncorrelated events,
-%or the presence or absence of a certain background.
-%The resulting output data sets could then be analyzed
-%to determine the validity of the analysis
-%under the input configuration.
-%Data sets could be generated with different assumptions
-%about time correlations or position distributions,
-%and impact of those assumptions on the final analysis could be assessed.
-%However, due to its simplified nature,
-%the simulation was not able to provide insights about the distributions themselves.
-
-%A second, more detailed, Monte Carlo simulation was used
-%to investigate the detector's response to individual events\todo{cite THU MC}.
-%This simulation included detailed tracking of individual energy depositions,
-%scintillator response, and particle interactions such as positron annihilation.
-%The resulting data sets consisted of detailed information about individual
-%simulated IBD events,
-%such as the incident \nuebar{} energy, the target volume (LS or GdLS),
-%neutron kinetic energy, etc.,
-%as well as the reconstructed position and energy
-%based on the simulated electronics response.
-%This data set could be used to extract efficiencies
-%by computing the fraction of simulated events which satisfied
-%various analysis cut criteria.
-
-%The detailed simulation produced each event independently,
-%and did not attempt to simulate the actual Daya Bay data files
-%containing multiple types of events with various time correlations.
-%Thus each simulation had a specialized domain,
-%and both were necessary to complete the analysis.
-%The simplified simulation was able to answer questions about the more complicated
-%event selection procedures such as determining the accidental background
-%or the \li{} and \he{} contamination (\cref{sec:acc,subsec:li9}),
-%and the detailed simulation was able to estimate
-%the prompt and delayed energy cut efficiencies (\cref{sec:energy_cuts}).
-%The details of the simplified and detailed simulations will be described
-%in \cref{sec:toymc,sec:thu_toymc}, respectively.
-%A sample of studies that relied on the simulations will be presented
-%%in \cref{sec:toymc_studies,sec:thu_toymc_studies}.
-
-
-
-%\section{Studies using the detailed Monte Carlo}
-%\label{sec:thu_toymc_studies}
-
-%\subsection{Prompt energy efficiency}
-%\label{subsec:thu_toymc_prompt}
-
-%The detailed Monte Carlo was used to estimate the prompt energy efficiency,
-%the fraction of IBD events whose reconstructed prompt energy
-%satisfied the prompt energy criterion of $E > \SI{1.5}{\MeV}$
-%(\cref{subsec:prompt_energy}).
-%The spectrum of reconstructed energy for the Monte Carlo sample of IBD prompt events
-%is shown in \cref{fig:prompt_eff_mc}.
-%The prompt energy cut efficiency is the fraction of events in the histogram
-%with energy above \SI{1.5}{\mev}.
-%\todo[inline]{Fill in details of absolute efficiency determination}
-
-%The AD-uncorrelated uncertainty on the prompt energy efficiency
-%was also determined using the simulation.
-%Each AD has a slightly different relative energy scale (\cref{subsec:rel_energyscale}),
-%resulting in different fractions of IBD prompt events
-%being assigned a reconstructed energy above \SI{1.5}{\MeV}.
-%The relative energy scale variation was measured to be \SI{+-0.5}{\percent},
-%and this effect was reproduced by simply
-%scaling the reconstructed energy for each simulated event by \SI{+-0.5}{\percent}.
-%The variation in efficiency due to this re-scaling,
-%and therefore the AD-uncorrelated relative uncertainty on the prompt energy efficiency,
-%was \SI{+-0.1}{\percent}.
-
 
 \section{Fake experiment simulation}
 \label{sec:lbnl_toymc}
@@ -760,12 +674,3 @@ was \SI{0.08}{\percent}.
     \label{fig:validation_chi2}
 \end{figure}
 
-
-%Hundreds of thousands of simulated data sets were generated
-%using this simulation
-%in order to validate the fitter for this analysis.
-%The simulation's configuration was modified
-%to allow for the ability to disable fluctuations
-%independently at the near sites and far site,
-%since the $\chi^2$ expression for the fit
-%treated the near and far sites differently.
