@@ -38,8 +38,12 @@ Future prospects will be presented in \cref{sec:future}.
 \label{sec:discussion}
 
 As shown in \cref{fig:theta13_vs_t_mine}, the nH-based measurements for $\sin^22\thetaot{}$,
-including the result from this thesis, are approximately 0.01
+including the result of this thesis, are approximately 0.01
 less than the nGd-based measurements.
+In particular, this thesis reports a measurement of $\sin^22\thetaot$
+which is 1.4 standard deviations smaller
+than the measurement in \cite{ngd2018} of
+$\sin^22\thetaot = 0.0856\pm0.0029$.
 A variety of potential resolutions to this discrepancy have been proposed
 based on mis-characterizations of detection efficiencies, backgrounds,
 or systematic biases present in the nH analysis but not in the nGd analysis.
@@ -101,7 +105,7 @@ for the entire IBD data set proved difficult
 due to presumed residual effects from subtracting the accidental background,
 various subsets of events were successfully characterized,
 all having AD-to-AD variations with a half-range smaller than
-the \SI{0.5}{\percent} used in this analysis.
+the \SI{0.5}{\percent} uncertainty used in this analysis.
 One potential remaining cross-check to ensure the DT cut is treated correctly
 is to search for a dependence of \thetaot{} on the value of the DT cut;
 obviously, if the extracted value \thetaot{} changes
@@ -109,7 +113,7 @@ based on the value of this cut,
 then there is a hidden bias that must be corrected.
 
 A third category of potential biases
-was the potential for un-accounted-for irredicuble backgrounds,
+was the potential for unaccounted-for irredicuble backgrounds,
 which in general change the apparent ratio of IBD event rates
 between the near and far ADs and thus bias \thetaot{}.
 The residual flasher events discussed in \cref{subsec:flash_resid}
@@ -122,7 +126,7 @@ discussed in \cref{subsec:radn},
 formed another background which was, until this analysis, neglected.
 Although the characterization of the radiogenic neutron background rate
 remains limited to Monte Carlo simulation studies \cite{rad_n},
-neglecting this background with rate \num{0.2\pm0.1} per day
+neglecting this background with rate \num{0.2\pm0.1} per AD per day
 resulted in a lower extracted value of $\sin^22\thetaot$
 by almost \num{0.005} (\SI{7}{\percent}).
 
@@ -141,9 +145,11 @@ based on the spectral shape of the nH data set.
 \subsection{Resolving the nH-nGd tension}
 \label{subsec:tension}
 
-Additional investigation is planned to explain the discrepancy
+Additional investigation is planned to explain the continued discrepancy
 of $\sim0.01$ between the nH and nGd extracted values of $\sin^22\thetaot$.
-Potential cross-checks include:
+Many of the studies reported in \cref{ch:event_selection}
+were designed to search for possible explanations for this tension.
+Potential additional cross-checks include:
 \begin{itemize}
     \item Does the value of the DT cut threshold affect the extracted value of
         \thetaot{}?
@@ -156,7 +162,7 @@ Potential cross-checks include:
 \end{itemize}
 These tests may help to identify an erroneous assumption
 or AD-to-AD variation that has not previously been identified,
-and eventually lead to an updated measurement of \thetaot{}.
+and would eventually lead to an updated measurement of \thetaot{}.
 
 
 \subsection{Measuring \texorpdfstring{$\Delta m^2_{32}$}{the 3,2 mass splitting}}
@@ -165,7 +171,7 @@ and eventually lead to an updated measurement of \thetaot{}.
 The near-to-far projection model described in \cref{sec:prediction}
 already predicts both the rate and spectral shape
 of the far hall AD observations,
-and the fitter software has been validated using simulations
+and the fitter software has been validated using the same simulations
 described in \cref{subsec:fitter_validation}
 to ensure an accurate and unbiased value of $\Delta m^2_{32}$.
 Remaining prerequisites for a successful rate plus shape analysis
