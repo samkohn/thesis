@@ -29,14 +29,16 @@ to highly specific scenarios.
 
 Three separate toy MC simulations were used in this analysis
 to simulate individual IBD events (\cref{sec:thu_toymc}),
-the Daya Bay data stream (\cref{sec:toymc}),
-and entire data sets (\cref{sec:lbnl_toymc}).
+Daya Bay reconstructed-data files (\cref{sec:toymc}),
+and entire experiments' worth of data (\cref{sec:lbnl_toymc}).
 
 \section{Individual IBD event simulation}
 \label{sec:thu_toymc}
 
-The individual event toy MC was designed
+The Individual Event Simulation (IES) was designed
 to study detection efficiencies and the detector energy response \cite{nh2016technote}.
+This simulation was composed of a full particle-level Monte Carlo simulation
+and a toy detector response model.
 Each event began as a \nuebar{} of a given energy interacting via IBD
 with an atom in a given region of the Daya Bay AD
 (GdLS, LS or acrylic).
@@ -64,18 +66,18 @@ to the deposited energy $E_{\text{dep}}$
 The energy resolution (\cref{subsec:resolution}) used in the MC
 was modified to reflect
 the absence of detector non-uniformity in the simulation
-by setting the $a$ parameter to be 0:
+by setting the $a$ parameter to 0 (cf.\ \cref{eq:energy_resolution}):
 \begin{equation}
-    \frac{\sigma_E}{E} = \sqrt{0 + \frac{b^2}{E} + \frac{c^2}{E^2}}
+    \frac{\sigma_E}{E} = \sqrt{0 + \frac{b^2}{E} + \frac{c^2}{E^2}}.
 \end{equation}
 
-The simulation was used to generate a data set
+The IES was used to generate a data set
 where the incident \nuebar{} spectrum
 matched the predicted unoscillated reactor \nuebar{} spectrum.
 The distributions of simulated prompt and delayed reconstructed energies,
 shown in \cref{fig:prompt_eff_mc},
 could be used as estimates of the actual distributions.
-In other analyses \cite{nh2016}, the MC estimates
+In other analyses (e.g.\ \cite{nh2016}), the MC estimates
 for absolute efficiencies of the prompt and delayed energy cuts
 were computed from this simulation.
 In this analysis, the absolute efficiencies were not used.
@@ -92,12 +94,15 @@ were used.
     }
     \caption[Simulated prompt and delayed spectra]{Spectrum of reconstructed energy for simulated IBD prompt (left)
         and delayed (right) events
-        in the Monte Carlo study used to compute the prompt and delayed
-        energy cut absolute efficiencies.
-        The prompt spectrum is also used to compute the prompt energy cut
-    efficiency AD-uncorrelated uncertainty.}
+        in the Monte Carlo study used to compute the absolute efficiencies
+        of the prompt and delayed energy cuts.
+        The prompt spectrum is also used to compute the
+        AD-uncorrelated uncertainty of the prompt energy cut.
+    }
     \label{fig:prompt_eff_mc}
 \end{figure}
+
+\subsubsection{Study of prompt energy cut efficiency}
 
 The first quantity was the correction to the prompt energy cut efficiency
 based on the baseline dependence of the oscillation probability
@@ -112,6 +117,8 @@ with the nominal efficiency assuming no oscillations.
 The relative difference was applied as a correction
 during the near-far projection procedure in \cref{subsec:flux_fraction}.
 
+\subsubsection{Study of relative energy scale}
+
 The second quantity produced by the simulation
 was the dependence of the prompt energy spectrum and cut efficiency
 on changes to the relative energy scale between ADs (see \cref{subsec:rel_energyscale}).
@@ -121,7 +128,7 @@ but where the value of the energy was scaled
 by the uncertainty of the relative energy scale, \SI{\pm0.5}{\percent}.
 The resulting change to the prompt energy cut efficiency, \SI{\pm0.1}{\percent},
 is the AD-uncorrelated uncertainty for that efficiency.
-Shifting the energy scale also changes the shape of the spectrum,
+Shifting the energy scale also changed the shape of the spectrum,
 which was quantified by comparing the change in number of events
 in each bin of the histogram with and without the re-scaled energy values.
 The oscillation dependence of the spectral shape was also accounted for.
@@ -138,7 +145,7 @@ divided by the bin content without the shift:
 \end{equation}
 where the $+$ refers to scaling the energy by \SI[retain-explicit-plus]{+0.5}{\percent}
 and the $-$ refers to scaling by \SI{-0.5}{\percent}.
-During the fit procedure, the impact of this correction
+During the fit procedure to extract \thetaot{} in \cref{ch:analysis}, the impact of this correction
 was controlled by a pull parameter.
 The fitter automatically switched between the $+$ and $-$ values
 depending on the sign of the pull parameter.
@@ -155,7 +162,7 @@ the prompt energy cut efficiency is omitted
 from the fit model and from the constraint
 on the pull parameter representing the overall detection efficiency uncertainty.
 
-\section{Data stream simulation}
+\section{Data file simulation}
 \label{sec:toymc}
 
 The Daya Bay event selection process (\cref{ch:event_selection})
@@ -168,22 +175,25 @@ the rate of uncorrelated ``single'' events.
 Both the event selection and the accidentals characterization
 relied on a simple model of the data stream,
 with only three distinct event types:
-uncorrelated muons and single events,
-and correlated pairs comprising IBD events
-which are otherwise uncorrelated with all other signals in the detectors.
-The data stream toy Monte Carlo simulation was used
-to study the impact of the assumptions in that model
+muon events, uncorrelated single events,
+and correlated pairs comprising IBD events.
+The Reconstructed-Data File Simulation (RDFS)
+produced simulated data files in the same format
+as the output of the calibration and reconstruction procedure
+(``production,'' described in \cref{sec:daq}).
+This simulation was used
+to study the impact of the assumptions in the data stream model
 and to validate the implementation of
 the event selection and accidentals characterization
 in software.
 
-The simulation received as input
+The RDFS received as input
 a specification for the rates of various event types,
 representing IBDs, uncorrelated events, muons, etc.,
 and a total ``runtime'' representing the amount of AD livetime to simulate.
 The configuration could be varied to, for example,
 increase the rate of single events
-or decrease the characteristic time delay between prompt and delayed IBD signals.
+or decrease the capture time delay between prompt and delayed IBD signals.
 and the effect of that change could be studied.
 To produce a data stream,
 first, timestamps were generated for each event
@@ -197,17 +207,19 @@ reconstructed energy or position.
 Instead, these distributions were chosen to make analysis
 of the selection cuts more convenient.
 This was an acceptable compromise since the purpose of the simulation
-was to study time correlations, not energy or position distributions.
+was to validate properties of the data model,
+rather than the traditional goal of estimating specific quantities
+which are difficult or impossible to measure using real data.
 
-The events were saved to disk in the same ROOT file data format
+Simulated events were saved to disk in the same ROOT file data format
 used by the Daya Bay data production.
 An additional ROOT TTree structure containing the ``truth information''
 for each event was included in the output data file.
-For this simulation, the only ``truth'' not also present in the data output
-was the event type that the given data entry represents.
+For this simulation, the truth information for an event consisted of
+the event type that the given data entry represented.
 A flowchart describing the steps in the simulation
 is provided in \cref{fig:my_toymc_flowchart}.
-The characteristics associtated with the different event types
+The characteristics associated with the different event types
 are described below.
 
 \begin{figure}
@@ -244,6 +256,8 @@ and with the delayed event's position limited to the GdLS (IAV) region of the AD
 
 \subsection{Types of generated events}
 
+\subsubsection{Single events}
+
 Single events represent uncorrelated signals,
 which in Daya Bay were primarily caused by natural radioactive decays in the AD
 (\cref{subsec:singles}).
@@ -256,6 +270,8 @@ and the positions are similarly randomly assigned
 within the scintillating volume.
 (The energy and position distributions can both be customized
 but were left at their defaults for the studies described here.)
+
+\subsubsection{Correlated events}
 
 Correlated events represent pairs of signals
 with a common physical origin, both in position and in time.
@@ -278,6 +294,8 @@ in each direction ($x,y,$ and $z$) for these Correlated events.
 In the recorded truth information,
 prompt and delayed events are assigned separate labels.
 
+\subsubsection{Muon events}
+
 Muon events represent signals created by muons traversing
 the water pools and ADs (\cref{sec:muonveto}).
 For simplicity, each muon is assumed to create a signal
@@ -288,7 +306,7 @@ A portion of the muon signals, \SI{19.95}{\percent},
 traverse the AD, depositing an energy chosen at random between
 \SIlist{20;2000}{\MeV}.
 A smaller subset of the muon signals, \SI{0.05}{\percent},
-create particle showers in the AD, depositing an energy chosen at random between
+were simulated as showering muons and deposited an energy chosen at random between
 \SIlist{2500;5000}{\MeV}.
 The time delay between WP and AD muons is assigned to be \SI{50}{\ns},
 chosen since in real data there is a nonzero time offset between WP and AD muons,
@@ -307,7 +325,7 @@ The procedure for determining the uncorrelated event rate
 is described in \cref{subsec:singles}.
 This process, both the abstract algorithm and the actual software implementation,
 was validated using simulated datasets.
-The simulation was configured to generate Single (uncorrelated) events
+The RDFS was configured to generate Single (uncorrelated) events
 with a rate of \SI{20}{\Hz}
 in data files also containing Muon and Correlated events.
 The full configuration is listed in \cref{tab:toymc_singles_config}.
@@ -384,16 +402,16 @@ the same PMT never flashed twice within $\lesssim$\SI{0.7}{\s}
 (see \cref{fig:flasher_anticorr}).
 This pattern violated the assumption in the accidental background analysis
 that all single events were uncorrelated and governed by Poisson statistics.
-A Flasher event type was added to the simulation to test the impact of this deviation.
+A Flasher event type was added to the RDFS to test the impact of this deviation.
 
-The Flasher event type had a fixed energy and position
-and generated events were assigned fixed, deterministic timestamps \SI{1}{\s} apart
+The Flasher event type had a fixed energy and position.
+Generated Flasher events were assigned fixed, deterministic timestamps \SI{1}{\s} apart
 to simulate a maximally-anticorrelated process with no possible time coincidences.
 A data sample was generated with only Single events and Flasher events,
-and was treated as if the Flasher events passed the existing flasher veto criteria.
+and was treated as if the Flasher events passed the flasher veto criteria.
 The Single events had the same configuration as in \cref{tab:toymc_singles_config},
 and the Flasher events were assigned a fixed energy of \SI{2.7}{\MeV}.
-The accidental background analysis was performed on this data sample;
+The accidental background analysis was performed on this data sample (\cref{sec:acc});
 after subtracting the accidental background,
 the expectation was that 0 correlated events should remain.
 \Cref{fig:sim_flasher_prompt_delayed} shows the result of the prompt-delayed spectrum
@@ -403,11 +421,12 @@ The sample including the Flashers shows
 an inaccurate background-subtracted spectrum
 due to the synthetic background sample containing unphysical Flasher-Flasher pairs.
 In the ``real'' (simulated) data set,
-there were no accidental coincidences between residual Flashers by construction,
-since the residual Flasher events were generated with \SI{1}{\s} time gaps
+there were no accidental coincidences between Flasher events by construction,
+since they were generated with \SI{1}{\s} time gaps
 between consecutive Flashers.
-This simulation was intentionally an extreme configuration,
-but it led to the decision to find ways to veto the residual flasher events
+This simulation was intentionally configured to exaggerate the impact
+of the properties of residual flashers.
+This result informed the decision to find ways to veto the residual flasher events
 rather than attempt to correct for them in other ways.
 
 \begin{figure}
@@ -511,25 +530,29 @@ rather than attempt to correct for them in other ways.
 %was \SI{+-0.1}{\percent}.
 
 
-\section{The data set toy Monte Carlo}
+\section{Fake experiment simulation}
 \label{sec:lbnl_toymc}
 
-An independent toy Monte Carlo was implemented
+An independent simulation was implemented
 to generate spectra of reconstructed prompt energy for each AD,
 under assumptions of a wide variety of systematic uncertainties,
 backgrounds, and reactor parameters.
-This simulation was originally \cite{lbnl_toymc,p12e_fitter,p14a_fitter} used to generate covariance matrices for
+Since the simulation output was designed to include all the necessary inputs
+to the \thetaot{} fitter,
+the outputs were known as ``fake experiments;''
+the simulation itself will be referred to as the Fake Experiment Simulation (FES).
+This simulation was originally \cite{lbnl_toymc,p12e_fitter,p14a_fitter} designed to generate covariance matrices for
 and validate the performance of
 one of the fitter programs for the nGd analysis
 (Method A of \cite{ngd2016}).
 It was used essentially unmodified to validate the fitter for this (nH) analysis
 (\cref{ch:analysis}).
 
-The simulation received as input predicted \nuebar{} flux and spectrum data
+The FES received as input predicted \nuebar{} flux and spectrum data
 which were computed \cite{christine_reactor} based on data from the reactor operator
 and the models by Huber \cite{reactor_huber}
-and Mueller \emph{et al.} \cite{reactor_mueller}.
-For each reactor-AD pair, the spectra were updated
+and Mueller \emph{et al.} \cite{reactor_mueller} (see also \cref{sec:reactor}).
+For each reactor-AD pair, the spectra were evolved
 based on the configured oscillation parameters
 and suppressed by $\nicefrac{1}{L^2}$ due to isotropic emission.
 The true \nuebar{} spectrum for IBD interactions was computed
@@ -593,20 +616,20 @@ Data sets were generated under each test configuration
 for 36 pairs of (\thetaot{}, \dmee{}) mixing parameters.
 (\dmee{} was used only as an input value,
 and was converted to $\Delta m^2_{32}$ internally.)
-The values of $\sin^22\thetaot{}$ ranged from 0.065 to 0.09
+The input values of $\sin^22\thetaot{}$ ranged from 0.065 to 0.09
 in steps of 0.005;
 those of \dmee{} ranged from
 \SI{2.3e-3}{\eV\squared} to \SI{2.7e-3}{\eV\squared}
 in steps of \SI{0.08e-3}{\eV\squared}.
 
 The fitter was tested against data sets
-which were configured to have no fluctuations,
+that were configured to have no statistical or systematic fluctuations
 in order to verify the precise performance
 of the prediction algorithm and minimizer.
 Since these simulations were fully deterministic,
 only one data set was generated for each of the 36 parameter combinations.
 The fitter was also tested against data sets
-which included fluctuations, both statistical and systematic in nature.
+that included fluctuations, both statistical and systematic in nature.
 To thoroughly exercise the fitter's functionality
 for each configuration,
 1000 data sets were generated
@@ -686,25 +709,36 @@ pos = ht
 The distribution of extracted $\sin^22\thetaot$ values from the final validation
 is shown in \cref{fig:final_validation}.
 For 6 of the 9 parameter combinations (\SI{66}{\percent}),
-the sample mean $\sin^22\thetaot$
+the mean extracted $\sin^22\thetaot$
 was within $\pm1$ standard error of the ``true'' (simulation input) $\sin^22\thetaot$,
 demonstrating the statistical consistency of the fitter and simulation infrastructure.
 A second consistency check was the distribution of minimum $\chi^2$ values
 from the fitter,
 which should follow the $\chi^2$ distribution with 3 degrees of freedom
 (see \cref{subsec:fitter_specification}).
-When all pull parameters were disabled, the extracted $\chi^2$ values
+When all pull parameters were disabled (that is, fixed at 0), the extracted $\chi^2$ values
 did indeed follow the theoretical predicted distribution.
 However, as shown in \cref{fig:validation_chi2},
-when all pull parameters were enabled,
+when all nuisance parameters were enabled as parameters of the fit,
 the $\chi^2$ values decreased to lower values than the prediction.
-This discrepancy was traced to the use of the pull parameters
+This discrepancy was traced to the use of the nuisance parameters
 modeling the AD-to-AD variation in detection efficiency;
-when this pull parameter was disabled but all others were enabled,
-the extracted $\chi^2$ values still matched the prediction.
-In any event, the impact of the pull parameters
+when these parameters were disabled but all others were enabled,
+the extracted $\chi^2$ values still matched the prediction for 3 degrees of freedom.
+An explanation was identified for this effect.
+Each nuisance parameter controls the efficiency for a single AD,
+modeled as a multiplicative factor of the final predicted number of events at an AD.
+Thus after the prediction based on the near-hall observations is made,
+any difference between the prediction and observation at a far-hall AD
+can be reduced by updating the efficiency nuisance parameter for that AD.
+Even with the constraint on the value of the nuisance parameter,
+an improvement to the overall $\chi^2$
+beyond the usual statistical expectation
+can usually be obtained by this mechanism.
+
+In any event, the impact of the nuisance parameters
 on the extracted $\sin^22\thetaot{}$ was minimal.
-Over the 1710 fake experiments, the maximum discrepancy
+Over the 1710 fake experiments used for final validation, the maximum discrepancy in $\sin^22\thetaot{}$
 between a fit with no pull parameters and one with all enabled
 was \SI{0.08}{\percent}.
 
