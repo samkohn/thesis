@@ -125,8 +125,8 @@ pos = ht
 
 The Daya Bay experimental halls were located underground
 to help shield the ADs from muons produced in the upper atmosphere by cosmic rays.
-However, the overburdens of \SIlist{250;265;860}{\mwe}
-for EH1, EH2, and EH3, respectively, did not block all of the muons.
+However, the overburdens did not block all of the muons,
+as evidenced by the non-negligible muon flux listed in \cref{tab:overburden}.
 When a cosmic-ray muon entered the LS or GdLS volume of the AD,
 it created a scintillation signal (and a smaller Cherenkov radiation signal)
 that was proportional to the distance traveled
@@ -143,12 +143,12 @@ which were monitored by PMTs for Cherenkov radiation from muons.
 In addition to themselves creating background signals in the ADs
 from their own energy deposits,
 muons also created other sources of background.
-A muon which entered an AD could produce
+A muon that entered an AD could produce
 the rare unstable isotopes \li{} and \he{} (\cref{subsec:li9}).
 These isotopes could decay through processes that exactly mimic the IBD signature.
-A muon could instead interact with the rock surrounding the EHs
+A muon could instead interact with the rock surrounding the water pools
 and generate energetic ``fast'' neutrons,
-which could penetrate the water shield and stainless steel vessel surrounding the ADs
+which could penetrate the water shield and the ADs' stainless steel vessels
 (\cref{subsec:fastn}).
 If the fast neutron were to collide with a nucleus (particularly \isotope[1]{H})
 inside the LS or GdLS,
@@ -171,11 +171,11 @@ This veto was long enough to allow most (all but $\sim e^{-2}$)
 fast neutrons that penetrate into an AD to be captured by H or Gd
 before the end of the veto window.
 Since the characteristic time between water shield muons at the near halls
-was only around \SI{5}{\milli\second},
+was only around \SI{5}{\milli\second} (see \cref{fig:muon_rate}),
 extending the veto window much longer would lead to a significant
-loss of data efficiency.
+loss of data.
 Both of these criteria have essentially \SI{100}{\percent} efficiency
-in detecting muons.
+in detecting muons \cite{muonsystem2015}.
 
 Since muons deposited much more energy in ADs than most other processes,
 a simple energy cut was used to identify so-called AD muons.
@@ -184,7 +184,7 @@ was considered to be an AD muon, and was followed by a veto window
 of \SI{800}{\micro\second}.
 Some muons deposited significantly more energy than
 even the maximum expected for a minimum-ionizing particle in LS
-traversing the entire AD, approximately
+traversing the entire AD diagonally, approximately
 $\SI{6}{\meter}\times\SI{2}{\mev\per\cm}=\SI{1200}{\mev}$.
 These events were assumed to be caused by muons which created particle showers,
 explaining the additional energy deposits.
@@ -201,26 +201,26 @@ described in \cref{sec:coincidence}.
 Briefly, if a candidate prompt event was followed
 by both a candidate delayed event and a muon event,
 then the coincidence pair was rejected as being too close to a muon event.
-This avoids an unwanted correlation between muon rate
+This avoided an unwanted correlation between muon rate
 and coincidence distance-time (DT) efficiency (\cref{sec:DT_cut}).
 Because of this implicit pre-muon veto window,
 for a given coincidence time cut \tc,
-an isolated water shield muon actually vetoes $\SI{400}{\micro\second}+\tc$
+an isolated water shield muon actually vetoed $\SI{400}{\micro\second}+\tc$
 of DAQ live time,
-an AD muon vetoes $\SI{800}{\micro\second}+\tc$,
-and a showering muon vetoes $\SI{1}{\second}+\tc$
+an AD muon vetoed $\SI{800}{\micro\second}+\tc$,
+and a showering muon vetoed $\SI{1}{\second}+\tc$
 (\SI{1900}{\us}, \SI{2300}{\us}, and \SI{1.0015}{\s}, respectively,
 for $\tc=\SI{1500}{\us}$).
 
 When performing the coincidence selection, no events which were vetoed by muons
 were considered.
 Therefore, the measured rate of IBD events
-must be corrected by an effective efficiency $\varepsilon_\mu$
+must be corrected by an efficiency $\varepsilon_\mu$
 accounting for the IBD events which were rejected along with the muon veto.
 $\varepsilon_\mu$ is simply the fraction of DAQ time
 that was not vetoed by any muon veto windows (including the pre-muon veto).
 It was computed for each run as
-\begin{equation}
+\begin{equation}\label{eq:muon_eff}
     \varepsilon_\mu = \frac{\sum_i \Delta t_i}{t_{\text{DAQ}}},
 \end{equation}
 where $t_{\text{DAQ}}$ is the total time
@@ -232,6 +232,7 @@ with the fraction of muons which were identified by the muon criteria,
 which is \SI{100}{\percent} \cite{muonsystem2015}.
 The muon veto efficiency over time for the near and far halls
 is shown in \cref{fig:veto_eff} for each data run.
+\todo[inline]{Explain the EH3 decrease and EH1 increase in $\varepsilon_\mu$}
 
 The effective muon rate $R_\mu$ was computed for each run
 by counting the number of muon veto windows
@@ -381,7 +382,7 @@ Five distinct signatures were observed for flasher events.
 \end{itemize}
 
 Flasher events occasionally generated enough light to be categorized as muon-like events.
-Events which satisfied both a muon criterion and a flasher criterion
+Events that satisfied both a muon criterion and a flasher criterion
 were conservatively treated as muons.
 
 Previous Daya Bay analyses only rejected the first two types of flashers,
@@ -389,7 +390,7 @@ nominal and 2-inch flashers,
 because the latter three types were accounted for
 as part of the uncorrelated background (\cref{sec:acc}).
 Additional efforts within the Daya Bay collaboration
-to characterize the remaining so-called residual flashers
+to characterize the remaining so-called residual flashers \todo{rate wrt nominal flashers?}
 revealed that these events were not purely uncorrelated,
 and so could not be fully accounted for as part of the uncorrelated background.
 In particular, the distribution of time delays
@@ -407,7 +408,7 @@ The remaining flasher cuts are described in \cref{subsec:flash_resid}.
     \includegraphics[width=0.8\textwidth]{ch_event_selection/flasher_photo}
     \caption[Photograph of flashing PMT]{
         Observation of electrostatic breakdown at the base of a Daya Bay PMT
-        \cite{flasherphotos_docdb}
+        \cite{flasherphotos_docdb}.
     }
     \label{fig:flasher_photo}
 \end{figure}
@@ -419,7 +420,7 @@ The remaining flasher cuts are described in \cref{subsec:flash_resid}.
         ch_event_selection/resid_flasher_dt_zoomed_EH3_AD1%
     }
     \caption[Residual flasher $\Delta t$ distribution]{
-        Left: The distribution of time delays
+        Left: Distribution of time delays
         of a subset of residual flashers in EH3-AD1.
         Right: The same distribution, zoomed in to shorter delays.
         The minimum coincidence time of a residual flasher pair was always
@@ -459,11 +460,11 @@ which is large when more charge is observed in Quadrant 3
 relative to the two side quadrants (2 and 4).
 The discriminator for nominal flashers was defined as
 \begin{equation}
-    f_{\text{ID}} = \log_{10}\left(
+    f_{\text{ID}} = \log_{10}\left[
         f_{\text{Quad}}^2 + \left(
             \frac{f_{\text{max}}}{0.45}
         \right)^2
-    \right),
+    \right],
 \end{equation}
 with $f_{\text{ID}} < 0$ for IBD candidates and other physics events,
 and $f_{\text{ID}} > 0$ for nominal flasher events.
@@ -539,7 +540,7 @@ Events which satisfied all of the the following three criteria were rejected:
 (1) $Q_1/Q_2 > 0.6$; (2) $f_{\text{ID}} > 0.5 \times Q_1/Q_2 - 0.8$;
 and (3) $f_{\text{ID}} > -0.3$,
 as illustrated in \cref{fig:hidden_flasher_cut}
-\cite{flashers_jinjing,beda_resid_flasher_dt}.
+\cite{beda_resid_flasher_dt,flashers_jinjing}.
 
 
 \begin{figure}
@@ -671,7 +672,7 @@ This probability is derived in \cref{ap:singlesformula} as $P_b$.
 
 
 \adgrid{
-    All double coincidences found using $\tc=\SI{1.5}{\milli\second}$
+    All double coincidences found using $\tc=\SI{1.5}{\milli\second}$.
 }{fig:double_coinc_raw}{ch_event_selection/double_coincs}{
     Prompt-delayed spectrum: all double coincidences
 }
@@ -721,7 +722,7 @@ The efficiency of this multiplicity cut is derived in \cref{ap:singlesformula} a
     \label{eq:mult_eff}
     \begin{split}
         \varepsilon_m &= e^{-R_s \tc}
-        \left(
+        \left[
             e^{-(R_s + R_\mu)\tc} +
             \frac{R_s}{R_s+R_\mu} e^{-R_\mu\tc}
             \left(
@@ -736,7 +737,7 @@ The efficiency of this multiplicity cut is derived in \cref{ap:singlesformula} a
                   \left(
                       1 - e^{-(R_s + R_\mu)\tc}
                   \right)
-              \right),
+              \right],
     \end{split}
 \end{align}
 where $R_s$ is the rate of uncorrelated events,
@@ -755,17 +756,22 @@ are all motivated in large part by the need to reduce the accidental background.
 \section{Distance and time cuts}
 \label{sec:DT_cut}
 
-The characteristic distance for a neutron capture on hydrogen
+The average range of a neutron
 in the Daya Bay liquid scintillator
-was approximately \SI{200}{\milli\meter},
-and the characteristic time delay was \SI{\sim215}{\us}.
-For accidental coincidences, the characteristic distance was
-the length scale of the AD, approximately \SI{3000}{\milli\meter},
-and the characteristic time based on the \fold{1} event rate
+before an nH capture
+was approximately \SI{300}{\milli\meter},
+and the time delay between production and capture was \SI{\sim215}{\us}.
+For accidental coincidences, the typical separation between prompt and delayed signals was
+the length scale of the AD, approximately \SI{4000}{\milli\meter}.
+The characteristic time between consecutive single events,
+based on the \fold{1} event rate of $\sim\SI{20}{\Hz}$,
 was $\sim\SI{50000}{\us}$.
+Thus the distance and time between the prompt and delayed signals
+of a double coincidence event could be used
+as discriminants to preferentially select IBD events over accidentals.
 
 \adgrid{
-    Distribution of coincidence distance and coincidence time
+    Distribution of coincidence distance and coincidence time.
 }{fig:dr_vs_dt}{ch_event_selection/dr_vs_dt}{
     Coincidence distance vs. time
 }
@@ -776,7 +782,7 @@ for the subset of \fold{2} coincidences with
 relatively small coincidence distances and times
 of less than \SI{1000}{\milli\meter} and \SI{600}{\micro\second},
 respectively.
-The cluster at the lowest coincidence times and distances
+The cluster at the lowest coincidence time and distance
 consists of IBD events.
 The rest of the events distributed with relatively uniform density
 across the plot are accidental coincidences from uncorrelated events.
@@ -786,13 +792,11 @@ to \SI{480}{\micro\second} at $0$ distance.
 This line separated the higher-density region
 of correlated events from the uniform density region of accidental background.
 The distance-time (DT) cut was defined by this line,
-and accepted events which satisfied the inequality
+and accepted events that satisfied the inequality
 \begin{equation}\label{eq:DT}
     \text{DT} = \Delta r + v_0 \Delta t < \SI{800}{\milli\meter},
 \end{equation}
 where $v_0 = \frac{\SI{1000}{\milli\meter}}{\SI{600}{\micro\second}}$.
-Note that the quantity DT is not D$\times$T,
-nor should it be confused with the differential $dt$.
 The DT parameter distribution for the double coincidence events
 in each AD is shown in \cref{fig:DT_data}.
 The figure makes clear that applying a DT cut of \SI{800}{\mm}
@@ -824,7 +828,7 @@ against the accidental background.
 \label{sec:acc}
 
 Once muon events and flashers were removed from the data stream,
-the vast majority of remaining AD events were caused by uncorrelated
+the vast majority of the remaining AD events were caused by uncorrelated
 natural radioactive decays and are commonly known as ``singles,''
 although as will be shown shortly, this name is misleading,
 and a more appropriate name is ``uncorrelated events.''
@@ -852,7 +856,7 @@ A back-of-the-envelope estimate of the rate of accidental coincidences gives
 $\SI{17.5}{\hertz}\times\SI{2.56}{\percent}=\SI{0.45}{\hertz}$
 before applying the distance-time (DT) cut (\cref{sec:DT_cut}).
 
-Because the selection criteria for delayed energy
+Because the delayed energy selection criteria
 were derived from the accidentals-subtracted delayed energy spectrum for each AD,
 the accidentals analysis will be presented first,
 followed by the specification of the energy cuts in \cref{sec:energy_cuts}.
@@ -867,7 +871,7 @@ contaminating the final IBD sample was computed (\cref{subsec:acc_count}).
 \subsection{Uncorrelated events}
 \label{subsec:singles}
 
-The full accidentals subtraction procedure began with identifying
+The full accidental background subtraction procedure began with identifying
 the rate of uncorrelated events in the AD, again better known
 as the ``singles rate,'' for each individual data run.
 The singles rate was computed by first measuring the rate of
@@ -881,7 +885,7 @@ computed by numerically solving the following formula
     \begin{split}
         R_{\text{\fold{1}}}
           &= R_s e^{-R_s\tc}
-          \left(
+          \left[
               e^{-(R_s + R_\mu)\tc} +
               \frac{R_s}{R_s+R_\mu} e^{-R_\mu\tc}
               \left(
@@ -897,7 +901,7 @@ computed by numerically solving the following formula
               \left(
                   1 - e^{-(R_s + R_\mu)\tc}
               \right)
-          \right)
+          \right]
     \end{split}
 \end{align}
 In this formula, \tc{} represents the actual duration of the coincidence window,
@@ -927,7 +931,9 @@ as validated by simulation in \cref{subsec:sim_singles}.
 
 The uncorrelated event rate $R_s$ for the near and far halls is shown in
 \cref{fig:singles}.
-$R_s$ was higher when the experiment began because long-lived
+$R_s$ was higher when the experiment began because
+the dark rate of the PMTs had not yet stabilized
+and long-lived
 radioactive contaminants had not yet decayed away.
 In particular, the far-hall ADs EH3-AD1, EH3-AD2, and EH3-AD3
 were filled shortly before physics data taking began,
@@ -942,34 +948,12 @@ most of the radiocontaminants decayed.
 Once $R_s$ was obtained, $R_{\text{\fold{2}}}$ was computed for each run
 as the rate of accidental coincidences of two uncorrelated events within \tc{},
 with energies between \SIlist{1.5;12}{\MeV}, and with no DT restriction.
-This value was derived by adjusting the Poisson probability in \cref{eq:rsingles}
-from the probability of $0$ other events within \tc{}
-to the probability of $1$ other event, namely the delayed event:
-\begin{align}
+The value of $R_\text{\fold{2}}$ is given by
+\begin{equation}
     \label{eq:racc}
-    \begin{split}
-        R_{\text{\fold{2}}}
-                   &= R_s \left(R_s\tc e^{-R_s\tc}\right)
-          \left(
-              e^{-(R_s + R_\mu)\tc} +
-              \frac{R_s}{R_s+R_\mu} e^{-R_\mu\tc}
-              \left(
-                  1 - e^{-(R_s + R_\mu)\tc}
-              \right)
-          \right. \\
-          &\ \ %
-          \left. - \frac{R_s}{2R_s + R_\mu} e^{-R_\mu\tc}
-              \left(
-                  1 - e^{-(2R_s + R_\mu)\tc}
-              \right) +
-              \frac{R_\mu}{R_s + R_\mu}
-              \left(
-                  1 - e^{-(R_s + R_\mu)\tc}
-              \right)
-          \right) \\
-          &= R_s\tc R_{\text{\fold{1}}}
-    \end{split}
-\end{align}
+        R_{\text{\fold{2}}} = R_s\tc R_{\text{\fold{1}}},
+\end{equation}
+as derived in \cref{ap:singlesformula}.
 The rate $R_{\text{\fold{2}}}$ obtained from this formula
 could not simply be subtracted from the measured \fold{2} rate
 to obtain $R_{\text{IBD}}$,
@@ -990,15 +974,15 @@ to increase the purity of the sample.
 This was acceptable because the energy and position characteristics of uncorrelated events
 by definition did not change based on the presence or absence
 of surrounding events.
-A symmetrical cut of \SI{1.5}{\ms} was used
+Only \fold{1} events which had no preceding events within \SI{1.5}{\ms}
+were accepted into this sample
 to ensure isolation before and after each candidate event.
 The spectrum of these (now truly) single events is shown in \cref{fig:singlespectra},
 obtained by summing the individual spectra from each data run for each AD.
-These spectra were saved for use as the prompt energy spectra
-of the accidental background events contaminating the final IBD sample.
 
 \adgrid{
-    Spectra of isolated single events in each AD.
+    Spectra of isolated single events in each AD
+    used to construct the synthetic accidentals samples.
 }{fig:singlespectra}{ch_background/singles}{
     Single events spectrum
 }
@@ -1022,24 +1006,27 @@ expected from true accidental coincidences.
 
 The total accidentals efficiency $\varepsilon_\text{total,\,acc}$
 was defined as the fraction of accidental \fold{2} coincidences
-which passed the full IBD selection including energy cuts and DT cuts,
+that passed the full IBD selection including energy cuts and DT cuts,
 estimated from the synthetic accidentals sample as
 \begin{equation}\label{eq:eps_total_acc}
     \varepsilon_{\text{total,\,acc}} =
-    \frac{N_\text{acc}'[E_p \wedge E_d \wedge \text{DT}]}{N_\text{acc}'[E_p]}.
+    \frac{N_\text{acc}'[E_p \wedge E_d \wedge \text{DT}]}{N_\text{acc}'[E_p]},
 \end{equation}
+where $N_\text{acc}'[\cdot]$ refers to the number of events
+in the synthetic accidentals sample satisfying certain selection criteria.
 The total expected number of accidental coincidence events
 that passed the full IBD selection was then computed
 separately for each run, and the counts for all the runs for each AD were combined:
 \begin{align}\label{eq:nacc}
     \begin{split}
         N_{\text{acc},r} &= R_{\text{\fold{2}},r}
-            \times T_{\text{DAQ},r}\varepsilon_{\mu,r}
+            \times T_{\text{DAQ},r}\times \varepsilon_{\mu,r}
             \times \varepsilon_{\text{total,\,acc},r}\\
         N_\text{acc} &= \sum_r N_{\text{acc},r}
     \end{split}
 \end{align}
-where $r$ indexes over all runs for a given AD.
+where $r$ indexes over all runs for a given AD
+and $\varepsilon_\mu$ is defined in \cref{eq:muon_eff}.
 Note that the multiplicity veto efficiency $\varepsilon_m$,
 which must be explicitly included in all other rate-to-counts conversions,
 is implicitly present in the computation of $R_\text{\fold{2}}$.
@@ -1092,10 +1079,8 @@ was computed using the binomial distribution to be
         \frac{
             \varepsilon_\text{total,\,acc} (1 - \varepsilon_\text{total,\,acc})
         }{N_\text{acc}'}
-    },
+    }.
 \end{equation}
-where $N_\text{acc}'$ is the number of synthetic accidental pairs
-used to compute $\varepsilon_\text{total,\,acc}$.
 Thus the total uncertainty on the number of accidental events
 for a given run based on \cref{eq:nacc} was
 \begin{equation}\label{eq:sigma_acc}
@@ -1106,7 +1091,7 @@ for a given run based on \cref{eq:nacc} was
     }.
 \end{equation}
 For a typical 24-hour run at any of the ADs,
-the overall statistical uncertainty was approximately \SI{3}{\percent}
+the overall statistical uncertainty was approximately \SI{3}{\percent}.
 These statistics were uncorrelated between runs,
 so the total relative uncertainty was suppressed
 when the runs were combined according to \cref{eq:nacc},
@@ -1122,12 +1107,20 @@ Such an error would affect the IBD rates at the near and far ADs in different pr
 leading to a bias in \thetaot{}.
 In fact, using the accidental and IBD event counts in \cref{tab:summary_event_selection},
 it can be shown that a bias of $b\si{\percent}$ in $N_{\text{acc}}$
-would yield a bias in $N_{\text{IBD}}$ of $-1.2b\si{\percent}$ at the far site
-but only $-0.14b\si{\percent}$ at the near sites.
+would yield a bias in $N_{\text{IBD}}$ of $-1b\si{\percent}$ at the far site
+but only $-0.13b\si{\percent}$ at the near sites.
+For example, in EH3-AD1 there were \num{162005} IBD candidates,
+of which \num{79658} were expected to be accidental coincidences,
+leaving \num{82347} correlated events.
+If the accidentals prediction were \SI{1}{\percent} higher (\num{80455}),
+the new extracted number of correlated events would be \num{81550},
+which is \SI{-0.97}{\percent} of the nominal value.
+A similar computation for EH1-AD1 results in a change of only \SI{-0.13}{\percent}.
 
 The accuracy of the method used to compute $R_{s}$,
 the primary input to $R_{\text{\fold{2}}}$,
 was examined using the data stream Monte Carlo described in \cref{sec:toymc}.
+\todo{Update name of MC if necessary}
 The results of the simulation study verified that
 the above method extracts $R_s$ with high accuracy, at worst biased by \SI{0.02}{\percent}.
 In particular, the treatment of the small correlated event rate as negligible
@@ -1150,7 +1143,7 @@ The method of generating a synthetic accidentals sample
 by pairing up isolated single events was examined using actual data.
 The specific pairing algorithm, which pairs events from the first half of a run
 with events from the second half of a run,
-could create a synthetic sample not representative of true accidentals
+could create a synthetic sample not representative of the true accidental background
 if the properties of uncorrelated events changed significantly during a run.
 An alternate pairing algorithm was designed to pair isolated events
 chosen at random (without replacement) from the set of singles from a given run.
@@ -1267,7 +1260,7 @@ due to the procedure for determining the number of accidental events $N_{\text{a
 was taken to be \SI{0.04}{\percent},
 which was sub-dominant compared to the statistical uncertainty of \SI{0.08}{\percent},
 and negligible when considered along with
-the uncertainties on the other irredicible backgrounds
+the uncertainties on the other irreducible backgrounds
 as described in \cref{sec:correlated_bg}.
 
 \section{Energy cuts}
@@ -1349,7 +1342,7 @@ with prompt and delayed energies between \SIlist{1.5;12}{\MeV}
 that passed the DT cut was
 \begin{equation}
     N_{\text{acc,\,loose}} = R_{\text{\fold{2}}}
-        \times T_\text{DAQ}\varepsilon_\mu
+        \times T_\text{DAQ}\times \varepsilon_\mu
         \times \varepsilon_{\text{DT,\,acc}}
     \label{eq:nacc_loose}
 \end{equation}
@@ -1376,7 +1369,7 @@ the delayed energy spectrum at this point
 consisted solely of nH captures.
 
 The projections of these 2D spectra onto the delayed energy axis
-wes fit with the calorimeter function, which models
+were fit with the calorimeter function, which models
 a calorimetric response to a monoenergetic process with ``true''
 energy $\mu$ \cite{calorimeter2016}.
 The modeled detector had an intrinsic energy resolution $\sigma$
@@ -1387,7 +1380,7 @@ of events being fully contained,
 with the remainder of the events partially or fully escaping from the detector.
 The energy leakage was modeled as an exponential distribution
 with characteristic energy scale (or ``tail slope'') $\lambda$.
-The fit function itself was derived starting with
+The fitting function itself was derived starting with
 the unsmeared model:
 \begin{equation}
     f_{unsmeared}(E;\mu,\lambda,\alpha) =
@@ -1428,11 +1421,13 @@ of width $\sigma$:
     \end{split}
 \end{align}
 The entire result could then be scaled
-by an additonal normalization parameter $N$
+by an additional normalization parameter $N$
 to match the normalization of the data being fitted.
 
 \adgrid{
-    Delayed energy fits using the calorimeter function
+    Delayed energy spectrum (data points)
+    with the best fit calorimeter function (red curve)
+    superimposed, for each AD.
 }{fig:delayed_fits}{ch_event_selection/delayed_fit}{
     nH capture delayed energy spectrum
 }
@@ -1448,7 +1443,7 @@ to match the normalization of the data being fitted.
     \caption[Delayed energy fit parameters]{
         Fit parameters for each AD.
         Error bars represent fit errors.
-        The smaller plots show the relative deviation of each AD's value
+        The lower panel of each plot shows the relative deviation of each AD's value
         from the average value of the 4 near-hall ADs.
     }
 
@@ -1475,7 +1470,7 @@ to match the normalization of the data being fitted.
         EH3-AD4 & 2.2682 & 0.1362 & 2.5653 & 0.8617\\
         \bottomrule
     \end{tabular}
-    \caption[Delayed energy fit parameters]{Delayed energy fit parameters}
+    \caption[Delayed energy fit parameters]{Delayed energy fit parameters.}
     \label{tab:delayed_fit_params}
 \end{table}
 
@@ -1497,7 +1492,9 @@ to match the normalization of the data being fitted.
         EH3-AD4 & 1.8597 & 2.6768\\
         \bottomrule
     \end{tabular}
-    \caption[Delayed energy cut bounds]{Delayed energy cut bounds derived as $\mu \pm 3\sigma$}
+    \caption[Delayed energy cut bounds]{
+        Delayed energy cut bounds derived as $\mu \pm 3\sigma$.
+    }
     \label{tab:delayed_bounds}
 \end{table}
 
@@ -1506,7 +1503,7 @@ to match the normalization of the data being fitted.
     \includegraphics[height=0.40\textheight]{plot_diagnostics/delayed_energy_bounds.pdf}
     \caption[Delayed energy cut bounds]{
         Delayed energy cut bounds computed as $\mu\pm 3\sigma$
-        from the fitted histograms
+        from the fitted histograms.
     }
     \label{fig:delayed_bounds}
 \end{figure}
@@ -1526,13 +1523,17 @@ The bounds for the delayed energy cut were computed
 based on the fitted peak value and energy resolution
 from the calorimter model.
 The energy criterion was
-\begin{equation}
-    \mu - 3\sigma < E < \mu + 3\sigma.
+\begin{equation}\label{eq:delayed_cut}
+    \mu - 3\sigma < E_d < \mu + 3\sigma.
 \end{equation}
 This form was decided on even though the calorimeter function
 is not symmetric, and even though in reality
 the detector resolution changed with energy
 (and therefore was not precisely modeled in the fit).
+The critical property of this selection criterion was
+not the degree to which the model matched the physical process,
+but rather whether the efficiency of the cut was similar in all ADs,
+as discussed in \cref{subsec:eff_delayed}.
 The values used for the delayed energy cut bounds are listed in \cref{tab:delayed_bounds}
 and plotted in \cref{fig:delayed_bounds}.
 
@@ -1561,7 +1562,7 @@ are listed in \cref{tab:efficiency_summary}.
 
 Selection efficiencies were factored into
 contributions from each individual selection cut.
-The order the cuts are applied is in principle arbitrary;
+The order that the cuts are applied is in principle arbitrary;
 this analysis uses an order
 motivated by the intuitive sequence of event selection steps:
 prompt energy cut $E_p$, delayed energy cut $E_d$, then DT cut:
@@ -1585,7 +1586,7 @@ The notation $N[A \wedge B]$ means
 the number of events accepted after applying cuts $A$ and $B$.
 The overall denominator $N_\text{IBD}$
 represents the total number of true IBD interactions
-which occured on a target proton in the AD,
+that occured on a target proton in the AD,
 whether or not they were eventually detected,
 and whether or not the neutron captured on Gd or H.
 Including nGd events ensured that the analysis of relative efficiencies
@@ -1606,17 +1607,20 @@ as described in \cref{sec:thu_toymc}, to be \SI{\sim88}{\percent}.
 Since the absolute efficiency was not used in the \thetaot{} analysis,
 a more precise value was not studied for this thesis.
 
-Because of the energy dependence of \nuebar{} oscillations,
-both the numerator and denominator of \cref{eq:prompt_eff}
-depended on the baseline between each reactor and each AD \cite{nh2016}.
+Because the true \nuebar{} spectrum was different at each AD
+due to oscillation effects,
+the efficiency of the \SI{1.5}{\MeV} prompt energy cut
+was higher at the near ADs than the far ADs
+simply due to slightly different spectral shapes \cite{nh2016}.
 For example, at shorter baselines, low-energy \nuebar{}'s
-were more likely to oscillate to other flavors, so at the near halls,
-there were fewer true IBD events with prompt energy below threshold,
+were more likely to oscillate to other flavors. At the near halls, then,
+there were fewer true IBD events which were rejected by the prompt energy cut
+(compared to the no-oscillation assumption),
 thus raising the efficiency of the cut.
 At the oscillation maximum, though, medium-energy \nuebar{}'s,
-around \SIrange{2}{3}{\mev}, were most likely to oscillate.
-So a smaller fraction of true IBDs passed the cut,
-and the efficiency was lower.
+around \SIrange{2}{3}{\mev}, were most likely to oscillate (i.e.\ disappear).
+Thus the fraction of IBD events with prompt energy above \SI{1.5}{\MeV}
+was lower than the no-oscillation prediction.
 This relative difference in efficiency between ADs
 impacted the extracted value of \thetaot{} by \SI{\sim5}{\percent}.
 
@@ -1639,13 +1643,13 @@ using the baseline between AD $i$ and reactor core $k$.
 The no-oscillation efficiency $\varepsilon_{\text{prompt,\,no osc}}$
 was common to all AD--reactor pairs.
 A grid of correction values in (\thetaot{}, $\Delta m^2_{32}$) parameter space
-was pre-computed for use during the fit process
+was pre-computed for use during the fitting process
 in \cref{eq:num_ibds_from_core_ij}.
 The fitter used linear interpolation to estimate the correction for
 a given minimizer iteration when the trial oscillation parameters
 did not lie precisely on a grid point.
-The correction factors at the best fit \thetaot{}
-for each AD are shown in \cref{fig:prompt_eff_osc}.
+The correction factors for each AD using the best-fit \thetaot{}
+are shown in \cref{fig:prompt_eff_osc}.
 The dependence of the correction factors
 on the mixing parameters \thetaot{} and $\Delta m^2_{32}$
 is shown in \cref{fig:prompt_eff_osc_contour}
@@ -1672,7 +1676,7 @@ for a representative sample of AD--reactor pairs.
     \\
     \includegraphics[width=0.49\textwidth]{ch_event_selection/prompt_Eff_corr_EH1_AD1_D1}
     \caption[Prompt efficiency correction contour maps]{
-        Contour maps showing the dependence of the prompt energy efficiency correction
+        Dependence of the prompt energy efficiency correction
         on the values of the mixing parameters \thetaot{} and $\Delta m^2_{32}$.
         The range for $\sin^22\thetaot{}$ is $\pm2\sigma$ of the best-fit value;
         for $\Delta m^2_{32}$ it is $\pm2\sigma$ of the value reported in \cite{ngd2018}.
@@ -1695,8 +1699,8 @@ to the prompt energy efficiency.
 The impact, and therefore the relative uncertainty on
 the prompt energy efficiency, was \SI{0.1}{\percent}.
 This uncertainty was not explicitly included in the
-oscillation analysis;
-rather it was implicitly derived from the
+oscillation analysis in \cref{ch:analysis};
+rather, it was implicitly derived from the
 implementation of the relative energy scale uncertainty.
 
 \subsection{Delayed energy cut efficiency}
@@ -1709,13 +1713,13 @@ The delayed energy cut efficiency was defined according to \cref{eq:efficiency_d
     }
 \end{equation}
 the fraction of true IBDs passing the prompt energy selection
-which also are accepted by the delayed energy cuts.
+which also were accepted by the delayed energy cuts.
 Like for the prompt energy, the absolute efficiency
 was measured using Monte Carlo to be approximately \SI{40}{\percent}
 but was not used in this analysis.
 The primary contribution to the inefficiency
 was neutrons capturing on Gd in the GdLS volume;
-a subdominant contribution was $\gamma$-rays escaping from the LS volume.
+a subdominant contribution was $\gamma$-rays from nH capture escaping from the LS volume.
 
 \begin{figure}
     \centering
@@ -1747,11 +1751,13 @@ to the total number of events in an extended region that included the peak and t
 rather than to just the new events in the tail.
 
 For each AD's delayed energy spectrum, the peak region was defined as
-the region passing the delayed energy cut, $\vert E-\mu \vert < 3\sigma$.
-The extended region was the same for each AD:
-$\SI{1.5}{\mev} < E < \SI{2.8}{\mev}$.
+the region passing the delayed energy cut, $\vert E_d-\mu \vert < 3\sigma$
+(\cref{eq:delayed_cut}), containing $N_\text{peak}$ events.
+The extended region, defined by
+$\SI{1.5}{\mev} < E_d < \SI{2.8}{\mev}$,
+contained $N_\text{extended}$ events.
 Using an AD-dependent definition for the peak region but
-the same values for the extended created
+the same values for the extended region created
 the desired sensitivity to variations in the energy scale.
 Extending the lower bound down to \SI{1.5}{\mev} added sensitivity to
 anything that would change the shape of the tail
@@ -1762,15 +1768,15 @@ or the fraction of $\gamma$'s that (partially or entirely) escape from the AD.
     \includegraphics[height=0.4\textheight]{ch_event_selection/delayed_uncertainty_fit}\\
     \includegraphics[height=0.4\textheight]{plot_diagnostics/delayed_energy_uncertainty_method1}
     \caption[Delayed energy efficiency uncertainty]{
-        (Top) Data points and (affine) linear fit
-        to the number of events in the nominal (peak)
+        (Top) Number of events in the nominal (peak)
         and extended ranges of delayed energy.
         Statistical error bars are too small to be visible on this plot.
         The points are labeled using a shorthand AD indexing scheme:
         ADs 1 and 2 are EH1-AD1 and EH1-AD2. ADs 3 and 8 are EH2-AD1 and EH2-AD2.
-        And ADs 4 through 7 are EH3-AD1 through EH3-AD4, respectively.\\
-        (Bottom) Relative deviations from each hall to the fit model.
-        The range of deviations for near-hall ADs
+        And ADs 4 through 7 are EH3-AD1 through EH3-AD4, respectively.
+        The best fit is shown as the red line.\\
+        (Bottom) Relative deviations of each hall from the best-fit model.
+        The range of deviations for the near-hall ADs
         was used as the delayed energy efficiency AD-uncorrelated uncertainty.
     }
     \label{fig:delayed_eff_unc_fit}
@@ -1781,16 +1787,16 @@ If the delayed energy spectra in each AD have the same shape (same efficiency),
 and if the calorimeter function is an appropriate fitting function
 for determining the energy cut bounds,
 then for some constant $b$ common to all ADs,
-$N_{peak,\,i} = b N_{extended,\,i}$ for each AD $i$.
-To test this model, an affine linear function was fit
-to the values for each AD:
+$N_{\text{peak},i} = b N_{\text{extended},i}$ for each AD $i$.
+To test this model, a linear function was fit
+to the values for all ADs:
 
 \begin{equation}
-    N_{peak,\,pred,\,i} = a + b N_{extended,\,i},
+    N_{\text{peak,\,pred},i} = a + b N_{\text{extended},i},
 \end{equation}
-where $N_{peak,\,pred,\,i}$ is the fit function's prediction
-of the actual event count in the peak ($N_{peak,\,i}$).
-Plots of $N_{peak,\,i}$ vs. $N_{extended,\,i}$ and of the
+where $N_{\text{peak,\,pred},i}$ is the fitting function's prediction
+of $N_{\text{peak},i}$.
+Plots of $N_{\text{peak},i}$ vs. $N_{\text{extended},i}$ and of the
 relative deviation from the fitted line are shown in \cref{fig:delayed_eff_unc_fit}.
 The fit value of $a$ should be $0$ if the simple model of
 a linear scaling is correct.
@@ -1813,9 +1819,9 @@ well within the uncertainty derived from the near halls.
 
 This method for determining the variation in efficiency across ADs
 did not account for every possible inefficiency.
-For example, if the fraction of $\gamma$-rays which totally or nearly totally
+For example, if the fraction of $\gamma$-rays that totally
 escaped from the scintillating region were different in one AD,
-but the distribution of $\gamma$-rays which \textit{partially} escaped were unchanged,
+but the distribution of $\gamma$-rays that \textit{partially} escaped were unchanged,
 then this method would still suggest a high similarity between ADs.
 An assumption of this analysis, therefore, is that any AD-to-AD variation
 (in geometry, electronics, scintillator composition, etc.)
@@ -1837,18 +1843,18 @@ The absolute efficiency was defined as
     },
 \end{equation}
 the fraction of IBD events passing the prompt and delayed energy cuts
-which also passed the DT cut.
+that also passed the DT cut.
 This value was estimated using a data-driven method
 based on the observed distribution of the DT parameter
 for all double coincidence events passing the prompt and delayed energy cuts,
-with the contribution from accidental background events
+with the contribution from the accidental background
 statistically subtracted.
 Separate 2D histograms $N_\text{obs}$ and $N_\text{acc}'$
 were constructed from the observed event sample
 and the synthetic accidental background sample (described in \cref{sec:acc}) for each AD,
 showing the distribution of the DT parameter and delayed energy.
-The accidentals histogram was normalized so that
-the number of accidental coincidences at large DT values
+The $N_\text{acc}'$ histogram was normalized by a factor $k$ so that
+the number of events at large DT values
 matched the observed number of such accidental coincidences
 using the constraint
 \begin{equation}\label{eq:acc_sub_normalized}
@@ -1857,107 +1863,14 @@ using the constraint
     d(\text{DT}) dE_d
     =
     \int_{E_d}\int_{\SI{3}{\m}}^{\SI{10}{\m}}
-    \frac{d^2N_\text{acc}'}{dE_d d(\text{DT})}
-    d(\text{DT}) dE_d
+    k\frac{d^2N_\text{acc}'}{dE_d d(\text{DT})}
+    d(\text{DT}) dE_d,
 \end{equation}
 based on the assumption that all observed events
 with a DT parameter greater than \SI{3}{\m}
 were accidental coincidences.
 The outer integral over delayed energy
 used the delayed energy cut bounds specific to each AD.
-
-Subtracting the $N_\text{acc}'$ histogram from $N_\text{obs}$ bin-by-bin
-thus provided the distribution of correlated events
-(true IBDs as well as correlated backgrounds)
-as a function of delayed energy and DT parameter,
-denoted $N_\text{sub}$.
-The histograms depicting $N_\text{sub}$ for three ADs
-are shown in \cref{fig:ed_DT_sub}.
-(The others within the same hall were qualitatively identical.)
-For these histograms, by construction,
-\begin{equation}\label{eq:acc_sub_normalized_zero}
-    \int_{E_d}\int_{\SI{3}{\m}}^{\SI{10}{\m}}
-    \frac{d^2N_\text{sub}}{dE_d d(\text{DT})}
-    d(\text{DT}) dE_d
-    = 0.
-\end{equation}
-A further assumption, that the position distribution of correlated backgrounds
-(most of which involved a prompt event followed by nH capture)
-was equal to the position distribution of IBDs,
-was made to allow the approximation of \cref{eq:abs_DT_eff} as
-\begin{equation}\label{eq:abs_DT_eff_approx}
-    \varepsilon_{\text{DT}} \approx \frac{
-        N_\text{sub}[E_p \wedge E_d \wedge \text{DT}]
-    }%
-    {
-        N_\text{sub}[E_p \wedge E_d]
-    }.
-\end{equation}
-The extracted DT cut absolute efficiency for each AD is shown in
-\cref{fig:DT_eff}, top right.
-Like all absolute detection efficiencies,
-$\varepsilon_{\text{DT}}$ was not used as an input to the \thetaot{} analysis.
-However, the variation between ADs was treated as the AD-uncorrelated uncertainty
-of the DT cut efficiency.
-The \SI{>3}{\percent} apparent variation between ADs
-motivated additional investigation
-to determine whether the variability was intrinsic to the ADs
-or was simply an artifact of one or more of the assumptions
-used to extract the absolute efficiency values.
-
-The extraction of the absolute efficiency was extremely sensitive
-to small variations in the accidentals subtraction procedure.
-The sensitivity arose when computing $N_\text{sub}[E_p \wedge E_d]$.
-Most of the range of DT values was characterized by
-very few correlated events (signal) but many accidental coincidences (background).
-A change of \SI{0.01}{\percent} in the normalization (rate)
-of the subtracted background at a far-hall AD
-yielded a relative impact of \SI{2.1}{\percent} in the extracted DT cut efficiency
-due to the change in $N_\text{sub}[E_p \wedge E_d]$,
-amplifying the bias by a factor of over 200.
-(The near site ADs were sensitive by a factor of $\sim30$.)
-The normalization factors derived for each AD
-corresponded to an effective accidentals rate
-within \SI{\pm0.04}{\percent} of the rate computed
-using the nominal singles rate--based methodology from \cref{sec:acc}---%
-a serendipitous validation of the low systematic bias
-in the extraction of the rate of accidental coincidences.
-Thus although the nominal rate-based methodology was precise enough
-for computing \thetaot{},
-it was not precise enough for computing the DT cut efficiency,
-as evidenced by the differences between the top left (rate-based)
-and top right (normalized) plots of extracted DT cut efficiency in \cref{fig:DT_eff}.
-Normalizing the high-DT range of the distributions,
-as shown in \cref{eq:acc_sub_normalized},
-addressed most of this issue for the DT cut efficiency,
-but the precise choice of lower bound of the normalization integral
-could still impact the efficiency computation
-due to statistical fluctuations in the histogram bins near $\text{DT} = \SI{3}{\m}$.
-
-Two special selections were used to further reduce the impact of
-the accidentals subtraction procedure on the DT cut efficiency uncertainty.
-The first selection consisted of events where the neutron captured on Gd
-rather than H.
-They were isolated using the plots shown in \cref{fig:ed_DT_sub}
-by selecting the region with delayed energy between \SIlist{6;12}{\MeV}.
-The second selection consisted of nH events
-with a prompt energy above \SI{3.5}{\MeV}.
-The accidentals-subtracted plots of delayed energy versus DT were
-regenerated to only include events with $E_p > \SI{3.5}{\MeV}$,
-and the DT efficiency procedure was repeated.
-The same delayed energy cut was used for this modified sample
-as for the nominal sample.
-The nGd subset yielded a full range of \SI{0.18}{\percent}
-in DT cut absolute efficiencies between ADs,
-while the $E_p > \SI{3.5}{\MeV}$ yielded a full range of \SI{0.94}{\percent}.
-The extracted efficiencies for each AD are shown in \cref{fig:DT_eff}.
-Between these two subsets, almost the entire range
-of prompt and delayed positions and energies used in the nominal selection was represented,
-allowing the DT cut efficiency uncertainty to be accurately estimated
-with a minimal impact from the accidental background.
-Conservatively, the half-range of the $E_p > \SI{3.5}{\MeV}$ subset,
-\SI{\pm0.47}{\percent}, was
-used as the AD-uncorrelated uncertainty of the DT cut efficiency.
 
 \begin{figure}
     \centering
@@ -1972,15 +1885,77 @@ used as the AD-uncorrelated uncertainty of the DT cut efficiency.
     }
     \caption[Delayed energy vs. DT without accidentals]{
         Accidentals-subtracted distribution of
-        delayed energy and DT value, used to compute $\varepsilon_{\text{DT}}$.
+        delayed energy as a function of DT parameter.
         The green (solid) box shows the events included in the DT cut.
         The red (dashed) box shows the events excluded by the DT cut.
         The large fluctuations at high DT are due to the statistics
         of subtracting two almost-equal large numbers as part of the
         background subtraction procedure.
+        Histogram bins with negative contents were assigned a value of 1
+        to support the logarithmic color scale.
     }
     \label{fig:ed_DT_sub}
 \end{figure}
+
+Subtracting the (normalized) $N_\text{acc}'$ histogram from $N_\text{obs}$ bin-by-bin
+thus provided the distribution of correlated events
+(true IBDs as well as correlated backgrounds)
+as a function of delayed energy and DT parameter,
+denoted $N_\text{sub}$:
+\begin{equation}\label{eq:DT_eff_nsub}
+    N_\text{sub} = N_\text{obs} - kN_\text{acc}'.
+\end{equation}
+The histograms depicting $N_\text{sub}$ for three ADs
+are shown in \cref{fig:ed_DT_sub}.
+(The others within the same hall were qualitatively identical.)
+For these histograms, by construction,
+\begin{equation}\label{eq:acc_sub_normalized_zero}
+    \int_{E_d}\int_{\SI{3}{\m}}^{\SI{10}{\m}}
+    \frac{d^2N_\text{sub}}{dE_d d(\text{DT})}
+    d(\text{DT}) dE_d
+    = 0.
+\end{equation}
+A further assumption, that the position distribution of the correlated backgrounds
+(most of which involved a prompt event followed by nH capture)
+was equal to the position distribution of IBDs,
+was made to allow the approximation of \cref{eq:abs_DT_eff} as
+\begin{equation}\label{eq:abs_DT_eff_approx}
+    \varepsilon_{\text{DT}} \approx \frac{
+        N_\text{sub}[E_p \wedge E_d \wedge \text{DT}]
+    }%
+    {
+        N_\text{sub}[E_p \wedge E_d]
+    }.
+\end{equation}
+The statistical uncertainty of the absolute efficiency, $\sigma_\text{DT}$,
+was computed assuming $N_\text{sub}[E_p \wedge E_d \wedge \text{DT}]$
+followed the binomial distribution:
+\begin{equation}\label{eq:abs_DT_eff_uncertainty}
+    \sigma_\text{DT} = \sqrt{
+        \frac{
+            \varepsilon_\text{DT}(1 - \varepsilon_\text{DT})
+        }{
+            N_\text{sub}[E_p \wedge E_d]
+        }
+    }.
+\end{equation}
+The uncertainty due to the accidental background subtraction
+was treated as a systematic uncertainty on $\varepsilon_\text{DT}$.
+
+The extracted DT cut absolute efficiency for each AD is shown in
+\cref{fig:DT_eff}, top right, with the error bars defined by
+\cref{eq:abs_DT_eff_uncertainty}.
+Like all absolute detection efficiencies,
+$\varepsilon_{\text{DT}}$ was not used as an input to the \thetaot{} analysis.
+However, the variation between ADs was treated as the AD-uncorrelated uncertainty
+of the DT cut efficiency.
+The \SI{>3}{\percent} apparent variation between ADs
+was concerning because such a large uncertainty on the overall efficiency
+would render a precise measurement of \thetaot{} impossible.
+Additional investigation was undertaken to
+determine whether the differences in $\varepsilon_\text{DT}$ were intrinsic to the ADs
+or were artifacts of the procedure
+used to extract the absolute efficiency values.
 
 \begin{figure}
     \centering
@@ -1989,7 +1964,7 @@ used as the AD-uncorrelated uncertainty of the DT cut efficiency.
     \includegraphics[width=0.49\textwidth]{ch_event_selection/DT_eff_nGd}
     \includegraphics[width=0.49\textwidth]{{ch_event_selection/DT_eff_Ep_3.5MeV}}
     \caption[DT cut efficiency study]{
-        The DT cut efficiency for each AD using the four methodologies
+        DT cut efficiency for each AD using the four methodologies
         described in the text.
         Top left: singles rate--based subtraction;
         top right: normalized subtraction, nominal energy cuts;
@@ -1999,10 +1974,114 @@ used as the AD-uncorrelated uncertainty of the DT cut efficiency.
         The absolute efficiency is not used in the \thetaot{} analysis.
         The AD-uncorrelated uncertainty in the efficiency
         was assigned to be the half-range of the $E_p > \SI{3.5}{\MeV}$
-        efficiency measuremetns, \SI{0.47}{\percent}.
+        efficiency measurements, \SI{0.47}{\percent}.
     }
     \label{fig:DT_eff}
 \end{figure}
+
+A more complete model of $\sigma_\text{DT}$ was constructed
+to propagate the statistical uncertainties
+from $N_\text{obs}$ and $k$ in \cref{eq:acc_sub_normalized}
+\cite{beda_DT_eff_unc}.
+Using the new model, the apparent \SI{3}{\percent} variation between ADs
+observed in the top-right plot of \cref{fig:DT_eff}
+was attributable to the statistical uncertainty
+of the large number of accidental coincidences within $N_\text{obs}$
+which fail the DT cut,
+as shown in \cref{fig:DT_eff_beda}.
+Even though the fluctuations in
+$N_\text{obs}[E_p \wedge E_d \wedge \text{DT} > \SI{3}{\m}]$
+due to counting statistics were only \SI{\sim0.03}{\percent},
+the absolute efficiency was extremely sensitive to those fluctuations, as follows.
+
+The sensitivity arose in the computation of $N_\text{sub}[E_p \wedge E_d]$.
+Most of the range of DT values was characterized by
+very few correlated events (signal) but many accidental coincidences (background).
+A change of \SI{0.01}{\percent} in $k$, the normalization
+of $N_\text{acc}'$ at a far-hall AD,
+yielded a relative impact of \SI{2.1}{\percent} in the extracted DT cut efficiency
+due to the change in $N_\text{sub}[E_p \wedge E_d]$
+from over- or under-subtraction.
+Thus any bias in $k$ was amplified into a bias in $\varepsilon_\text{DT}$
+over 200 times as large.
+The near-hall ADs were sensitive by a factor of $\sim30$.
+
+\begin{figure}
+    \centering
+    \missingfigure{Beda's DT efficiency plot with the correct values}
+    \caption[DT efficiency with full statistical uncertainty]{
+        DT cut efficiency using the normalized subtraction
+        and nominal energy cuts,
+        with fully-propagated statistical uncertainties
+        from the accidentals subtraction procedure.
+        The uncertainties confirm that the AD-to-AD variations
+        can be attributed to statistical fluctuations of the accidental background
+        rather than intrisic differences between ADs.
+        This plot is comparable to the top-right plot of \cref{fig:DT_eff}.
+        Figure taken from \cite{beda_DT_eff_unc}.
+    }
+    \label{fig:DT_eff_beda}
+\end{figure}
+
+Two special selections were used to reduce the systematic impact of accidental coincidences
+on the apparent DT cut efficiency.
+The first selection consisted of events where the neutron captured on Gd
+rather than H.
+They were isolated using the plots shown in \cref{fig:ed_DT_sub}
+by selecting the region with delayed energy between \SIlist{6;12}{\MeV}.
+The second selection consisted of nH events
+with a prompt energy above \SI{3.5}{\MeV}.
+The accidentals-subtracted plots of delayed energy versus DT were
+regenerated to only include events with $E_p > \SI{3.5}{\MeV}$,
+and the DT efficiency procedure was repeated.
+The same delayed energy cut was used for this modified sample
+as for the nominal sample.
+The nGd subset yielded a full range of \SI{0.18}{\percent}
+in DT cut absolute efficiencies over all ADs,
+while the $E_p > \SI{3.5}{\MeV}$ yielded a full range of \SI{0.94}{\percent}.
+The extracted efficiencies for each AD are shown in
+the bottom row of \cref{fig:DT_eff};
+the error bars on each AD now indicate the values are consistent across ADs
+even without accounting for the uncertainty in the accidentals subtraction.
+Between these two subsets, almost the entire range
+of prompt and delayed positions and energies used in the nominal selection was represented,
+as shown in \cref{fig:DT_energy_range}.
+Thus the DT cut efficiency uncertainty was accurately estimated
+with a minimal impact from the accidental background.
+Conservatively, the half-range of the $E_p > \SI{3.5}{\MeV}$ subset,
+\SI{\pm0.47}{\percent}, was
+used as the AD-uncorrelated uncertainty of the DT cut efficiency.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{ch_event_selection/DT_eff_energy_coverage}
+    \caption[DT efficiency study energy coverage]{
+        Energy ranges for the three selections used to constrain
+        the AD-uncorrelated uncertainty of the DT cut efficiency.
+        Combined, the two special selections cover the entire range of event energy
+        and almost the entire range of event positions
+        as the full nominal nH selection.
+    }
+    \label{fig:DT_energy_range}
+\end{figure}
+
+The normalization factors derived for each AD ($k$ in \cref{eq:acc_sub_normalized})
+corresponded to an effective accidental coincidence rate
+within \SI{\pm0.04}{\percent} of the rate computed
+using the nominal singles rate--based methodology from \cref{sec:acc}---%
+a serendipitous validation of the low systematic bias
+in the accidental background rates.
+The top-left panel of \cref{fig:DT_eff} shows an attempt
+at measuring the DT cut efficiency by setting $k$ based on \cref{eq:nacc}
+rather than \cref{eq:acc_sub_normalized};
+the discrepancy of $\sim0.06$ between EH3-AD4's efficiency and the near-hall average
+is consistent with the expected impact
+of the normalization error of \SI{0.04}{\percent} listed in \cref{tab:acc_validation}.
+Thus although the nominal, rate-based methodology
+for determining the normalization of $N_\text{acc}'$
+was precise enough
+for computing \thetaot{},
+it was not precise enough for computing the DT cut efficiency.
 
 \section{Irreducible correlated backgrounds}
 \label{sec:correlated_bg}
@@ -2047,7 +2126,7 @@ In the following, unless otherwise stated,
 
 The number of \li{} events contaminating the double coincidence sample
 was determined by exploiting those events' time correlation
-with the muon event which created the parent \li{} nucleus \cite{jinjing_2020may}.
+with the muon event that created the parent \li{} nucleus \cite{jinjing_2020may}.
 An alternate event selection with no post-muon veto
 was performed to increase the contribution of \li{} events
 in the resulting data sample.
@@ -2057,7 +2136,7 @@ to reduce the impact of accidental events.
 Muon events were categorized into energy classes
 of \SIrange{0.02}{1}{\GeV}, \SIrange{1}{2.5}{\GeV},
 and \SI{>2.5}{\GeV}.
-Additionally, any muon which was accompanied by
+Additionally, any muon that was accompanied by
 an AD event with energy between \SIlist{1.8;12}{\MeV}
 during the interval of \SIrange{20}{200}{\us} following the muon
 was ``tagged'' as a neutron-producing muon.
@@ -2104,7 +2183,7 @@ being between $t$ and $t + dt$ was \cite{chris_li9}
 \end{equation}
 where $R_\mu$ was the rate of muon events in the particular category being examined.
 Muon-correlated events had a time-since-muon distribution
-which depends on both the muon rate and the decay lifetime:
+that depends on both the muon rate and the decay lifetime:
 \begin{equation}\label{eq:li9_muon_corr}
     p_\text{corr}(t) = \lambda_\text{iso} e^{-\lambda_\text{iso} t}dt,
 \end{equation}
@@ -2118,7 +2197,7 @@ for the muon-correlated isotope.
     \label{tab:li9}
     \begin{tabular}[t]{rl}
         \toprule
-        Post-muon veto & XYZ \si{\us} \\
+        Post-muon veto & No veto after shower muons \\
         Prompt energy cut & \SI{3.5}{\MeV} \\
         Delayed energy cut & see \cref{tab:delayed_bounds} \\
         Low-energy muon range & \SIrange{0.02}{1}{\GeV} \\
@@ -2149,8 +2228,8 @@ The measured distributions of times since the preceding muon
 were each fit independently with a linear combination of the above distributions:
 \begin{align}\label{eq:li9_fit_fn}
     \begin{split}
-        f(t) &= N_\text{bkg} (r \lambda_\text{Li} e^{-\lambda_\text{Li} t}
-        + (1-r) \lambda_\text{He} e^{-\lambda_\text{He} t}) \\
+        f(t) &= N_\text{bkg} \left[r \lambda_\text{Li} e^{-\lambda_\text{Li} t}
+        + (1-r) \lambda_\text{He} e^{-\lambda_\text{He} t}\right] \\
              &+ N_\text{uncorr} R_\mu e^{-R_\mu t} \\
              &+ N_\text{B} \lambda_\text{B} e^{-\lambda_\text{B} t}
     \end{split}
@@ -2161,7 +2240,7 @@ number of muon-uncorrelated events (IBDs and other backgrounds),
 and \boron{}-\boron{} coincidences, respectively.
 The fits were not sensitive enough to extract $r$,
 the fraction of the background due to \li{} rather than \he{},
-so the value was fixed at 0.9 during the fit procedure.
+so the value of $r$ was fixed at 0.9 during the fit procedure.
 A systematic uncertainty was assessed by manually varying $r$
 between 0.85 and 1.0
 and observing the impact on $N_\text{bkg}$ \cite{li9_details}.
@@ -2195,11 +2274,12 @@ could not effectively discriminate the \li{} events
 on top of the muon-uncorrelated events (i.e. IBDs and accidentals).
 Thus only the neutron-tagged sample was used to characterize this muon sample.
 A systematic uncertainty of \SI{100}{\percent} was assessed
-on the neutron tag efficiency,
+on the neutron tag efficiency $\varepsilon_{ntag}$,
 the estimated fraction of \li{} events produced by neutron-tagged muons.
 The value of this efficiency was estimated by examining
 the corresponding efficiency for the middle energy class of muons,
-where it had a value of \SI{\sim60}{\percent}.
+where it had a value of \SI{83}{\percent}, \SI{42}{\percent}, and \SI{72}{\percent}
+in EH1, EH2, and EH3, respectively.
 
 The extracted values for $N_\text{bkg}$ for each class of muons
 were converted into the number of \li{} events
@@ -2214,34 +2294,42 @@ using the following formula:
     }
     \times
     \sum_{E\in\set{E_1,E_2,E_3}}
-    \frac{N_{\text{bkg},E}}{\alpha_{ntag, E}} e^{-V_E/\tau_{\text{Li}}}
+    \frac{N_{\text{bkg},E}}{\alpha_{ntag, E}} e^{-V_E/\tau_{\text{Li}}}.
 \end{equation}
 The first term corrected for the different prompt energy cut
 in the \li{} selection compared to the nominal IBD selection;
-the efficiencies were based on the \li{} prompt spectrum computed below.
-The second term divided the events for an entire hall
+the efficiencies were based on the \li{} prompt spectrum computed below
+and were approximately \SI{80}{\percent}.
+The second term divided the events within an entire hall
 into portions attributed to each AD based on the nominal unvetoed livetime.
 The index $j$ sums over all ADs within the same hall.
 The third term is a sum of the extracted event counts
 over the three muon energy classes, denoted by $E_1,E_2,E_3$.
-The weighting factor $\alpha_{ntag,E}$ was equal to
-the neutron tag efficiency for the low energy muon class $E_1$
-where the neutron tag data sample was used to extract $N_\text{bkg}$,
-and was equal to unity for the other two classes.
-Lastly, the exponential term accounted for \li{} decay
+The weighting factor $\alpha_{ntag,E}$ accounted
+for the use of the neutron-tagged sample for class $E_1$
+and was defined as:
+\begin{align}
+    \begin{split}
+        \alpha_{ntag,E1} &= \varepsilon_{ntag,E2} \\
+        \alpha_{ntag,E2} = \alpha_{ntag,E3} &= 1,
+    \end{split}
+\end{align}
+where $\varepsilon_{ntag,E2}$ is the neutron tag efficiency defined earlier.
+The exponential factor accounted for \li{} decay
 over the actual muon veto windows in the nominal event selection,
 which had values $V_{E1} = V_{E2} = \SI{800}{\us}$
 and $V_{E3} = \SI{1}{\s}$.
 
-The spectrum of \li{} events was computed
-by comparing a \li{}-rich sample to a pure-IBD sample of events.
+The energy spectrum of the \li{} events was computed
+by comparing a \li{}-rich sample to a pure-IBD sample of events
+obtained by extending the shower muon veto.
 The prompt spectrum from the pure-IBD sample
 was normalized to the fitted value for $N_\text{uncorr}$
 and subtracted from the prompt spectrom of the \li{}-rich sample.
 The resulting \li{} prompt spectrum is shown in \cref{fig:li9_spec}
 and was assumed to be common among all ADs.
 The prompt energy cut efficiency ratio
-used to estimate the actual contamination in the neutrino candidate sample
+used to estimate the actual contamination in the IBD candidate sample
 was computed based on this spectrum.
 
 The sources of uncertainty in the number of \li{} events
@@ -2253,15 +2341,18 @@ due to the statistical uncertainty of each bin in the extracted \li{} spectrum
 No uncertainty was attributed to the livetime factor since
 both the livetime and muon veto efficiency were known precisely.
 The neutron tag efficiency
-was the largest source of systematic uncertainty for the lowest-energy muons.
-The fit result $N_\text{bkg}$ was associated with a statistical uncertainty
-from the fit.
+was the dominant source of systematic uncertainty,
+comprising nearly all of the quoted uncertainty in \cref{tab:summary_event_selection}.
+Other sources of uncertainty considered were
+the statistical error from the fit to extract $N_\text{bkg}$,
+the uncertainty of the \SI{3.5}{\MeV} prompt energy cut efficiency,
+and the uncertainty of the \li{} to \he{} ratio $r$.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{ch_event_selection/li9_spectrum}
     \caption{
-        Prompt spectrum for \li{} background events.
+        Prompt spectrum of \li{} background events.
     }
     \label{fig:li9_spec}
 \end{figure}
@@ -2305,7 +2396,7 @@ in the outer water shield (OWS) of the muon system
 which had no other associated muon signal
 (see \cref{tab:fast_neutron}).
 These events were assumed to be fast neutron events
-which were caused by muons which traversed the outer water shield.
+which were caused by muons that traversed the outer water shield.
 The veto for all other muons was still applied in this sample,
 particularly the inner water shield (IWS) veto,
 so that there was no ambiguity about whether an AD signal
@@ -2376,8 +2467,9 @@ The uncertainty in this estimate was computed from three sources
 based on a parametri\-zation of the shape of the OWS-tagged spectrum
 using a modified power law function:
 \begin{equation}\label{eq:fast_neutron_powerlaw}
-    \frac{dN}{dE} = N_0 \left(\frac{E}{E_0}\right)^{-a-\frac{E}{E_0}}.
+    \frac{dN}{dE} = N_0 \left(\frac{E}{E_0}\right)^{-a-\frac{E}{E_0}},
 \end{equation}
+where $N_0,a$, and $E_0$ are free parameters.
 This function was fit to the extended double coincidence spectrum
 over the energy range \SIrange{12}{300}{\MeV}
 and extrapolated to the lower-energy region,
@@ -2461,7 +2553,7 @@ was determined to be
     N_\text{int} = N_\text{EH3-AD2}(z > 0) - N_\text{EH3-AD1}(z > 0)
     = \num{121.86\pm41.89}.
 \end{equation}
-The prompt reconstructed energy spectrum, shown in \cref{fig:amc_spectrum},
+The reconstructed prompt energy spectrum, shown in \cref{fig:amc_spectrum},
 was modeled by an exponential function,
 \begin{equation}\label{eq:amc_spec_fit}
     f(E; N, E_0) = N e^{-E/E_0}.
@@ -2476,7 +2568,7 @@ The best-fit values were
 The fit parameter $N$ and the observed count $N_\text{int}$
 were highly consistent.
 
-The measurement from the intense run was converted
+The measurement from the intense-source run was converted
 into rates for each AD during the full data taking period
 by computing a proportionality constant
 relating the additional singles in the top half of an AD
@@ -2547,7 +2639,7 @@ However, some residual radioactivity was present,
 with dominant contributions from the borosilicate glass comprising the PMT apertures
 and the fluorocarbon paint \cite{fluorocarbon_paint} used on the inside of the SSV
 to improve the detector uniformity.
-Two mechanisms were uncovered which led to to a correlated background
+Two mechanisms were uncovered which led to a correlated background
 due to radiogenic neutrons\cite{rad_n_intro}.
 The first was spontaneous fission of \isotope[238]{U},
 which could release $\gamma$-rays and/or an energetic neutron,
@@ -2593,7 +2685,7 @@ pos = ht
 }
 
 The rate of correlated background events due to radiogenic neutrons
-was estimated using a full detailed Monte Carlo simulation \cite{rad_n}.
+was estimated using a detailed full Monte Carlo simulation \cite{rad_n}.
 The LS volume provided significant shielding to the inner GdLS volume,
 thus the estimated rate of background events involving nGd capture
 was negligible (\SI{0.02}{\per\day}).
@@ -2614,7 +2706,7 @@ More than \num{2.1e6} \nuebar{} interactions involving nH capture were observed,
 including \num{\sim9e5} at each of EH1 and EH2,
 and over \num{3e5} at EH3, where high statistics means
 a more precise determination of the disappearance effect due to \thetaot{}.
-Including irredicible backgrounds, more than \num{2.5e6}
+Including irreducible backgrounds, more than \num{2.5e6}
 \nuebar{} candidates were observed in the double coincidence sample.
 The background contamination was overwhelmingly due to accidental coincidences,
 comprising \SI{10}{\percent} of the \nuebar{} candidates
@@ -2626,13 +2718,13 @@ including signal and background rates
 as well as detector livetime, target mass variations,
 and the muon and multiplicity veto efficiencies $\varepsilon_\mu$ and $\varepsilon_m$.
 
-The Daya Bay experiment's near-far layout meant that a relative comparison
+The Daya Bay experiment's near+far layout meant that a relative comparison
 between ADs could be used to extract \thetaot{}
 without relying on knowledge of the absolute detection efficiency.
 Only the relative variation between ADs was required.
-Since the ADs were designed to be identical,
-their absolute efficiencies were assumed to be equal
-within an uncertainty constrained by the studies presented in this chapter.
+The ADs were designed to be identical,
+and differences in the detection efficiencies across ADs
+were constrained by the studies presented in \cref{sec:efficiencies}.
 The components of the detection efficiency uncertainty
 are listed in \cref{tab:efficiency_summary}.
 
