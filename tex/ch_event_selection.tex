@@ -196,6 +196,30 @@ to allow all but ${\sim}e^{-4}$ of the \li{} to decay before the veto window end
 The residual \li{} and \he{} events in the dataset are characterized
 in \cref{subsec:li9}.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_eff_near_bydate}
+    \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_eff_far_bydate}
+    \caption[Muon veto efficiency over time]{
+        Muon veto efficiency $\varepsilon_\mu$ over time for
+        the near halls (left) and far hall (right).
+        Each data point represents one data run.
+    }
+    \label{fig:veto_eff}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_rate_near_bydate}
+    \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_rate_far_bydate}
+    \caption[Effective muon rate over time]{
+        Effective muon rate $R_\mu$ over time for the near halls and far hall.
+        Each data point represents one data run.
+        ADs in the same hall have nearly identical muon rates.
+    }
+    \label{fig:muon_rate}
+\end{figure}
+
 The muon veto also affected the coincidence selection
 described in \cref{sec:coincidence}.
 Briefly, if a candidate prompt event was followed
@@ -264,29 +288,6 @@ The following scenarios could lead to overlapping muon veto windows:
 \end{itemize}
 The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_eff_near_bydate}
-    \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_eff_far_bydate}
-    \caption[Muon veto efficiency over time]{
-        Muon veto efficiency $\varepsilon_\mu$ over time for
-        the near halls (left) and far hall (right).
-        Each data point represents one data run.
-    }
-    \label{fig:veto_eff}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_rate_near_bydate}
-    \includegraphics[width=0.48\textwidth]{plot_diagnostics/muon_rate_far_bydate}
-    \caption[Effective muon rate over time]{
-        Effective muon rate $R_\mu$ over time for the near halls and far hall.
-        Each data point represents one data run.
-        ADs in the same hall have nearly identical muon rates.
-    }
-    \label{fig:muon_rate}
-\end{figure}
 
 %\section{Initial data preparation}
 %\label{sec:dataprep}
@@ -339,6 +340,16 @@ The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}
 \section{Flasher events}
 \label{sec:flashers}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{ch_event_selection/flasher_photo}
+    \caption[Photograph of flashing PMT]{
+        Observation of electrostatic breakdown at the base of a Daya Bay PMT
+        \cite{flasherphotos_docdb}.
+    }
+    \label{fig:flasher_photo}
+\end{figure}
+
 The high voltage required to operate PMTs rendered them susceptible
 to electrostatic breakdown (sparks), also known as flashing.
 In the Daya Bay PMTs, flashing was observed
@@ -385,6 +396,24 @@ Flasher events occasionally generated enough light to be categorized as muon-lik
 Events that satisfied both a muon criterion and a flasher criterion
 were conservatively treated as muons.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.48\textwidth]{ch_event_selection/resid_flasher_dt_EH3_AD1}
+    \includegraphics[width=0.48\textwidth]{%
+        ch_event_selection/resid_flasher_dt_zoomed_EH3_AD1%
+    }
+    \caption[Residual flasher $\Delta t$ distribution]{
+        Left: Distribution of time delays
+        of a subset of residual flashers in EH3-AD1.
+        Right: The same distribution, zoomed in to shorter delays.
+        The minimum coincidence time of a residual flasher pair was always
+        $\gtrsim \SI{0.7}{\s}$.
+        Plots taken from \cite{beda_resid_flasher_dt}.
+    }
+    \label{fig:flasher_anticorr}
+\end{figure}
+
+
 Previous Daya Bay analyses only rejected the first two types of flashers,
 nominal and 2-inch flashers,
 because the latter three types were accounted for
@@ -403,35 +432,21 @@ limited their relevance to only the nH analysis; the nGd analysis was not affect
 The nominal and 2-inch flasher cuts are described in \cref{subsec:flash_nominal}.
 The remaining flasher cuts are described in \cref{subsec:flash_resid}.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{ch_event_selection/flasher_photo}
-    \caption[Photograph of flashing PMT]{
-        Observation of electrostatic breakdown at the base of a Daya Bay PMT
-        \cite{flasherphotos_docdb}.
-    }
-    \label{fig:flasher_photo}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.48\textwidth]{ch_event_selection/resid_flasher_dt_EH3_AD1}
-    \includegraphics[width=0.48\textwidth]{%
-        ch_event_selection/resid_flasher_dt_zoomed_EH3_AD1%
-    }
-    \caption[Residual flasher $\Delta t$ distribution]{
-        Left: Distribution of time delays
-        of a subset of residual flashers in EH3-AD1.
-        Right: The same distribution, zoomed in to shorter delays.
-        The minimum coincidence time of a residual flasher pair was always
-        $\gtrsim \SI{0.7}{\s}$.
-        Plots taken from \cite{beda_resid_flasher_dt}.
-    }
-    \label{fig:flasher_anticorr}
-\end{figure}
-
 \subsection{Nominal and 2-inch flasher cuts}
 \label{subsec:flash_nominal}
+
+\begin{figure}
+    \centering
+    \includegraphics{ch_event_selection/nominal_flashers}
+    \caption[Nominal flasher cut variables]{
+        Nominal flasher cut variables for events in EH1-AD1 and EH1-AD2
+        from data taken during detector commissioning in 2011.
+        The ``Quadrant'' (vertical) axes show $f_\text{Quad}$,
+        and the ``MaxQ'' (horizontal) axes show $f_\text{Max}$.
+        The black curve in the lower-right represents $f_\text{ID} = 0$.
+    }
+    \label{fig:flasher_nominal_cut}
+\end{figure}
 
 The characteristic event geometry of nominal flasher events
 leads to a simple discriminator to reject them on an event-by-event basis.
@@ -474,19 +489,6 @@ it is an effective cut for unambiguously partitioning the set of events.
 All nominal flasher-like events (with $f_{\text{ID}} > 0$) were rejected
 and were excluded from the coincidence selection.
 
-\begin{figure}
-    \centering
-    \includegraphics{ch_event_selection/nominal_flashers}
-    \caption[Nominal flasher cut variables]{
-        Nominal flasher cut variables for events in EH1-AD1 and EH1-AD2
-        from data taken during detector commissioning in 2011.
-        The ``Quadrant'' (vertical) axes show $f_\text{Quad}$,
-        and the ``MaxQ'' (horizontal) axes show $f_\text{Max}$.
-        The black curve in the lower-right represents $f_\text{ID} = 0$.
-    }
-    \label{fig:flasher_nominal_cut}
-\end{figure}
-
 The 2-inch monitor PMTs also caused flasher events.
 It was determined that ordinary events (non-flashers)
 never deposited more than \SI{100}{\pe} worth of light
@@ -499,6 +501,27 @@ discussed in \cref{subsec:flash_resid}.
 
 \subsection{Residual flasher cuts}
 \label{subsec:flash_resid}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/flashers_top_ring_EH3_AD1}
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/flashers_outside_EH3_AD1}\\
+    \includegraphics[width=0.5\textwidth]{ch_event_selection/flashers_hidden_EH3_AD1_arrows}
+    \caption[Residual flasher position distributions]{
+        Position distribution of events in EH3-AD1
+        which pass the nominal and 2-inch flasher cuts,
+        have $E > \SI{1.5}{\MeV}$, pass the usual muon vetos,
+        and are vetoed by one of the three residual flasher cuts.
+        Top left: top-ring flashers;
+        top right: large-$R$ flashers;
+        bottom: cluster flashers.
+        The vast majority of the cluster flasher events
+        within $R^2 < \SI{1}{\m\squared}$
+        were isolated single events
+        and thus did not impact the IBD selection efficiency.
+    }
+    \label{fig:flasher_resid_pos}
+\end{figure}
 
 The remaining three types of flasher events---%
 top ring, large-$R$, and cluster flashers---%
@@ -522,6 +545,21 @@ These events dominate the plot showing events rejected by the large-$R$ cut.
 Some of the actual large-$R$ flashers can be seen in the plot
 showing the rejected cluster flasher events.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{ch_event_selection/hidden_flasher_post_cut}
+    \caption[Cluster flasher variables]{
+        Distribution of IBD candidate events in $Q_1/Q_2$-$f_{\text{ID}}$ space.
+        The events within the black outline were vetoed as
+        cluster flashers.
+        Events above $f_{\text{ID}}=0$ were already vetoed as nominal flashers.
+        The $f_\text{ID}$ parameter was also known as ``Ellipse''
+        due to the shape of the cut, as is apparent in \cref{fig:flasher_nominal_cut}.
+        Figure taken from \cite{flasher_plots}.
+    }
+    \label{fig:hidden_flasher_cut}
+\end{figure}
+
 Cluster flashers proved more difficult to isolate.
 They were first noticed during an examination of the distribution of distances
 between consecutive events.
@@ -541,44 +579,6 @@ Events which satisfied all of the the following three criteria were rejected:
 and (3) $f_{\text{ID}} > -0.3$,
 as illustrated in \cref{fig:hidden_flasher_cut}
 \cite{beda_resid_flasher_dt,flashers_jinjing}.
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.49\textwidth]{ch_event_selection/flashers_top_ring_EH3_AD1}
-    \includegraphics[width=0.49\textwidth]{ch_event_selection/flashers_outside_EH3_AD1}\\
-    \includegraphics[width=0.5\textwidth]{ch_event_selection/flashers_hidden_EH3_AD1_arrows}
-    \caption[Residual flasher position distributions]{
-        Position distribution of events in EH3-AD1
-        which pass the nominal and 2-inch flasher cuts,
-        have $E > \SI{1.5}{\MeV}$, pass the usual muon vetos,
-        and are vetoed by one of the three residual flasher cuts.
-        Top left: top-ring flashers;
-        top right: large-$R$ flashers;
-        bottom: cluster flashers.
-        The vast majority of the cluster flasher events
-        within $R^2 < \SI{1}{\m\squared}$
-        were isolated single events
-        and thus did not impact the IBD selection efficiency.
-    }
-    \label{fig:flasher_resid_pos}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]{ch_event_selection/hidden_flasher_post_cut}
-    \caption[Cluster flasher variables]{
-        Distribution of IBD candidate events in $Q_1/Q_2$-$f_{\text{ID}}$ space.
-        The events within the black outline were vetoed as
-        cluster flashers.
-        Events above $f_{\text{ID}}=0$ were already vetoed as nominal flashers.
-        The $f_\text{ID}$ parameter was also known as ``Ellipse''
-        due to the shape of the cut, as is apparent in \cref{fig:flasher_nominal_cut}.
-        Figure taken from \cite{flasher_plots}.
-    }
-    \label{fig:hidden_flasher_cut}
-\end{figure}
-
 
 \section{Coincidence selection}
 \label{sec:coincidence}
@@ -776,6 +776,15 @@ as discriminants to preferentially select IBD events over accidentals.
     Coincidence distance vs. time
 }
 
+\adgrid[0.22\textheight]{
+    Distribution of the DT parameter for all double coincidence events.
+    The large peak consists of accidental coincidences.
+    The contribution from IBDs is clearly visible
+    at DT values of less than \SI{1}{\m} in EH1 and EH2.
+    In EH3, the contribution from IBDs is visible
+    on close inspection but is much smaller relative to the number of accidentals.
+}{fig:DT_data}{ch_event_selection/DT_data}{DT parameter distribution}
+
 \Cref{fig:dr_vs_dt} shows the distribution of
 coincidence distance and coincidence time
 for the subset of \fold{2} coincidences with
@@ -809,15 +818,6 @@ As expected, the accidental background present
 in the low-prompt-energy and low-delayed-energy corner was reduced.
 The nH capture events now stand out much better
 against the accidental background.
-
-\adgrid[0.22\textheight]{
-    Distribution of the DT parameter for all double coincidence events.
-    The large peak consists of accidental coincidences.
-    The contribution from IBDs is clearly visible
-    at DT values of less than \SI{1}{\m} in EH1 and EH2.
-    In EH3, the contribution from IBDs is visible
-    on close inspection but is much smaller relative to the number of accidentals.
-}{fig:DT_data}{ch_event_selection/DT_data}{DT parameter distribution}
 \adgrid{
     Prompt-delayed energy spectra after applying the DT cut
 }{fig:after_DT_cut}{ch_event_selection/post_DT_cut}{
@@ -1962,7 +1962,7 @@ used to extract the absolute efficiencies.
     \includegraphics[width=0.49\textwidth]{plot_diagnostics/distance_time_cut_efficiency}
     \includegraphics[width=0.49\textwidth]{ch_event_selection/DT_eff_normalized} \\
     \includegraphics[width=0.49\textwidth]{ch_event_selection/DT_eff_nGd}
-    \includegraphics[width=0.49\textwidth]{{ch_event_selection/DT_eff_Ep_3.5MeV}}
+    \includegraphics[width=0.49\textwidth]{ch_event_selection/DT_eff_Ep_3.5MeV}
     \caption[DT cut efficiency study]{
         DT cut efficiency for each AD using the four methodologies
         described in the text.
@@ -1978,6 +1978,24 @@ used to extract the absolute efficiencies.
     }
     \label{fig:DT_eff}
 \end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_event_selection/DT_eff_beda}
+    \caption[DT efficiency with full statistical uncertainty]{
+        DT cut efficiency using the normalized subtraction
+        and nominal energy cuts,
+        with fully-propagated statistical uncertainties
+        from the accidentals subtraction procedure.
+        The uncertainties confirm that the apparent AD-to-AD variations
+        can be attributed to statistical fluctuations of the accidental background
+        rather than intrisic differences between ADs.
+        This plot is comparable to the top-right plot of \cref{fig:DT_eff}.
+        Figure taken from \cite{beda_DT_eff_unc}.
+    }
+    \label{fig:DT_eff_beda}
+\end{figure}
+
 
 A more complete model of $\sigma_\text{DT}$ was constructed
 to propagate the statistical uncertainties
@@ -2005,23 +2023,6 @@ from over- or under-subtraction.
 Thus any bias in $k$ was amplified into a bias in $\varepsilon_\text{DT}$
 over 200 times as large.
 The near-hall ADs were sensitive by a factor of ${\sim}30$.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]{ch_event_selection/DT_eff_beda}
-    \caption[DT efficiency with full statistical uncertainty]{
-        DT cut efficiency using the normalized subtraction
-        and nominal energy cuts,
-        with fully-propagated statistical uncertainties
-        from the accidentals subtraction procedure.
-        The uncertainties confirm that the apparent AD-to-AD variations
-        can be attributed to statistical fluctuations of the accidental background
-        rather than intrisic differences between ADs.
-        This plot is comparable to the top-right plot of \cref{fig:DT_eff}.
-        Figure taken from \cite{beda_DT_eff_unc}.
-    }
-    \label{fig:DT_eff_beda}
-\end{figure}
 
 Two special selections were used to reduce the systematic impact of accidental coincidences
 on the apparent DT cut efficiency.
@@ -2060,7 +2061,7 @@ used as the AD-uncorrelated uncertainty of the DT cut efficiency.
         the AD-uncorrelated uncertainty of the DT cut efficiency.
         Combined, the two special selections cover the entire range of event energy
         and almost the entire range of event positions
-        as the full nominal nH selection.
+        present in the full nominal nH selection.
     }
     \label{fig:DT_energy_range}
 \end{figure}
@@ -2103,6 +2104,20 @@ and radiogenic neutrons (\cref{subsec:radn}).
 
 \subsection{Muon-induced unstable isotopes}
 \label{subsec:li9}
+
+\begin{figure}
+    \centering
+    \includegraphics{ch_event_selection/timeline_li9}
+    \caption[\li{}/\he{} event selection]{
+        Event selection procedure for \li{} events.
+        Neutron tags were identified within a short time window
+        immediately following the muon.
+        The time delay between the prompt event and the muon
+        was stored in a time-to-previous-muon histogram.
+        The muon veto window was ignored.
+    }
+    \label{fig:li9_timeline}
+\end{figure}
 
 Muon interactions with nuclei (primarily \isotope[12]{C}) in the AD
 produced the unstable exotic isotopes \li{} and \he{}.
@@ -2157,20 +2172,6 @@ A visualization of the alternate event selection
 is shown in \cref{fig:li9_timeline};
 a summary of the selection criteria is listed in \cref{tab:li9}.
 
-\begin{figure}
-    \centering
-    \includegraphics{ch_event_selection/timeline_li9}
-    \caption[\li{}/\he{} event selection]{
-        Event selection procedure for \li{} events.
-        Neutron tags were identified within a short time window
-        immediately following the muon.
-        The time delay between the prompt event and the muon
-        was stored in a time-to-previous-muon histogram.
-        The muon veto window was ignored.
-    }
-    \label{fig:li9_timeline}
-\end{figure}
-
 The distribution of times since the preceding muon
 for events correlated with muons (namely \li{})
 was different from the distribution for events uncorrelated with muons
@@ -2191,7 +2192,7 @@ where $\lambda_\text{iso} = R_\mu + \nicefrac{1}{\tau_\text{iso}}$
 and $\tau_\text{iso}$ is the decay time
 for the muon-correlated isotope.
 
-\begin{table}
+\begin{table}[ht]
     \centering
     \caption[\li{}/\he{} event selection]{Modified event selection for \li{} analysis.}
     \label{tab:li9}
@@ -2268,6 +2269,7 @@ The histograms for EH2 are qualitatively the same as those for EH1.
     }
     \label{fig:li9_fits_EH3}
 \end{figure}
+
 For the lowest energy class (\SIrange{0.02}{1}{\GeV}),
 production of \li{} was so rare that the fitter
 could not effectively discriminate the \li{} events
@@ -2320,6 +2322,15 @@ over the actual muon veto windows in the nominal event selection,
 which had values $V_{E1} = V_{E2} = \SI{800}{\us}$
 and $V_{E3} = \SI{1}{\s}$.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_event_selection/li9_spectrum}
+    \caption{
+        Prompt-energy spectrum of \li{} background events.
+    }
+    \label{fig:li9_spec}
+\end{figure}
+
 The energy spectrum of the \li{} events was computed
 by comparing a \li{}-rich sample to a pure-IBD sample of events
 obtained by extending the shower muon veto.
@@ -2348,15 +2359,6 @@ the statistical error from the fit to extract $N_\text{bkg}$,
 the uncertainty of the \SI{3.5}{\MeV} prompt energy cut efficiency,
 and the uncertainty of the \li{} to \he{} ratio $r$.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{ch_event_selection/li9_spectrum}
-    \caption{
-        Prompt spectrum of \li{} background events.
-    }
-    \label{fig:li9_spec}
-\end{figure}
-
 \subsection{Muon-induced fast neutrons}
 \label{subsec:fastn}
 
@@ -2370,6 +2372,23 @@ When the neutron subsequently captured on a hydrogen or gadolinium nucleus,
 the resulting prompt-delayed coincidence
 could pass all selection criteria and contaminate the double-coincidence data set.
 
+\begin{figure}
+    \centering
+    \includegraphics[height=0.8\textheight]{ch_event_selection/fast_neutron_spectra}
+    \caption[Fast neutron spectrum]{
+        Prompt-energy spectra for each hall
+        showing the extended double coincidences (``IBD candidates'')
+        and the OWS-tagged sample used to compute the fast neutron background.
+        The OWS-tagged sample has been normalized
+        so that its integral from \SIrange{12}{300}{\MeV}
+        matches the same integral in the extended double coincidence sample.
+        The red curve is a fit of \cref{eq:fast_neutron_powerlaw}
+        to the double-coincidence sample over \SIrange{12}{300}{\MeV}
+        and has been extrapolated to the lower-energy (nominal) range.
+    }
+    \label{fig:fast_neutron}
+\end{figure}
+
 The presence of fast-neutron events in the double-coincidence data set
 was demonstrated by modifying the event selection
 to remove the upper limit on prompt energy (nominally $E_p < \SI{12}{\MeV}$)
@@ -2381,6 +2400,26 @@ This tail provided an important constraint on the fast-neutron contamination
 in the nominal double-coincidence data set.
 The modified data set will be referred to as the
 ``extended double-coincidence'' data set.
+
+\begin{table}[ht]
+    \centering
+    \caption[OWS tag criteria]{
+        Modified event selection criteria for the OWS-tagged
+        double-coincidence sample.
+    }
+    \label{tab:fast_neutron}
+    \begin{tabular}[t]{rl}
+        \toprule
+        Quantity & Selection criterion \\
+        \midrule
+        Prompt energy & \SIrange{1.5}{301.5}{\MeV} \\
+        Delayed energy & see \cref{tab:delayed_bounds} \\
+        Time from OWS muon to prompt signal & \SI{<0.3}{\us} \\
+        Time from any other muon to prompt signal & \SI{>1200}{\us} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 
 The number of such fast-neutron events in the nominal double-coincidence data set
 was estimated by isolating a sample of fast-neutron events
@@ -2427,42 +2466,6 @@ over the nominal prompt energy range of \SIrange{1.5}{12}{\MeV}:
     \int_{\SI{1.5}{\MeV}}^{\SI{12}{\MeV}} \frac{dN_{\text{OWS}}}{dE} dE.
 \end{equation}
 
-\begin{table}
-    \centering
-    \caption[OWS tag criteria]{
-        Modified event selection criteria for the OWS-tagged
-        double-coincidence sample.
-    }
-    \label{tab:fast_neutron}
-    \begin{tabular}[t]{rl}
-        \toprule
-        Quantity & Selection criterion \\
-        \midrule
-        Prompt energy & \SIrange{1.5}{301.5}{\MeV} \\
-        Delayed energy & see \cref{tab:delayed_bounds} \\
-        Time from OWS muon to prompt signal & \SI{<0.3}{\us} \\
-        Time from any other muon to prompt signal & \SI{>1200}{\us} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{figure}
-    \centering
-    \includegraphics[height=0.8\textheight]{ch_event_selection/fast_neutron_spectra}
-    \caption[Fast neutron spectrum]{
-        Prompt-energy spectra for each hall
-        showing the extended double coincidences (``IBD candidates'')
-        and the OWS-tagged sample used to compute the fast neutron background.
-        The OWS-tagged sample has been normalized
-        so that its integral from \SIrange{12}{300}{\MeV}
-        matches the same integral in the extended double coincidence sample.
-        The red curve is a fit of \cref{eq:fast_neutron_powerlaw}
-        to the double-coincidence sample over \SIrange{12}{300}{\MeV}
-        and has been extrapolated to the lower-energy (nominal) range.
-    }
-    \label{fig:fast_neutron}
-\end{figure}
-
 The uncertainty in this estimate was computed from three sources
 based on a parametri\-zation of the shape of the OWS-tagged spectrum
 using a modified power law function:
@@ -2492,6 +2495,16 @@ or the binning used to perform the fit.
 
 \subsection{\texorpdfstring{\amcbold}{Am-C} calibration source}
 \label{subsec:amc}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{ch_event_selection/amc_photo_circled}
+    \caption[Intense \amc{} source photograph]{
+        Photograph of the intense \amc{} source (circled in red)
+        on the lid of EH3-AD2 between ACU-B and ACU-C \cite{amc_photo}.
+    }
+    \label{fig:amc_photo}
+\end{figure}
 
 The \amc{} calibration sources emitted neutrons at a rate of \SI{\sim0.7}{\Hz}
 to allow for calibration of the ADs' response to neutron-capture events
@@ -2531,12 +2544,16 @@ were attributed to the intense \amc{} source creating additional background.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{ch_event_selection/amc_photo_circled}
-    \caption[Intense \amc{} source photograph]{
-        Photograph of the intense \amc{} source (circled in red)
-        on the lid of EH3-AD2 between ACU-B and ACU-C \cite{amc_photo}.
+    \includegraphics[width=\textwidth]{ch_event_selection/amc_position_asymmetry}
+    \caption[Intense \amc{} run vertical positions]{
+        Distributions of the reconstructed vertical ($z$) position
+        of prompt (left) and delayed (right) signals of nH IBD candidates
+        during the special \amc{} run period.
+        The red line is from EH3-AD1, which did not have the special \amc{} source,
+        and the blue line is from EH3-AD2, which did have the special \amc{} source.
+        Figure and caption taken from \cite{nh2016technote}.
     }
-    \label{fig:amc_photo}
+    \label{fig:amc_position}
 \end{figure}
 
 A modified event selection requiring $z_\text{rec} > 0$
@@ -2567,6 +2584,20 @@ The best-fit values were
 \end{align}
 The fit parameter $N$ and the observed count $N_\text{int}$
 were highly consistent.
+
+\begin{figure}
+    \centering
+    \includegraphics{ch_event_selection/amc_spectrum}
+    \caption[\amc{} prompt spectrum]{
+        Left: Prompt reconstructed energy spectrum
+        for the intense \amc{} source run in EH3-AD2 (blue)
+        and for the normal configuration in EH3-AD1 (red).
+        Right: Difference between normal and intense prompt spectra,
+        fitted by an exponential function, $Ne^{E/E_0}$.
+        Figure taken from \cite{nh2016technote}.
+    }
+    \label{fig:amc_spectrum}
+\end{figure}
 
 The measurement from the intense-source run was converted
 into rates for each AD during the full data taking period
@@ -2600,34 +2631,6 @@ in the full nominal data sample for AD $i$ is
 A conservative uncertainty in the rate of \SI{50}{\percent}
 was sufficient to cover the differences between the observed data
 and a variety of simulations of the \amc{} background process.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{ch_event_selection/amc_position_asymmetry}
-    \caption[Intense \amc{} run vertical positions]{
-        Distributions of the reconstructed vertical ($z$) position
-        of prompt (left) and delayed (right) signals of nH IBD candidates
-        during the special \amc{} run period.
-        The red line is from EH3-AD1, which did not have the special \amc{} source,
-        and the blue line is from EH3-AD2, which did have the special \amc{} source.
-        Figure and caption taken from \cite{nh2016technote}.
-    }
-    \label{fig:amc_position}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics{ch_event_selection/amc_spectrum}
-    \caption[\amc{} prompt spectrum]{
-        Left: Prompt reconstructed energy spectrum
-        for the intense \amc{} source run in EH3-AD2 (blue)
-        and for the normal configuration in EH3-AD1 (red).
-        Right: Difference between normal and intense prompt spectra,
-        fitted by an exponential function, $Ne^{E/E_0}$.
-        Figure taken from \cite{nh2016technote}.
-    }
-    \label{fig:amc_spectrum}
-\end{figure}
 
 \subsection{Radiogenic neutron background}
 \label{subsec:radn}
