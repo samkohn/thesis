@@ -831,12 +831,16 @@ the individual bin predictions from \cref{eq:full_prediction} were summed:
 \end{equation}
 To obtain a single value for the prediction at a given far AD $j$
 based on all of the near AD measurements,
-the individual predictions were averaged together:
+the individual predictions were combined in an unweighted average:
 \begin{equation}\label{eq:average_near}
     F_{\text{pred},j}(\boldsymbol{\theta};\boldsymbol{\eta}) =
     \frac{1}{4} \sum_i
-    F_{\text{pred},j,i}(\boldsymbol{\theta};\boldsymbol{\eta})
+    F_{\text{pred},j,i}(\boldsymbol{\theta};\boldsymbol{\eta}).
 \end{equation}
+A livetime-weighted average was considered,
+but since the 4 near-AD predictions were highly consistent,
+weighting the contributions had no substantial impact
+on the extracted value of \thetaot{}.
 The vector of predictions contains one component for each far-site AD:
 \begin{equation}\label{eq:f_pred_vector}
     \mathbf{F}_\text{pred}(\boldsymbol{\theta};\boldsymbol{\eta}) =

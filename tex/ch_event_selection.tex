@@ -42,12 +42,12 @@ is introduced as a way to group events based on
 the time separation of nearby events,
 and the double-coincidence dataset is identified.
 \Cref{sec:DT_cut} describes the cuts on coincidence distance and coincidence time
-between the prompt and delayed sub-events that form each coincidence.
+between the prompt and delayed sub-events that formed each coincidence.
 The characterization of
 accidental coincidences of uncorrelated events
 is described in \cref{sec:acc}.
-\Cref{sec:energy_cuts} details the energy cuts
-which remove additional background events
+\Cref{subsec:prompt_energy,subsec:delayed} detail the energy cuts
+which removed additional background events
 and nGd-IBD events, where the neutron captured on Gd rather than H.
 A summary of the event selection criteria is given in \cref{tab:cut_criteria}.
 The remaining backgrounds---muon-correlated unstable isotopes,
@@ -204,6 +204,7 @@ in \cref{subsec:li9}.
         Muon veto efficiency $\varepsilon_\mu$ over time for
         the near halls (left) and far hall (right).
         Each data point represents one data run.
+        The elevated rate in EH3 is explained in the text.
     }
     \label{fig:veto_eff}
 \end{figure}
@@ -216,6 +217,7 @@ in \cref{subsec:li9}.
         Effective muon rate $R_\mu$ over time for the near halls and far hall.
         Each data point represents one data run.
         ADs in the same hall have nearly identical muon rates.
+        The elevated rate in EH3 is explained in the text.
     }
     \label{fig:muon_rate}
 \end{figure}
@@ -256,7 +258,13 @@ with the fraction of muons which were identified by the muon criteria,
 which is \SI{100}{\percent} \cite{muonsystem2015}.
 The muon veto efficiency over time for the near and far halls
 is shown in \cref{fig:veto_eff} for each data run.
-\todo[inline]{Explain the EH3 decrease and EH1 increase in $\varepsilon_\mu$}
+The decrease in $\varepsilon_\mu$ in EH3 in late 2012 and early 2013
+was caused by a so-called ``hot channel'' PMT (that may also have
+emitted light due to electrostatic discharge sparks)
+causing additional triggers in the water shield system
+even when there were no actual muons present.
+The only impact on the quality of data was additional unnecessary veto windows
+causing the loss of a small amount of data.
 
 The effective muon rate $R_\mu$ was computed for each run
 by counting the number of muon veto windows
@@ -286,7 +294,7 @@ The following scenarios could lead to overlapping muon veto windows:
         post-muon veto of the earlier one.
         Any candidate event occuring between the two muons would be vetoed.
 \end{itemize}
-The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}
+The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}.
 
 
 %\section{Initial data preparation}
@@ -419,7 +427,7 @@ nominal and 2-inch flashers,
 because the latter three types were accounted for
 as part of the uncorrelated background (\cref{sec:acc}).
 Additional efforts within the Daya Bay collaboration
-to characterize the remaining so-called residual flashers \todo{rate wrt nominal flashers?}
+to characterize the remaining so-called residual flashers
 revealed that these events were not purely uncorrelated,
 and so could not be fully accounted for as part of the uncorrelated background.
 In particular, the distribution of time delays
@@ -824,6 +832,24 @@ against the accidental background.
     Prompt-delayed spectrum: after DT cut
 }
 
+\section{Prompt energy}
+\label{subsec:prompt_energy}
+The prompt energy lower bound of \SI{1.5}{\mev}
+was chosen to exclude a substantial fraction
+of the low-energy uncorrelated events from radioactive decays.
+In particular, the electron capture process
+${}^{40}\text{K} \to {}^{40}\text{Ar} + \nu_e + \gamma$
+released a $\gamma$-ray with energy \SI{1.46}{\mev}.
+Despite the \SI{1.5}{\MeV} cut,
+the high-energy tail of this interaction is nevertheless visible in the prompt-delayed spectra
+(\cref{fig:double_coinc_raw}) as an elevated bin content
+along both the horizontal and vertical axes from \SIrange{1.5}{3}{\mev}.
+An upper bound of \SI{12}{\MeV} was used for the prompt energy.
+The reactor \nuebar{} spectrum falls steeply above \SI{8}{\mev}
+(see \cref{fig:reactor_flux_xsec})
+so this cut accepted higher-energy IBDs with negligible inefficiency.
+
+
 \section{Irreducible uncorrelated background}
 \label{sec:acc}
 
@@ -859,7 +885,7 @@ before applying the distance-time (DT) cut (\cref{sec:DT_cut}).
 Because the delayed-energy selection criteria
 were derived from the accidentals-subtracted delayed energy spectrum for each AD,
 the accidentals analysis will be presented first,
-followed by the specification of the energy cuts in \cref{sec:energy_cuts}.
+followed by the specification of the delayed energy cut in \cref{subsec:delayed}.
 The actual implementation of the event selection
 first characterized the singles and \fold{2} rates
 and created the synthetic accidentals sample
@@ -980,9 +1006,11 @@ to ensure isolation before and after each candidate event.
 The spectrum of these (now truly) single events is shown in \cref{fig:singlespectra},
 obtained by summing the individual spectra from each data run for each AD.
 
-\adgrid{
+\adgrid[0.22\textheight]{
     Spectra of isolated single events in each AD
     used to construct the synthetic accidentals samples.
+    This sample included all events passing the following cuts: muon veto,
+    flasher, prompt energy, and the time isolation cut of \SI{\pm1.5}{\ms}.
 }{fig:singlespectra}{ch_background/singles}{
     Single events spectrum
 }
@@ -1262,27 +1290,7 @@ and negligible when considered along with
 the uncertainties on the other irreducible backgrounds
 as described in \cref{sec:correlated_bg}.
 
-\section{Energy cuts}
-\label{sec:energy_cuts}
-
-\subsection{Prompt energy}
-\label{subsec:prompt_energy}
-The prompt energy lower bound of \SI{1.5}{\mev}
-was chosen to exclude a substantial fraction
-of the low-energy uncorrelated events from radioactive decays.
-In particular, the electron capture process
-${}^{40}\text{K} \to {}^{40}\text{Ar} + \nu_e + \gamma$
-released a $\gamma$-ray with energy \SI{1.46}{\mev}.
-Despite the \SI{1.5}{\MeV} cut,
-the high-energy tail of this interaction is nevertheless visible in the prompt-delayed spectra
-(\cref{fig:double_coinc_raw}) as an elevated bin content
-along both the horizontal and vertical axes from \SIrange{1.5}{3}{\mev}.
-An upper bound of \SI{12}{\MeV} was used for the prompt energy.
-The reactor \nuebar{} spectrum falls steeply above \SI{8}{\mev}
-(see \cref{fig:reactor_flux_xsec})
-so this cut accepted higher-energy IBDs with negligible inefficiency.
-
-\subsection{Delayed energy}
+\section{Delayed energy}
 \label{subsec:delayed}
 
 Neutron capture on hydrogen (nH) released a single
