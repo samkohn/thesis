@@ -321,14 +321,11 @@ the predicted number of IBDs is
         (1 + \eta_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot, \Delta m^2_{32}))
     },
 \end{equation}
-where $\eta_{N,i}^{(b)}$ is the relative difference
-of the best-fit number of candidates in bin $b$ of AD $i$
-compared to the observed number,
-$\eta_{B,i,u}^{(b)}$ is the relative difference
-of the best-fit number of background events of type $u$ in bin $b$ of AD $i$
-compared to the contamination estimated in \cref{sec:acc,sec:correlated_bg},
-and $\epsilon_i$ is the relative difference of the best-fit detection efficiency
-from the estimated average value determined in \cref{sec:efficiencies}.
+where $\eta_{N,i}^{(b)},\,\eta_{B,i,u},$ and $\epsilon_i$
+represent fractional variations of
+$N_{\text{cand},i}^{(b)},N_{\text{bg},i,u}^{(b)}$,
+and the relative detection efficiency, respectively,
+within their assigned uncertainties.
 The relative energy scale (\cref{subsec:rel_energyscale})
 is accounted for by a separate AD-dependent parameter $\eta_{\text{relE},i}$,
 the fractional deviation of a given AD's energy scale
@@ -347,8 +344,8 @@ both shape and normalization (i.e.\ prompt-energy cut efficiency)
 of the prompt spectrum
 due to differences in the relative energy scale between ADs.
 In practice $\eta_{N,i}^{(b)},\epsilon_i$ and $\eta_{\text{relE},i}$
-are implemented as nuisance or pull parameters
-so they can be adjusted during fitting.
+were implemented as nuisance or pull parameters
+so they could be adjusted during fitting.
 
 The dependence of prompt-energy efficiency on oscillation parameters
 discussed in \cref{subsec:prompt_energy}
