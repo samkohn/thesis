@@ -856,7 +856,7 @@ A back-of-the-envelope estimate of the rate of accidental coincidences gives
 $\SI{17.5}{\hertz}\times\SI{2.56}{\percent}=\SI{0.45}{\hertz}$
 before applying the distance-time (DT) cut (\cref{sec:DT_cut}).
 
-Because the delayed energy selection criteria
+Because the delayed-energy selection criteria
 were derived from the accidentals-subtracted delayed energy spectrum for each AD,
 the accidentals analysis will be presented first,
 followed by the specification of the energy cuts in \cref{sec:energy_cuts}.
@@ -864,7 +864,7 @@ The actual implementation of the event selection
 first characterized the singles and \fold{2} rates
 and created the synthetic accidentals sample
 (\cref{subsec:singles,subsec:2fold,subsec:synthetic}).
-Then the delayed energy cuts were extracted (\cref{subsec:delayed}),
+Then the delayed-energy cuts were extracted (\cref{subsec:delayed}),
 and finally, the number of accidental coincidences
 contaminating the final IBD sample was computed (\cref{subsec:acc_count}).
 
@@ -1287,7 +1287,7 @@ so this cut accepted higher-energy IBDs with negligible inefficiency.
 
 Neutron capture on hydrogen (nH) released a single
 \SI{2.22}{\mev} $\gamma$-ray,
-which allowed the delayed energy cut bounds to be tuned to a narrow energy region
+which allowed the delayed-energy cut bounds to be tuned to a narrow energy region
 around that value.
 However, emitted $\gamma$-rays occasionally
 deposited less than their full energy in the liquid scintillator,
@@ -1300,7 +1300,7 @@ small variations in the geometry of the AD, energy reconstruction,
 and scattering properties of $\gamma$-rays in
 both liquid scintillator and in acrylic.
 
-The delayed energy cut bounds were identified based on
+The delayed-energy cut bounds were identified based on
 functions fitted to each AD's delayed energy spectrum.
 The measured delayed energy spectrum was obtained by first applying
 the prompt energy cut and DT cut,
@@ -1491,8 +1491,8 @@ to match the normalization of the data being fitted.
         EH3-AD4 & 1.8597 & 2.6768\\
         \bottomrule
     \end{tabular}
-    \caption[Delayed energy cut bounds]{
-        Delayed energy cut bounds derived as $\mu \pm 3\sigma$.
+    \caption[Delayed-energy cut bounds]{
+        Delayed-energy cut bounds derived as $\mu \pm 3\sigma$.
     }
     \label{tab:delayed_bounds}
 \end{table}
@@ -1533,7 +1533,7 @@ The critical property of this selection criterion was
 not the degree to which the model matched the physical process,
 but rather whether the efficiency of the cut was similar in all ADs,
 as discussed in \cref{subsec:eff_delayed}.
-The values used for the delayed energy cut bounds are listed in \cref{tab:delayed_bounds}
+The values used for the delayed-energy cut bounds are listed in \cref{tab:delayed_bounds}
 and plotted in \cref{fig:delayed_bounds}.
 
 \section{Selection efficiencies}
@@ -1625,7 +1625,7 @@ impacted the extracted value of \thetaot{} by \SI{\sim5}{\percent}.
 
 Corrections for each AD--reactor pair were computed
 using the Individual Event Simulation (\cref{sec:thu_toymc})
-and weighted to arrive at each AD's final relative prompt energy efficiency.
+and weighted to arrive at each AD's final relative prompt-energy efficiency.
 Since the corrections to the efficiency depended on
 the amplitude of \nuebar{} oscillations, they relied on knowledge of \thetaot.
 (For example, there would be no correction at all if \thetaot{} were $0$.)
@@ -1658,7 +1658,7 @@ for a representative sample of AD--reactor pairs.
     \centering
     \includegraphics[width=0.5\textwidth]{ch_event_selection/prompt_eff_corrs}
     \caption[Prompt efficiency corrections due to oscillation effects]{
-        Corrections to the prompt energy efficiency due to \nuebar{} oscillations
+        Corrections to the prompt-energy efficiency due to \nuebar{} oscillations
         ($\delta_{p,ik}$ in the text).
         The data points represent the corrections at the best-fit
         value of \thetaot{} for each AD--reactor pair.
@@ -1675,7 +1675,7 @@ for a representative sample of AD--reactor pairs.
     \\
     \includegraphics[width=0.49\textwidth]{ch_event_selection/prompt_Eff_corr_EH1_AD1_D1}
     \caption[Prompt efficiency correction contour maps]{
-        Dependence of the prompt energy efficiency correction
+        Dependence of the prompt-energy efficiency correction
         on the values of the mixing parameters \thetaot{} and $\Delta m^2_{32}$.
         The range for $\sin^22\thetaot{}$ is $\pm2\sigma$ of the best-fit value;
         for $\Delta m^2_{32}$ it is $\pm2\sigma$ of the value reported in \cite{ngd2018}.
@@ -1686,18 +1686,18 @@ for a representative sample of AD--reactor pairs.
     \label{fig:prompt_eff_osc_contour}
 \end{figure}
 
-The AD-uncorrelated uncertainty for the prompt energy lower bound
+The AD-uncorrelated uncertainty for the prompt-energy lower bound
 was dominated by differences in the energy scale between ADs.
-Based on the analysis of the delayed energy spectrum in each AD
+Based on the analysis of the delayed-energy spectrum in each AD
 reported in \cref{subsec:delayed}, the energy scale
 varied by less than \SI{0.5}{\percent} between ADs.
 By applying a \SI{+-0.5}{\percent} variation to
 the reconstructed prompt energy spectrum of the simulated dataset
 shown in \cref{fig:prompt_eff_mc} from the Individual Event Simulation,
 the impact of the energy scale differences was propagated
-to the prompt energy efficiency.
+to the prompt-energy efficiency.
 The impact, and therefore the relative uncertainty on
-the prompt energy efficiency, was \SI{0.1}{\percent}.
+the prompt-energy efficiency, was \SI{0.1}{\percent}.
 This uncertainty was not explicitly included in the
 oscillation analysis in \cref{ch:analysis};
 rather, it was implicitly derived from the
@@ -1706,14 +1706,14 @@ implementation of the relative energy scale uncertainty.
 \subsection{Delayed energy cut efficiency}
 \label{subsec:eff_delayed}
 
-The delayed energy cut efficiency was defined according to \cref{eq:efficiency_def} as
+The delayed-energy cut efficiency was defined according to \cref{eq:efficiency_def} as
 \begin{equation}\label{eq:delayed_eff}
     \varepsilon_\text{delayed} = \frac{N_\text{IBD}[E_p \wedge E_d]}{
         N_\text{IBD}[E_p],
     }
 \end{equation}
-the fraction of true IBDs passing the prompt energy selection
-which also were accepted by the delayed energy cuts.
+the fraction of true IBDs passing the prompt-energy selection
+which also were accepted by the delayed-energy cuts.
 Like for the prompt energy, the absolute efficiency
 was measured using the Individual Event Simulation to be approximately \SI{40}{\percent}
 but was not used in this analysis.
@@ -1732,13 +1732,13 @@ a subdominant contribution was $\gamma$-rays from nH capture escaping from the L
     \label{fig:delayed_eff_unc_cartoon}
 \end{figure}
 
-The AD-uncorrelated uncertainty on the delayed energy cut efficiency
+The AD-uncorrelated uncertainty on the delayed-energy cut efficiency
 included variations due a wide variety of effects:
 geometrical variations, energy scale, different material properties,
 Gd fraction, etc.
 The overall variation between ADs was estimated using a general method
 that compared the relative size between the peak and tail regions
-of the delayed energy spectrum across the ADs.
+of the delayed-energy spectrum across the ADs.
 Intuitively, if the same fraction of events were in the peak region in each AD,
 then the cut efficiency must have a small variation.
 This intuition is visualized in the diagram in \cref{fig:delayed_eff_unc_cartoon}.
@@ -1750,8 +1750,8 @@ In practice, it was more convenient to compare the number of events in the peak
 to the total number of events in an extended region that included the peak and tail,
 rather than to just the new events in the tail.
 
-For each AD's delayed energy spectrum, the peak region was defined as
-the region passing the delayed energy cut, $\vert E_d-\mu \vert < 3\sigma$
+For each AD's delayed-energy spectrum, the peak region was defined as
+the region passing the delayed-energy cut, $\vert E_d-\mu \vert < 3\sigma$
 (\cref{eq:delayed_cut}), containing $N_\text{peak}$ events.
 The extended region, defined by
 $\SI{1.5}{\mev} < E_d < \SI{2.8}{\mev}$,
@@ -1777,13 +1777,13 @@ or the fraction of $\gamma$'s that (partially or entirely) escape from the AD.
         The best fit is shown as the red line.\\
         (Bottom) Relative deviations of each hall from the best-fit model.
         The range of deviations for the near-hall ADs
-        was used as the delayed energy efficiency AD-uncorrelated uncertainty.
+        was used as the delayed-energy efficiency AD-uncorrelated uncertainty.
     }
     \label{fig:delayed_eff_unc_fit}
 \end{figure}
 
 
-If the delayed energy spectra in each AD have the same shape (same efficiency),
+If the delayed-energy spectra in each AD have the same shape (same efficiency),
 and if the calorimeter function is an appropriate fitting function
 for determining the energy cut bounds,
 then for some constant $b$ common to all ADs,
@@ -1805,7 +1805,7 @@ which is consistent with $0$.
 The best-fit value for $b$ was $b = 0.9527 \pm 0.0015$.
 
 The final value for the AD-uncorrelated uncertainty
-of the delayed energy cut efficiency was taken to be
+of the delayed-energy cut efficiency was taken to be
 the range of the relative deviations
 of the near-hall ADs from the fitted line: \SI{0.22}{\percent}.
 The far-hall ADs had much higher statistical uncertainty
@@ -1842,11 +1842,11 @@ The absolute efficiency was defined as
         N_\text{IBD}[E_p \wedge E_d]
     },
 \end{equation}
-the fraction of IBD events passing the prompt and delayed energy cuts
+the fraction of IBD events passing the prompt- and delayed-energy cuts
 that also passed the DT cut.
 This value was estimated using a data-driven method
 based on the observed distribution of the DT parameter
-for all double coincidence events passing the prompt and delayed energy cuts,
+for all double-coincidence events passing the prompt- and delayed-energy cuts,
 with the contribution from the accidental background
 statistically subtracted.
 Separate 2D histograms $N_\text{obs}$ and $N_\text{acc}'$
@@ -1870,7 +1870,7 @@ based on the assumption that all observed events
 with a DT parameter greater than \SI{3}{\m}
 were accidental coincidences.
 The outer integral over delayed energy
-used the delayed energy cut bounds specific to each AD.
+used the delayed-energy cut bounds specific to each AD.
 
 \begin{figure}
     \centering
@@ -1955,7 +1955,7 @@ would render a precise measurement of \thetaot{} impossible.
 Additional investigation was undertaken to
 determine whether the differences in $\varepsilon_\text{DT}$ were intrinsic to the ADs
 or were artifacts of the procedure
-used to extract the absolute efficiency values.
+used to extract the absolute efficiencies.
 
 \begin{figure}
     \centering
@@ -2130,7 +2130,7 @@ with the muon event that created the parent \li{} nucleus \cite{jinjing_2020may}
 An alternate event selection with no post-muon veto
 was performed to increase the contribution of \li{} events
 in the resulting data sample.
-Additionally, the prompt energy threshold
+Additionally, the prompt-energy threshold
 was raised to $E_p > \SI{3.5}{\MeV}$
 to reduce the impact of accidental events.
 Muon events were categorized into energy classes
@@ -2296,7 +2296,7 @@ using the following formula:
     \sum_{E\in\set{E_1,E_2,E_3}}
     \frac{N_{\text{bkg},E}}{\alpha_{ntag, E}} e^{-V_E/\tau_{\text{Li}}}.
 \end{equation}
-The first term corrected for the different prompt energy cut
+The first term corrected for the different prompt-energy cut
 in the \li{} selection compared to the nominal IBD selection;
 the efficiencies were based on the \li{} prompt spectrum computed below
 and were approximately \SI{80}{\percent}.
@@ -2333,9 +2333,9 @@ used to estimate the actual contamination in the IBD candidate sample
 was computed based on this spectrum.
 
 The sources of uncertainty in the number of \li{} events
-in the double coincidence data sample
+in the double-coincidence data sample
 can be seen in the quantities that contributed to \cref{eq:li9_rate_conv}.
-The prompt energy cut efficiency ratio has an uncertainty
+The prompt-energy cut efficiency ratio has an uncertainty
 due to the statistical uncertainty of each bin in the extracted \li{} spectrum
 (\cref{fig:li9_spec}).
 No uncertainty was attributed to the livetime factor since
@@ -2368,34 +2368,34 @@ These fast neutrons could scatter off a proton in the scintillator,
 with the proton recoil causing a prompt-like scintillation signal.
 When the neutron subsequently captured on a hydrogen or gadolinium nucleus,
 the resulting prompt-delayed coincidence
-could pass all selection criteria and contaminate the double coincidence data set.
+could pass all selection criteria and contaminate the double-coincidence data set.
 
-The presence of fast neutron events in the double coincidence data set
+The presence of fast-neutron events in the double-coincidence data set
 was demonstrated by modifying the event selection
 to remove the upper limit on prompt energy (nominally $E_p < \SI{12}{\MeV}$)
 and examining events with prompt energy up to \SI{300}{\MeV}
 (keeping all other event selection criteria intact),
 as shown in in \cref{fig:fast_neutron}.
-The long tail of the spectrum was attributed to fast neutron events.
-This tail provided an important constraint on the fast neutron contamination
-in the nominal double coincidence data set.
+The long tail of the spectrum was attributed to fast-neutron events.
+This tail provided an important constraint on the fast-neutron contamination
+in the nominal double-coincidence data set.
 The modified data set will be referred to as the
-``extended double coincidence'' data set.
+``extended double-coincidence'' data set.
 
-The number of such fast neutron events in the nominal double coincidence data set
-was estimated by isolating a sample of fast neutron events
+The number of such fast-neutron events in the nominal double-coincidence data set
+was estimated by isolating a sample of fast-neutron events
 tagged by the muon system.
 The resulting spectrum could be normalized based on the high-energy tail
-of the modified sample's prompt energy spectrum
-to provide a prediction of the rate and spectrum of fast neutron events
+of the modified sample's prompt-energy spectrum
+to provide a prediction of the rate and spectrum of fast-neutron events
 with lower energies.
 
-The fast neutron events were selected by searching for
+The fast-neutron events were selected by searching for
 double coincidences associated with signals
 in the outer water shield (OWS) of the muon system
 which had no other associated muon signal
 (see \cref{tab:fast_neutron}).
-These events were assumed to be fast neutron events
+These events were assumed to be fast-neutron events
 which were caused by muons that traversed the outer water shield.
 The veto for all other muons was still applied in this sample,
 particularly the inner water shield (IWS) veto,
@@ -2419,7 +2419,7 @@ The integral notation is used for simplicity,
 but in practice the bins are summed over as $\sum_i N(E_i)$.
 As shown in \cref{fig:fast_neutron},
 there is very good agreement in the shape of the two spectra.
-The number of fast neutrons in the nominal double coincidence sample
+The number of fast neutrons in the nominal double-coincidence sample
 is estimated as the number of events in the normalized OWS-tagged histogram
 over the nominal prompt energy range of \SIrange{1.5}{12}{\MeV}:
 \begin{equation}\label{eq:fast_neutron_count}
@@ -2431,7 +2431,7 @@ over the nominal prompt energy range of \SIrange{1.5}{12}{\MeV}:
     \centering
     \caption[OWS tag criteria]{
         Modified event selection criteria for the OWS-tagged
-        double coincidence sample.
+        double-coincidence sample.
     }
     \label{tab:fast_neutron}
     \begin{tabular}[t]{rl}
@@ -2450,14 +2450,14 @@ over the nominal prompt energy range of \SIrange{1.5}{12}{\MeV}:
     \centering
     \includegraphics[height=0.8\textheight]{ch_event_selection/fast_neutron_spectra}
     \caption[Fast neutron spectrum]{
-        Prompt energy spectra for each hall
+        Prompt-energy spectra for each hall
         showing the extended double coincidences (``IBD candidates'')
         and the OWS-tagged sample used to compute the fast neutron background.
         The OWS-tagged sample has been normalized
         so that its integral from \SIrange{12}{300}{\MeV}
         matches the same integral in the extended double coincidence sample.
         The red curve is a fit of \cref{eq:fast_neutron_powerlaw}
-        to the double coincidence sample over \SIrange{12}{300}{\MeV}
+        to the double-coincidence sample over \SIrange{12}{300}{\MeV}
         and has been extrapolated to the lower-energy (nominal) range.
     }
     \label{fig:fast_neutron}
@@ -2470,7 +2470,7 @@ using a modified power law function:
     \frac{dN}{dE} = N_0 \left(\frac{E}{E_0}\right)^{-a-\frac{E}{E_0}},
 \end{equation}
 where $N_0,a$, and $E_0$ are free parameters.
-This function was fit to the extended double coincidence spectrum
+This function was fit to the extended double-coincidence spectrum
 over the energy range \SIrange{12}{300}{\MeV}
 and extrapolated to the lower-energy region,
 as shown in \cref{fig:fast_neutron}.
@@ -2494,7 +2494,7 @@ or the binning used to perform the fit.
 \label{subsec:amc}
 
 The \amc{} calibration sources emitted neutrons at a rate of \SI{\sim0.7}{\Hz}
-to allow for calibration of the ADs' response to neutron capture events
+to allow for calibration of the ADs' response to neutron-capture events
 (\cref{ch:calibration}).
 When not deployed during weekly calibrations, these sources
 were stored within the ACUs at the top of each AD.
@@ -2707,7 +2707,7 @@ including \num{\sim9e5} at each of EH1 and EH2,
 and over \num{3e5} at EH3, where high statistics means
 a more precise determination of the disappearance effect due to \thetaot{}.
 Including irreducible backgrounds, more than \num{2.5e6}
-\nuebar{} candidates were observed in the double coincidence sample.
+\nuebar{} candidates were observed in the double-coincidence sample.
 The background contamination was overwhelmingly due to accidental coincidences,
 comprising \SI{10}{\percent} of the \nuebar{} candidates
 at the near halls (EH1 and EH2).

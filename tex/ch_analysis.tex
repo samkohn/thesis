@@ -266,9 +266,9 @@ illustrated in \cref{fig:near_far_cartoon}:
 \end{figure}
 
 \begin{enumerate}
-    \item Subtract backgrounds from the near hall measurement
+    \item Subtract backgrounds from the near-hall measurement
         and adjust for detection efficiencies
-    \item Convert the reconstructed prompt energy spectrum
+    \item Convert the reconstructed prompt-energy spectrum
         into an estimated true \nuebar{} energy spectrum
     \item Predict the contribution of each reactor core
         to the observed \nuebar{} spectrum,
@@ -343,14 +343,14 @@ The values for $a_{\text{relE},i}^{(b)}(\thetaot, \Delta m^2_{32})$ were determi
 the Individual Event Simulation dataset (\cref{sec:thu_toymc}).
 The factor $(1 + \eta_{\text{relE},i}\cdot a_{\text{relE},i}^{(b)}(\thetaot,\Delta m^2_{32}))$
 accounts for changes of
-both shape and normalization (i.e.\ prompt energy cut efficiency)
-in the prompt spectrum
+both shape and normalization (i.e.\ prompt-energy cut efficiency)
+of the prompt spectrum
 due to differences in the relative energy scale between ADs.
 In practice $\eta_{N,i}^{(b)},\epsilon_i$ and $\eta_{\text{relE},i}$
 are implemented as nuisance or pull parameters
 so they can be adjusted during fitting.
 
-The dependence of prompt energy efficiency on oscillation parameters
+The dependence of prompt-energy efficiency on oscillation parameters
 discussed in \cref{subsec:prompt_energy}
 should be applied at this stage for conceptual consistency.
 However, the effect for a given AD, represented as $\delta_{p,ik}(\thetaot, \Delta m^2_{32})$,
@@ -363,7 +363,7 @@ The resulting $N_{\text{IBD},i}^{(b)}(\thetaot, \Delta m^2_{32})$ represents
 the estimated number of IBD interactions in AD $i$,
 reconstructed energy bin $b$,
 including those which occurred during muon or multiplicity vetoes,
-but not those which failed the prompt and delayed energy cuts
+but not those which failed the prompt- and delayed-energy cuts
 or the coincidence distance-time (DT) cut,
 corrected for AD-to-AD differences in all cut efficiencies
 number of target protons (target mass),
@@ -532,7 +532,7 @@ can be computed from the flux fraction $f_{ik}$ as
     },
 \end{equation}
 where the denominator is (belatedly) accounting for the dependence
-of the prompt energy efficiency on the \nuebar{} oscillations
+of the prompt-energy efficiency on the \nuebar{} oscillations
 between core $k$ and AD $i$,
 as mentioned in \cref{subsec:near_bg_eff}
 and described in detail in \cref{subsec:prompt_energy}.
@@ -647,9 +647,9 @@ the reverse of \cref{eq:near_hall_bg_eff} is applied:
         N_{\text{bg},j,u}^{(b)}(1 + \eta_{B,j,u}).
     \end{split}
 \end{align}
-The prompt energy efficiency's dependence on oscillation parameters
+The prompt-energy efficiency's dependence on oscillation parameters
 was accounted for in \cref{eq:far_true_core_pred},
-and the remainder of the prompt energy efficiency difference between ADs
+and the remainder of the prompt-energy efficiency difference between ADs
 is due to relative energy scale differences,
 represented by the $a_{\text{relE},j}^{(b)}$ parameters.
 The resulting predicted numbers of IBD candidates
@@ -840,7 +840,7 @@ the individual predictions were averaged together:
     \frac{1}{4} \sum_i
     F_{\text{pred},j,i}(\boldsymbol{\theta};\boldsymbol{\eta})
 \end{equation}
-The vector of predictions contains one component for each far site AD:
+The vector of predictions contains one component for each far-site AD:
 \begin{equation}\label{eq:f_pred_vector}
     \mathbf{F}_\text{pred}(\boldsymbol{\theta};\boldsymbol{\eta}) =
     (
@@ -921,9 +921,9 @@ canceled to first order, as discussed in \cref{ap:drm}.
                          & see \cref{sec:lbnl_toymc} \\
         Detection efficiency & \SI{0.66}{\percent}
                              & 8 (1 per AD)
-                             & Includes $\Delta N_p$, excludes prompt energy efficiency \\
+                             & Includes $\Delta N_p$, excludes prompt-energy efficiency \\
         Relative energy scale & \SI{0.5}{\percent}
-                              & 8 (1 per AD) & Includes prompt energy efficiency \\
+                              & 8 (1 per AD) & Includes prompt-energy efficiency \\
         All other detector response & negligible
                                     & 0
                                     & see \cref{sec:lbnl_toymc} \\
@@ -1104,7 +1104,7 @@ systematic uncertainty $u$ was
     \sigma^2_u = \sigma^2_\text{all} - \sigma^2_{\text{all}-u}.
 \end{equation}
 The modified $\chi^2$ scans are shown in \cref{fig:error_budget_scans},
-labeled by the pull parameter category whose impact was tested.
+labeled by the pull-parameter category whose impact was tested.
 Each source of uncertainty was converted into a relative contribution,
 \begin{equation}\label{eq:syst_error_rel}
     f_u = \frac{\sigma^2_u}{\sigma^2_{\text{all}}}.
@@ -1152,7 +1152,7 @@ listed in \cref{tab:error_budget}.
         Relative energy scale & 4.27 \\
         Accidental background & 1.38 \\
         \li{}/\he{} background & 14.51 \\
-        Fast neutron background & 2.21 \\
+        Fast-neutron background & 2.21 \\
         \amc{} background & 0.94 \\
         Radiogenic neutron background & 3.57 \\
         Reactor power & 5.72 \\

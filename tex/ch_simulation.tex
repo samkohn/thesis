@@ -94,16 +94,16 @@ However, the IES was used to estimate other quantities.
     \caption[Simulated prompt and delayed spectra]{Spectrum of reconstructed energy for simulated IBD prompt (left)
         and delayed (right) events
         in the Monte Carlo study used to compute the absolute efficiencies
-        of the prompt and delayed energy cuts.
+        of the prompt- and delayed- energy cuts.
         The prompt spectrum is also used to compute the
-        AD-uncorrelated uncertainty of the prompt energy cut.
+        AD-uncorrelated uncertainty of the prompt-energy cut.
     }
     \label{fig:prompt_eff_mc}
 \end{figure}
 
 \subsubsection{Study of prompt energy cut efficiency}
 
-The prompt energy cut efficiency for each AD depended on
+The prompt-energy cut efficiency for each AD depended on
 the oscillation parameters due to the energy dependence of \nuebar{} oscillation
 (see \cref{subsec:prompt_energy}).
 This correction was computed at a given point in parameter space
@@ -125,7 +125,7 @@ A shift in the energy scale was modeled by
 creating a histogram of reconstructed prompt energy,
 but where the value of the energy was scaled
 by the uncertainty of the relative energy scale, \SI{\pm0.5}{\percent}.
-The resulting change to the prompt energy cut efficiency, \SI{\pm0.1}{\percent},
+The resulting change to the prompt-energy cut efficiency, \SI{\pm0.1}{\percent},
 was the AD-uncorrelated uncertainty for that efficiency.
 Shifting the energy scale also changed the shape of the spectrum,
 which was quantified by comparing the change in number of events
@@ -154,10 +154,10 @@ the consistent application of $a_{\text{relE},i}^{\pm,(b)}$ to all bins
 could change the total number of events.
 The impact of the change in total number of events
 was equivalent to the previously-mentioned change
-to the prompt energy cut efficiency induced by the relative energy scale shift.
+to the prompt-energy cut efficiency induced by the relative energy scale shift.
 To avoid double-counting the change in number of events
 due to a shift in relative energy scale,
-the prompt energy cut efficiency was omitted
+the prompt-energy cut efficiency was omitted
 from the fit model and from the constraint
 on the nuisance parameter representing the overall detection efficiency uncertainty.
 
@@ -316,10 +316,10 @@ All of the choices of energies and rates were approximations
 designed to capture the general behavior of muons at Daya Bay
 without adding excessive complexity to the simulation.
 
-\subsection{Study of uncorrelated event rate}
+\subsection{Study of uncorrelated-event rate}
 \label{subsec:sim_singles}
 
-The procedure for determining the uncorrelated event rate
+The procedure for determining the uncorrelated-event rate
 is described in \cref{subsec:singles}.
 This process, both the abstract algorithm and the actual software implementation,
 was validated using simulated datasets.
@@ -343,7 +343,7 @@ since the accidentals rate uncertainty
 for the actual data set was approximately \SI{0.077}{\percent}.
 Thus the simulation was able to confirm that
 the event selection software could successfully extract
-the uncorrelated event rate with high precision and tolerable bias.
+the uncorrelated-event rate with high precision and tolerable bias.
 
 \begin{table}[ht]
     \centering
@@ -362,7 +362,7 @@ the uncorrelated event rate with high precision and tolerable bias.
         \bottomrule
     \end{tabular}
     \caption[Uncorrelated event simulation inputs]{
-        Simulation configuration inputs for the uncorrelated event rate study.
+        Simulation configuration inputs for the uncorrelated-event rate study.
         The rates, energies and coincidence times were simplified
         to allow for faster simulation,
         and no results based on the specific distributions of these quantities
@@ -520,7 +520,7 @@ The nH and nGd analyses were similar enough
 that the same fitter software could be used for both analyses
 simply by adjusting the values for uncertainties, efficiencies,
 target masses and backgrounds
-(and, of course, using the corresponding prompt energy spectra).
+(and, of course, using the corresponding prompt-energy spectra).
 Thus the data set toy Monte Carlo was used without modification
 to generate simulated nGd data sets,
 and the fitter was validated without relying on
@@ -595,7 +595,7 @@ pos = ht
         \SI{27}{\percent} (EH1), \SI{29}{\percent} (EH2) \\
         \SI{33}{\percent} (EH3)
     } \NN
-    Fast neutron background & \SI{10}{\percent} (EH1 \& EH2), \SI{17}{\percent} (EH3) \NN
+    Fast-neutron background & \SI{10}{\percent} (EH1 \& EH2), \SI{17}{\percent} (EH3) \NN
     \amc{} background & \SI{50}{\percent} \NN
     \bottomrule
 }
