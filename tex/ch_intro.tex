@@ -120,7 +120,6 @@ could be used to detect neutrinos produced by the sun.
 This experiment will be discussed later as the earliest evidence
 for neutrino mixing.
 
-\todo[inline]{Evidence of nu-tau}
 \subsection{Helicity of the neutrino}
 \label{subsec:helicity}
 
@@ -251,6 +250,8 @@ had helicity $-1$.
 \subsection{Discovery of neutrino flavors}
 \label{subsec:nu_flavors}
 
+\subsubsection{The muon neutrino}
+
 In 1962, Schwartz, Lederman, \emph{et~al.} used the
 Alternating Gradient Synchrotron (AGS) at Brookhaven
 to demonstrate that $\nu_\mu$ behaved differently from $\nu_e$
@@ -286,6 +287,46 @@ With dozens of muon events and not a single electron event
 attributable to the muon-associated neutrinos,
 it was concluded that $\nu_\mu \neq \nu_e$.
 
+\subsubsection{The tau neutrino}
+
+After the discovery of the $\tau$ lepton in 1975 \cite{tau_discovery},
+a search began to characterize the associated neutrino.
+At the time, it was unknown if the associated neutrino to the $\tau$
+was a new neutrino (the $\nu_\tau$),
+or if the $\tau$ was associated with the $\nu_e$, the $\nu_\mu$,
+or a superposition of the two \cite{nu_tau_conf}:
+\begin{equation}\label{eq:nutau_not_real}
+    \ket{\nu_\tau} \stackrel{?}{=} \epsilon_e \ket{\nu_e} + \epsilon_\mu \ket{\nu_\mu},
+\end{equation}
+where $\epsilon_l = 1$ indicates a coupling strength equal to the usual
+weak interaction coupling for lepton generation $l$.
+Searches for $\tau$ production from $\nu_\mu$ and $\nu_e$ neutrino beams
+were unsuccessful as early as 1978 \cite{nu_tau_search_1,nu_tau_search_2},
+and by 1982 the Particle Data Group had concluded that
+the existence of the $\nu_\tau$ as an independent flavor eigenstate
+had been indirectly established \cite{pdg1982}.
+Direct observation of four $\nu_\tau$ charged current interactions
+was reported by the DONUT experiment in 2001 \cite{donut_1},
+with five additional interactions reported in 2008 \cite{donut_2}.
+The DONUT experiment generated $\nu_\tau$'s by directing an \SI{800}{\GeV}
+proton beam into a tungsten beam dump.
+Approximately \SI{85}{\percent} of the $\nu_\tau$ flux was produced by the reaction
+\begin{align}\label{eq:nutau_production}
+    \begin{split}
+        D_s^{\pm} \to&\tau^{\pm} + \nu_\tau (\bar{\nu}_\tau),\\
+                     & \tau^{\pm} \to \bar{\nu}_\tau (\nu_\tau) + X.
+    \end{split}
+\end{align}
+A steel target interleaved with nuclear emulsion plates was used
+to detect $\nu_\tau$'s produced by the beam dump.
+The OPERA experiment observed $\nu_\mu\to\nu_\tau$ oscillation
+using a $\nu_\mu$ beam produced at CERN
+with an average neutrino energy of \SI{17}{\GeV}.
+This experiment used lead plates as a target;
+the plates were interleaved with nuclear emulsion plates to track the
+$\tau$ and its primary decay products.
+Ten $\nu_\tau$ interactions were recorded between 2008 and 2012 \cite{opera}.
+Neutrino oscillation will be described in detail later in this chapter.
 
 \subsection{Discovery of the neutral current}
 \label{subsec:neutral_current}
