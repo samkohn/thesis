@@ -131,7 +131,7 @@ When a cosmic-ray muon entered the LS or GdLS volume of the AD,
 it created a scintillation signal (and a smaller Cherenkov radiation signal)
 that was proportional to the distance traveled
 through the AD.
-Given that in LS and GdLS, $\nicefrac{dE}{dx} \approx \SI{2}{\mev\per\cm}$,
+Given that in LS and GdLS, $dE/dx \approx \SI{2}{\mev\per\cm}$,
 even a muon that only traversed a small distance across the corner of an AD could easily deposit
 more energy than the most energetic IBD interaction from a reactor \nuebar,
 thus motivating event energy as a convenient discriminant for identifying muon interactions.
@@ -913,7 +913,7 @@ Residual flashers were anti-correlated in time
 but were vetoed from the data stream (\cref{sec:flashers}).
 Correlated events (both IBDs and other backgrounds)
 had a rate much smaller than the uncorrelated event rate
-($\nicefrac{R_{\text{corr}}}{R_s} \sim 10^{-3}$)
+($R_{\text{corr}}/R_s \sim 10^{-3}$)
 and had a negligible impact on the probability of a \fold{1} coincidence,
 as validated by the Reconstructed-Data File Simulation in \cref{subsec:sim_singles}.
 
@@ -992,7 +992,7 @@ by pairing up the isolated events.
 In particular, each event was assigned an index in time order,
 from $0$ to $N_{\text{isolated}}$.
 Then each event $i$ from the first half of the run was paired with
-the corresponding event from the second half, $i + \nicefrac{N_{\text{isolated}}}{2}$.
+the corresponding event from the second half, $i + N_{\text{isolated}}2$.
 The large time separation between the two events
 ensured that they were truly uncorrelated.
 The synthetic coincidence distance was taken to be the actual distance
@@ -2188,7 +2188,7 @@ that depends on both the muon rate and the decay lifetime:
 \begin{equation}\label{eq:li9_muon_corr}
     p_\text{corr}(t) = \lambda_\text{iso} e^{-\lambda_\text{iso} t}dt,
 \end{equation}
-where $\lambda_\text{iso} = R_\mu + \nicefrac{1}{\tau_\text{iso}}$
+where $\lambda_\text{iso} = R_\mu + 1/\tau_\text{iso}$
 and $\tau_\text{iso}$ is the decay time
 for the muon-correlated isotope.
 
@@ -2222,7 +2222,7 @@ and had a lifetime of \SI{20.2}{\ms}.
 The distribution of time since the preceding muon
 for \boron{}-\boron{} accidental coincidences
 had the same form as \cref{eq:li9_muon_corr},
-except that $\lambda_\text{B} = R_\mu + \nicefrac{2}{\tau_{B}}$
+except that $\lambda_\text{B} = R_\mu + 2/\tau_{B}$
 since two \boron{} decays are required.
 
 The measured distributions of times since the preceding muon
