@@ -5,8 +5,8 @@ The overwhelming majority of triggers (raw data events) collected by the ADs
 were not IBD prompt or delayed events.
 As listed in \cref{tab:trigger_rates}, all ADs observed trigger rates
 of at least \SI{100}{\Hz},
-while expected IBD rates ranged from $\sim50$ per AD per day in EH3
-to $\sim450$ per AD per day in EH1.
+while expected IBD rates ranged from ${\sim}50$ per AD per day in EH3
+to ${\sim}450$ per AD per day in EH1.
 Thus the signal-to-noise ratio in raw data was approximately $10^{-5}$.
 Most non-IBD triggers were caused by low-energy (\SI{<1.5}{\MeV}) radiation
 produced by decays of radiocontaminants within the ADs.
@@ -167,7 +167,7 @@ and any event triggering $>15$ PMTs in the outer wanter shield
 was classified as an outer water shield muon.
 A veto of \SI{400}{\micro\second} was applied to the data following
 both types of water shield muons.
-This veto was long enough to allow most (all but $\sim e^{-2}$)
+This veto was long enough to allow most (all but ${\sim}e^{-2}$)
 fast neutrons that penetrate into an AD to be captured by H or Gd
 before the end of the veto window.
 Since the characteristic time between water shield muons at the near halls
@@ -192,7 +192,7 @@ These particle showers produced a much higher rate of
 \li{} and \he{}.
 Because \li{} in particular has a long lifetime of \SI{257.2}{\milli\second},
 the veto window for showering muons was extended to \SI{1}{\second}
-to allow all but $\sim e^{-4}$ of the \li{} to decay before the veto window ends.
+to allow all but ${\sim}e^{-4}$ of the \li{} to decay before the veto window ends.
 The residual \li{} and \he{} events in the dataset are characterized
 in \cref{subsec:li9}.
 
@@ -535,7 +535,7 @@ including the $f_{\text{ID}}$ parameter and the various quadrant charges $Q_i$.
 Eventually, a trapeziod-shaped cut in the parameter space of
 $f_{\text{ID}}$ vs. $Q_1/Q_2$ was identified which rejected
 $\SI{>80}{\percent}$ of hidden flashers while incorrectly rejecting only
-$\sim\SI{0.02}{\percent}$ of true IBDs in each AD \cite{nh2021technote}.
+$\SI{\sim0.02}{\percent}$ of true IBDs in each AD \cite{nh2021technote}.
 Events which satisfied all of the the following three criteria were rejected:
 (1) $Q_1/Q_2 > 0.6$; (2) $f_{\text{ID}} > 0.5 \times Q_1/Q_2 - 0.8$;
 and (3) $f_{\text{ID}} > -0.3$,
@@ -666,7 +666,7 @@ which ended before the prompt event in question.
 Window 4 of \cref{fig:timeline_examples} demonstrates this property:
 there are no other AD events within Window 4,
 but there is a previous AD event within \tc{} of the start of Window 4.
-Given the event rates at Daya Bay, this only happened in $\sim10^{-4}$
+Given the event rates at Daya Bay, this only happened in ${\sim}10^{-4}$
 of single events.
 This probability is derived in \cref{ap:singlesformula} as $P_b$.
 
@@ -682,7 +682,7 @@ the resulting set of \fold{2} coincidences
 contained IBD candidates
 with substantial background still present.
 With a coincidence time of $\tc=\SI{1.5}{\ms}$
-and a neutron capture time of $\sim\SI{200}{\us}$ in LS,
+and a neutron capture time of $\SI{\sim200}{\us}$ in LS,
 there was a negligible inefficiency due to neutrons
 which took longer than \tc{} to capture on hydrogen.
 \Cref{fig:double_coinc_raw} shows the prompt and delayed energy
@@ -764,8 +764,8 @@ and the time delay between production and capture was \SI{\sim215}{\us}.
 For accidental coincidences, the typical separation between prompt and delayed signals was
 the length scale of the AD, approximately \SI{4000}{\milli\meter}.
 The characteristic time between consecutive single events,
-based on the \fold{1} event rate of $\sim\SI{20}{\Hz}$,
-was $\sim\SI{50000}{\us}$.
+based on the \fold{1} event rate of $\SI{\sim20}{\Hz}$,
+was $\SI{\sim50000}{\us}$.
 Thus the distance and time between the prompt and delayed signals
 of a double coincidence event could be used
 as discriminants to preferentially select IBD events over accidentals.
@@ -915,7 +915,7 @@ Correlated events (both IBDs and other backgrounds)
 had a rate much smaller than the uncorrelated event rate
 ($\nicefrac{R_{\text{corr}}}{R_s} \sim 10^{-3}$)
 and had a negligible impact on the probability of a \fold{1} coincidence,
-as validated by simulation in \cref{subsec:sim_singles}.
+as validated by the Reconstructed-Data File Simulation in \cref{subsec:sim_singles}.
 
 \begin{figure}
     \centering
@@ -1119,8 +1119,7 @@ A similar computation for EH1-AD1 results in a change of only \SI{-0.13}{\percen
 
 The accuracy of the method used to compute $R_{s}$,
 the primary input to $R_{\text{\fold{2}}}$,
-was examined using the data stream Monte Carlo described in \cref{sec:toymc}.
-\todo{Update name of MC if necessary}
+was examined using the Reconstructed-Data File Simulation described in \cref{sec:toymc}.
 The results of the simulation study verified that
 the above method extracts $R_s$ with high accuracy, at worst biased by \SI{0.02}{\percent}.
 In particular, the treatment of the small correlated event rate as negligible
@@ -1602,7 +1601,7 @@ according to \cref{eq:efficiency_def} as
 \begin{equation}\label{eq:prompt_eff}
     \varepsilon_\text{prompt} = \frac{N_\text{IBD}[E_p]}{N_\text{IBD}}.
 \end{equation}
-The absolute efficiency was estimated using Monte Carlo,
+The absolute efficiency was estimated using the Individual Event Simulation,
 as described in \cref{sec:thu_toymc}, to be \SI{\sim88}{\percent}.
 Since the absolute efficiency was not used in the \thetaot{} analysis,
 a more precise value was not studied for this thesis.
@@ -1625,7 +1624,7 @@ This relative difference in efficiency between ADs
 impacted the extracted value of \thetaot{} by \SI{\sim5}{\percent}.
 
 Corrections for each AD--reactor pair were computed
-using the individual event Monte Carlo (\cref{sec:thu_toymc})
+using the Individual Event Simulation (\cref{sec:thu_toymc})
 and weighted to arrive at each AD's final relative prompt energy efficiency.
 Since the corrections to the efficiency depended on
 the amplitude of \nuebar{} oscillations, they relied on knowledge of \thetaot.
@@ -1693,7 +1692,8 @@ Based on the analysis of the delayed energy spectrum in each AD
 reported in \cref{subsec:delayed}, the energy scale
 varied by less than \SI{0.5}{\percent} between ADs.
 By applying a \SI{+-0.5}{\percent} variation to
-the event energy in the Monte Carlo dataset visualized in \cref{fig:prompt_eff_mc},
+the reconstructed prompt energy spectrum of the simulated dataset
+shown in \cref{fig:prompt_eff_mc} from the Individual Event Simulation,
 the impact of the energy scale differences was propagated
 to the prompt energy efficiency.
 The impact, and therefore the relative uncertainty on
@@ -1715,7 +1715,7 @@ The delayed energy cut efficiency was defined according to \cref{eq:efficiency_d
 the fraction of true IBDs passing the prompt energy selection
 which also were accepted by the delayed energy cuts.
 Like for the prompt energy, the absolute efficiency
-was measured using Monte Carlo to be approximately \SI{40}{\percent}
+was measured using the Individual Event Simulation to be approximately \SI{40}{\percent}
 but was not used in this analysis.
 The primary contribution to the inefficiency
 was neutrons capturing on Gd in the GdLS volume;
@@ -2004,7 +2004,7 @@ due to the change in $N_\text{sub}[E_p \wedge E_d]$
 from over- or under-subtraction.
 Thus any bias in $k$ was amplified into a bias in $\varepsilon_\text{DT}$
 over 200 times as large.
-The near-hall ADs were sensitive by a factor of $\sim30$.
+The near-hall ADs were sensitive by a factor of ${\sim}30$.
 
 \begin{figure}
     \centering
@@ -2074,7 +2074,7 @@ in the accidental background rates.
 The top-left panel of \cref{fig:DT_eff} shows an attempt
 at measuring the DT cut efficiency by setting $k$ based on \cref{eq:nacc}
 rather than \cref{eq:acc_sub_normalized};
-the discrepancy of $\sim0.06$ between EH3-AD4's efficiency and the near-hall average
+the discrepancy of ${\sim}0.06$ between EH3-AD4's efficiency and the near-hall average
 is consistent with the expected impact
 of the normalization error of \SI{0.04}{\percent} listed in \cref{tab:acc_validation}.
 Thus although the nominal, rate-based methodology
@@ -2120,7 +2120,7 @@ meaning that the \SI{800}{\us} veto for AD muons
 with energy below \SI{2.5}{\GeV} will almost always
 \emph{not} veto the subsequent \li{} or \he{} decay.
 The shower muon veto of \SI{1}{\s} still allowed acceptance of
-$\sim e^{-4}$ of the associated \li{} and \he{} events.
+${\sim}e^{-4}$ of the associated \li{} and \he{} events.
 In the following, unless otherwise stated,
 \li{} will be used to mean both \li{} and \he{}.
 
@@ -2251,7 +2251,7 @@ The histograms for EH2 are qualitatively the same as those for EH1.
 \begin{figure}
     \centering
     \includegraphics{ch_event_selection/li9_fit_plots_EH1}
-    \caption{
+    \caption[Time-since-muon histograms for EH1]{
         Histograms of time since the preceding muon at EH1.
         The histograms for EH2 are qualitatively the same as for EH1.
         Taken from \cite{jinjing_2020may}.
@@ -2262,7 +2262,7 @@ The histograms for EH2 are qualitatively the same as those for EH1.
 \begin{figure}
     \centering
     \includegraphics{ch_event_selection/li9_fit_plots_EH3}
-    \caption{
+    \caption[Time-since-muon histograms for EH3]{
         Histograms of time since the preceding muon at EH3.
         Taken from \cite{jinjing_2020may}.
     }
@@ -2775,7 +2775,7 @@ are listed in \cref{tab:efficiency_summary}.
 \end{table}
 
 \ctable[
-cap = Summary of efficiency uncertainties (ctable),
+cap = Summary of efficiency uncertainties,
 caption = Summary of efficiency uncertainties,
 label = tab:efficiency_summary,
 pos = ht
