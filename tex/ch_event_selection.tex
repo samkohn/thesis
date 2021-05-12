@@ -163,7 +163,7 @@ for classifying muons.
 Most muons reaching the ADs caused significant PMT signals in the inner and outer water shields.
 Any event that triggered $>12$ PMTs in the inner water shield
 was an inner water shield muon,
-and any event triggering $>15$ PMTs in the outer wanter shield
+and any event triggering $>15$ PMTs in the outer water shield
 was classified as an outer water shield muon.
 A veto of \SI{400}{\micro\second} was applied to the data following
 both types of water shield muons.
@@ -277,7 +277,7 @@ because when computing the counting statistics of single and coincident events
 the relevant metrics are the time until the next veto window begins
 and the time since the last veto window ended,
 neither of which depends on the length of a veto window
-or the number of overlapping muon vetos.
+or the number of overlapping muon vetoes.
 The following scenarios could lead to overlapping muon veto windows:
 \begin{itemize}
     \item A single physical muon could create multiple muon events
@@ -292,7 +292,7 @@ The following scenarios could lead to overlapping muon veto windows:
     \item One muon could occur shortly after the end of a previous veto window,
         so that the pre-muon veto of the later muon overlapped with the
         post-muon veto of the earlier one.
-        Any candidate event occuring between the two muons would be vetoed.
+        Any candidate event occurring between the two muons would be vetoed.
 \end{itemize}
 The run-by-run effective muon rate $R_\mu$ is shown in \cref{fig:muon_rate}.
 
@@ -518,7 +518,7 @@ discussed in \cref{subsec:flash_resid}.
     \caption[Residual flasher position distributions]{
         Position distribution of events in EH3-AD1
         which pass the nominal and 2-inch flasher cuts,
-        have $E > \SI{1.5}{\MeV}$, pass the usual muon vetos,
+        have $E > \SI{1.5}{\MeV}$, pass the usual muon vetoes,
         and are vetoed by one of the three residual flasher cuts.
         Top left: top-ring flashers;
         top right: large-$R$ flashers;
@@ -578,7 +578,7 @@ revealed ``hot spots'' within and outside the ADs.
 To isolate the cluster flashers,
 various distributions were explored using the existing flasher-related variables,
 including the $f_{\text{ID}}$ parameter and the various quadrant charges $Q_i$.
-Eventually, a trapeziod-shaped cut in the parameter space of
+Eventually, a trapezoid-shaped cut in the parameter space of
 $f_{\text{ID}}$ vs. $Q_1/Q_2$ was identified which rejected
 $\SI{>80}{\percent}$ of hidden flashers while incorrectly rejecting only
 $\SI{\sim0.02}{\percent}$ of true IBDs in each AD \cite{nh2021technote}.
@@ -592,7 +592,7 @@ as illustrated in \cref{fig:hidden_flasher_cut}
 \label{sec:coincidence}
 
 Events were grouped based on the number of other events
-occuring within a given coincidence time \tc.
+occurring within a given coincidence time \tc.
 Each event with reconstructed energy above \SI{1.5}{\mega\electronvolt}
 was identified as an ``AD event''
 and was a potential coincidence candidate.
@@ -872,7 +872,7 @@ another uncorrelated event would occur within \tc{} was
 \end{equation}
 For the above value for $R_s=\SI{17.5}{\hertz}$, this probability is \SI{2.56}{\percent}.
 Since \fold{2} coincidence groups like this were not formed from any
-deliberate physical proccess but rather by an accidental coincidence,
+deliberate physical process but rather by an accidental coincidence,
 they are known as the accidental background.
 Crucially, though all \fold{1} coincidence groups
 were assumed to consist of a single uncorrelated event,
@@ -1528,7 +1528,7 @@ was interpreted as the relative energy scale uncertainty
 
 The bounds for the delayed energy cut were computed
 based on the fitted peak value and energy resolution
-from the calorimter model.
+from the calorimeter model.
 The energy criterion was
 \begin{equation}\label{eq:delayed_cut}
     \mu - 3\sigma < E_d < \mu + 3\sigma.
@@ -1556,7 +1556,7 @@ relative to the probability in another AD.
 Where the absolute efficiencies were known with enough precision
 (for the muon and multiplicity cuts $\varepsilon_\mu$ and $\varepsilon_m$),
 they were used to correct the observed counts of IBD candidates.
-In the following, these two efficiencies are implicity carried through
+In the following, these two efficiencies are implicitly carried through
 with zero uncertainty.
 For the remaining sources of detection inefficiency,
 only the relative, uncorrelated variation between ADs was characterized,
@@ -1593,7 +1593,7 @@ The notation $N[A \wedge B]$ means
 the number of events accepted after applying cuts $A$ and $B$.
 The overall denominator $N_\text{IBD}$
 represents the total number of true IBD interactions
-that occured on a target proton in the AD,
+that occurred on a target proton in the AD,
 whether or not they were eventually detected,
 and whether or not the neutron captured on Gd or H.
 Including nGd events ensured that the analysis of relative efficiencies
@@ -1997,7 +1997,7 @@ used to extract the absolute efficiencies.
         from the accidentals subtraction procedure.
         The uncertainties confirm that the apparent AD-to-AD variations
         can be attributed to statistical fluctuations of the accidental background
-        rather than intrisic differences between ADs.
+        rather than intrinsic differences between ADs.
         This plot is comparable to the top-right plot of \cref{fig:DT_eff}.
         Figure taken from \cite{beda_DT_eff_unc}.
     }
@@ -2344,7 +2344,7 @@ by comparing a \li{}-rich sample to a pure-IBD sample of events
 obtained by extending the shower muon veto.
 The prompt spectrum from the pure-IBD sample
 was normalized to the fitted value for $N_\text{uncorr}$
-and subtracted from the prompt spectrom of the \li{}-rich sample.
+and subtracted from the prompt spectrum of the \li{}-rich sample.
 The resulting \li{} prompt spectrum is shown in \cref{fig:li9_spec}
 and was assumed to be common among all ADs.
 The prompt energy cut efficiency ratio
@@ -2665,7 +2665,7 @@ would capture on a nearby nucleus
 and release an energetic neutron and also potentially a prompt $\gamma$-ray.
 The neutron would thermalize and capture on Gd or H, providing a delayed signal.
 \Cref{tab:rad_n_sources} lists the \isotope[238]{U} and \isotope[232]{Th}
-contaminations of the PMT glass and fluorocarbon paint,
+contamination of the PMT glass and fluorocarbon paint,
 the relevant target nuclei for the $(\alpha,n)$ interaction,
 and the estimated rates of neutrons emitted per AD per day.
 
