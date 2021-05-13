@@ -2284,7 +2284,7 @@ could not effectively discriminate the \li{} events
 on top of the muon-uncorrelated events (i.e. IBDs and accidentals).
 Thus only the neutron-tagged sample was used to characterize this muon sample.
 A systematic uncertainty of \SI{100}{\percent} was assessed
-on the neutron tag efficiency $\varepsilon_{ntag}$,
+on the neutron tag efficiency $\varepsilon_\text{ntag}$,
 the estimated fraction of \li{} events produced by neutron-tagged muons.
 The value of this efficiency was estimated by examining
 the corresponding efficiency for the middle energy class of muons,
@@ -2304,7 +2304,7 @@ using the following formula:
     }
     \times
     \sum_{E\in\set{E_1,E_2,E_3}}
-    \frac{N_{\text{bkg},E}}{\alpha_{ntag, E}} e^{-V_E/\tau_{\text{Li}}}.
+    \frac{N_{\text{bkg},E}}{\alpha_{\text{ntag},\,E}} e^{-V_E/\tau_{\text{Li}}}.
 \end{equation}
 The first term corrected for the different prompt-energy cut
 in the \li{} selection compared to the nominal IBD selection;
@@ -2315,16 +2315,16 @@ into portions attributed to each AD based on the nominal unvetoed livetime.
 The index $j$ sums over all ADs within the same hall.
 The third term is a sum of the extracted event counts
 over the three muon energy classes, denoted by $E_1,E_2,E_3$.
-The weighting factor $\alpha_{ntag,E}$ accounted
+The weighting factor $\alpha_{\text{ntag},\,E}$ accounted
 for the use of the neutron-tagged sample for class $E_1$
 and was defined as:
 \begin{align}
     \begin{split}
-        \alpha_{ntag,E1} &= \varepsilon_{ntag,E2} \\
-        \alpha_{ntag,E2} = \alpha_{ntag,E3} &= 1,
+        \alpha_{\text{ntag},\,E1} &= \varepsilon_{\text{ntag},\,E2} \\
+        \alpha_{\text{ntag},\,E2} = \alpha_{\text{ntag},\,E3} &= 1,
     \end{split}
 \end{align}
-where $\varepsilon_{ntag,E2}$ is the neutron tag efficiency defined earlier.
+where $\varepsilon_{\text{ntag},\,E2}$ is the neutron tag efficiency defined earlier.
 The exponential factor accounted for \li{} decay
 over the actual muon veto windows in the nominal event selection,
 which had values $V_{E1} = V_{E2} = \SI{800}{\us}$
